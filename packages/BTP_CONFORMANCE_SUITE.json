@@ -1,0 +1,523 @@
+{
+  "suite_version": "BTP-CONFORMANCE-v2.2-FROZEN",
+  "classification": "Formal Cryptographic & Semantic Conformance Suite (Frozen Spec)",
+  "trusted_root_pubkeys_hex": [
+    "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c",
+    "fd1724385aa0c75b64fb78cd602fa1d991fdebf76b13c58ed702eac835e9f618"
+  ],
+  "deterministic_timestamp_fixture": 1771500000.0,
+  "total_test_vectors": 12,
+  "test_vectors": [
+    {
+      "id": "TC-01-VALID-BASELINE",
+      "description": "Standard authentic BTP attestation with all valid fields",
+      "attestation_packet": {
+        "attestation": {
+          "protocol_version": "BTP/2.2",
+          "authority": "Bartholomew-Trust-Engine-v2.2",
+          "authority_pubkey": "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c",
+          "nonce": "e0a1b2c3d4e5f60718293a4b5c6d7e8f",
+          "issued_at_unix": 1771500000.0,
+          "expires_at_unix": 1771500300.0,
+          "originating_agent": "Agent-LangGraph-01",
+          "target_recipient": "Agent-AutoGen-02",
+          "action_type": "DEPLOY_PATCH",
+          "action_payload_hash": "7a8e3d6711baedd2ae82041077f18153fa84103b06cdd6f66fa8e7cb7e367f33",
+          "policy_id": "urn:btp:policy:owasp-agentic-v2026.1",
+          "policy_hash": "630574a737d9634b9f4dbcfe365a0a4de19adfb048de826df2036cd49fe9f535",
+          "capability_scope": [
+            "FS_WRITE_RESTRICTED",
+            "NO_NET_EGRESS",
+            "AST_MAX_DELTA_5"
+          ],
+          "verdict": "ALLOW",
+          "reason": "All pre-flight checks and trajectory policies verified successfully."
+        },
+        "signature": "0347d7bc427a3e31801aba0576f498115b7f68b29ef22b911f465028b2357af70acd0611c0e2cbfefb41d2795f462025eb002d5df9c17feec0ce2ef1ad9ca60a"
+      },
+      "candidate_payload": {
+        "file": "router.py",
+        "delta_lines": 3,
+        "unicode_edge": " -> BTP Verifier 日本語 äöü",
+        "float_zero": 0,
+        "patch": "def route(): return True"
+      },
+      "trusted_pubkeys": [
+        "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c",
+        "fd1724385aa0c75b64fb78cd602fa1d991fdebf76b13c58ed702eac835e9f618"
+      ],
+      "recipient_context": "Agent-AutoGen-02",
+      "eval_timestamp": 1771500010.0,
+      "expected_result": true,
+      "expected_error": null
+    },
+    {
+      "id": "TC-02-MULTI-AUTHORITY-VALID",
+      "description": "Valid attestation signed by secondary recognized authority in trust store",
+      "attestation_packet": {
+        "attestation": {
+          "protocol_version": "BTP/2.2",
+          "authority": "Bartholomew-Trust-Engine-v2.2",
+          "authority_pubkey": "fd1724385aa0c75b64fb78cd602fa1d991fdebf76b13c58ed702eac835e9f618",
+          "nonce": "e0a1b2c3d4e5f60718293a4b5c6d7e8f",
+          "issued_at_unix": 1771500000.0,
+          "expires_at_unix": 1771500300.0,
+          "originating_agent": "Agent-LangGraph-01",
+          "target_recipient": "Agent-AutoGen-02",
+          "action_type": "DEPLOY_PATCH",
+          "action_payload_hash": "7a8e3d6711baedd2ae82041077f18153fa84103b06cdd6f66fa8e7cb7e367f33",
+          "policy_id": "urn:btp:policy:owasp-agentic-v2026.1",
+          "policy_hash": "630574a737d9634b9f4dbcfe365a0a4de19adfb048de826df2036cd49fe9f535",
+          "capability_scope": [
+            "FS_WRITE_RESTRICTED",
+            "NO_NET_EGRESS",
+            "AST_MAX_DELTA_5"
+          ],
+          "verdict": "ALLOW",
+          "reason": "All pre-flight checks and trajectory policies verified successfully."
+        },
+        "signature": "44b451459324a71323576672bc4eef36a774a6111b0823b562e9759f8c3e207d80cb0365fc3fc20a3e86f41345a4d00aaa68374c595d9c6f8c9955b5feae0e00"
+      },
+      "candidate_payload": {
+        "file": "router.py",
+        "delta_lines": 3,
+        "unicode_edge": " -> BTP Verifier 日本語 äöü",
+        "float_zero": 0,
+        "patch": "def route(): return True"
+      },
+      "trusted_pubkeys": [
+        "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c",
+        "fd1724385aa0c75b64fb78cd602fa1d991fdebf76b13c58ed702eac835e9f618"
+      ],
+      "recipient_context": "Agent-AutoGen-02",
+      "eval_timestamp": 1771500010.0,
+      "expected_result": true,
+      "expected_error": null
+    },
+    {
+      "id": "TC-03-ALTERED-PAYLOAD",
+      "description": "Candidate payload modified after attestation issuance (Hash Mismatch)",
+      "attestation_packet": {
+        "attestation": {
+          "protocol_version": "BTP/2.2",
+          "authority": "Bartholomew-Trust-Engine-v2.2",
+          "authority_pubkey": "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c",
+          "nonce": "e0a1b2c3d4e5f60718293a4b5c6d7e8f",
+          "issued_at_unix": 1771500000.0,
+          "expires_at_unix": 1771500300.0,
+          "originating_agent": "Agent-LangGraph-01",
+          "target_recipient": "Agent-AutoGen-02",
+          "action_type": "DEPLOY_PATCH",
+          "action_payload_hash": "7a8e3d6711baedd2ae82041077f18153fa84103b06cdd6f66fa8e7cb7e367f33",
+          "policy_id": "urn:btp:policy:owasp-agentic-v2026.1",
+          "policy_hash": "630574a737d9634b9f4dbcfe365a0a4de19adfb048de826df2036cd49fe9f535",
+          "capability_scope": [
+            "FS_WRITE_RESTRICTED",
+            "NO_NET_EGRESS",
+            "AST_MAX_DELTA_5"
+          ],
+          "verdict": "ALLOW",
+          "reason": "All pre-flight checks and trajectory policies verified successfully."
+        },
+        "signature": "0347d7bc427a3e31801aba0576f498115b7f68b29ef22b911f465028b2357af70acd0611c0e2cbfefb41d2795f462025eb002d5df9c17feec0ce2ef1ad9ca60a"
+      },
+      "candidate_payload": {
+        "file": "router.py",
+        "delta_lines": 3,
+        "unicode_edge": " -> BTP Verifier 日本語 äöü",
+        "float_zero": 0,
+        "patch": "def route(): return True",
+        "malicious_backdoor": "eval(req)"
+      },
+      "trusted_pubkeys": [
+        "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c"
+      ],
+      "recipient_context": "Agent-AutoGen-02",
+      "eval_timestamp": 1771500010.0,
+      "expected_result": false,
+      "expected_error": "PAYLOAD_TAMPERED"
+    },
+    {
+      "id": "TC-04-WRONG-RECIPIENT-CONTEXT",
+      "description": "Receipt intended for Agent-AutoGen-02 replayed to Agent-Rogue-03",
+      "attestation_packet": {
+        "attestation": {
+          "protocol_version": "BTP/2.2",
+          "authority": "Bartholomew-Trust-Engine-v2.2",
+          "authority_pubkey": "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c",
+          "nonce": "e0a1b2c3d4e5f60718293a4b5c6d7e8f",
+          "issued_at_unix": 1771500000.0,
+          "expires_at_unix": 1771500300.0,
+          "originating_agent": "Agent-LangGraph-01",
+          "target_recipient": "Agent-AutoGen-02",
+          "action_type": "DEPLOY_PATCH",
+          "action_payload_hash": "7a8e3d6711baedd2ae82041077f18153fa84103b06cdd6f66fa8e7cb7e367f33",
+          "policy_id": "urn:btp:policy:owasp-agentic-v2026.1",
+          "policy_hash": "630574a737d9634b9f4dbcfe365a0a4de19adfb048de826df2036cd49fe9f535",
+          "capability_scope": [
+            "FS_WRITE_RESTRICTED",
+            "NO_NET_EGRESS",
+            "AST_MAX_DELTA_5"
+          ],
+          "verdict": "ALLOW",
+          "reason": "All pre-flight checks and trajectory policies verified successfully."
+        },
+        "signature": "0347d7bc427a3e31801aba0576f498115b7f68b29ef22b911f465028b2357af70acd0611c0e2cbfefb41d2795f462025eb002d5df9c17feec0ce2ef1ad9ca60a"
+      },
+      "candidate_payload": {
+        "file": "router.py",
+        "delta_lines": 3,
+        "unicode_edge": " -> BTP Verifier 日本語 äöü",
+        "float_zero": 0,
+        "patch": "def route(): return True"
+      },
+      "trusted_pubkeys": [
+        "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c"
+      ],
+      "recipient_context": "Agent-Rogue-03",
+      "eval_timestamp": 1771500010.0,
+      "expected_result": false,
+      "expected_error": "CONTEXT_MISMATCH"
+    },
+    {
+      "id": "TC-05-EXPIRED-RECEIPT",
+      "description": "Verification attempted after TTL expiry (+400s)",
+      "attestation_packet": {
+        "attestation": {
+          "protocol_version": "BTP/2.2",
+          "authority": "Bartholomew-Trust-Engine-v2.2",
+          "authority_pubkey": "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c",
+          "nonce": "e0a1b2c3d4e5f60718293a4b5c6d7e8f",
+          "issued_at_unix": 1771500000.0,
+          "expires_at_unix": 1771500300.0,
+          "originating_agent": "Agent-LangGraph-01",
+          "target_recipient": "Agent-AutoGen-02",
+          "action_type": "DEPLOY_PATCH",
+          "action_payload_hash": "7a8e3d6711baedd2ae82041077f18153fa84103b06cdd6f66fa8e7cb7e367f33",
+          "policy_id": "urn:btp:policy:owasp-agentic-v2026.1",
+          "policy_hash": "630574a737d9634b9f4dbcfe365a0a4de19adfb048de826df2036cd49fe9f535",
+          "capability_scope": [
+            "FS_WRITE_RESTRICTED",
+            "NO_NET_EGRESS",
+            "AST_MAX_DELTA_5"
+          ],
+          "verdict": "ALLOW",
+          "reason": "All pre-flight checks and trajectory policies verified successfully."
+        },
+        "signature": "0347d7bc427a3e31801aba0576f498115b7f68b29ef22b911f465028b2357af70acd0611c0e2cbfefb41d2795f462025eb002d5df9c17feec0ce2ef1ad9ca60a"
+      },
+      "candidate_payload": {
+        "file": "router.py",
+        "delta_lines": 3,
+        "unicode_edge": " -> BTP Verifier 日本語 äöü",
+        "float_zero": 0,
+        "patch": "def route(): return True"
+      },
+      "trusted_pubkeys": [
+        "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c"
+      ],
+      "recipient_context": "Agent-AutoGen-02",
+      "eval_timestamp": 1771500400.0,
+      "expected_result": false,
+      "expected_error": "EXPIRED_RECEIPT"
+    },
+    {
+      "id": "TC-06-FUTURE-DATED-RECEIPT",
+      "description": "Attestation timestamp is in the future relative to verifier clock",
+      "attestation_packet": {
+        "attestation": {
+          "protocol_version": "BTP/2.2",
+          "authority": "Bartholomew-Trust-Engine-v2.2",
+          "authority_pubkey": "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c",
+          "nonce": "e0a1b2c3d4e5f60718293a4b5c6d7e8f",
+          "issued_at_unix": 1771501000.0,
+          "expires_at_unix": 1771501300.0,
+          "originating_agent": "Agent-LangGraph-01",
+          "target_recipient": "Agent-AutoGen-02",
+          "action_type": "DEPLOY_PATCH",
+          "action_payload_hash": "7a8e3d6711baedd2ae82041077f18153fa84103b06cdd6f66fa8e7cb7e367f33",
+          "policy_id": "urn:btp:policy:owasp-agentic-v2026.1",
+          "policy_hash": "630574a737d9634b9f4dbcfe365a0a4de19adfb048de826df2036cd49fe9f535",
+          "capability_scope": [
+            "FS_WRITE_RESTRICTED",
+            "NO_NET_EGRESS",
+            "AST_MAX_DELTA_5"
+          ],
+          "verdict": "ALLOW",
+          "reason": "All pre-flight checks and trajectory policies verified successfully."
+        },
+        "signature": "73f9b59ca46d0f6162532d706b6a50fed1bd178d44aac3f0e5d7566ff442381e413ae72f28f547be46edd089cfdab54731c75dbaa07175c13a8a9309b17adb0b"
+      },
+      "candidate_payload": {
+        "file": "router.py",
+        "delta_lines": 3,
+        "unicode_edge": " -> BTP Verifier 日本語 äöü",
+        "float_zero": 0,
+        "patch": "def route(): return True"
+      },
+      "trusted_pubkeys": [
+        "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c"
+      ],
+      "recipient_context": "Agent-AutoGen-02",
+      "eval_timestamp": 1771500010.0,
+      "expected_result": false,
+      "expected_error": "FUTURE_DATED_RECEIPT"
+    },
+    {
+      "id": "TC-07-UNTRUSTED-AUTHORITY-ROOT",
+      "description": "Receipt signed by untrusted authority root not present in trust store",
+      "attestation_packet": {
+        "attestation": {
+          "protocol_version": "BTP/2.2",
+          "authority": "Bartholomew-Trust-Engine-v2.2",
+          "authority_pubkey": "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c",
+          "nonce": "e0a1b2c3d4e5f60718293a4b5c6d7e8f",
+          "issued_at_unix": 1771500000.0,
+          "expires_at_unix": 1771500300.0,
+          "originating_agent": "Agent-LangGraph-01",
+          "target_recipient": "Agent-AutoGen-02",
+          "action_type": "DEPLOY_PATCH",
+          "action_payload_hash": "7a8e3d6711baedd2ae82041077f18153fa84103b06cdd6f66fa8e7cb7e367f33",
+          "policy_id": "urn:btp:policy:owasp-agentic-v2026.1",
+          "policy_hash": "630574a737d9634b9f4dbcfe365a0a4de19adfb048de826df2036cd49fe9f535",
+          "capability_scope": [
+            "FS_WRITE_RESTRICTED",
+            "NO_NET_EGRESS",
+            "AST_MAX_DELTA_5"
+          ],
+          "verdict": "ALLOW",
+          "reason": "All pre-flight checks and trajectory policies verified successfully."
+        },
+        "signature": "0347d7bc427a3e31801aba0576f498115b7f68b29ef22b911f465028b2357af70acd0611c0e2cbfefb41d2795f462025eb002d5df9c17feec0ce2ef1ad9ca60a"
+      },
+      "candidate_payload": {
+        "file": "router.py",
+        "delta_lines": 3,
+        "unicode_edge": " -> BTP Verifier 日本語 äöü",
+        "float_zero": 0,
+        "patch": "def route(): return True"
+      },
+      "trusted_pubkeys": [
+        "0000000000000000000000000000000000000000000000000000000000000000"
+      ],
+      "recipient_context": "Agent-AutoGen-02",
+      "eval_timestamp": 1771500010.0,
+      "expected_result": false,
+      "expected_error": "FORGERY_DETECTED"
+    },
+    {
+      "id": "TC-08-CORRUPTED-SIGNATURE",
+      "description": "Ed25519 signature bytes altered or truncated",
+      "attestation_packet": {
+        "attestation": {
+          "protocol_version": "BTP/2.2",
+          "authority": "Bartholomew-Trust-Engine-v2.2",
+          "authority_pubkey": "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c",
+          "nonce": "e0a1b2c3d4e5f60718293a4b5c6d7e8f",
+          "issued_at_unix": 1771500000.0,
+          "expires_at_unix": 1771500300.0,
+          "originating_agent": "Agent-LangGraph-01",
+          "target_recipient": "Agent-AutoGen-02",
+          "action_type": "DEPLOY_PATCH",
+          "action_payload_hash": "7a8e3d6711baedd2ae82041077f18153fa84103b06cdd6f66fa8e7cb7e367f33",
+          "policy_id": "urn:btp:policy:owasp-agentic-v2026.1",
+          "policy_hash": "630574a737d9634b9f4dbcfe365a0a4de19adfb048de826df2036cd49fe9f535",
+          "capability_scope": [
+            "FS_WRITE_RESTRICTED",
+            "NO_NET_EGRESS",
+            "AST_MAX_DELTA_5"
+          ],
+          "verdict": "ALLOW",
+          "reason": "All pre-flight checks and trajectory policies verified successfully."
+        },
+        "signature": "0347d7bc427a3e31801aba0576f498115b7f68b29ef22b911f465028b2357af70acd0611c0e2cbfefb41d2795f462025eb002d5df9c17feec0ce2ef1ad9cffff"
+      },
+      "candidate_payload": {
+        "file": "router.py",
+        "delta_lines": 3,
+        "unicode_edge": " -> BTP Verifier 日本語 äöü",
+        "float_zero": 0,
+        "patch": "def route(): return True"
+      },
+      "trusted_pubkeys": [
+        "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c"
+      ],
+      "recipient_context": "Agent-AutoGen-02",
+      "eval_timestamp": 1771500010.0,
+      "expected_result": false,
+      "expected_error": "VERIFICATION_FAILED"
+    },
+    {
+      "id": "TC-09-DENIED-POLICY-VERDICT",
+      "description": "Authentic attestation carrying a DENY policy verdict",
+      "attestation_packet": {
+        "attestation": {
+          "protocol_version": "BTP/2.2",
+          "authority": "Bartholomew-Trust-Engine-v2.2",
+          "authority_pubkey": "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c",
+          "nonce": "e0a1b2c3d4e5f60718293a4b5c6d7e8f",
+          "issued_at_unix": 1771500000.0,
+          "expires_at_unix": 1771500300.0,
+          "originating_agent": "Agent-LangGraph-01",
+          "target_recipient": "Agent-AutoGen-02",
+          "action_type": "DEPLOY_PATCH",
+          "action_payload_hash": "7a8e3d6711baedd2ae82041077f18153fa84103b06cdd6f66fa8e7cb7e367f33",
+          "policy_id": "urn:btp:policy:owasp-agentic-v2026.1",
+          "policy_hash": "630574a737d9634b9f4dbcfe365a0a4de19adfb048de826df2036cd49fe9f535",
+          "capability_scope": [
+            "FS_WRITE_RESTRICTED",
+            "NO_NET_EGRESS",
+            "AST_MAX_DELTA_5"
+          ],
+          "verdict": "DENY",
+          "reason": "Security Policy Violation: Trajectory contained forbidden pattern"
+        },
+        "signature": "742e724699bfbd7f84532325b2c2178808ba3bb6a191c125084ab0686fcbffdd1f34a180d049d45c12549fc316a326cf9b8e4041c3afaf1ec6529ac59a1a3d05"
+      },
+      "candidate_payload": {
+        "file": "router.py",
+        "delta_lines": 3,
+        "unicode_edge": " -> BTP Verifier 日本語 äöü",
+        "float_zero": 0,
+        "patch": "def route(): return True"
+      },
+      "trusted_pubkeys": [
+        "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c"
+      ],
+      "recipient_context": "Agent-AutoGen-02",
+      "eval_timestamp": 1771500010.0,
+      "expected_result": false,
+      "expected_error": "ACTION_DENIED_BY_POLICY"
+    },
+    {
+      "id": "TC-10-PROTOCOL-VERSION-MISMATCH",
+      "description": "Unsupported legacy or malformed protocol version string",
+      "attestation_packet": {
+        "attestation": {
+          "protocol_version": "BTP/1.0",
+          "authority": "Bartholomew-Trust-Engine-v2.2",
+          "authority_pubkey": "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c",
+          "nonce": "e0a1b2c3d4e5f60718293a4b5c6d7e8f",
+          "issued_at_unix": 1771500000.0,
+          "expires_at_unix": 1771500300.0,
+          "originating_agent": "Agent-LangGraph-01",
+          "target_recipient": "Agent-AutoGen-02",
+          "action_type": "DEPLOY_PATCH",
+          "action_payload_hash": "7a8e3d6711baedd2ae82041077f18153fa84103b06cdd6f66fa8e7cb7e367f33",
+          "policy_id": "urn:btp:policy:owasp-agentic-v2026.1",
+          "policy_hash": "630574a737d9634b9f4dbcfe365a0a4de19adfb048de826df2036cd49fe9f535",
+          "capability_scope": [
+            "FS_WRITE_RESTRICTED",
+            "NO_NET_EGRESS",
+            "AST_MAX_DELTA_5"
+          ],
+          "verdict": "ALLOW",
+          "reason": "All pre-flight checks and trajectory policies verified successfully."
+        },
+        "signature": "1be1065e786b22a343e17d00ad9f9b0d561e6e59e8c75a37e3dd637eb7eecda0c5b3a8e761c154e96c2ba4a2a4d17f7939d9e1406acd53a860cd131cfa3f1d0a"
+      },
+      "candidate_payload": {
+        "file": "router.py",
+        "delta_lines": 3,
+        "unicode_edge": " -> BTP Verifier 日本語 äöü",
+        "float_zero": 0,
+        "patch": "def route(): return True"
+      },
+      "trusted_pubkeys": [
+        "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c"
+      ],
+      "recipient_context": "Agent-AutoGen-02",
+      "eval_timestamp": 1771500010.0,
+      "expected_result": false,
+      "expected_error": "PROTOCOL_MISMATCH"
+    },
+    {
+      "id": "TC-11-POLICY-HASH-TAMPERED",
+      "description": "Attestation references an altered or unknown policy hash",
+      "attestation_packet": {
+        "attestation": {
+          "protocol_version": "BTP/2.2",
+          "authority": "Bartholomew-Trust-Engine-v2.2",
+          "authority_pubkey": "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c",
+          "nonce": "e0a1b2c3d4e5f60718293a4b5c6d7e8f",
+          "issued_at_unix": 1771500000.0,
+          "expires_at_unix": 1771500300.0,
+          "originating_agent": "Agent-LangGraph-01",
+          "target_recipient": "Agent-AutoGen-02",
+          "action_type": "DEPLOY_PATCH",
+          "action_payload_hash": "7a8e3d6711baedd2ae82041077f18153fa84103b06cdd6f66fa8e7cb7e367f33",
+          "policy_id": "urn:btp:policy:owasp-agentic-v2026.1",
+          "policy_hash": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+          "capability_scope": [
+            "FS_WRITE_RESTRICTED",
+            "NO_NET_EGRESS",
+            "AST_MAX_DELTA_5"
+          ],
+          "verdict": "ALLOW",
+          "reason": "All pre-flight checks and trajectory policies verified successfully."
+        },
+        "signature": "91d95de661862d96f22405afecfd4a2f25633eb294e8885f90d98d61f5bc7b58434e311e28b87bba2cea51970528a586d9511ecec8c432767f43d5ddcac04005"
+      },
+      "candidate_payload": {
+        "file": "router.py",
+        "delta_lines": 3,
+        "unicode_edge": " -> BTP Verifier 日本語 äöü",
+        "float_zero": 0,
+        "patch": "def route(): return True"
+      },
+      "trusted_pubkeys": [
+        "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c"
+      ],
+      "recipient_context": "Agent-AutoGen-02",
+      "required_policy_hash": "630574a737d9634b9f4dbcfe365a0a4de19adfb048de826df2036cd49fe9f535",
+      "eval_timestamp": 1771500010.0,
+      "expected_result": false,
+      "expected_error": "POLICY_HASH_MISMATCH"
+    },
+    {
+      "id": "TC-12-CAPABILITY-OVERREACH",
+      "description": "Attestation requests capabilities exceeding allowed recipient policy",
+      "attestation_packet": {
+        "attestation": {
+          "protocol_version": "BTP/2.2",
+          "authority": "Bartholomew-Trust-Engine-v2.2",
+          "authority_pubkey": "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c",
+          "nonce": "e0a1b2c3d4e5f60718293a4b5c6d7e8f",
+          "issued_at_unix": 1771500000.0,
+          "expires_at_unix": 1771500300.0,
+          "originating_agent": "Agent-LangGraph-01",
+          "target_recipient": "Agent-AutoGen-02",
+          "action_type": "DEPLOY_PATCH",
+          "action_payload_hash": "7a8e3d6711baedd2ae82041077f18153fa84103b06cdd6f66fa8e7cb7e367f33",
+          "policy_id": "urn:btp:policy:owasp-agentic-v2026.1",
+          "policy_hash": "630574a737d9634b9f4dbcfe365a0a4de19adfb048de826df2036cd49fe9f535",
+          "capability_scope": [
+            "UNRESTRICTED_ROOT_ADMIN"
+          ],
+          "verdict": "ALLOW",
+          "reason": "All pre-flight checks and trajectory policies verified successfully."
+        },
+        "signature": "249610769ad15f27533c192f961a9ff6abdf8e4b5cf4f94e5d0143f0dd533503b1701ee9499d384036090e0c63935b54f4a6287eb7d2f96fa9b16303618a5603"
+      },
+      "candidate_payload": {
+        "file": "router.py",
+        "delta_lines": 3,
+        "unicode_edge": " -> BTP Verifier 日本語 äöü",
+        "float_zero": 0,
+        "patch": "def route(): return True"
+      },
+      "trusted_pubkeys": [
+        "ea4a6c63e29c520abef5507b132ec5f9954776aebebe7b92421eea691446d22c"
+      ],
+      "recipient_context": "Agent-AutoGen-02",
+      "allowed_capabilities": [
+        "FS_WRITE_RESTRICTED",
+        "NO_NET_EGRESS",
+        "AST_MAX_DELTA_5"
+      ],
+      "eval_timestamp": 1771500010.0,
+      "expected_result": false,
+      "expected_error": "CAPABILITY_OVERREACH"
+    }
+  ]
+}

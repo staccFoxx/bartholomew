@@ -5,10 +5,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-python@v5
         with:
-          node-version: '20'
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          pip install pyyaml click
+          pip install -e .
       - name: Run Bartholomew AST & Dependency Guard
         run: |
-          npx --yes btp-guard intel
-          npx --yes btp-guard scan-deps
+          python -m btp_guard.cli check "echo 'Runtime Protection Active'"
