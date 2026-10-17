@@ -36,3 +36,4 @@ When autonomous AI agents write and run code on your computer, Trinity runs quie
 - **Bartholomew Guard**: AST-level execution firewall and invariant gate.
 - **Bartholomew Vault**: RAM-isolated PII, credential, and MCP tool parameter tokenizer.
 - **Bartholomew Keystone**: Cryptographically signed access passkeys and budget governance.
+- **Cyphervoice AI**: Conversational voice coding partner with mic-to-headphone phone calls and acoustic defense.
