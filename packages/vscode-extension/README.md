@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://acn-26670.web.app/assets/logo.png" width="96" height="96" alt="Bartholomew Guard Logo" />
+  <img src="https://acn-26670.web.app/assets/guard_logo.png" width="96" height="96" alt="Bartholomew Guard Logo" />
 </p>
 
 # Bartholomew Guard
