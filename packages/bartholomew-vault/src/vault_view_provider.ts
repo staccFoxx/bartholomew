@@ -66,13 +66,13 @@ export class VaultViewProvider implements vscode.WebviewViewProvider {
     const surrogatesListHtml = activeSurrogates.length === 0
       ? '<div style="color:#64748b; font-size:11px; text-align:center; padding:12px 0;">No active surrogate tokens in RAM enclave.</div>'
       : activeSurrogates.map(s => `
-        <div style="background:rgba(15,23,42,0.8); border:1px solid rgba(56,189,248,0.2); border-radius:6px; padding:6px 8px; margin-bottom:6px; font-family:monospace; font-size:11px;">
+        <div style="background:var(--vscode-editor-inactiveSelectionBackground, rgba(15,23,42,0.8)); border:1px solid var(--vscode-focusBorder, #0284c7); border-radius:6px; padding:6px 8px; margin-bottom:6px; font-family:var(--vscode-editor-font-family, monospace); font-size:11px;">
           <div style="display:flex; justify-content:space-between; align-items:center;">
-            <span style="color:#38bdf8; font-weight:700;">${s.category}</span>
-            <span style="color:#10b981; font-size:10px;">ENCLAVE RESIDENT</span>
+            <span style="color:var(--vscode-textLink-foreground, #0284c7); font-weight:700;">${s.category}</span>
+            <span style="color:var(--vscode-testing-iconPassed, #10b981); font-size:10px; font-weight:600;">ENCLAVE RESIDENT</span>
           </div>
-          <div style="color:#cbd5e1; margin-top:2px;">${s.surrogate}</div>
-          <div style="color:#64748b; font-size:10px; margin-top:1px;">Masked: ${s.preview}</div>
+          <div style="color:var(--vscode-editor-foreground, #0f172a); font-weight:600; margin-top:2px;">${s.surrogate}</div>
+          <div style="color:var(--vscode-descriptionForeground, #475569); font-size:10px; margin-top:1px;">Masked: ${s.preview}</div>
         </div>
       `).join('');
 
@@ -83,9 +83,9 @@ export class VaultViewProvider implements vscode.WebviewViewProvider {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
-      background-color: transparent;
-      color: #f8fafc;
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--vscode-editor-background, #ffffff);
+      color: var(--vscode-editor-foreground, #1e293b);
+      font-family: var(--vscode-font-family, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif);
       padding: 12px;
       margin: 0;
       line-height: 1.4;
@@ -96,8 +96,8 @@ export class VaultViewProvider implements vscode.WebviewViewProvider {
       align-items: center;
       text-align: center;
       padding: 14px 8px;
-      background: radial-gradient(circle at center, rgba(6, 182, 212, 0.12) 0%, rgba(2, 6, 23, 0.6) 80%);
-      border: 1px solid rgba(56, 189, 248, 0.3);
+      background: var(--vscode-sideBar-background, rgba(2, 6, 23, 0.05));
+      border: 1px solid var(--vscode-focusBorder, #0284c7);
       border-radius: 10px;
       margin-bottom: 14px;
     }
@@ -105,18 +105,19 @@ export class VaultViewProvider implements vscode.WebviewViewProvider {
       width: 52px;
       height: 52px;
       margin-bottom: 8px;
-      filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.6));
+      filter: drop-shadow(0 0 6px rgba(2, 132, 199, 0.4));
     }
     .vault-title {
       font-size: 13px;
       font-weight: 800;
       letter-spacing: 0.08em;
-      color: #38bdf8;
+      color: var(--vscode-textLink-foreground, #0284c7);
       text-transform: uppercase;
     }
     .vault-sub {
-      font-size: 10px;
-      color: #94a3b8;
+      font-size: 11px;
+      color: var(--vscode-descriptionForeground, #475569);
+      font-weight: 600;
       margin-top: 2px;
     }
     .stat-badge {
@@ -124,23 +125,23 @@ export class VaultViewProvider implements vscode.WebviewViewProvider {
       align-items: center;
       gap: 5px;
       margin-top: 8px;
-      padding: 3px 8px;
-      background: rgba(16, 185, 129, 0.15);
-      border: 1px solid rgba(16, 185, 129, 0.4);
+      padding: 4px 10px;
+      background: var(--vscode-badge-background, rgba(16, 185, 129, 0.15));
+      border: 1px solid var(--vscode-testing-iconPassed, #10b981);
       border-radius: 4px;
-      color: #34d399;
+      color: var(--vscode-badge-foreground, #047857);
       font-size: 10px;
-      font-weight: 700;
-      font-family: monospace;
+      font-weight: 800;
+      font-family: var(--vscode-editor-font-family, monospace);
     }
     .btn-action {
       width: 100%;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      color: #f8fafc;
+      background: var(--vscode-button-secondaryBackground, #f1f5f9);
+      border: 1px solid var(--vscode-button-border, #cbd5e1);
+      color: var(--vscode-button-secondaryForeground, #0f172a);
       font-size: 11px;
-      font-weight: 600;
-      padding: 7px 10px;
+      font-weight: 700;
+      padding: 8px 10px;
       border-radius: 6px;
       cursor: pointer;
       margin-bottom: 6px;
@@ -151,16 +152,16 @@ export class VaultViewProvider implements vscode.WebviewViewProvider {
       transition: all 0.15s ease;
     }
     .btn-action:hover {
-      background: rgba(56, 189, 248, 0.2);
-      border-color: #38bdf8;
-      color: #38bdf8;
+      background: var(--vscode-button-background, #0284c7);
+      border-color: var(--vscode-focusBorder, #0284c7);
+      color: var(--vscode-button-foreground, #ffffff);
     }
     .section-header {
-      font-size: 10px;
+      font-size: 11px;
       font-weight: 800;
       text-transform: uppercase;
       letter-spacing: 0.06em;
-      color: #94a3b8;
+      color: var(--vscode-sideBarSectionHeader-foreground, #334155);
       margin: 12px 0 6px 2px;
     }
   </style>
