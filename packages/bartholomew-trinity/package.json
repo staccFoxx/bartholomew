@@ -1,8 +1,8 @@
 {
   "name": "bartholomew-trinity",
   "displayName": "Trinity \u2014 Complete AI Agent Security Suite (Cursor, Claude, Copilot)",
-  "description": "The 1-Click Safety & Runtime Protection Suite for AI Coding Agents (Cursor, Claude Code, Copilot, Windsurf).",
-  "version": "6.6.1",
+  "description": "The 1-Click Safety, Runtime Protection & Voice Coding Suite for AI Agents (Cursor, Claude Code, Copilot, Windsurf).",
+  "version": "6.7.0",
   "publisher": "bartholomew",
   "icon": "icon.png",
   "license": "Apache-2.0",
@@ -25,12 +25,16 @@
     "keystone",
     "zero-trust",
     "hipaa",
-    "pci-dss"
+    "pci-dss",
+    "voice",
+    "voice-coding",
+    "acoustic-defense"
   ],
   "extensionPack": [
     "Bartholomew.bartholomew-guard-vscode",
     "Bartholomew.bartholomew-keystone",
-    "Bartholomew.bartholomew-vault"
+    "Bartholomew.bartholomew-vault",
+    "Bartholomew.cyphervoice-vscode"
   ],
   "engines": {
     "vscode": "^1.80.0"
