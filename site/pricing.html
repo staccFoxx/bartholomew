@@ -5,35 +5,6 @@
   <meta name="google-adsense-account" content="ca-pub-8757306565068634">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8757306565068634"
      crossorigin="anonymous">
-    function startStripeCheckout(plan) {
-      const email = prompt("Enter your work or developer email for your CypherVoice Pro passkey:", "");
-      if (!email || !email.includes("@")) return;
-      
-      const btn = event.target;
-      const origText = btn.innerHTML;
-      btn.innerHTML = "Creating Secure Stripe Session...";
-      btn.style.pointerEvents = "none";
-
-      fetch('/api/v1/stripe/create-checkout-session', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ plan_tier: plan, email: email })
-      })
-      .then(res => res.json())
-      .then(data => {
-        if (data.checkout_url) {
-          window.location.href = data.checkout_url;
-        } else {
-          alert("Stripe Checkout initialized. Session ID: " + (data.session_id || "cs_demo"));
-          btn.innerHTML = origText;
-          btn.style.pointerEvents = "auto";
-        }
-      })
-      .catch(err => {
-        alert("Redirecting to billing checkout...");
-        window.location.href = 'https://buy.stripe.com/test_cyphervoice_pro';
-      });
-    }
 
   </script>
   <meta charset="UTF-8">
@@ -178,7 +149,7 @@
     /* Pricing Grid */
     .pricing-grid {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 1fr 1.15fr;
       gap: 24px;
       margin: 40px 0 60px;
       align-items: stretch;

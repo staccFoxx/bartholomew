@@ -18,13 +18,6 @@ class EnterpriseStripeBillingEngine:
     Manages Stripe Checkout Sessions, Subscriptions, Webhooks, and Customer Portals.
     """
     PLANS = {
-        "cyphervoice_pro": {
-            "name": "CypherVoice Pro (1,000 Cloud Calls + Neural Voice Cloning)",
-            "amount_usd": 9.00,
-            "interval": "month",
-            "audits_included": 1000,
-            "stripe_price_id": os.getenv("STRIPE_PRICE_CYPHERVOICE_PRO", "price_cyphervoice_pro_9_mo")
-        },
         "developer": {
             "name": "Developer API Plan",
             "amount_usd": 19.00,
