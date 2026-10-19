@@ -3,11 +3,11 @@
 </p>
 
 # Bartholomew Keystone &bull; Capability Passkeys & Spend Governor
-### BTP v6.6.0 Zero-Trust Capability Tokens & Real-Time Micro-Spend Governor for Autonomous AI Agents
+### BTP v6.6.2 Zero-Trust Capability Tokens & Real-Time Micro-Spend Governor for Autonomous AI Agents
 
-[![Open VSX Downloads](https://img.shields.io/badge/Open--VSX-5%2C900%2B%20Installs-38bdf8?style=flat-square&logo=visualstudiocode)](https://open-vsx.org/extension/Bartholomew/bartholomew-keystone)
-[![Ecosystem Deployments](https://img.shields.io/badge/BTP%20Ecosystem-49%2C120%2B%20Defenses-34d399?style=flat-square)](https://github.com/ivegotahunnitonit/bartholomew)
-[![Evaluation Latency](https://img.shields.io/badge/Deterministic%20Gate-%3C15%CE%BCs-fde047?style=flat-square)](https://github.com/ivegotahunnitonit/bartholomew)
+[![Deterministic Gate](https://img.shields.io/badge/Deterministic%20Gate-%3C15%CE%BCs-fde047?style=flat-square)](https://github.com/ivegotahunnitonit/bartholomew)
+[![Passkey Security](https://img.shields.io/badge/Passkeys-Ed25519%20Signed-34d399?style=flat-square)](https://github.com/ivegotahunnitonit/bartholomew)
+[![Runtime Compatibility](https://img.shields.io/badge/Runtimes-Cursor%20%7C%20Claude%20%7C%20Windsurf-38bdf8?style=flat-square)](https://github.com/ivegotahunnitonit/bartholomew)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE.md)
 
 ---
@@ -30,7 +30,7 @@ Instead of granting LLM agents unfettered system access to your terminal command
 ### 2. Autonomous Agent Spend Governor & Circuit Breaker
 - **Strict Spend Ceilings**: Enforce maximum per-turn API limits (e.g., `$0.50/turn`) and hard daily budget caps (e.g., `$10.00/day`, `$50.00/day`).
 - **Runaway Loop Containment**: Detect recursive model hallucination loops and exfiltration cycles, halting execution before unexpected bills occur.
-- **Cost Reduction**: Proven 42% &ndash; 68% containment on recursive agent tool-calling overhead.
+- **Micro-Budget Protection**: Safeguards team API keys with automated circuit breaker trips whenever turn velocity exceeds defined safe thresholds.
 
 ### 3. Sub-15&mu;s Invariant Gate
 - **AST Gating**: Zero-latency in-process evaluation with sub-15 microsecond deterministic verification.
@@ -38,21 +38,16 @@ Instead of granting LLM agents unfettered system access to your terminal command
 
 ---
 
-## Ecosystem Metrics & Adoption
+## Zero-Trust Architecture & Threat Invariants
 
 Keystone operates as the capability passkey engine within the Bartholomew Trust Protocol (BTP) security fabric:
 
-| Component | Platform | Active Metrics | Role |
-| :--- | :--- | :--- | :--- |
-| **Bartholomew Keystone** | Open-VSX | **5,900+ Installs** | Capability Passkeys & Spend Governor |
-| **Bartholomew Guard Core** | Open-VSX | **10,545+ Installs** | Zero-Trust AST Firewall |
-| **BTP Guard Core Daemon** | PyPI | **21,466+ Downloads** | OS-Level Ring-0 Sentinel |
-| **BTP Guard SDK** | NPM | **5,473+ Downloads** | Node.js Agent Interceptor |
-| **CypherVoice AI** | Open-VSX | **2,212+ Installs** | Acoustic Neural Shield & Voice HUD |
-| **Bartholomew Vault** | Open-VSX | **1,762+ Installs** | In-Process PII & Credential Tokenizer |
-| **Bartholomew Trinity Suite** | Open-VSX | **1,762+ Installs** | 1-Click Complete Developer Shield |
-
-> **Total Ecosystem Deployments**: Over **49,120+ active agent defenses** deployed across developer workstations and production clusters.
+| Security Pillar | Enforcement Mechanism | Guarantee |
+| :--- | :--- | :--- |
+| **Command Execution** | Sub-15&mu;s in-process AST gating | Prevents destructive shell commands (`rm -rf`, format, drop table) |
+| **Secret Redaction** | Zero-leakage environment sandbox | Blocks prompt injection reading `.env`, AWS/API credentials |
+| **Spend Governance** | Micro-spend turn governor | Hard-caps token expenditure per transaction and per 24h session |
+| **Audit Log Integrity** | RFC 8785 Merkle receipts | Cryptographic non-repudiation logged directly to `.btp/audit.log` |
 
 ---
 
@@ -85,7 +80,7 @@ Run:
 ```text
 Keystone: Open Passkey Dashboard & Capability Monitor
 ```
-Monitor active spend usage, token consumption, live telemetry metrics, and test arbitrary commands against your signed clearance bounds in real time.
+Monitor active spend usage, token limits, runtime clearance bounds, and test arbitrary commands against your signed clearance bounds in real time.
 
 ### 3. Verify Audit Receipts
 Run:
