@@ -1,8 +1,8 @@
 {
   "name": "bartholomew-guard-vscode",
   "displayName": "Bartholomew Agent Guard - Coding Agent Runtime Protection",
-  "description": "BTP v6.6.0 Sub-35\u00b5s In-Process AST Invariant Gating, OWASP Autonomous Agent Firewall & Credential Exfiltration Protection for Cursor, Claude Code, Windsurf, Copilot, and VS Code.",
-  "version": "6.6.0",
+  "description": "BTP v6.6.2 Deterministic In-Process AST Invariant Gating, OWASP Autonomous Agent Firewall & Credential Exfiltration Protection for Cursor, Claude Code, Windsurf, Copilot, and VS Code.",
+  "version": "6.6.2",
   "publisher": "bartholomew",
   "icon": "icon.png",
   "license": "Apache-2.0",

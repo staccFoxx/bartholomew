@@ -1,8 +1,8 @@
 {
   "name": "bartholomew-vault",
   "displayName": "Bartholomew Vault - In-Process Data & PII Tokenizer",
-  "description": "BTP v6.6.0 RAM-Isolated PII, Credential Tokenization & Model Context Protocol (MCP) Tool Call Gating (<35\u00b5s) for Cursor, Claude Code, Windsurf, Copilot, and VS Code.",
-  "version": "6.6.0",
+  "description": "BTP v6.6.2 RAM-Isolated PII, Credential Tokenization & Model Context Protocol (MCP) Tool Call Gating for Cursor, Claude Code, Windsurf, Copilot, and VS Code.",
+  "version": "6.6.2",
   "bin": {
     "mcp-shield": "./bin/mcp-shield.js"
   },

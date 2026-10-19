@@ -13,7 +13,7 @@
 ## What is Bartholomew Guard?
 Bartholomew Guard is an in-process security firewall for developers using AI coding assistants like Cursor, Claude Code, Copilot, Cline, and Windsurf.
 
-It inspects agent-generated actions and terminal commands using sub-35µs Abstract Syntax Tree (AST) analysis to block dangerous operations before they can execute.
+It inspects agent-generated actions and terminal commands using microsecond-latency Abstract Syntax Tree (AST) analysis to block dangerous operations before they can execute.
 
 ---
 

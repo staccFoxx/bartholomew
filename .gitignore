@@ -220,7 +220,7 @@ BARTHOLOMEW_*.json
 *.jsonl
 # Internal Multi-Agent Configurations
 .agents/
-huggingface-space/
+# huggingface-space/ (tracked for public Hugging Face playground)
 Formula/
 docs/*PROSPECT*
 docs/*OUTREACH*

@@ -21,7 +21,7 @@ When you use AI coding assistants like Cursor, Claude Code, Windsurf, or Copilot
 - **Stop Secret Leaks**: Never accidentally send private API keys or database connection strings to AI models.
 - **Protect Customer Data**: Automatically redacts emails, credit cards, SSNs, and healthcare data with HIPAA/SOC 2 compliance.
 - **Secure Model Context Protocol (MCP)**: Audits and sanitizes tool parameters used by MCP servers in Claude Desktop, Cursor, and Windsurf.
-- **Sub-35µs Speed**: Operates in RAM memory with no noticeable latency.
+- **Microsecond-Latency Speed**: Operates in RAM memory with no noticeable latency.
 
 ---
 

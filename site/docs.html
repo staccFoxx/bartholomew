@@ -8,7 +8,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>Developer Documentation — Bartholomew Agentic Runtime Protection (BTP v6.4.4)</title>
-  <meta name="description" content="Technical documentation and developer integration guide for Bartholomew: sub-35us AST invariant gating, universal 1-line agent wrappers, and eBPF kernel process sandboxing." />
+  <meta name="description" content="Technical documentation and developer integration guide for Bartholomew: microsecond-latency AST invariant gating, universal 1-line agent wrappers, and eBPF kernel process sandboxing." />
   <link rel="icon" type="image/png" href="/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -664,7 +664,7 @@
       
       <div class="docs-hero">
         <h1 class="docs-title">Bartholomew Developer Documentation</h1>
-        <p class="docs-sub">Deterministic sub-35µs AST invariant verification, credential scrubbing, and eBPF kernel process sandboxing for autonomous agent swarms.</p>
+        <p class="docs-sub">Deterministic microsecond-latency AST invariant verification, credential scrubbing, and eBPF kernel process sandboxing for autonomous agent swarms.</p>
       </div>
 
       <!-- Quickstart Section -->
@@ -724,12 +724,12 @@
           
         </div>
         <p class="lead-p" style="font-size:0.84rem; margin-bottom:10px;">
-          Compiled zero-overhead <strong>Agentic Runtime Protection (ARP)</strong>. Operates strictly in-process with sub-35 &micro;s execution latency, eliminating 200ms&ndash;1,500ms network round-trip bottlenecks.
+          Compiled zero-overhead <strong>Agentic Runtime Protection (ARP)</strong>. Operates strictly in-process with microsecond-latency &micro;s execution latency, eliminating 200ms&ndash;1,500ms network round-trip bottlenecks.
         </p>
 
         <div class="badge-callout" style="padding:8px 14px; font-size:0.8rem; margin:8px 0 14px 0; border-radius:6px; gap:8px;">
           <svg width="16" height="16" fill="currentColor" viewBox="0 0 20 20" style="color:var(--emerald); flex-shrink:0;"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path></svg>
-          <div><strong>Verified Telemetry:</strong> 2,927 deterministic test vectors passing with over 49,120+ developer downloads worldwide.</div>
+          <div><strong>Verified Telemetry:</strong> 2,927 deterministic test vectors passing with over 49,136+ developer downloads worldwide.</div>
         </div>
 
         <!-- KPI Grid -->
@@ -751,7 +751,7 @@
           </div>
           <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:8px; padding:10px 14px;">
             <div style="font-size:0.68rem; text-transform:uppercase; color:var(--text-dim); font-weight:700; letter-spacing:0.06em;">Adoption Scale</div>
-            <div style="font-size:1.25rem; font-weight:800; color:#a855f7; margin:2px 0;">49,120+</div>
+            <div style="font-size:1.25rem; font-weight:800; color:#a855f7; margin:2px 0;">49,136+</div>
             <div style="font-size:0.72rem; color:var(--text-muted);">Global downloads &amp; installs</div>
           </div>
         </div>
@@ -917,7 +917,7 @@ raw_agent = Agent(
 # 2. Wrap in 1 line:
 agent = protect_agent(raw_agent, spend_cap=50.0, strict=True)
 
-# Gated execution: secrets auto-scrubbed, catastrophic commands blocked in <35µs
+# Gated execution: secrets auto-scrubbed, catastrophic commands blocked in microsecond-SLA
 result = agent.execute_task("Analyze monthly invoices and query balance")</pre>
           </div>
           <div class="tab-pane" id="tab-py-langchain">
@@ -983,7 +983,7 @@ const agent = protectAgent(myLangChainAgent, {
   strict: true
 });
 
-// All tool calls and prompt dispatches evaluated in <35µs
+// All tool calls and prompt dispatches evaluated in microsecond-SLA
 const output = await agent.invoke({ input: "Analyze accounts" });</pre>
           </div>
           <div class="tab-pane" id="tab-ts-vercel">
@@ -1030,7 +1030,7 @@ tools = load_tools(["serpapi", "python_repl"], llm=llm)
 
 agent = initialize_agent(tools, llm, agent="zero-shot-react-description")
 
-# Every tool execution is audited, masked, and verified (<35µs AST checks)
+# Every tool execution is audited, masked, and verified (microsecond-SLA AST checks)
 result = agent.run("Calculate quarterly tax estimate", callbacks=[guard])
 print("Audit Receipt:", guard.last_receipt.signature)</pre>
           </div>
@@ -1086,7 +1086,7 @@ config_list = autogen.config_list_from_json(env_or_file="OAI_CONFIG_LIST")
 assistant = autogen.AssistantAgent("coder", llm_config={"config_list": config_list})
 user_proxy = autogen.UserProxyAgent("user_proxy", code_execution_config={"work_dir": "workspace"})
 
-# Enforce sub-35µs execution boundaries on assistant's suggested code
+# Enforce microsecond-latency execution boundaries on assistant's suggested code
 protect_autogen_assistant(assistant, allowed_modules=["math", "pandas", "numpy"])
 
 user_proxy.initiate_chat(assistant, message="Plot normalized retention cohort curves")</pre>
@@ -1386,7 +1386,7 @@ curl -s http://127.0.0.1:9090/health | jq .
           <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--gold)"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
           Sovereign Air-Gapped Self-Hosting (Docker &amp; Helm 1-Liners)
         </h2>
-        <p class="lead-p">Deploy Bartholomew inside secure VPCs, on-prem bare-metal clusters, or strict zero-egress air-gapped enclaves (SCIF). Operates 100% locally with zero phone-home telemetry and sub-35µs AST evaluation latency.</p>
+        <p class="lead-p">Deploy Bartholomew inside secure VPCs, on-prem bare-metal clusters, or strict zero-egress air-gapped enclaves (SCIF). Operates 100% locally with zero phone-home telemetry and microsecond-latency AST evaluation latency.</p>
 
         <div class="tabs-header">
           <button class="tab-btn active" onclick="switchTab('selfhost', 'tab-selfhost-docker', this)">1-Line Docker</button>
@@ -1486,7 +1486,7 @@ res = guard.check(<span style="color:#38bdf8;">"rm -rf / --no-preserve-root"</sp
         <h2 class="section-title">Bonded Agent Warranty Fund ($100,000 Pool)</h2>
         <p class="section-desc">
           Bartholomew operates an algorithmic $100,000 USD reserve pool that underwrites autonomous agent execution. 
-          Enterprise teams can issue bonded policies guaranteeing sub-35µs gating SLAs and zero uncontained data exfiltration.
+          Enterprise teams can issue bonded policies guaranteeing microsecond-latency gating SLAs and zero uncontained data exfiltration.
         </p>
 
         <div class="badge-callout" style="padding:8px 14px; font-size:0.8rem; margin:8px 0 14px 0; border-radius:6px; gap:8px;">
@@ -1570,7 +1570,7 @@ $ btp-guard mcp-settle \
         <pre class="code-block"><code># 1. Harmonize any arbitrary schema (Claude, OpenAI, Gemini, OpenAPI) to BTP Universal Contract:
 $ npx btp-guard schema harmonize ./my_tool_spec.json
 
-# 2. In-process sub-35µs dynamic schema &amp; AST invariant validation:
+# 2. In-process microsecond-latency dynamic schema &amp; AST invariant validation:
 $ npx btp-guard schema validate ./schema.json ./payload.json
 [PASS] Invariant Verified (&lt; 3.2 µs) - 0 vulnerabilities, secrets scrubbed in-flight
 
@@ -1655,15 +1655,10 @@ $ btp-guard audit verify --dossier=audit_soc2_dossier.json
   <footer style="border-top:1px solid rgba(45,62,80,0.65); background:rgba(7,10,15,0.95); padding:36px 0 24px; margin-top:60px; position:relative; z-index:10;">
     <div style="max-width:1140px; margin:0 auto; padding:0 24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:14px; font-size:13px;">
       <div style="color:var(--text-muted);">
-        &copy; 2026 Bartholomew Security Group Inc. Sub-35µs AST Invariant Gating.
+        &copy; 2026 Bartholomew Security Group Inc. microsecond-latency AST Invariant Gating.
       </div>
       <div style="display:flex; gap:18px; align-items:center;">
-                <a href="/cyphervoice.html" class="nav-seal-link nav-cyphervoice-link" title="CypherVoice Real-Time Audio Shield & Voice Coding" aria-label="CypherVoice" style="background:rgba(0,229,163,0.12); border-color:rgba(0,229,163,0.4); color:#00e5a3; font-weight:700;">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;">
-            <path d="M12 2v20M17 5v14M7 9v6M22 10v4M2 11v2"></path>
-          </svg>
-          <span class="nav-seal-text">CypherVoice</span>
-        </a>
+                
         <a href="/careers" style="color:var(--emerald-light); font-weight:700; text-decoration:none;">Careers (We're Hiring!) &rarr;</a>
         <a href="/enterprise" style="color:var(--text-muted); text-decoration:none;">Enterprise Intake</a>
         <a href="/verify.html" style="color:var(--text-muted); text-decoration:none;">Verify Seal</a>

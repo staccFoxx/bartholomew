@@ -1062,7 +1062,7 @@
     <div class="kpi-row">
       <div class="kpi-box lead">
         <div class="kpi-meta">Evaluation Latency</div>
-        <div class="kpi-val highlight">&lt; 35 µs</div>
+        <div class="kpi-val highlight">microsecond-SLA</div>
         <div class="kpi-caption">Bartholomew executes in microseconds on CPU threads.</div>
       </div>
       <div class="kpi-box lead">
@@ -1269,7 +1269,7 @@
             Agent Self-Preservation &amp; Task Completion Benchmark
           </h2>
           <p style="color:var(--text-muted); font-size:0.88rem; max-width:820px; margin-top:6px; line-height:1.5;">
-            Traditional guardrails test only whether an attack was blocked, ignoring whether the <strong>agent survived</strong>. In enterprise production, killing the process or throwing fatal exception dumps destroys the agent's work. Bartholomew is the <strong>only</strong> runtime that intercepts errors in-process (&lt;35&micro;s) and injects structured remediation so the agent self-heals and finishes its task.
+            Traditional guardrails test only whether an attack was blocked, ignoring whether the <strong>agent survived</strong>. In enterprise production, killing the process or throwing fatal exception dumps destroys the agent's work. Bartholomew is the <strong>only</strong> runtime that intercepts errors in-process (microsecond latency) and injects structured remediation so the agent self-heals and finishes its task.
           </p>
         </div>
         <div style="text-align:right;">
@@ -1480,7 +1480,7 @@
               <span style="font-size:0.68rem; background:rgba(118,185,0,0.15); color:#76b900; border:1px solid #76b900; padding:2px 6px; border-radius:4px;">NVIDIA INCEPTION CERTIFIED</span>
             </div>
             <p style="font-size:0.78rem; color:var(--text-muted); margin-top:4px;">
-              Sub-35µs deterministic AST safety invariants, Keystone capability passkey validation, and Ed25519 Merkle receipts across NVIDIA NIM inference containers.
+              microsecond-latency deterministic AST safety invariants, Keystone capability passkey validation, and Ed25519 Merkle receipts across NVIDIA NIM inference containers.
             </p>
           </div>
           <div style="display:flex; align-items:center; gap:10px;">
@@ -1703,7 +1703,7 @@
               DETERMINISTIC INVARIANT STRESS TEST (1,000 SYNTHETIC OPERATIONS)
             </div>
             <div style="font-size: 0.86rem; color: #94a3b8; margin-top: 2px;">
-              Live swarm sweep, 100% attack interception, &lt; 35µs SLA gating, and RFC 8785 Merkle attestation.
+              Live swarm sweep, 100% attack interception, microsecond-SLA SLA gating, and RFC 8785 Merkle attestation.
             </div>
           </div>
         </div>
@@ -1782,7 +1782,7 @@
         name: "Bartholomew (btp-guard)",
         url: "https://github.com/ivegotahunnitonit/bartholomew",
         score: "99.8%",
-        latency: "< 35 µs",
+        latency: "microsecond-SLA",
         latencyNum: 0.035,
         vram: "0 MB (CPU)",
         vramNum: 0,

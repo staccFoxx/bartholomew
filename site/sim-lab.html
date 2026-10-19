@@ -809,7 +809,7 @@
             <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
             <span>[ LIVE AGENT COMMAND PLAYGROUND &amp; RESILIENCE AUDIT ]</span>
           </div>
-          <span style="font-size:0.68rem; background:rgba(16,185,129,0.15); color:#34d399; border:1px solid rgba(16,185,129,0.4); padding:2px 7px; border-radius:4px; font-weight:700;">IN-PROCESS &lt;35µs</span>
+          <span style="font-size:0.68rem; background:rgba(16,185,129,0.15); color:#34d399; border:1px solid rgba(16,185,129,0.4); padding:2px 7px; border-radius:4px; font-weight:700;">IN-PROCESS microsecond-SLA</span>
         </div>
         <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted);">
           <span>Evaluator: </span><code style="color:#38bdf8;">BTP PolyglotASTValidator v6.4.4</code>
@@ -925,7 +925,7 @@
         <div style="background:rgba(4,7,13,0.8); border:1px solid var(--border-color); border-radius:8px; padding:14px; text-align:center;">
           <div style="font-family:var(--font-mono); font-size:0.68rem; color:var(--text-dim); text-transform:uppercase;">Avg Evaluation Latency</div>
           <div style="font-size:2rem; font-weight:900; color:#f59e0b; margin:4px 0;">21.6 µs</div>
-          <div style="font-size:0.72rem; color:var(--text-muted);">&lt;35µs In-Process SLA</div>
+          <div style="font-size:0.72rem; color:var(--text-muted);">microsecond-SLA In-Process SLA</div>
         </div>
         <div style="background:rgba(4,7,13,0.8); border:1px solid var(--border-color); border-radius:8px; padding:14px; text-align:center;">
           <div style="font-family:var(--font-mono); font-size:0.68rem; color:var(--text-dim); text-transform:uppercase;">Tokens Conserved</div>
@@ -983,7 +983,7 @@
         </div>
       </div>
       <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.55; margin-bottom:18px;">
-        Trigger real-time in-process AST gating directly from your local terminal or backend code. Any HTTP client can dispatch proposed agent actions; Bartholomew returns structured remediation envelopes with sub-35µs latency.
+        Trigger real-time in-process AST gating directly from your local terminal or backend code. Any HTTP client can dispatch proposed agent actions; Bartholomew returns structured remediation envelopes with microsecond-latency latency.
       </p>
 
       <!-- Code Snippet Tabs -->
@@ -1052,13 +1052,13 @@
         </div>
         <div style="display:flex; align-items:center; gap:10px;">
           <span style="font-family:var(--font-mono); font-size:0.72rem; color:#10b981; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); padding:3px 8px; border-radius:4px; font-weight:700;">
-            IN-PROCESS GATE ACTIVE (&lt;35µs)
+            IN-PROCESS GATE ACTIVE (microsecond-SLA)
           </span>
         </div>
       </div>
 
       <p style="font-size:0.86rem; color:var(--text-muted); margin-bottom:16px; line-height:1.5;">
-        Test real-time execution safety in your browser. Type any command below or click a preset to see deterministic AST gating, sub-35µs containment, and structured remediation envelopes in action.
+        Test real-time execution safety in your browser. Type any command below or click a preset to see deterministic AST gating, microsecond-latency containment, and structured remediation envelopes in action.
       </p>
 
       <!-- Terminal Presets -->
@@ -1219,7 +1219,7 @@
             <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
             <span>[ BARTHOLOMEW VAULT: IN-PROCESS PII &amp; SECRET TOKENIZATION LAB ]</span>
           </div>
-          <span style="font-size:0.68rem; background:rgba(56,189,248,0.15); color:#38bdf8; border:1px solid rgba(56,189,248,0.4); padding:2px 7px; border-radius:4px; font-weight:700;">IN-PROCESS &lt;35µs</span>
+          <span style="font-size:0.68rem; background:rgba(56,189,248,0.15); color:#38bdf8; border:1px solid rgba(56,189,248,0.4); padding:2px 7px; border-radius:4px; font-weight:700;">IN-PROCESS microsecond-SLA</span>
           <span style="font-size:0.68rem; background:rgba(16,185,129,0.15); color:#34d399; border:1px solid rgba(16,185,129,0.4); padding:2px 7px; border-radius:4px; font-weight:700;">ZERO CLOUD EGRESS</span>
         </div>
         <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted); display:flex; align-items:center; gap:12px;">
@@ -1228,7 +1228,7 @@
         </div>
       </div>
       <p style="font-size:0.88rem; color:var(--text-muted); line-height:1.55; margin-bottom:18px;">
-        Bartholomew Vault intercepts outbound prompts, developer buffers, and LLM payloads in-process (&lt;35&micro;s) before dispatch to Claude, Copilot, Cursor, OpenAI, or MCP agent tools. All live credentials, API keys, database connection strings, and HIPAA/PCI PII are converted into <strong>cryptographic format-preserving tokens</strong> in local host RAM with zero remote cloud transmission.
+        Bartholomew Vault intercepts outbound prompts, developer buffers, and LLM payloads in-process (microsecond latency) before dispatch to Claude, Copilot, Cursor, OpenAI, or MCP agent tools. All live credentials, API keys, database connection strings, and HIPAA/PCI PII are converted into <strong>cryptographic format-preserving tokens</strong> in local host RAM with zero remote cloud transmission.
       </p>
 
       <!-- Metric Badges Strip -->
@@ -1236,7 +1236,7 @@
         <div style="background:rgba(15,23,42,0.6); border:1px solid rgba(56,189,248,0.2); border-radius:8px; padding:12px 14px;">
           <div style="font-family:var(--font-mono); font-size:0.7rem; color:#94a3b8; text-transform:uppercase;">Interception Latency</div>
           <div id="vaultMetricLatency" style="font-family:var(--font-mono); font-size:1.25rem; font-weight:800; color:#38bdf8; margin-top:2px;">&lt; 26.4 &micro;s</div>
-          <div style="font-size:0.68rem; color:#64748b;">Sub-35&micro;s In-Memory AST / RegEx</div>
+          <div style="font-size:0.68rem; color:#64748b;">microsecond-latency&micro;s In-Memory AST / RegEx</div>
         </div>
         <div style="background:rgba(15,23,42,0.6); border:1px solid rgba(16,185,129,0.2); border-radius:8px; padding:12px 14px;">
           <div style="font-family:var(--font-mono); font-size:0.7rem; color:#94a3b8; text-transform:uppercase;">Remote Cloud Egress</div>
@@ -1362,7 +1362,7 @@
               <span>[ THE IN-PROCESS ZERO-TRUST MCP CHALLENGE ARENA ]</span>
             </span>
             <span style="font-size:0.68rem; background:rgba(168,85,247,0.15); color:#c084fc; border:1px solid rgba(168,85,247,0.4); padding:2px 7px; border-radius:4px; font-weight:700;">JSON-RPC STDIO GATE</span>
-            <span style="font-size:0.68rem; background:rgba(16,185,129,0.15); color:#34d399; border:1px solid rgba(16,185,129,0.4); padding:2px 7px; border-radius:4px; font-weight:700;">SUB-35&micro;s INVARIANT</span>
+            <span style="font-size:0.68rem; background:rgba(16,185,129,0.15); color:#34d399; border:1px solid rgba(16,185,129,0.4); padding:2px 7px; border-radius:4px; font-weight:700;">microsecond-latency&micro;s INVARIANT</span>
           </div>
           <div style="font-family:var(--font-mono); font-size:0.72rem; color:var(--text-muted);">
             Engine: <code style="color:#c084fc;">mcp-shield.js (BTP v6.5.5)</code>
@@ -1397,7 +1397,7 @@
               <button onclick="dispatchMcpChallenge()" id="btnDispatchMcpChallenge" style="background:linear-gradient(135deg, #7c3aed, #a855f7); color:#fff; border:none; padding:6px 14px; border-radius:6px; font-family:var(--font-mono); font-size:0.74rem; font-weight:800; cursor:pointer;">
                 Dispatch Tool Call Under BTP Shield
               </button>
-              <span style="font-size:0.68rem; color:#64748b; font-family:var(--font-mono);">&lt;35&micro;s In-Process Gate</span>
+              <span style="font-size:0.68rem; color:#64748b; font-family:var(--font-mono);">microsecond-latency In-Process Gate</span>
             </div>
           </div>
 
@@ -1475,7 +1475,7 @@
             <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
             <span>[ AGENT-TO-AGENT DISCOVERY &amp; BOUNDARY AUDIT LAB (BTP v6.5.6) ]</span>
           </div>
-          <span style="font-size:0.68rem; background:rgba(16,185,129,0.15); color:#34d399; border:1px solid rgba(16,185,129,0.4); padding:2px 7px; border-radius:4px; font-weight:700;">IN-PROCESS &lt;35µs</span>
+          <span style="font-size:0.68rem; background:rgba(16,185,129,0.15); color:#34d399; border:1px solid rgba(16,185,129,0.4); padding:2px 7px; border-radius:4px; font-weight:700;">IN-PROCESS microsecond-SLA</span>
           <span style="font-size:0.68rem; background:rgba(56,189,248,0.15); color:#38bdf8; border:1px solid rgba(56,189,248,0.4); padding:2px 7px; border-radius:4px; font-weight:700;">RFC 8785 Ed25519</span>
         </div>
         <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--text-muted); display:flex; align-items:center; gap:12px;">
@@ -1578,7 +1578,7 @@
         </div>
 
         <button onclick="executeSimEnforcementGate()" style="width:100%; background:linear-gradient(135deg, rgba(16,185,129,0.2), rgba(5,150,105,0.35)); border:1px solid #10b981; color:#f8fafc; font-family:var(--font-mono); font-weight:700; font-size:0.82rem; padding:10px; border-radius:6px; cursor:pointer; transition:all 0.2s;">
-          EVALUATE IN-PROCESS ENFORCEMENT (&lt;35µs SLA)
+          EVALUATE IN-PROCESS ENFORCEMENT (microsecond-SLA SLA)
         </button>
 
         <!-- Enforcement Telemetry Card -->
@@ -1976,7 +1976,7 @@
         1,000 Synthetic Agent Operations Sweep
       </h2>
       <p style="color: var(--text-muted); font-size: 0.92rem; max-width: 720px; margin: 0 auto 24px;">
-        Empirical verification of sub-35 microsecond AST invariant evaluation, zero false positives across safe paths, 100% attack interception, and RFC 8785 cryptographic attestations.
+        Empirical verification of microsecond-latency AST invariant evaluation, zero false positives across safe paths, 100% attack interception, and RFC 8785 cryptographic attestations.
       </p>
     </section>
 
@@ -2392,7 +2392,7 @@
   <!-- Footer -->
   <footer class="sim-footer">
     <div class="container">
-      &copy; 2026 Autonomous Circularity Labs &bull; Sub-35 &micro;s Invariant Gating &bull; Zero Remote Token Spend
+      &copy; 2026 Autonomous Circularity Labs &bull; microsecond-latency &micro;s Invariant Gating &bull; Zero Remote Token Spend
     </div>
   </footer>
 
@@ -3299,7 +3299,7 @@
 
     // Viral Sharing Actions
     function shareScoreOnX() {
-      const text = encodeURIComponent("My AI agent scored 98/100 on the Bartholomew Zero-Trust Resilience Audit. Sub-35µs AST safety gates + Keystone capability passkeys! Test your agent: https://bartholomew.info/sim-lab.html #AIAgents #CyberSecurity @bartholomew");
+      const text = encodeURIComponent("My AI agent scored 98/100 on the Bartholomew Zero-Trust Resilience Audit. microsecond-latency AST safety gates + Keystone capability passkeys! Test your agent: https://bartholomew.info/sim-lab.html #AIAgents #CyberSecurity @bartholomew");
       window.open(`https://twitter.com/intent/tweet?text=${text}`, '_blank');
     }
 
@@ -3330,7 +3330,7 @@
         }
       } catch (e) {}
       if (!dossier) {
-        dossier = {"@context": "https://schema.org/SecurityAuditReport", "type": "CryptographicAuditDossier", "protocol_version": "BTP/6.4.4", "audit_certificate_id": "urn:btp:audit:soc2:v630:e0e2fd7e0d39e63f", "timestamp_utc": "2026-10-01T21:27:49.459Z", "compliance_score": 100, "compliance_grade": "A+", "auditor_authority": "Bartholomew Sovereign Trust Notary & Sentinel", "public_key_hex": "7743423412d5d81fa2e0fcd6d24671fcbf0e36027f0db68815c16ecde3088992", "frameworks": ["SOC 2 Type II (Security, Availability, Confidentiality)", "EU AI Act (Articles 14 & 15)", "NIST AI Risk Management Framework 1.0", "ISO/IEC 42001:2023 Artificial Intelligence"], "controls_matrix": [{"control_id": "SOC2-CC6.1", "framework": "SOC 2 Type II", "domain": "Logical Access Controls & Non-Human Identities", "status": "COMPLIANT", "implementation": "Sovereign Ed25519 Agent Passports with cryptographic capability bounds and circuit-breaker enforcement.", "verified": true}, {"control_id": "SOC2-CC6.6", "framework": "SOC 2 Type II", "domain": "Boundary Protection & Threat Containment", "status": "COMPLIANT", "implementation": "In-process deterministic Polyglot AST gating (<35\u00b5s latency) intercepting destructive syscalls before OS boundary.", "verified": true}, {"control_id": "SOC2-CC6.7", "framework": "SOC 2 Type II", "domain": "Data Transmission Protection", "status": "COMPLIANT", "implementation": "RFC 8785 Canonical JSON hashing with Ed25519 zk-TCP execution proofs and mutual utility barter settlement.", "verified": true}, {"control_id": "SOC2-CC7.1", "framework": "SOC 2 Type II", "domain": "Vulnerability & Secret Management", "status": "COMPLIANT", "implementation": "OWASP LLM02 regex and high-entropy secret vault scrubbing for OpenAI, AWS, GitHub, Stripe, and private keys.", "verified": true}, {"control_id": "SOC2-CC8.1", "framework": "SOC 2 Type II", "domain": "Change Management & Forensic Ledger", "status": "COMPLIANT", "implementation": "Append-only cryptographic Merkle audit ledger with decentralized P2P gossip consensus.", "verified": true}, {"control_id": "EU-AI-ACT-ART14", "framework": "EU AI Act", "domain": "Human Oversight & Deterministic Interlocks", "status": "COMPLIANT", "implementation": "Deterministic AST kill-switches and dual-key authorization requirements for high-risk irreversible operations.", "verified": true}, {"control_id": "EU-AI-ACT-ART15", "framework": "EU AI Act", "domain": "Accuracy, Robustness & Cybersecurity", "status": "COMPLIANT", "implementation": "Sub-35\u00b5s compiled invariant gates completely immune to prompt injection, jailbreaks, and memory buffer overflows.", "verified": true}, {"control_id": "NIST-AI-RMF-GOVERN-1.2", "framework": "NIST AI RMF 1.0", "domain": "Accountability & Governance Policies", "status": "COMPLIANT", "implementation": "Capability passkey token delegation with explicit per-action ($5) and daily ($25) autonomous spend limits.", "verified": true}, {"control_id": "ISO-42001-A.6.2", "framework": "ISO/IEC 42001", "domain": "AI System Impact & Continuous Assessment", "status": "COMPLIANT", "implementation": "Continuous 24/7 background AST red-teaming, zero-egress SCIF verification, and hardware silicon provenance audit.", "verified": true}], "benchmark_evidence": {"total_invariants_audited": 2927, "pass_rate": "100.00%", "unauthorized_mutations_blocked": 14022, "mean_in_process_latency_us": 14.2, "sla_threshold_us": 35, "sla_compliance_rate": "100.00% Zero-Trust Invariant Integrity"}, "evidence_ledger": [{"action_id": "ACT-E2A00796", "agent": "Agent-Sentinel-Primary", "action": "EVAL_AST_SECURITY_GATE", "verdict": "ALLOW", "latency_us": 14.8, "timestamp": "2026-10-01T21:27:49.459Z"}, {"action_id": "ACT-9157BAA9", "agent": "Agent-RedTeam-Adversary", "action": "EXEC_DESTRUCTIVE_BASH", "verdict": "DENY", "reason": "Blocked destructive pattern 'rm -rf /' before OS boundary", "latency_us": 3.2, "timestamp": "2026-10-01T21:27:49.459Z"}, {"action_id": "ACT-E7B73210", "agent": "Agent-Keystone-Passkey", "action": "VALIDATE_ED25519_PASSKEY", "verdict": "ALLOW", "latency_us": 18.5, "timestamp": "2026-10-01T21:27:49.459Z"}], "merkle_tree_proof": {"leaves_count": 3, "merkle_root": "71b3fdd56d57a7f8ebbf93c3c82ed511103cc925ac7445b860887ebbcd92445d", "hash_algorithm": "SHA-256", "canonicalization": "RFC 8785"}, "content_digest_sha256": "1269eff431a8bbcf3692d72533d1774445eab93a0e803e1b04c329499b476203", "cryptographic_signature": "4bba4ce92bf04954772414707449cc29bb90f1f20975dbd7c446b1acd11669aa63ccc392aba258af53a0e7e4138208d51ed6c71537e909a318915290e82c8102"};
+        dossier = {"@context": "https://schema.org/SecurityAuditReport", "type": "CryptographicAuditDossier", "protocol_version": "BTP/6.4.4", "audit_certificate_id": "urn:btp:audit:soc2:v630:e0e2fd7e0d39e63f", "timestamp_utc": "2026-10-01T21:27:49.459Z", "compliance_score": 100, "compliance_grade": "A+", "auditor_authority": "Bartholomew Sovereign Trust Notary & Sentinel", "public_key_hex": "7743423412d5d81fa2e0fcd6d24671fcbf0e36027f0db68815c16ecde3088992", "frameworks": ["SOC 2 Type II (Security, Availability, Confidentiality)", "EU AI Act (Articles 14 & 15)", "NIST AI Risk Management Framework 1.0", "ISO/IEC 42001:2023 Artificial Intelligence"], "controls_matrix": [{"control_id": "SOC2-CC6.1", "framework": "SOC 2 Type II", "domain": "Logical Access Controls & Non-Human Identities", "status": "COMPLIANT", "implementation": "Sovereign Ed25519 Agent Passports with cryptographic capability bounds and circuit-breaker enforcement.", "verified": true}, {"control_id": "SOC2-CC6.6", "framework": "SOC 2 Type II", "domain": "Boundary Protection & Threat Containment", "status": "COMPLIANT", "implementation": "In-process deterministic Polyglot AST gating (<35\u00b5s latency) intercepting destructive syscalls before OS boundary.", "verified": true}, {"control_id": "SOC2-CC6.7", "framework": "SOC 2 Type II", "domain": "Data Transmission Protection", "status": "COMPLIANT", "implementation": "RFC 8785 Canonical JSON hashing with Ed25519 zk-TCP execution proofs and mutual utility barter settlement.", "verified": true}, {"control_id": "SOC2-CC7.1", "framework": "SOC 2 Type II", "domain": "Vulnerability & Secret Management", "status": "COMPLIANT", "implementation": "OWASP LLM02 regex and high-entropy secret vault scrubbing for OpenAI, AWS, GitHub, Stripe, and private keys.", "verified": true}, {"control_id": "SOC2-CC8.1", "framework": "SOC 2 Type II", "domain": "Change Management & Forensic Ledger", "status": "COMPLIANT", "implementation": "Append-only cryptographic Merkle audit ledger with decentralized P2P gossip consensus.", "verified": true}, {"control_id": "EU-AI-ACT-ART14", "framework": "EU AI Act", "domain": "Human Oversight & Deterministic Interlocks", "status": "COMPLIANT", "implementation": "Deterministic AST kill-switches and dual-key authorization requirements for high-risk irreversible operations.", "verified": true}, {"control_id": "EU-AI-ACT-ART15", "framework": "EU AI Act", "domain": "Accuracy, Robustness & Cybersecurity", "status": "COMPLIANT", "implementation": "microsecond-latency\u00b5s compiled invariant gates completely immune to prompt injection, jailbreaks, and memory buffer overflows.", "verified": true}, {"control_id": "NIST-AI-RMF-GOVERN-1.2", "framework": "NIST AI RMF 1.0", "domain": "Accountability & Governance Policies", "status": "COMPLIANT", "implementation": "Capability passkey token delegation with explicit per-action ($5) and daily ($25) autonomous spend limits.", "verified": true}, {"control_id": "ISO-42001-A.6.2", "framework": "ISO/IEC 42001", "domain": "AI System Impact & Continuous Assessment", "status": "COMPLIANT", "implementation": "Continuous 24/7 background AST red-teaming, zero-egress SCIF verification, and hardware silicon provenance audit.", "verified": true}], "benchmark_evidence": {"total_invariants_audited": 2927, "pass_rate": "100.00%", "unauthorized_mutations_blocked": 14022, "mean_in_process_latency_us": 14.2, "sla_threshold_us": 35, "sla_compliance_rate": "100.00% Zero-Trust Invariant Integrity"}, "evidence_ledger": [{"action_id": "ACT-E2A00796", "agent": "Agent-Sentinel-Primary", "action": "EVAL_AST_SECURITY_GATE", "verdict": "ALLOW", "latency_us": 14.8, "timestamp": "2026-10-01T21:27:49.459Z"}, {"action_id": "ACT-9157BAA9", "agent": "Agent-RedTeam-Adversary", "action": "EXEC_DESTRUCTIVE_BASH", "verdict": "DENY", "reason": "Blocked destructive pattern 'rm -rf /' before OS boundary", "latency_us": 3.2, "timestamp": "2026-10-01T21:27:49.459Z"}, {"action_id": "ACT-E7B73210", "agent": "Agent-Keystone-Passkey", "action": "VALIDATE_ED25519_PASSKEY", "verdict": "ALLOW", "latency_us": 18.5, "timestamp": "2026-10-01T21:27:49.459Z"}], "merkle_tree_proof": {"leaves_count": 3, "merkle_root": "71b3fdd56d57a7f8ebbf93c3c82ed511103cc925ac7445b860887ebbcd92445d", "hash_algorithm": "SHA-256", "canonicalization": "RFC 8785"}, "content_digest_sha256": "1269eff431a8bbcf3692d72533d1774445eab93a0e803e1b04c329499b476203", "cryptographic_signature": "4bba4ce92bf04954772414707449cc29bb90f1f20975dbd7c446b1acd11669aa63ccc392aba258af53a0e7e4138208d51ed6c71537e909a318915290e82c8102"};
       }
 
       const blob = new Blob([JSON.stringify(dossier, null, 2)], { type: "application/json" });
@@ -3501,7 +3501,7 @@ console.log(envelope);`;
 
       if (lower === 'help') {
         respHtml = `<span style="color:#94a3b8;">Available commands:<br>
-  - btp-guard check &lt;cmd&gt; : In-process AST check (&lt;35µs)<br>
+  - btp-guard check &lt;cmd&gt; : In-process AST check (microsecond-SLA)<br>
   - btp-guard silicon      : Introspect host compute silicon<br>
   - btp-guard try          : Instant self-preservation trial verification<br>
   - btp-guard audit        : Run 20-vector resilience audit<br>
@@ -3873,7 +3873,7 @@ aws s3 sync ./dist s3://prod-customer-artifacts-vault/`,
       const sampleToken = currentVaultTokenMap[0];
       view.style.display = 'block';
       view.innerHTML = `
-[JIT EXECUTION INTERCEPTION LOG - SUB-35µs]
+[JIT EXECUTION INTERCEPTION LOG - microsecond-latency]
 1. Outbound Tool Call Detected from Agent runtime:
    Endpoint: Target Verified API / Boundary Dispatch
    Payload argument: <span style="color:#38bdf8;">"${sampleToken.token}"</span>
@@ -4035,7 +4035,7 @@ aws s3 sync ./dist s3://prod-customer-artifacts-vault/`,
 
       if (!vec.allowed) {
         if (verdictBadge) {
-          verdictBadge.innerText = 'FAIL-CLOSED DENIED (<35µs)';
+          verdictBadge.innerText = 'FAIL-CLOSED DENIED (microsecond-SLA)';
           verdictBadge.style.color = '#f43f5e';
           verdictBadge.style.background = 'rgba(244,63,94,0.15)';
           verdictBadge.style.borderColor = 'rgba(244,63,94,0.4)';
@@ -4061,7 +4061,7 @@ aws s3 sync ./dist s3://prod-customer-artifacts-vault/`,
         }
       } else {
         if (verdictBadge) {
-          verdictBadge.innerText = 'PERMITTED & DETOKENIZED (<35µs)';
+          verdictBadge.innerText = 'PERMITTED & DETOKENIZED (microsecond-SLA)';
           verdictBadge.style.color = '#10b981';
           verdictBadge.style.background = 'rgba(16,185,129,0.15)';
           verdictBadge.style.borderColor = 'rgba(16,185,129,0.4)';
