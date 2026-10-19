@@ -1,0 +1,39 @@
+{
+  "manifest_version": 3,
+  "name": "CypherVoice - Biometric Audio Cloak & Privacy",
+  "version": "0.7.3",
+  "description": "Zero-latency biometric voiceprint cloaking and acoustic privacy for Google Meet, Discord Web, Slack, and AI workspaces.",
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "CypherVoice Audio Privacy"
+  },
+  "permissions": [
+    "storage"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "https://meet.google.com/*",
+        "https://discord.com/*",
+        "https://teams.live.com/*",
+        "https://app.slack.com/*",
+        "https://bartholomew.info/*",
+        "http://localhost:*/*",
+        "http://127.0.0.1:*/*"
+      ],
+      "js": ["content_script.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["worklet_processor.js"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

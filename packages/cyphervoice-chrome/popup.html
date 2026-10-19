@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CypherVoice Audio Privacy</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="popup-container">
+    <div class="header">
+      <div class="logo-group">
+        <div class="logo-shield"></div>
+        <div>
+          <div class="title">CYPHERVOICE</div>
+          <div class="subtitle">Biometric Voice Cloak v0.7.3</div>
+        </div>
+      </div>
+      <div class="badge" id="daemonBadge">LOCAL DSP</div>
+    </div>
+
+    <div class="status-card" id="statusCard">
+      <div class="card-row">
+        <span class="label">Cloaking Shield</span>
+        <span class="status-val active" id="shieldStatusText">ACTIVE</span>
+      </div>
+      <div class="toggle-wrap">
+        <button class="btn-toggle on" id="toggleShieldBtn">PROTECTION ON</button>
+      </div>
+    </div>
+
+    <div class="meter-card">
+      <div class="meter-title">
+        <span>Acoustic Perturbation Level</span>
+        <span class="meter-val" id="vuDb">-24.1 dB</span>
+      </div>
+      <canvas id="vuCanvas" width="280" height="12"></canvas>
+    </div>
+
+    <div class="control-group">
+      <label for="presetSelect">Defense Preset</label>
+      <select id="presetSelect">
+        <option value="standard" selected>Standard (Balanced Cloak + Natural Sound)</option>
+        <option value="high_paranoia">High Paranoia (Aggressive Adversarial Noise)</option>
+        <option value="whisper">Whisper (Low-Volume Sub-band Boosting)</option>
+        <option value="executive">Executive (Ultra-Crisp Meeting Pass-through)</option>
+      </select>
+    </div>
+
+    <div class="footer">
+      <a href="https://bartholomew.info/cyphervoice.html" target="_blank" class="link-studio">Open Spectrogram Studio &rarr;</a>
+      <div class="version-tag">100% Free Forever &bull; No Subscriptions</div>
+    </div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>
