@@ -8,7 +8,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>Bartholomew Pricing | Developer Guard &amp; 30-Day Team Pilot</title>
-  <meta name="description" content="Transparent pricing for autonomous AI coding agent runtime protection. Free open-source developer guardrails and $199/month 30-day team pilots for Cursor, Claude Code, and Windsurf.">
+  <meta name="description" content="Transparent pricing for autonomous AI coding agent runtime protection. Free open-source developer guardrails and flat $490 guided team pilots (no subscriptions) for Cursor, Claude Code, and Windsurf.">
   <link rel="icon" type="image/png" href="/logo.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -588,8 +588,8 @@
           <div class="card-desc">For engineering leads, platform teams, and CISOs rolling out coding agents across shared repositories.</div>
           
           <div class="price-box">
-            <span class="price-val">$199</span>
-            <span class="price-period">/ month (or $950 one-time setup)</span>
+            <span class="price-val">$490</span>
+            <span class="price-period">flat one-time (no recurring subscriptions)</span>
           </div>
 
           <ul class="feature-list">
@@ -633,7 +633,7 @@
           <p style="font-size: 13px; color: var(--text-muted);">Fill in your team details below. We will immediately dispatch your evaluation passkey and schedule your 30-minute kickoff walkthrough.</p>
         </div>
         <div style="font-size: 11px; font-family: var(--font-mono); color: var(--emerald); background: rgba(16, 185, 129, 0.12); padding: 4px 10px; border-radius: 4px; border: 1px solid rgba(16, 185, 129, 0.3);">
-          ACTIVE PROMO: $199/MO
+          FLAT RATE: $490 ONE-TIME
         </div>
       </div>
 
@@ -650,10 +650,10 @@
           <div class="form-group">
             <label>Team Seats (Engineers)</label>
             <select id="seat-count">
-              <option value="5">Up to 5 Engineers ($199/mo)</option>
-              <option value="10" selected>Up to 10 Engineers ($199/mo)</option>
-              <option value="25">Up to 25 Engineers ($499/mo)</option>
-              <option value="50">Up to 50 Engineers ($899/mo)</option>
+              <option value="5">Up to 5 Engineers ($490 flat)</option>
+              <option value="10" selected>Up to 10 Engineers ($490 flat)</option>
+              <option value="25">Up to 25 Engineers ($950 flat)</option>
+              <option value="50">Up to 50 Engineers ($1,850 flat)</option>
             </select>
           </div>
           <div class="form-group">
@@ -669,8 +669,8 @@
           <div class="form-group">
             <label>Billing Structure</label>
             <select id="billing-structure">
-              <option value="monthly" selected>Monthly Team Subscription ($199/mo, cancel anytime)</option>
-              <option value="onetime">One-Time Setup &amp; Audit Package ($950 flat)</option>
+              <option value="onetime" selected>One-Time Flat Pilot Package ($490 flat, zero recurring fees)</option>
+              <option value="audit">Enterprise Architecture &amp; Security Audit ($950 flat)</option>
             </select>
           </div>
           <div class="form-group">
@@ -778,7 +778,7 @@
       const email = emailInput ? emailInput.value.trim() : '';
       const seats = seatsInput ? parseInt(seatsInput.value, 10) : 10;
       const agent = agentInput ? agentInput.value : 'cursor';
-      const billing = billingInput ? billingInput.value : 'monthly';
+      const billing = billingInput ? billingInput.value : 'onetime';
       const kickoffDate = dateInput ? dateInput.value : '';
 
       const resBox = document.getElementById('enroll-result');
