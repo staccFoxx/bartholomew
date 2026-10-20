@@ -2,7 +2,7 @@
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
 [![PyPI](https://img.shields.io/badge/PyPI-v6.4.4-blue.svg)](https://pypi.org/project/btp-guard/)
-[![CI/CD Status](https://img.shields.io/badge/CI%2FCD-Active-10b981.svg)](https://github.com/bartholomew-security/bartholomew)
+[![CI/CD Status](https://img.shields.io/badge/CI%2FCD-Active-10b981.svg)](https://github.com/ivegotahunnitonit/bartholomew)
 
 Deterministic AST invariant verification, credential leak prevention, and cryptographic Ed25519 execution receipts for autonomous AI agent codebases before pull requests merge into production.
 
@@ -29,7 +29,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run Bartholomew Keystone Guard
-        uses: bartholomew-security/bartholomew/packages/github_action@main
+        uses: ivegotahunnitonit/bartholomew@main
         with:
           audit-path: '.'
           fail-on-violation: 'true'
