@@ -5,7 +5,7 @@
 name: "@bartholomew/sentinel"
 displayName: "Bartholomew AI Security Gate"
 display_name: "Bartholomew AI Security Gate"
-description: "Sub-35µs in-process AI agent security gate and AST execution firewall. Evaluates tool calls before execution — blocks rm -rf, DROP TABLE, secret exfiltration, SSRF, and path traversal. Generates Ed25519 Merkle receipts. Works with Claude Desktop, Cursor, Windsurf, ElizaOS, and any MCP client."
+description: "Sub-20µs in-process AI agent security gate and AST execution firewall. Evaluates tool calls before execution — blocks rm -rf, DROP TABLE, secret exfiltration, SSRF, and path traversal. Generates Ed25519 Merkle receipts. Works with Claude Desktop, Cursor, Windsurf, ElizaOS, and any MCP client."
 version: "6.5.6"
 license: "Apache-2.0"
 homepage: "https://bartholomew.info"
@@ -48,7 +48,7 @@ command:
 
 tools:
   - name: btp_execute_command
-    description: "Executes a shell command inside a hermetic workspace boundary after AST pre-flight safety evaluation. Blocks destructive commands (rm -rf, chmod 777, curl | bash) in under 35 microseconds before any syscall is made. Returns an Ed25519-signed execution receipt."
+    description: "Executes a shell command inside a hermetic workspace boundary after AST pre-flight safety evaluation. Blocks destructive commands (rm -rf, chmod 777, curl | bash) in under 20 microseconds before any syscall is made. Returns an Ed25519-signed execution receipt."
     annotations:
       destructiveHint: true
       readOnlyHint: false

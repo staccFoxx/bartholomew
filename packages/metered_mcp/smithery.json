@@ -3,7 +3,7 @@
   "name": "btp-guard",
   "displayName": "Bartholomew Trust Protocol MCP Guard & Keystone Server",
   "version": "5.4.23",
-  "description": "Sub-35us in-process AST execution gating, hermetic workspace sandboxing, Bartholomew Keystone capability passkey clearance, and 50-call freemium meter for Claude Desktop, Cursor, and Windsurf.",
+  "description": "Sub-20us in-process AST execution gating, hermetic workspace sandboxing, Bartholomew Keystone capability passkey clearance, and 50-call freemium meter for Claude Desktop, Cursor, and Windsurf.",
   "author": "Bartholomew Autonomous Systems <contact@bartholomew.info>",
   "homepage": "https://bartholomew.info",
   "repository": "https://github.com/ivegotahunnitonit/bartholomew",

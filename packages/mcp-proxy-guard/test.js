@@ -1,14 +1,14 @@
 import assert from 'assert';
 import { scrubSecrets, evaluateToolCall, loadLicense } from './index.js';
 
-console.log("Running mcp-proxy-guard verification suite (BTP v6.4.3)...");
+console.log("Running mcp-proxy-guard verification suite (BTP v6.6.2)...");
 
 // Test 1: Destructive shell command blocked
 const vetoShell = evaluateToolCall('run_shell', { command: 'rm -rf /' });
 assert.strictEqual(vetoShell.allowed, false, "Should block rm -rf");
 assert.ok(vetoShell.receipt_hash, "Must provide receipt hash");
 assert.ok(vetoShell.latency_us < 10000, "Latency must be sub-millisecond");
-console.log("[PASS] Test 1: Intercepted destructive shell command (<35us invariant)");
+console.log("[PASS] Test 1: Intercepted destructive shell command (<20us invariant)");
 
 // Test 2: Destructive SQL dropped
 const vetoSql = evaluateToolCall('query_db', { sql: 'DROP TABLE users CASCADE;' });

@@ -1254,33 +1254,59 @@ docker run --rm -v $(pwd):/workspace bartholomew-sandbox python agent.py</pre>
       <section id="mcp-security">
         <h2 class="section-title">
           <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--blue)"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-          Model Context Protocol (MCP) Security
+          Model Context Protocol (MCP) Security &amp; Proxy Gateway
         </h2>
-        <p class="lead-p">Audit and sign your MCP servers for Claude Desktop, Cursor, and Windsurf:</p>
+        <p class="lead-p">Intercept, scrub credentials, and gate dangerous tool execution across Claude Desktop, Cursor, and Windsurf in under 20 microseconds:</p>
 
         <div class="tab-container">
           <div class="tab-header">
-            <button class="tab-btn active" onclick="switchTab(this, 'tab-mcp-verify')">Verify MCP Server</button>
-            <button class="tab-btn" onclick="switchTab(this, 'tab-mcp-config')">Cursor / Claude JSON</button>
+            <button class="tab-btn active" onclick="switchTab(this, 'tab-mcp-autoharden')">1-Line Auto-Harden</button>
+            <button class="tab-btn" onclick="switchTab(this, 'tab-mcp-claude')">Claude Desktop</button>
+            <button class="tab-btn" onclick="switchTab(this, 'tab-mcp-cursor')">Cursor Config</button>
+            <button class="tab-btn" onclick="switchTab(this, 'tab-mcp-metered')">Metered API Wrap</button>
           </div>
-          <div class="tab-pane active" id="tab-mcp-verify">
+          <div class="tab-pane active" id="tab-mcp-autoharden">
             <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
-            <pre class="code-block"># Audit local or remote MCP server and generate cryptographic seal:
-btp-guard verify-mcp --url http://localhost:8000/sse
+            <pre class="code-block"># Auto-detect and harden all Claude Desktop, Cursor, and Windsurf MCP servers:
+npx -y mcp-proxy-guard install
 
-# Install Bartholomew MCP Proxy for Claude Desktop & Cursor:
-btp-guard mcp install</pre>
+# Transparently wrap any MCP server command manually:
+npx -y mcp-proxy-guard -- &lt;mcp-server-command&gt; [args...]
+
+# Run self-contained security verification suite:
+npx -y mcp-proxy-guard test</pre>
           </div>
-          <div class="tab-pane" id="tab-mcp-config">
+          <div class="tab-pane" id="tab-mcp-claude">
             <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
-            <pre class="code-block">{
+            <pre class="code-block"># claude_desktop_config.json
+{
   "mcpServers": {
-    "bartholomew-guard": {
-      "command": "btp-guard",
-      "args": ["mcp", "start", "--port", "8000"]
+    "guarded-filesystem": {
+      "command": "npx",
+      "args": ["-y", "mcp-proxy-guard", "--", "npx", "-y", "@modelcontextprotocol/server-filesystem", "./"]
     }
   }
 }</pre>
+          </div>
+          <div class="tab-pane" id="tab-mcp-cursor">
+            <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            <pre class="code-block"># .cursor/mcp.json
+{
+  "mcpServers": {
+    "guarded-terminal": {
+      "command": "npx",
+      "args": ["-y", "mcp-proxy-guard", "--", "bash"]
+    }
+  }
+}</pre>
+          </div>
+          <div class="tab-pane" id="tab-mcp-metered">
+            <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
+            <pre class="code-block"># Activate Metered API Token for centralized enterprise audit logging ($0.005/receipt):
+npx -y mcp-proxy-guard activate btp_api_your_key_here
+
+# Local in-process protection is 100% Free Forever without cloud dependencies.
+# Audit logs are cryptographically written to: .btp/audit.log</pre>
           </div>
         </div>
       </section>

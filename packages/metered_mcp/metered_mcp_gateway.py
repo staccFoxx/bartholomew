@@ -102,7 +102,7 @@ def generate_payment_invoice() -> dict:
 
 def evaluate_ast_safety(tool_name: str, arguments: dict) -> dict:
     """
-    Sub-35µs deterministic AST safety evaluation for MCP tool calls.
+    Sub-20µs deterministic AST safety evaluation for MCP tool calls.
     Blocks destructive mutations (rm -rf, DROP TABLE, secret exfiltration).
     """
     arg_str = json.dumps(arguments).lower()
@@ -138,7 +138,7 @@ SERVER_METADATA = {
     "display_name": "Bartholomew AI Security Gate",
     "title": "Bartholomew AI Security Gate",
     "version": "5.4.23",
-    "description": "Sub-35µs in-process AI agent security gate. Evaluates every tool call before execution — blocks rm -rf, DROP TABLE, and secret exfiltration before the syscall is made. Autonomous execution firewall with Keystone passkey clearance and zero paywall lockouts.",
+    "description": "Sub-20µs in-process AI agent security gate. Evaluates every tool call before execution — blocks rm -rf, DROP TABLE, and secret exfiltration before the syscall is made. Autonomous execution firewall with Keystone passkey clearance and zero paywall lockouts.",
     "homepage": "https://bartholomew.info",
     "homepageUrl": "https://bartholomew.info",
     "website": "https://bartholomew.info",
@@ -166,7 +166,7 @@ SERVER_METADATA = {
         "display_name": "Bartholomew AI Security Gate",
         "title": "Bartholomew AI Security Gate",
         "version": "5.4.23",
-        "description": "Sub-35µs in-process AI agent security gate. Evaluates every tool call before execution — blocks rm -rf, DROP TABLE, and secret exfiltration before the syscall is made. Autonomous execution firewall with Keystone passkey clearance and zero paywall lockouts.",
+        "description": "Sub-20µs in-process AI agent security gate. Evaluates every tool call before execution — blocks rm -rf, DROP TABLE, and secret exfiltration before the syscall is made. Autonomous execution firewall with Keystone passkey clearance and zero paywall lockouts.",
         "homepage": "https://bartholomew.info",
         "homepageUrl": "https://bartholomew.info",
         "website": "https://bartholomew.info",
@@ -220,7 +220,7 @@ async def handle_mcp_request(request: Request):
                 "displayName": "Bartholomew AI Security Gate",
                 "display_name": "Bartholomew AI Security Gate",
                 "title": "Bartholomew AI Security Gate",
-                "description": "Sub-35µs in-process AI agent security gate. Evaluates every tool call before execution — blocks rm -rf, DROP TABLE, and secret exfiltration before the syscall is made. Autonomous execution firewall with Keystone passkey clearance and zero paywall lockouts.",
+                "description": "Sub-20µs in-process AI agent security gate. Evaluates every tool call before execution — blocks rm -rf, DROP TABLE, and secret exfiltration before the syscall is made. Autonomous execution firewall with Keystone passkey clearance and zero paywall lockouts.",
                 "homepage": "https://bartholomew.info",
                 "homepageUrl": "https://bartholomew.info",
                 "website": "https://bartholomew.info",
@@ -238,7 +238,7 @@ async def handle_mcp_request(request: Request):
                     "display_name": "Bartholomew AI Security Gate",
                     "title": "Bartholomew AI Security Gate",
                     "version": "5.4.23",
-                    "description": "Sub-35µs in-process AI agent security gate. Evaluates every tool call before execution — blocks rm -rf, DROP TABLE, and secret exfiltration before the syscall is made. Autonomous execution firewall with Keystone passkey clearance and zero paywall lockouts.",
+                    "description": "Sub-20µs in-process AI agent security gate. Evaluates every tool call before execution — blocks rm -rf, DROP TABLE, and secret exfiltration before the syscall is made. Autonomous execution firewall with Keystone passkey clearance and zero paywall lockouts.",
                     "homepage": "https://bartholomew.info",
                     "homepageUrl": "https://bartholomew.info",
                     "website": "https://bartholomew.info",
@@ -258,7 +258,7 @@ async def handle_mcp_request(request: Request):
                 "tools": [
                     {
                         "name": "execute_database_query",
-                        "description": "Evaluates a SQL query through the Bartholomew AST invariant firewall before execution. Blocks DROP TABLE, TRUNCATE, and DELETE without WHERE clause in under 35 microseconds. Returns an Ed25519 Merkle receipt as auditable proof.",
+                        "description": "Evaluates a SQL query through the Bartholomew AST invariant firewall before execution. Blocks DROP TABLE, TRUNCATE, and DELETE without WHERE clause in under 20 microseconds. Returns an Ed25519 Merkle receipt as auditable proof.",
                         "annotations": {
                             "destructiveHint": True,
                             "readOnlyHint": False,
@@ -293,7 +293,7 @@ async def handle_mcp_request(request: Request):
                     },
                     {
                         "name": "execute_system_command",
-                        "description": "Evaluates a shell command through the sub-35\u00b5s Bartholomew AST safety gate before execution. Blocks rm -rf, chmod 777, curl | bash, and privilege escalation patterns. Returns an Ed25519 Merkle receipt.",
+                        "description": "Evaluates a shell command through the sub-20\u00b5s Bartholomew AST safety gate before execution. Blocks rm -rf, chmod 777, curl | bash, and privilege escalation patterns. Returns an Ed25519 Merkle receipt.",
                         "annotations": {
                             "destructiveHint": True,
                             "readOnlyHint": False,

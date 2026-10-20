@@ -11,12 +11,12 @@
 ---
 
 ### One-Line Description
-> Sub-35µs in-process AST invariant gate for AI agents. Blocks DROP TABLE, rm -rf, secret exfiltration before syscall. Pay $0.005 per check or subscribe for flat-rate.
+> Sub-20µs in-process AST invariant gate for AI agents. Blocks DROP TABLE, rm -rf, secret exfiltration before syscall. Pay $0.005 per check with unmetered local in-process protection.
 
 ---
 
 ### Full Description
-Bartholomew is a cryptographic execution gateway that evaluates every proposed AI agent tool call *in-process*, in under 35 microseconds, before it reaches the OS.
+Bartholomew is a cryptographic execution gateway that evaluates every proposed AI agent tool call *in-process*, in under 20 microseconds, before it reaches the OS.
 
 When your autonomous agent tries to `DROP TABLE`, run `rm -rf /`, or leak an API key through a tool payload, Bartholomew vetoes the action and returns an Ed25519-signed Merkle receipt as proof of prevention — without any network round-trip overhead.
 

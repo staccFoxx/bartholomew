@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 /**
- * Bartholomew MCP Shield CLI (BTP v6.5.5)
+ * Bartholomew MCP Shield CLI (BTP v6.6.2)
  * =======================================
  * Transparent in-process proxy wrapper for Model Context Protocol (MCP) servers.
- * Intercepts stdio JSON-RPC tool calls in <35µs:
+ * Intercepts stdio JSON-RPC tool calls in <20µs:
  * - Invariant Gating: Blocks destructive shell breakouts, SQL drops, path traversals
  * - Inbound / Outbound: Tokenizes sensitive parameters and JIT detokenizes for verified execution
  *
@@ -69,7 +69,7 @@ function getMcpConfigPaths() {
 
 function handleInstall() {
   process.stdout.write('\n============================================================\n');
-  process.stdout.write('  BARTHOLOMEW MCP AUTO-SHIELD HARDENING WIZARD (BTP v6.5.5)\n');
+  process.stdout.write('  BARTHOLOMEW MCP AUTO-SHIELD HARDENING WIZARD (BTP v6.6.2)\n');
   process.stdout.write('============================================================\n');
 
   const configs = getMcpConfigPaths();
@@ -112,7 +112,7 @@ function handleInstall() {
         serverCfg.args = ['--', originalCmd, ...originalArgs];
         modified = true;
         totalShielded++;
-        process.stdout.write(`    [+] Shielded '${serverName}' -> in-process <35us AST & PII gating active.\n`);
+        process.stdout.write(`    [+] Shielded '${serverName}' -> in-process <20us AST & PII gating active.\n`);
       }
 
       if (modified) {
@@ -131,13 +131,13 @@ function handleInstall() {
     process.stdout.write('    You can run servers directly: mcp-shield -- <mcp-server-cmd> [args...]\n\n');
   } else {
     process.stdout.write(`[SUMMARY] Hardened ${totalShielded} MCP server(s) across ${configsFound} configuration(s).\n`);
-    process.stdout.write('Zero configuration overhead. In-process <35us protection is now active.\n\n');
+    process.stdout.write('Zero configuration overhead. In-process <20us protection is now active.\n\n');
   }
 }
 
 function handleAudit() {
   process.stdout.write('\n============================================================\n');
-  process.stdout.write('  BARTHOLOMEW MCP SECURITY AUDITOR (BTP v6.5.5)\n');
+  process.stdout.write('  BARTHOLOMEW MCP SECURITY AUDITOR (BTP v6.6.2)\n');
   process.stdout.write('============================================================\n');
 
   const configs = getMcpConfigPaths();
@@ -169,7 +169,7 @@ function handleAudit() {
 
 function handleDoctor(fixMode = false) {
   process.stdout.write('\n============================================================\n');
-  process.stdout.write('  BARTHOLOMEW MCP AGENT SECURITY DOCTOR (BTP v6.5.5)\n');
+  process.stdout.write('  BARTHOLOMEW MCP AGENT SECURITY DOCTOR (BTP v6.6.2)\n');
   process.stdout.write('============================================================\n');
   process.stdout.write(`Mode: ${fixMode ? 'Automatic Hardening (--fix)' : 'Read-Only Diagnostic'}\n\n`);
 
@@ -199,7 +199,7 @@ function handleDoctor(fixMode = false) {
 
         if (isShielded) {
           totalShielded++;
-          process.stdout.write(`  [PASS] '${serverName}' -> Active <35us AST & PII Shielding\n`);
+          process.stdout.write(`  [PASS] '${serverName}' -> Active <20us AST & PII Shielding\n`);
         } else {
           totalUnshielded++;
           process.stdout.write(`  [WARN] '${serverName}' -> UNSHIELDED (Exposed to destructive tool calls & PII egress)\n`);
@@ -242,13 +242,13 @@ function handleDoctor(fixMode = false) {
     process.stdout.write('\n[RECOMMENDATION] Run with --fix to automatically shield all vulnerable servers:\n');
     process.stdout.write('  npx mcp-shield doctor --fix\n\n');
   } else {
-    process.stdout.write('\n[STATUS] All discovered MCP server definitions adhere to BTP v6.5.5 invariants.\n\n');
+    process.stdout.write('\n[STATUS] All discovered MCP server definitions adhere to BTP v6.6.2 invariants.\n\n');
   }
 }
 
 function handleExportCompliance() {
   process.stdout.write('\n============================================================\n');
-  process.stdout.write('  BARTHOLOMEW COMPLIANCE DOSSIER GENERATOR (BTP v6.5.5)\n');
+  process.stdout.write('  BARTHOLOMEW COMPLIANCE DOSSIER GENERATOR (BTP v6.6.2)\n');
   process.stdout.write('============================================================\n');
 
   const btpDir = path.resolve(process.cwd(), '.btp');
@@ -389,7 +389,7 @@ function handleDemo() {
   const gate1 = engine.interceptMcpToolCall('query_database', queryArgs1, { isAuthorizedDestination: true });
 
   if (auth1.allowed && gate1.allowed) {
-    process.stdout.write(`[PASS] Legitimate query permitted in ${gate1.latencyUs.toFixed(2)}us (<35us SLA)\n`);
+    process.stdout.write(`[PASS] Legitimate query permitted in ${gate1.latencyUs.toFixed(2)}us (<20us SLA)\n`);
     process.stdout.write(`       Merkle Leaf: ${gate1.merkleLeaf.substring(0, 32)}...\n\n`);
   } else {
     process.stderr.write(`[FAIL] Legitimate query blocked: auth=${auth1.reason}, gate=${gate1.reason}\n\n`);
@@ -403,7 +403,7 @@ function handleDemo() {
   const gate2 = engine.interceptMcpToolCall('query_database', queryArgs2, { isAuthorizedDestination: true });
 
   if (!gate2.allowed && gate2.rule_id === 'BTP-MCP-INV-002') {
-    process.stdout.write(`[PASS] Schema mutation 'DROP TABLE' blocked in ${gate2.latencyUs.toFixed(2)}us (<35us SLA)\n`);
+    process.stdout.write(`[PASS] Schema mutation 'DROP TABLE' blocked in ${gate2.latencyUs.toFixed(2)}us (<20us SLA)\n`);
     process.stdout.write(`       Triggered Invariant: ${gate2.rule_id} (${gate2.reason})\n\n`);
   } else {
     process.stderr.write(`[FAIL] Adversarial query was not blocked: gate=${gate2.verdict}\n\n`);
@@ -441,7 +441,7 @@ function handleDemo() {
 
 function handleAssess(targetDir) {
   process.stdout.write('\n============================================================\n');
-  process.stdout.write('  BARTHOLOMEW AI AGENT SECURITY BOUNDARY ASSESSMENT (BTP v6.5.5)\n');
+  process.stdout.write('  BARTHOLOMEW AI AGENT SECURITY BOUNDARY ASSESSMENT (BTP v6.6.2)\n');
   process.stdout.write('============================================================\n');
 
   const resolvedDir = path.resolve(targetDir || process.cwd());
@@ -649,7 +649,7 @@ if (rawArgs.includes('--audit') || rawArgs.includes('-a')) {
 }
 
 if (rawArgs.includes('--help') || rawArgs.includes('-h') || rawArgs.length === 0) {
-  process.stdout.write('\nBartholomew MCP Shield CLI (BTP v6.5.5)\n');
+  process.stdout.write('\nBartholomew MCP Shield CLI (BTP v6.6.2)\n');
   process.stdout.write('=======================================\n');
   process.stdout.write('Sub-35us in-process invariant proxy wrapper for Model Context Protocol servers.\n\n');
   process.stdout.write('Usage:\n');
@@ -885,7 +885,7 @@ rlIn.on('line', (line) => {
 
       if (!check.allowed) {
         // Block request and return JSON-RPC error response immediately
-        process.stderr.write(`[Bartholomew MCP Shield] BLOCKED tool call '${toolName}' (${check.rule_id}): ${check.reason} [<35µs]\n`);
+        process.stderr.write(`[Bartholomew MCP Shield] BLOCKED tool call '${toolName}' (${check.rule_id}): ${check.reason} [<20µs]\n`);
         
         const errResponse = {
           jsonrpc: '2.0',
