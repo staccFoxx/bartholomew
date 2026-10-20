@@ -14,7 +14,7 @@
     "onCommand:keystone.openDashboard"
   ],
   "icon": "icon.png",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "categories": [
     "Other",
     "Linters",

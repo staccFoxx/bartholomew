@@ -867,14 +867,14 @@
       <div class="dossier-field">
         <div class="dossier-label">GitHub / Code Repositories</div>
         <div class="dossier-val">
-          <a href="#" id="modalGithub" target="_blank" style="color:var(--emerald-light); font-family:var(--font-mono); text-decoration:none;">https://github.com/alexvance</a>
+          <a href="#" id="modalGithub" target="_blank" rel="noopener noreferrer" style="color:var(--emerald-light); font-family:var(--font-mono); text-decoration:none;">https://github.com/alexvance</a>
         </div>
       </div>
 
       <div class="dossier-field" id="modalPortfolioWrap">
         <div class="dossier-label">LinkedIn / Personal Website</div>
         <div class="dossier-val">
-          <a href="#" id="modalPortfolio" target="_blank" style="color:var(--cyan); font-family:var(--font-mono); text-decoration:none;"></a>
+          <a href="#" id="modalPortfolio" target="_blank" rel="noopener noreferrer" style="color:var(--cyan); font-family:var(--font-mono); text-decoration:none;"></a>
         </div>
       </div>
 
@@ -1110,7 +1110,7 @@
               ${escapeHtml(c.location || 'Remote')}
             </td>
             <td>
-              <a href="${escapeHtml(c.github || '#')}" target="_blank" style="color:var(--emerald-light); font-family:var(--font-mono); font-size:12px; text-decoration:none;">
+              <a href="${escapeHtml(c.github || '#')}" target="_blank" rel="noopener noreferrer" style="color:var(--emerald-light); font-family:var(--font-mono); font-size:12px; text-decoration:none;">
                 ${c.github ? 'View Repo &rarr;' : '—'}
               </a>
             </td>

@@ -93,4 +93,5 @@ Inspect verifiable Ed25519 cryptographic receipts logged directly in `.btp/audit
 
 ## License
 
-Licensed under the [MIT License](LICENSE.md). Part of the Bartholomew Trust Protocol (BTP).
+Licensed under the [Apache-2.0 License](https://www.apache.org/licenses/LICENSE-2.0). Part of the Bartholomew Trust Protocol (BTP).
+

@@ -6,7 +6,7 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8757306565068634"
      crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Developer Documentation — Bartholomew Agentic Runtime Protection (BTP v6.4.4)</title>
   <meta name="description" content="Technical documentation and developer integration guide for Bartholomew: microsecond-latency AST invariant gating, universal 1-line agent wrappers, and eBPF kernel process sandboxing." />
   <link rel="icon" type="image/png" href="/logo.png" />
@@ -95,6 +95,7 @@
       top: 0;
       z-index: 50;
       background: rgba(7, 10, 15, 0.94);
+      -webkit-backdrop-filter: blur(16px);
       backdrop-filter: blur(16px);
       border-bottom: 1px solid var(--border-subtle);
       padding: 12px 28px;
@@ -573,7 +574,7 @@
       <li><a href="/investors.html">Investors</a></li>
       <li><a href="/telemetry.html">Telemetry</a></li>
       <li>
-        <a href="https://github.com/ivegotahunnitonit/bartholomew" target="_blank" class="btn-github">
+        <a href="https://github.com/ivegotahunnitonit/bartholomew" target="_blank" rel="noopener noreferrer" class="btn-github" title="GitHub Repository" aria-label="GitHub Repository">
           <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
           </a>
       </li>
@@ -736,7 +737,7 @@
         <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(170px, 1fr)); gap:10px; margin:8px 0 14px 0;">
           <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:8px; padding:10px 14px;">
             <div style="font-size:0.68rem; text-transform:uppercase; color:var(--text-dim); font-weight:700; letter-spacing:0.06em;">In-Process Latency</div>
-            <div style="font-size:1.25rem; font-weight:800; color:var(--emerald); margin:2px 0;">&lt; 35 &micro;s</div>
+            <div style="font-size:1.25rem; font-weight:800; color:var(--emerald); margin:2px 0;">&lt; 20 &micro;s</div>
             <div style="font-size:0.72rem; color:var(--text-muted);">Compiled zero-overhead gate</div>
           </div>
           <div style="background:var(--bg-card); border:1px solid var(--border-subtle); border-radius:8px; padding:10px 14px;">
@@ -770,7 +771,7 @@
             <tbody>
               <tr style="border-bottom:1px solid var(--border-subtle); background:rgba(16,185,129,0.04);">
                 <td style="padding:8px 12px; font-weight:700; color:var(--emerald);">Bartholomew (BTP v6.2)</td>
-                <td style="padding:8px 12px; font-family:'JetBrains Mono',monospace; color:var(--emerald);">&lt; 35 &micro;s (compiled)</td>
+                <td style="padding:8px 12px; font-family:'JetBrains Mono',monospace; color:var(--emerald);">&lt; 20 &micro;s (compiled)</td>
                 <td style="padding:8px 12px;">Deterministic AST &amp; eBPF Invariants</td>
                 <td style="padding:8px 12px;"><span style="color:var(--emerald); font-weight:700;">&check; 100% Deterministic (Zero Drift)</span></td>
               </tr>
@@ -806,7 +807,7 @@
           REST API &amp; Cloud Endpoints
         </h2>
         <p class="lead-p">
-          In addition to native SDK bindings, Bartholomew exposes low-latency stateless HTTP endpoints for microservices, CI/CD runners, and edge agents. Full specification available at <a href="/openapi.json" target="_blank" style="color:#38bdf8; text-decoration:none; font-weight:600;">/openapi.json &rarr;</a>
+          In addition to native SDK bindings, Bartholomew exposes low-latency stateless HTTP endpoints for microservices, CI/CD runners, and edge agents. Full specification available at <a href="/openapi.json" target="_blank" rel="noopener noreferrer" style="color:#38bdf8; text-decoration:none; font-weight:600;">/openapi.json &rarr;</a>
         </p>
 
         <div class="badge-callout" style="padding:8px 14px; font-size:0.8rem; margin:8px 0 14px 0; border-radius:6px; gap:8px;">
@@ -833,7 +834,7 @@
     "strict_mode": true
   }'
 
-# Response (< 35 &micro;s):
+# Response (< 20 &micro;s):
 {
   "status": "SANITIZED",
   "safe": true,
@@ -1642,7 +1643,7 @@ $ btp-guard audit verify --dossier=audit_soc2_dossier.json
           <a href="/verify.html" class="btn-action-hero" style="background:rgba(245,158,11,0.12); border:1px solid rgba(245,158,11,0.4); color:#fbbf24; text-decoration:none; padding:10px 18px; font-weight:700; border-radius:8px;">
             Open Verifier Portal &rarr;
           </a>
-          <a href="/openapi.json" target="_blank" class="btn-action-hero" style="background:rgba(255,255,255,0.05); border:1px solid var(--border-subtle); color:var(--text-main); text-decoration:none; padding:10px 18px; font-weight:600; border-radius:8px;">
+          <a href="/openapi.json" target="_blank" rel="noopener noreferrer" class="btn-action-hero" style="background:rgba(255,255,255,0.05); border:1px solid var(--border-subtle); color:var(--text-main); text-decoration:none; padding:10px 18px; font-weight:600; border-radius:8px;">
             Download OpenAPI 3.0 Spec &rarr;
           </a>
         </div>
@@ -1662,7 +1663,7 @@ $ btp-guard audit verify --dossier=audit_soc2_dossier.json
         <a href="/careers" style="color:var(--emerald-light); font-weight:700; text-decoration:none;">Careers (We're Hiring!) &rarr;</a>
         <a href="/enterprise" style="color:var(--text-muted); text-decoration:none;">Enterprise Intake</a>
         <a href="/verify.html" style="color:var(--text-muted); text-decoration:none;">Verify Seal</a>
-        <a href="https://github.com/ivegotahunnitonit/bartholomew" target="_blank" style="color:var(--text-muted); text-decoration:none;">GitHub</a>
+        <a href="https://github.com/ivegotahunnitonit/bartholomew" target="_blank" rel="noopener noreferrer" style="color:var(--text-muted); text-decoration:none;">GitHub</a>
       </div>
     </div>
   </footer>
@@ -1755,7 +1756,7 @@ btp-guard protect
 btp-guard protect
 
 # Automatically writes GEMINI.md and .gemini/config/rules:
-# Intercepts dangerous terminal commands with <35us AST validation`,
+# Intercepts dangerous terminal commands with <20us AST validation`,
 
       CURSOR: `# Cursor IDE & Windsurf AI
 # 1-line immunization:

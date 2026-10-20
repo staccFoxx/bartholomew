@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <title>CypherVoice v0.7.3 — Biometric Voice Shield & Conversational Coding Partner</title>
   <meta name="description" content="Inaudible psychoacoustic audio defense against unauthorized biometric voice cloning in Google Meet, Zoom, and Discord WebRTC. Hands-free voice coding, echo suppression, and instant visual diffs." />
   <link rel="icon" type="image/png" href="/logo.png" />
@@ -68,8 +68,8 @@
       top: 0;
       z-index: 100;
       background: rgba(5, 8, 17, 0.85);
-      backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
+      backdrop-filter: blur(14px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       padding: 14px 0;
     }
@@ -278,6 +278,7 @@
 
     .kpi-card {
       background: rgba(13, 20, 36, 0.65);
+      -webkit-backdrop-filter: blur(8px);
       backdrop-filter: blur(8px);
       border: 1px solid rgba(255, 255, 255, 0.08);
       border-radius: var(--radius-md);
@@ -814,7 +815,7 @@
         <a href="/control-plane" class="nav-link">Control Plane</a>
         <a href="/cyphervoice" class="nav-link active">CypherVoice</a>
         <a href="/enterprise" class="nav-link">Enterprise</a>
-        <a href="https://open-vsx.org/extension/Bartholomew/cyphervoice-vscode" target="_blank" class="btn-nav-install">
+        <a href="https://open-vsx.org/extension/Bartholomew/cyphervoice-vscode" target="_blank" rel="noopener noreferrer" class="btn-nav-install">
           Install Extension
         </a>
       </nav>
@@ -841,7 +842,7 @@
       </p>
 
       <div class="hero-actions">
-        <a href="https://open-vsx.org/extension/Bartholomew/cyphervoice-vscode" target="_blank" class="btn-hero-primary">
+        <a href="https://open-vsx.org/extension/Bartholomew/cyphervoice-vscode" target="_blank" rel="noopener noreferrer" class="btn-hero-primary">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L2 6v12l10 5 10-5V6L12 1zm0 2.24l7.6 3.8-3.4 1.7-7.6-3.8 3.4-1.7zm-8 4.23l7 3.5v7.57l-7-3.5V7.47zm9 11.07v-7.57l7-3.5v7.57l-7 3.5z"/></svg>
           Install VS Code / Cursor (v0.7.3)
         </a>
@@ -1087,7 +1088,7 @@
             <p>Live waveform oscilloscope, conversational voice calls, hands-free coding actions, and editor visual diffs.</p>
           </div>
           <div>
-            <a href="https://open-vsx.org/extension/Bartholomew/cyphervoice-vscode" target="_blank" class="btn-dist primary" style="margin-bottom: 8px;">
+            <a href="https://open-vsx.org/extension/Bartholomew/cyphervoice-vscode" target="_blank" rel="noopener noreferrer" class="btn-dist primary" style="margin-bottom: 8px;">
               Install from Open-VSX (v0.7.3)
             </a>
             <a href="/cyphervoice-vscode.vsix" class="btn-dist secondary" download>
@@ -1116,7 +1117,7 @@
             <p>High-efficiency DSP engine with FastAPI REST &amp; WebSocket server for custom audio pipeline integration.</p>
           </div>
           <div>
-            <a href="https://github.com/ivegotahunnitonit/acoustic-cloak" target="_blank" class="btn-dist secondary">
+            <a href="https://github.com/ivegotahunnitonit/acoustic-cloak" target="_blank" rel="noopener noreferrer" class="btn-dist secondary">
               View GitHub Repository
             </a>
           </div>
