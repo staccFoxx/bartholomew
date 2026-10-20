@@ -3,7 +3,7 @@
   "id": "bartholomew-devops-gate",
   "name": "Bartholomew DevOps Gate: Agent Security and Attestation",
   "version": "1.0.1",
-  "publisher": "bartholomew",
+  "publisher": "itsubsolomon",
   "targets": [
     {
       "id": "Microsoft.VisualStudio.Services"
@@ -39,12 +39,12 @@
       "uri": "https://bartholomew.info"
     },
     "support": {
-      "uri": "https://github.com/bartholomew-ai/bartholomew/issues"
+      "uri": "https://github.com/ivegotahunnitonit/bartholomew/issues"
     }
   },
   "repository": {
     "type": "git",
-    "uri": "https://github.com/bartholomew-ai/bartholomew.git"
+    "uri": "https://github.com/ivegotahunnitonit/bartholomew.git"
   },
   "contributions": [
     {
