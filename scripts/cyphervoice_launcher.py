@@ -56,7 +56,7 @@ def start_daemon_if_needed():
 
 def main():
     print("=" * 60)
-    print("      CYPHERVOICE DESKTOP RUNNER & COMPANION v0.7.3          ")
+    print("      CYPHERVOICE DESKTOP RUNNER & COMPANION v0.8.1          ")
     print("=" * 60)
     start_daemon_if_needed()
 
@@ -64,8 +64,9 @@ def main():
     print("  [1] Open Live Web Spectrogram Studio (Canvas DSP)")
     print("  [2] Open Swagger REST API Docs (http://127.0.0.1:8765/docs)")
     print("  [3] Run Automated Audio Echo & Barge-In Smoke Test")
-    print("  [4] Run In-Editor Live Voice Coding Test")
-    print("  [5] Exit Runner")
+    print("  [4] Run In-Editor Live Voice Coding & Decibel Verification")
+    print("  [5] Launch Standalone System Tray Background Companion")
+    print("  [6] Exit Runner")
 
     if len(sys.argv) > 1:
         choice = sys.argv[1]
@@ -80,6 +81,14 @@ def main():
     elif choice == "3":
         smoke_script = r"c:\Users\User\.gemini\antigravity\scratch\autonomous-circularity-network\scripts\smoke_test_cyphervoice.py"
         subprocess.run([sys.executable, smoke_script])
+    elif choice == "4":
+        test_script = r"c:\Users\User\.gemini\antigravity\scratch\autonomous-circularity-network\scratch\test_db_after_speech.py"
+        subprocess.run([sys.executable, test_script])
+    elif choice == "5":
+        print("[*] Initializing Acoustic Cloak System Tray Companion...")
+        tray_cmd = [sys.executable, "-m", "acoustic_cloak.tray"]
+        acoustic_cloak_dir = r"c:\Users\User\.gemini\antigravity\scratch\acoustic-cloak"
+        subprocess.Popen(tray_cmd, cwd=acoustic_cloak_dir)
 
 
 if __name__ == "__main__":
