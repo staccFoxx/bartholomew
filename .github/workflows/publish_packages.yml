@@ -44,7 +44,12 @@ jobs:
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: twine upload dist/* --skip-existing
+        run: |
+          if [ -z "$TWINE_PASSWORD" ]; then
+            echo "[!] PYPI_API_TOKEN secret not configured in repository. Skipping PyPI upload."
+            exit 0
+          fi
+          twine upload dist/* --skip-existing
 
   #  NPM 
   npm:

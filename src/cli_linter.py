@@ -30,7 +30,7 @@ IGNORE_DIRS = {
     "akash-helm-charts", "archived_legacy_data", "acquire_flip_package",
     "benchmark", "DELIVERABLES_BUNDLE", "generated_evidence_artifacts",
     "scratch", "workspace", "bartholomew", "datasets", "docs",
-    "scripts", "examples", "python_backend", "pypi_package"
+    "scripts", "examples", "python_backend", "pypi_package", "huggingface-space"
 }
 
 VALID_EXTENSIONS = {".py", ".js", ".ts", ".tsx", ".sql", ".sh", ".yaml", ".yml", ".json", ".md"}

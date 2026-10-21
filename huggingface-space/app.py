@@ -172,7 +172,7 @@ with gr.Blocks(title="Bartholomew AI Agent Runtime Guardrail", css=custom_css) a
                 with gr.Column():
                     raw_code_input = gr.Textbox(
                         label="Source Code / Agent Payload with Live Keys",
-                        placeholder="client = OpenAI(api_key='sk-proj-9999999999999999999999999999')\naws_key = 'AKIAIOSFODNN7EXAMPLE'",
+                        placeholder="client = OpenAI(api_key='sk-ant-sample-token')\naws_key = 'MY_SAMPLE_AWS_KEY'",
                         lines=6
                     )
                     btn_tokenize = gr.Button("Tokenize In-Flight Secrets", variant="primary")

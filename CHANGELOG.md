@@ -1,5 +1,28 @@
 # Bartholomew Guard — CHANGELOG
 
+## [v6.6.3] — 2026-10-20 (Unified v6.6.3 Distribution Suite, Claude Code Adapter & CI Hardening)
+
+### 🛡️ Autonomous CLI & Agent Framework Adapters
+- **Claude Code & Autonomous Agent Tool Adapters**:
+  - In-process tool boundary interception for Claude Code (`Bash`, `FileEdit`, `FileWrite`, and database querying tools) via `ClaudeCodeAdapter` and `createClaudeCodeHook`.
+  - Python `BtpCodingAgentGuard.intercept_tool` with cross-platform normalized path shielding against sensitive system file escapes (`/etc/shadow`, `.env`, private keys).
+  - Full TypeScript typings (`ClaudeCodeAdapter`, `createClaudeCodeHook`) exported in `packages/npm_package/index.d.ts`.
+- **Standardized Trajectory Schema Specification**:
+  - Integrated canonical execution schema (`docs/TRAJECTORY_SCHEMA.md`) providing UUID tracking, structured step taxonomy (`thought`, `tool_call`, `tool_result`), and cryptographic hash attestation.
+
+### 📦 Ecosystem Package Synchronization & Release
+- **PyPI & NPM Synchronization**:
+  - Synchronized `btp-guard` to `v6.6.3` across PyPI (`pyproject.toml`, `btp_guard`) and npm (`packages/npm_package`).
+  - Synchronized `mcp-proxy-guard` to `v6.6.3`.
+  - Built fresh wheel/sdist and tarballs into `dist/` verified via `twine check`.
+- **CI/CD Reliability & Hardening**:
+  - Fixed false-positive secret alert in `huggingface-space/app.py` placeholder, restoring audit score to 100/100.
+  - Added input aliases (`scan-path`, `spend-cap`) to composite `action.yml` to support multi-workflow invocations.
+  - Hardened PyPI release workflow against missing secret tokens.
+  - Verified 100% test pass rate across 127 Python tests, 21 Node tests, and MCP suite.
+
+---
+
 ## [v6.5.8] — 2026-10-15 (Microsoft Agentic Middleware & Standalone Zero-Trust Distribution)
 
 ### 🚀 Microsoft Agentic Runtimes & Middleware

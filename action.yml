@@ -23,6 +23,14 @@ inputs:
     description: "Whether to fail the CI build if security score is below 80 or critical violations found"
     required: false
     default: "true"
+  scan-path:
+    description: "Target directory path to inspect (alias for audit-path)"
+    required: false
+    default: "."
+  spend-cap:
+    description: "Maximum allowable agent spend cap USD"
+    required: false
+    default: "50.0"
 
 outputs:
   audit-status:
@@ -57,7 +65,7 @@ runs:
         python -c "
         import sys, os
         from src.cli_linter import audit_directory
-        target = '${{ inputs.audit-path }}'
+        target = '${{ inputs.scan-path }}' if '${{ inputs.scan-path }}' != '.' else '${{ inputs.audit-path }}'
         res = audit_directory(target)
         score = res.get('score', 100)
         scanned = res.get('files_scanned', 0)
