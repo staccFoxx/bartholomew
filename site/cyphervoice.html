@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>CypherVoice v0.7.3 — Biometric Voice Shield & Conversational Coding Partner</title>
+  <title>CypherVoice v0.8.0 — Biometric Voice Shield & Conversational Coding Partner</title>
   <meta name="description" content="Inaudible psychoacoustic audio defense against unauthorized biometric voice cloning in Google Meet, Zoom, and Discord WebRTC. Hands-free voice coding, echo suppression, and instant visual diffs." />
   <link rel="icon" type="image/png" href="/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -806,7 +806,7 @@
       <a href="/" class="brand-wrap">
         <img src="/logo.png" alt="Bartholomew Shield Logo" width="32" height="32" />
         <span class="brand-title">Bartholomew</span>
-        <span class="badge-protocol">CypherVoice v0.7.3</span>
+        <span class="badge-protocol">CypherVoice v0.8.0</span>
       </a>
 
       <nav class="nav-links">
@@ -889,10 +889,10 @@
 
           <div class="sim-controls">
             <button id="btnRawMode" class="mode-btn active-raw" onclick="setSimMode('raw')">
-              ● Raw Voice (Vulnerable)
+              Raw Voice (Vulnerable)
             </button>
             <button id="btnCloakMode" class="mode-btn" onclick="setSimMode('cloaked')">
-              🛡 Cloaked Shield (Active)
+              Cloaked Shield (Active)
             </button>
           </div>
         </div>
@@ -915,7 +915,7 @@
             </div>
             <p class="audio-card-desc">Standard microphone feed. Vulnerable to zero-shot neural cloning from 3 seconds of audio.</p>
             <button class="btn-play-synth" onclick="playSimAudio('raw', this)">
-              ▶ Play Original Speech
+              Play Original Speech
             </button>
           </div>
 
@@ -926,7 +926,7 @@
             </div>
             <p class="audio-card-desc">Imperceptible adversarial perturbations active. Human listeners hear natural voice, AI extractors fail.</p>
             <button class="btn-play-synth" onclick="playSimAudio('cloaked', this)">
-              ▶ Play Cloaked Audio
+              Play Cloaked Audio
             </button>
           </div>
 
@@ -937,7 +937,7 @@
             </div>
             <p class="audio-card-desc">Attempted clone generated from cloaked sample. Speaker embedding scrambled into unintelligible static.</p>
             <button class="btn-play-synth" onclick="playSimAudio('attacked', this)">
-              ▶ Play Failed Clone
+              Play Failed Clone
             </button>
           </div>
         </div>
@@ -963,9 +963,9 @@
             Injects frequency-domain adversarial perturbations under the human absolute threshold of hearing (ATH). Prevents deep learning speaker recognition models (wav2vec, d-vector, ECAPA-TDNN) from extracting vocal tract embeddings.
           </p>
           <ul class="pillar-specs">
-            <li>✔ Micro-dithering formant resonances (F1-F3)</li>
-            <li>✔ Dynamic phase scrambling across 16 sub-bands</li>
-            <li>✔ Human perceptual score: MOS 4.85 / 5.0</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--emerald); flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg> Micro-dithering formant resonances (F1-F3)</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--emerald); flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg> Dynamic phase scrambling across 16 sub-bands</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--emerald); flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg> Human perceptual score: MOS 4.85 / 5.0</li>
           </ul>
         </div>
 
@@ -978,9 +978,9 @@
             Eliminates feedback loops during duplex voice calls. Discards speaker bleed below 0.045 RMS, enforces a 350ms acoustic room reverb decay window, and adaptively tracks room background noise with continuous EMA calibration.
           </p>
           <ul class="pillar-specs">
-            <li>✔ Intelligent 2-chunk barge-in threshold verification</li>
-            <li>✔ 350ms post-speech echo absorption cooldown</li>
-            <li>✔ Exponential Moving Average (EMA) noise floor tracker</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--cyan); flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg> Intelligent 2-chunk barge-in threshold verification</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--cyan); flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg> 350ms post-speech echo absorption cooldown</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--cyan); flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg> Exponential Moving Average (EMA) noise floor tracker</li>
           </ul>
         </div>
 
@@ -993,9 +993,9 @@
             Code completely hands-free. Command active buffers, trigger diagnostics fixes, review side-by-side visual diffs, and control Git branches entirely through spoken dialogue.
           </p>
           <ul class="pillar-specs">
-            <li>✔ [APPLY_CHANGES], [OPEN_DIFF], [AUTO_FIX] execution</li>
-            <li>✔ Integrated terminal test execution via voice</li>
-            <li>✔ Multi-turn context memory across long sessions</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--purple); flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg> [APPLY_CHANGES], [OPEN_DIFF], [AUTO_FIX] execution</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--purple); flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg> Integrated terminal test execution via voice</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--purple); flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg> Multi-turn context memory across long sessions</li>
           </ul>
         </div>
 
@@ -1008,9 +1008,9 @@
             Route real-time cloaked microphone audio directly into Zoom, Discord, Google Meet, Teams, or WebRTC with one-click loopback diagnostics (11.8ms round-trip latency, 49.5 dB SNR).
           </p>
           <ul class="pillar-specs">
-            <li>✔ Native VB-Audio Virtual Cable &amp; VoiceMeeter detection</li>
-            <li>✔ Dedicated Chrome Extension WebRTC AudioWorklet</li>
-            <li>✔ 100% Local air-gapped processing guarantee</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--emerald); flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg> Native VB-Audio Virtual Cable &amp; VoiceMeeter detection</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--emerald); flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg> Dedicated Chrome Extension WebRTC AudioWorklet</li>
+            <li><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" style="color:var(--emerald); flex-shrink:0;"><polyline points="20 6 9 17 4 12"/></svg> 100% Local air-gapped processing guarantee</li>
           </ul>
         </div>
       </div>
