@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
-  "name": "CypherVoice - Biometric Audio Cloak & Privacy",
-  "version": "0.7.3",
+  "name": "Kyro -- WebRTC Audio Privacy Shield",
+  "version": "1.0.0",
   "description": "Zero-latency biometric voiceprint cloaking and acoustic privacy for Google Meet, Discord Web, Slack, and AI workspaces.",
   "icons": {
     "16": "icons/icon16.png",
@@ -26,14 +26,20 @@
         "http://localhost:*/*",
         "http://127.0.0.1:*/*"
       ],
-      "js": ["content_script.js"],
+      "js": [
+        "content_script.js"
+      ],
       "run_at": "document_start"
     }
   ],
   "web_accessible_resources": [
     {
-      "resources": ["worklet_processor.js"],
-      "matches": ["<all_urls>"]
+      "resources": [
+        "worklet_processor.js"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
     }
   ]
 }
