@@ -1,5 +1,21 @@
 # Bartholomew Guard — CHANGELOG
 
+## [v6.6.4 / Cyphervoice v0.8.1] — 2026-10-21 (Zero-Transient Headphone DSP, DAC Keep-Alive & In-IDE Assistant Direct Deployment)
+
+### 🎧 Audio DSP Anti-Transient & Headphone Popping Elimination
+- **Zero-Crossing Headphone Decay & Tail Silence Flush**:
+  - Extended smooth raised-cosine fade-out to 100ms in `VoiceCloner.synthesize` for mathematically pure zero-crossing waveform termination.
+  - Appended 250ms of pure digital silence (`np.zeros`) at the tail of every synthesized audio buffer before WAV file commitment, completely preventing Windows audio endpoint buffer underruns and DAC step transients.
+  - Added 80ms hardware buffer settling delay in `VoiceCloner.speak` prior to stream termination.
+- **IDE Webview Zero-Floor DAC Keep-Alive Anchor & Smooth Queue**:
+  - Implemented continuous inaudible zero-floor Web Audio anchor (`0.00001` gain) to keep the Windows WASAPI/DirectSound audio endpoint energized, preventing DAC power collapse pops between sentences.
+  - Appended soft trailing phonetic ellipsis pauses (`...`) to prevent Chromium SAPI/OneCore voice from abruptly cutting off final consonants.
+  - Increased inter-sentence buffer draining pause to 120ms, allowing the OS audio ring buffer to settle before subsequent utterances.
+  - Streamlined `streamEnd` and sentence chunking to eliminate duplicate speech and micro-chopping.
+- **Direct In-IDE Assistant Deployment**:
+  - Directly installed and hot-patched Cyphervoice v0.8.1 into `C:\Users\User\.antigravity-ide\extensions` and `C:\Users\User\.vscode\extensions`.
+  - Rebuilt and packaged Open-VSX and Microsoft Marketplace VSIX bundles v0.8.1.
+
 ## [v6.6.3] — 2026-10-20 (Unified v6.6.3 Distribution Suite, Claude Code Adapter & CI Hardening)
 
 ### 🛡️ Autonomous CLI & Agent Framework Adapters
