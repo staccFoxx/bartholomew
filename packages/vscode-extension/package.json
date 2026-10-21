@@ -1,9 +1,9 @@
 {
   "name": "bartholomew-guard-vscode",
   "displayName": "Bartholomew Guard — AI Agent Firewall, Guardrails & Security for Cursor, Claude & Copilot",
-  "description": "BTP v6.6.3 In-Process AST Guardrails, AI Agent Execution Firewall, OWASP LLM Prompt Injection & Secret Exfiltration Defense for Cursor, Claude Code, Windsurf, Copilot, and VS Code.",
-  "version": "6.6.3",
-  "publisher": "itsubsolomon",
+  "description": "BTP v6.6.4 In-Process AST Guardrails, Claude Code & LlamaIndex Middleware, AI Agent Firewall, OWASP LLM Defense & Cyphervoice Audio Shield for Cursor, Claude, Windsurf, Copilot, and VS Code.",
+  "version": "6.6.4",
+  "publisher": "Bartholomew",
   "icon": "icon.png",
   "license": "Apache-2.0",
   "galleryBanner": {

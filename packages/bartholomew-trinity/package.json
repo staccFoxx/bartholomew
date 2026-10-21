@@ -2,7 +2,7 @@
   "name": "bartholomew-trinity",
   "displayName": "Trinity \u2014 Complete AI Agent Security Suite (Cursor, Claude, Copilot)",
   "description": "The 1-Click Safety, Runtime Protection & Conversational Voice Coding Suite for AI Agents (Cursor, Claude Code, Copilot, Windsurf).",
-  "version": "6.7.2",
+  "version": "6.7.3",
   "publisher": "bartholomew",
   "icon": "icon.png",
   "license": "Apache-2.0",
