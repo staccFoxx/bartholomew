@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "btp-guard"
-version = "5.4.12"
+version = "6.6.3"
 authors = [
-  { name="Itsub Alemayehu", email="security@bartholomew.info" },
+  { name="Bartholomew Security Contributors", email="security@bartholomew.info" },
 ]
-description = "BTP v5.4.12 Universal Cryptographic Trust Guard for Frontier Swarms (Cloudflare, Gemini 3.8, Claude 3.7, GPT-Astra, AutoGen, Copilot)"
+description = "BTP v6.6.3 Universal Cryptographic Trust Guard & In-Process Gateway (Gemini 3.8, Claude 3.7, AutoGen, Semantic Kernel, LangGraph, Claude Code)"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }

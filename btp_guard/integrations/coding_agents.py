@@ -98,6 +98,52 @@ class BtpCodingAgentGuard:
 
         return wrapper
 
+    def intercept_tool(self, tool_name: str, tool_input: Any = None) -> Dict[str, Any]:
+        """Unified tool invocation gateway for Claude Code, Cursor, and autonomous CLI agents."""
+        tool_input = tool_input or {}
+        name_lower = str(tool_name).lower()
+        if name_lower in ("bash", "terminal", "run_command", "exec", "sh"):
+            cmd = ""
+            if isinstance(tool_input, str):
+                cmd = tool_input
+            elif isinstance(tool_input, dict):
+                cmd = tool_input.get("command") or tool_input.get("cmd") or ""
+            action = {
+                "agent_id": self.agent_id,
+                "action_type": "TERMINAL_EXECUTE",
+                "payload": {"command": cmd, "target_tool": tool_name}
+            }
+            res = self.gate.evaluate(action)
+            if res.get("verdict") == "DENY":
+                rule_id = res.get("rule_id", "BTP-AST-VETO")
+                reason = res.get("reason", "Terminal command blocked")
+                return {
+                    "allowed": False,
+                    "verdict": "DENY",
+                    "rule_id": rule_id,
+                    "reason": reason,
+                    "error": f"[{rule_id}] Destructive command blocked by Bartholomew: {reason}"
+                }
+        elif name_lower in ("file_write", "filewrite", "fileedit", "write_file", "edit_file"):
+            filepath = ""
+            if isinstance(tool_input, str):
+                filepath = tool_input
+            elif isinstance(tool_input, dict):
+                filepath = tool_input.get("path") or tool_input.get("filepath") or tool_input.get("file_path") or ""
+            if filepath:
+                norm_target = os.path.abspath(filepath).replace("\\", "/").lower()
+                norm_raw = filepath.replace("\\", "/").lower()
+                if any(p in norm_target or p in norm_raw for p in [".env", "id_rsa", "/etc/shadow", "/etc/passwd"]):
+                    return {
+                        "allowed": False,
+                        "verdict": "DENY",
+                        "rule_id": "BTP-KEYSTONE-VETO",
+                        "reason": f"Access to protected system file denied: {filepath}",
+                        "error": f"[BTP-KEYSTONE-VETO] Bartholomew blocked write to protected system file: {filepath}"
+                    }
+
+        return {"allowed": True, "verdict": "ALLOW", "tool": tool_name}
+
 
 def wrap_coding_agent(agent_instance: Any, allowed_roots: Optional[List[str]] = None) -> Any:
     """Auto-detects and wraps bash and file tools on any coding agent instance."""

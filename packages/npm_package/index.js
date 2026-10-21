@@ -780,7 +780,9 @@ export {
   GoogleGenAIMiddleware,
   LlamaIndexMiddleware,
   createGoogleGenAIMiddleware,
-  createLlamaIndexWorkflowMiddleware
+  createLlamaIndexWorkflowMiddleware,
+  ClaudeCodeAdapter,
+  createClaudeCodeHook
 } from './universal_adapters.js';
 
 // Export Microsoft AutoGen & Semantic Kernel Middleware (BTP v6.5.7)

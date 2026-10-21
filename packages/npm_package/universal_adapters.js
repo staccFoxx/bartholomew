@@ -579,4 +579,86 @@ export function createLlamaIndexWorkflowMiddleware(options = {}) {
   return new LlamaIndexMiddleware(options);
 }
 
+/**
+ * 10. Claude Code & Autonomous CLI Tool Adapter (BTP v6.6.3)
+ * Intercepts Claude Code tool calls (Bash, FileEdit, FileWrite, Read, Glob, Grep)
+ */
+export class ClaudeCodeAdapter {
+  constructor(executor, options = {}) {
+    this.executor = executor;
+    this.options = {
+      strictAst: true,
+      blockDestructiveCommands: true,
+      redactSecrets: true,
+      maxExecutionLatencyUs: 35,
+      ...options
+    };
+    this.adapterType = 'claude_code';
+    this.auditLog = [];
+  }
+
+  async handleToolInvocation(toolName, toolInput = {}) {
+    let mappedTool = toolName;
+    let mappedInput = toolInput;
+
+    if (toolName === 'Bash') {
+      mappedTool = 'run_command';
+      mappedInput = typeof toolInput === 'string'
+        ? { command: toolInput }
+        : (toolInput.command ? toolInput : { command: toolInput.cmd || '' });
+    } else if (toolName === 'FileWrite' || toolName === 'FileEdit') {
+      mappedTool = 'write_file';
+      mappedInput = typeof toolInput === 'object' ? toolInput : { path: String(toolInput) };
+    }
+
+    const decision = enforceToolBoundary(mappedTool, mappedInput, this.options);
+
+    const logEntry = {
+      timestamp: new Date().toISOString(),
+      framework: 'claude_code',
+      tool: toolName,
+      mappedTool,
+      allowed: decision.allowed,
+      verdict: decision.verdict,
+      rule_id: decision.rule_id || null,
+      reason: decision.reason || null,
+      merkle_turn_receipt: decision.merkle_turn_receipt
+    };
+    this.auditLog.push(logEntry);
+
+    if (!decision.allowed) {
+      return {
+        allowed: false,
+        isError: true,
+        verdict: 'VETO',
+        rule_id: decision.rule_id || 'BTP_POLICY_VETO',
+        reason: decision.reason,
+        merkle_turn_receipt: decision.merkle_turn_receipt,
+        content: `[BTP VETO] Execution halted by ${decision.rule_id}: ${decision.reason}`,
+        error: `[BTP VETO] Claude Code tool ${toolName} halted: ${decision.reason}`
+      };
+    }
+
+    let result = null;
+    if (typeof this.executor === 'function') {
+      result = await this.executor(toolName, decision.sanitized_payload || toolInput);
+    }
+
+    return {
+      allowed: true,
+      isError: false,
+      verdict: 'ALLOW',
+      merkle_turn_receipt: decision.merkle_turn_receipt,
+      sanitizedInput: decision.sanitized_payload || toolInput,
+      result
+    };
+  }
+}
+
+export function createClaudeCodeHook(executor, options = {}) {
+  const adapter = new ClaudeCodeAdapter(executor, options);
+  return adapter.handleToolInvocation.bind(adapter);
+}
+
+
 

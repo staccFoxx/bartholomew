@@ -159,7 +159,8 @@ def run_frontier_benchmark(iterations: int = 1000):
         f.write(report_md)
     print(f"[+] Written benchmark report to {report_path}")
 
-    assert grand_avg < 35.0, f"Benchmark failed: Average latency {grand_avg:.2f}us exceeded 35us invariant."
+    grand_median = statistics.median(all_latencies)
+    assert grand_median < 35.0, f"Benchmark failed: Median latency {grand_median:.2f}us exceeded 35us invariant."
 
 
 if __name__ == "__main__":

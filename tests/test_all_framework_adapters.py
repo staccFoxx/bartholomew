@@ -125,3 +125,23 @@ def test_universal_coding_agent_guard():
     with pytest.raises(PermissionError) as exc_info:
         write_file("/home/user/.env", "SECRET=123")
     assert "BTP-KEYSTONE-VETO" in str(exc_info.value)
+
+
+def test_claude_code_and_cli_agent_intercept():
+    guard = BtpCodingAgentGuard()
+
+    # 1. Safe bash invocation
+    res_safe = guard.intercept_tool("Bash", {"command": "git log -n 5"})
+    assert res_safe["allowed"] is True
+    assert res_safe["verdict"] == "ALLOW"
+
+    # 2. Destructive wipe invocation
+    res_wipe = guard.intercept_tool("Bash", {"command": "rm -rf / --no-preserve-root"})
+    assert res_wipe["allowed"] is False
+    assert res_wipe["verdict"] == "DENY"
+
+    # 3. Protected file edit
+    res_env = guard.intercept_tool("FileEdit", {"path": "/etc/shadow"})
+    assert res_env["allowed"] is False
+    assert res_env["verdict"] == "DENY"
+

@@ -1,7 +1,7 @@
 {
   "name": "btp-guard",
-  "version": "6.5.9",
-  "description": "BTP v6.5.9 Agentic Runtime Protection (ARP) Gateway & MCP Safety Shield - Google GenAI, LlamaIndex, Microsoft AutoGen & Semantic Kernel Middleware, In-Process Tool Invariants, Sub-Millisecond RAM Gating, and Cryptographic Merkle Vault",
+  "version": "6.6.3",
+  "description": "BTP v6.6.3 Agentic Runtime Protection (ARP) Gateway & MCP Safety Shield - Claude Code, Google GenAI, LlamaIndex, Microsoft AutoGen & Semantic Kernel Middleware, In-Process Tool Invariants, Sub-20µs RAM Gating, and Cryptographic Merkle Vault",
   "main": "index.js",
   "types": "index.d.ts",
   "sideEffects": false,

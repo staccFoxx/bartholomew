@@ -359,5 +359,23 @@ export class LlamaIndexMiddleware {
 export function createGoogleGenAIMiddleware(options?: any): GoogleGenAIMiddleware;
 export function createLlamaIndexWorkflowMiddleware(options?: any): LlamaIndexMiddleware;
 
+export class ClaudeCodeAdapter {
+  constructor(executor?: (toolName: string, input: any) => Promise<any> | any, options?: any);
+  handleToolInvocation(toolName: string, toolInput?: any): Promise<{
+    allowed: boolean;
+    isError: boolean;
+    verdict: string;
+    rule_id?: string;
+    reason?: string;
+    merkle_turn_receipt?: string;
+    sanitizedInput?: any;
+    result?: any;
+    error?: string;
+    content?: string;
+  }>;
+}
 
-
+export function createClaudeCodeHook(
+  executor?: (toolName: string, input: any) => Promise<any> | any,
+  options?: any
+): (toolName: string, toolInput?: any) => Promise<any>;

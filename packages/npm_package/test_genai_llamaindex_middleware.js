@@ -3,7 +3,8 @@ import {
   GoogleGenAIMiddleware,
   LlamaIndexMiddleware,
   createGoogleGenAIMiddleware,
-  createLlamaIndexWorkflowMiddleware
+  createLlamaIndexWorkflowMiddleware,
+  ClaudeCodeAdapter
 } from './universal_adapters.js';
 
 console.log('[*] Running Bartholomew Google GenAI & LlamaIndex Middleware Test Suite...');
@@ -96,10 +97,40 @@ async function testLlamaIndexMiddleware() {
   console.log('    [PASS] Wrapped LlamaIndex tool intercepted destructive invocation');
 }
 
+async function testClaudeCodeAdapter() {
+  console.log('  Testing ClaudeCodeAdapter...');
+  const executor = async (tool, input) => `Ran ${tool}`;
+  const claude = new ClaudeCodeAdapter(executor);
+
+  // 1. Safe tool call (Bash with safe command)
+  const safeRes = await claude.handleToolInvocation('Bash', { command: 'git status' });
+  assert.strictEqual(safeRes.allowed, true, 'Safe git status must be allowed');
+  assert.strictEqual(safeRes.verdict, 'ALLOW');
+  assert.ok(safeRes.merkle_turn_receipt, 'Receipt must be generated');
+  console.log('    [PASS] Safe Claude Code Bash invocation allowed with Merkle receipt');
+
+  // 2. Destructive Bash tool call
+  const vetoRes = await claude.handleToolInvocation('Bash', { command: 'rm -rf / --no-preserve-root' });
+  assert.strictEqual(vetoRes.allowed, false, 'Destructive command must be vetoed');
+  assert.strictEqual(vetoRes.verdict, 'VETO');
+  console.log('    [PASS] Destructive Claude Code Bash command vetoed fail-closed');
+
+  // 3. Sensitive file access / secret exfiltration
+  const fileRes = await claude.handleToolInvocation('FileEdit', { path: '/etc/shadow' });
+  assert.strictEqual(fileRes.allowed, false, 'Access to /etc/shadow must be vetoed');
+  console.log('    [PASS] Sensitive credential path access vetoed fail-closed');
+
+  // 4. Destructive SQL / Database drop
+  const dropRes = await claude.handleToolInvocation('db_query', { query: 'DROP DATABASE production;' });
+  assert.strictEqual(dropRes.allowed, false, 'SQL drop must be vetoed');
+  console.log('    [PASS] Destructive DDL command vetoed fail-closed');
+}
+
 async function run() {
   await testGoogleGenAIMiddleware();
   await testLlamaIndexMiddleware();
-  console.log('\n[+] ALL GOOGLE GENAI & LLAMINDEX MIDDLEWARE TESTS PASSED (100% RELIABILITY)!');
+  await testClaudeCodeAdapter();
+  console.log('\n[+] ALL GOOGLE GENAI, LLAMINDEX & CLAUDE CODE MIDDLEWARE TESTS PASSED (100% RELIABILITY)!');
 }
 
 run().catch((err) => {
