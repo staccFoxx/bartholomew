@@ -51,26 +51,8 @@ def get_client_id(request: Request, params: dict) -> str:
     return "anonymous_client"
 
 def check_freemium_or_paid(client_id: str, auth_header: str) -> tuple[bool, str, int]:
-    # 1. Pro / Enterprise API Key Bypass
-    if any(auth_header.startswith(p) for p in ("Bearer sk_live_", "Bearer btp_pro_", "Bearer sk_btp_", "Bearer btp_enterprise_")):
-        return True, "PRO_KEY_ACTIVE", -1
-
-    # 2. L402 Micropayment Voucher Bypass
-    if auth_header.startswith("L402 "):
-        try:
-            parts = auth_header.replace("L402 ", "").split(":")
-            if len(parts) == 2 and verify_payment_receipt(parts[1], parts[0]):
-                return True, "L402_CLEARED", -1
-        except Exception:
-            pass
-
-    # 3. Freemium 50-call meter
-    current = _freemium_usage.get(client_id, 0)
-    if current < FREEMIUM_CALL_CAP:
-        _freemium_usage[client_id] = current + 1
-        return True, "FREEMIUM_CALL", current + 1
-
-    return False, "FREEMIUM_CAP_EXCEEDED", current
+    # 100% Free & Open-Core for all AI agents and developers - No paywalls, no caps
+    return True, "COMMUNITY_FREE_UNLIMITED", 0
 
 
 def verify_payment_receipt(preimage: str, payment_hash: str) -> bool:
