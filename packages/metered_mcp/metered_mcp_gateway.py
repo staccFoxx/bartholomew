@@ -12,6 +12,7 @@ import re
 import time
 import hashlib
 from fastapi import FastAPI, Request, Response, HTTPException
+from fastapi.responses import PlainTextResponse
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
@@ -175,15 +176,28 @@ SERVER_METADATA = {
     }
 }
 
+@app.get("/robots.txt", response_class=PlainTextResponse)
+@app.get("/mcp/v1/robots.txt", response_class=PlainTextResponse)
+async def robots_txt():
+    return (
+        "User-agent: *\n"
+        "Allow: /\n"
+        "Allow: /mcp/v1\n"
+        "Allow: /.well-known/\n"
+        "Sitemap: https://bartholomew.info/sitemap.xml\n"
+    )
+
 @app.get("/")
 @app.get("/health")
 @app.get("/mcp/v1")
 @app.get("/mcp/v1/health")
 @app.get("/.well-known/mcp/server-card.json")
 @app.get("/.well-known/mcp.json")
+@app.get("/.well-known/mcp-configuration.json")
 @app.get("/server-card.json")
 @app.get("/mcp/v1/.well-known/mcp/server-card.json")
 @app.get("/mcp/v1/.well-known/mcp.json")
+@app.get("/mcp/v1/.well-known/mcp-configuration.json")
 @app.get("/mcp/v1/server-card.json")
 async def health_check():
     return {
