@@ -1,0 +1,32 @@
+name: Ecosystem Heartbeat & Daily Growth Monitor
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Every day at 00:00 UTC
+  workflow_dispatch:      # Allows manual trigger anytime
+
+jobs:
+  growth-monitor:
+    name: Check Adoption & Fleet Uptime
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Run Ecosystem Status & Metrics
+        run: |
+          python scratch/ecosystem_status.py | tee ecosystem_report.txt
+
+      - name: Publish Job Summary
+        if: always()
+        run: |
+          echo "### 🚀 Daily Ecosystem Growth & Health Report" >> $GITHUB_STEP_SUMMARY
+          echo '```text' >> $GITHUB_STEP_SUMMARY
+          cat ecosystem_report.txt >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
