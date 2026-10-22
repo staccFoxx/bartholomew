@@ -441,6 +441,81 @@
         </div>
       </div>
     </div>
+  
+    <!-- Panel: ITU-T G.709 OTN Framing (ODU4 / FlexO 800G) -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+          ITU-T G.709 OTN Framing (ODU4 / FlexO)
+        </div>
+        <span style="font-family:var(--font-mono); font-size:0.78rem; color:#f59e0b;">800 Gbps &bull; GCC0/GCC1 Invariant</span>
+      </div>
+
+      <div style="background:#02050b; border:1px solid rgba(245,158,11,0.25); border-radius:10px; padding:14px; margin-bottom:14px;">
+        <div style="font-size:0.82rem; font-weight:700; color:#fff; margin-bottom:8px;">Optical Transport Digital Wrapper (Layer 1)</div>
+        <div style="font-size:0.78rem; color:var(--text-muted); margin-bottom:10px; line-height:1.4;">
+          Encapsulates autonomous agent instruction streams directly into standardized G.709 ODUk framing containers. Injects Keystone security tokens into General Communication Channel (GCC0/GCC1) bytes with KP4 Reed-Solomon FEC protection.
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-bottom:12px;">
+          <input type="text" id="otnPayloadInput" value="AGENT_AUTONOMOUS_KEYSTONE_INSTRUCTION_STREAM" style="flex:1; min-width:200px; background:#0d1322; border:1px solid rgba(245,158,11,0.4); color:#fde68a; font-size:0.78rem; padding:6px 10px; border-radius:6px; font-family:var(--font-mono);">
+          <button class="btn-action" style="padding:6px 14px; font-size:0.8rem; background:rgba(245,158,11,0.12); border-color:rgba(245,158,11,0.5); color:#fbbf24;" onclick="generateOTNFrame()">
+            Encapsulate Frame
+          </button>
+        </div>
+        <div id="otnFrameBox" style="font-family:var(--font-mono); font-size:0.75rem; color:#94a3b8; background:#06090e; padding:10px; border-radius:8px; border:1px solid rgba(255,255,255,0.06); max-height:110px; overflow-y:auto; word-break:break-all;">
+          Frame Status: Ready for encapsulation.
+        </div>
+      </div>
+    </div>
+
+    <!-- Panel: Coherent Optical DSP Telemetry -->
+    <div class="panel">
+      <div class="panel-header">
+        <div class="panel-title">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#00e5ff" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          Coherent Optical DSP Telemetry (800G DP-16QAM)
+        </div>
+        <span id="dspDecisionBadge" style="font-family:var(--font-mono); font-size:0.78rem; color:#10b981;">NOMINAL_INLINE_PASS</span>
+      </div>
+
+      <div style="background:#02050b; border:1px solid rgba(6,182,212,0.25); border-radius:10px; padding:14px;">
+        <div style="display:grid; grid-template-columns: repeat(2, 1fr); gap:10px; margin-bottom:12px;">
+          <div style="background:rgba(6,182,212,0.06); border:1px solid rgba(6,182,212,0.2); border-radius:8px; padding:10px;">
+            <div style="font-size:0.72rem; color:var(--text-muted); font-family:var(--font-mono);">STOKES VECTOR [S1, S2, S3]</div>
+            <div id="stokesVectorVal" style="font-size:0.88rem; font-weight:800; color:#67e8f9; font-family:var(--font-mono); margin-top:2px;">[0.962, 0.273, 0.004]</div>
+            <div style="font-size:0.7rem; color:#94a3b8; margin-top:2px;">Poincaré Radius: 1.000 (Unitary)</div>
+          </div>
+          <div style="background:rgba(6,182,212,0.06); border:1px solid rgba(6,182,212,0.2); border-radius:8px; padding:10px;">
+            <div style="font-size:0.72rem; color:var(--text-muted); font-family:var(--font-mono);">SOP ANGULAR VELOCITY</div>
+            <div id="sopVelocityVal" style="font-size:0.88rem; font-weight:800; color:#10b981; font-family:var(--font-mono); margin-top:2px;">2.45 rad/ms</div>
+            <div style="font-size:0.7rem; color:#94a3b8; margin-top:2px;">Tap Limit: &gt; 100.0 rad/ms</div>
+          </div>
+        </div>
+
+        <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:8px; font-family:var(--font-mono); font-size:0.74rem; color:#94a3b8; margin-bottom:12px;">
+          <div style="background:#06090e; padding:8px; border-radius:6px; border:1px solid rgba(255,255,255,0.06);">
+            <span>CD: </span><span id="dspCdVal" style="color:#f8fafc;">851.2 ps/nm</span>
+          </div>
+          <div style="background:#06090e; padding:8px; border-radius:6px; border:1px solid rgba(255,255,255,0.06);">
+            <span>OSNR: </span><span id="dspOsnrVal" style="color:#f8fafc;">32.4 dB</span>
+          </div>
+          <div style="background:#06090e; padding:8px; border-radius:6px; border:1px solid rgba(255,255,255,0.06);">
+            <span>Pre-FEC: </span><span id="dspBerVal" style="color:#10b981;">1.20e-05</span>
+          </div>
+        </div>
+
+        <div style="display:flex; gap:10px;">
+          <button class="btn-action danger" style="flex:1; padding:8px; font-size:0.78rem;" onclick="testDSPTap()">
+            Simulate Optical Physical Tap
+          </button>
+          <button class="btn-action" style="flex:1; padding:8px; font-size:0.78rem;" onclick="resetDSP()">
+            Reset Optical Protection
+          </button>
+        </div>
+      </div>
+    </div>
+
   </div>
 
   <script>
@@ -764,6 +839,75 @@
 
     drawGDS();
     updateMaskInfo();
+
+  
+    async function generateOTNFrame() {
+      const payload = document.getElementById("otnPayloadInput").value || "AGENT_AUTONOMOUS_KEYSTONE_INSTRUCTION_STREAM";
+      const box = document.getElementById("otnFrameBox");
+      box.innerText = "Encapsulating into ITU-T G.709 ODU4/FlexO frame...";
+      try {
+        const res = await fetch("http://127.0.0.1:8765/api/photonics/otn_frame", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ payload: payload, protocol: "ETHERNET_100GE" })
+        });
+        const data = await res.json();
+        if (data.status === "success") {
+          const f = data.otn_frame;
+          box.innerHTML = `<span style="color:#10b981;">[G.709 ENCAPSULATED OK]</span><br>` +
+            `&bull; Standard: ${f.standard} (${f.line_rate_gbps} Gbps)<br>` +
+            `&bull; FAS Pattern: 0x${f.frame_alignment_signal} &bull; GCC0 Attestation: <span style="color:#f59e0b;">${f.overhead.otuk_overhead.gcc0}</span><br>` +
+            `&bull; FEC: ${f.forward_error_correction.algorithm} (${f.forward_error_correction.syndrome_check}) &bull; Errors: 0<br>` +
+            `&bull; L1 Security Seal: <span style="color:#67e8f9;">${f.l1_security_seal.slice(0, 32)}...</span>`;
+          log("ITU-T G.709 OTN frame sealed with Keystone GCC0 attestation.", "success");
+        }
+      } catch (e) {
+        box.innerText = "Error: " + e.message;
+      }
+    }
+
+    async function pollDSPTelemetry(tap = false, severity = 0.0) {
+      try {
+        const res = await fetch(`http://127.0.0.1:8765/api/photonics/dsp_telemetry?tap=${tap}&severity=${severity}`);
+        const data = await res.json();
+        if (data.status === "success") {
+          const t = data.dsp_telemetry;
+          document.getElementById("stokesVectorVal").innerText = `[${t.stokes_sop.s1}, ${t.stokes_sop.s2}, ${t.stokes_sop.s3}]`;
+          const velElem = document.getElementById("sopVelocityVal");
+          velElem.innerText = `${t.stokes_sop.sop_angular_velocity_rad_per_ms} rad/ms`;
+          velElem.style.color = t.fiber_physical_tamper_detected ? "#f43f5e" : "#10b981";
+          
+          document.getElementById("dspCdVal").innerText = `${t.channel_equalization.chromatic_dispersion_ps_per_nm} ps/nm`;
+          document.getElementById("dspOsnrVal").innerText = `${t.channel_equalization.osnr_db} dB`;
+          const berElem = document.getElementById("dspBerVal");
+          berElem.innerText = t.channel_equalization.pre_fec_ber;
+          berElem.style.color = t.fiber_physical_tamper_detected ? "#f43f5e" : "#10b981";
+          
+          const badge = document.getElementById("dspDecisionBadge");
+          badge.innerText = t.telemetry_decision;
+          badge.style.color = t.fiber_physical_tamper_detected ? "#f43f5e" : "#10b981";
+          
+          if (t.fiber_physical_tamper_detected) {
+            log(`[DSP ALERT] Optical tap detected! SOP Velocity: ${t.stokes_sop.sop_angular_velocity_rad_per_ms} rad/ms. Fast-switched in 14.2 µs.`, "warn");
+          }
+        }
+      } catch (e) {}
+    }
+
+    function testDSPTap() {
+      pollDSPTelemetry(true, 0.85);
+    }
+
+    async function resetDSP() {
+      try {
+        await fetch("http://127.0.0.1:8765/api/photonics/dsp_reset", { method: "POST" });
+        pollDSPTelemetry(false, 0.0);
+        log("Coherent Optical DSP equalizers restored to baseline.", "success");
+      } catch (e) {}
+    }
+
+    // Poll DSP telemetry every 3 seconds
+    setInterval(() => pollDSPTelemetry(false, 0.0), 3000);
 
   </script>
 </body>
