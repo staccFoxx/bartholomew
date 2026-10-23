@@ -49,7 +49,8 @@
     "secret-scanner",
     "jailbreak-defense",
     "passkey",
-    "soc2"
+    "soc2",
+    "sponsor"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -269,5 +270,8 @@
       "description": "Sub-Millisecond In-Process Latency"
     }
   ],
-  "homepage": "https://bartholomew.info"
+  "homepage": "https://bartholomew.info",
+  "sponsor": {
+    "url": "https://buy.stripe.com/3cI6oHbNz3LQ4U84He9R605"
+  }
 }

@@ -33,7 +33,8 @@
     "vault",
     "mcp",
     "guardrails",
-    "zero-trust"
+    "zero-trust",
+    "sponsor"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -176,5 +177,8 @@
       "href": "https://bartholomew.info",
       "description": "Round-Trip Process Binding"
     }
-  ]
+  ],
+  "sponsor": {
+    "url": "https://buy.stripe.com/3cI6oHbNz3LQ4U84He9R605"
+  }
 }

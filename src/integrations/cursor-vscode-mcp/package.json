@@ -1,7 +1,7 @@
 {
   "name": "bartholomew-guard",
-  "displayName": "Bartholomew Guard — Agent Security & MCP Gateway",
-  "description": "Sub-35µs AST firewall, autonomous micro-escrow gating, and MCP security gateway for Cursor & VS Code AI agents.",
+  "displayName": "Bartholomew Guard \u2014 Agent Security & MCP Gateway",
+  "description": "Sub-35\u00b5s AST firewall, autonomous micro-escrow gating, and MCP security gateway for Cursor & VS Code AI agents.",
   "version": "5.4.0",
   "publisher": "bartholomew-security",
   "homepage": "https://bartholomew.info",
@@ -22,7 +22,8 @@
     "cursor",
     "firewall",
     "btp-guard",
-    "soc2"
+    "soc2",
+    "sponsor"
   ],
   "engines": {
     "vscode": "^1.80.0"
@@ -84,5 +85,8 @@
         }
       }
     }
+  },
+  "sponsor": {
+    "url": "https://buy.stripe.com/3cI6oHbNz3LQ4U84He9R605"
   }
 }

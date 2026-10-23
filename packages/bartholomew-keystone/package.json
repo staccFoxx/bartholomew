@@ -43,7 +43,8 @@
     "sandbox",
     "clearance-token",
     "zero-trust",
-    "open-vsx"
+    "open-vsx",
+    "sponsor"
   ],
   "main": "./dist/extension.js",
   "contributes": {

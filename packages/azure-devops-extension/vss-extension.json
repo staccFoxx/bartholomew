@@ -21,7 +21,8 @@
     "cursor",
     "compliance",
     "soc2",
-    "audit"
+    "audit",
+    "sponsor"
   ],
   "icons": {
     "default": "images/icon.png"
@@ -40,6 +41,9 @@
     },
     "support": {
       "uri": "https://github.com/ivegotahunnitonit/bartholomew/issues"
+    },
+    "sponsor": {
+      "uri": "https://buy.stripe.com/3cI6oHbNz3LQ4U84He9R605"
     }
   },
   "repository": {

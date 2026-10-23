@@ -1,7 +1,7 @@
 {
   "name": "mcp-proxy-guard",
   "version": "6.6.3",
-  "description": "Microsecond-latency (<20µs) deterministic security proxy, in-flight credential scrubber, and spend governor for Model Context Protocol (MCP) servers in Claude Desktop, Cursor, and Windsurf.",
+  "description": "Microsecond-latency (<20\u00b5s) deterministic security proxy, in-flight credential scrubber, and spend governor for Model Context Protocol (MCP) servers in Claude Desktop, Cursor, and Windsurf.",
   "main": "index.js",
   "types": "index.d.ts",
   "bin": {
@@ -23,7 +23,8 @@
     "model-context-protocol",
     "ai-safety",
     "guardrails",
-    "secret-scrubber"
+    "secret-scrubber",
+    "sponsor"
   ],
   "author": "Bartholomew Security <security@bartholomew.info>",
   "license": "Apache-2.0",
@@ -36,5 +37,8 @@
   "bugs": {
     "url": "https://github.com/ivegotahunnitonit/bartholomew/issues"
   },
-  "publisher": "bartholomew"
+  "publisher": "bartholomew",
+  "sponsor": {
+    "url": "https://buy.stripe.com/3cI6oHbNz3LQ4U84He9R605"
+  }
 }
