@@ -1,6 +1,7 @@
 declare const require: any;
 const fs = require('fs');
 const path = require('path');
+const os = require('os');
 import { KeystoneEngine, KeystonePasskey } from './keystone_passkey';
 
 export interface ExtensionContext {
@@ -53,9 +54,24 @@ export function activate(context: ExtensionContext) {
   function updateStatusBar() {
     const pk = getActivePasskey();
     if (pk) {
-      statusBarItem.text = `$(key) KEYSTONE: ${pk.agent_id} ARMED`;
-      statusBarItem.tooltip = `Bartholomew Keystone -- Active Passkey (${pk.agent_id}) | Click to open Dashboard`;
-      statusBarItem.color = '#10b981';
+      const now = new Date().getTime();
+      const expiry = new Date(pk.expires_at).getTime();
+      const isExpired = now > expiry;
+      const isValid = engine.verifyPasskey(pk);
+
+      if (isExpired) {
+        statusBarItem.text = `$(alert) KEYSTONE: ${pk.agent_id} EXPIRED`;
+        statusBarItem.tooltip = `Bartholomew Keystone -- Passkey Expired (${pk.agent_id}) | Click to Renew Capability Passkey`;
+        statusBarItem.color = '#f59e0b';
+      } else if (isValid) {
+        statusBarItem.text = `$(key) KEYSTONE: ${pk.agent_id} ARMED`;
+        statusBarItem.tooltip = `Bartholomew Keystone -- Active Passkey (${pk.agent_id}) | Click to open Dashboard`;
+        statusBarItem.color = '#10b981';
+      } else {
+        statusBarItem.text = `$(shield) KEYSTONE: ${pk.agent_id} UNVERIFIED`;
+        statusBarItem.tooltip = `Bartholomew Keystone -- Passkey Signature Mismatch | Click to Re-issue`;
+        statusBarItem.color = '#ef4444';
+      }
     } else {
       statusBarItem.text = `$(key) KEYSTONE: STANDBY`;
       statusBarItem.tooltip = `Bartholomew Keystone -- No Active Passkey | Click to Issue Capability Passkey`;
@@ -64,17 +80,30 @@ export function activate(context: ExtensionContext) {
   }
 
   function getPasskeyPath(): string {
-    const rootPath = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || '.';
-    const btpPath = path.join(rootPath, '.btp', 'keystone.json');
-    if (fs.existsSync(btpPath)) return btpPath;
-    return path.join(rootPath, '.btp_keystone.json');
+    const rootPath = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+    if (rootPath) {
+      const btpPath = path.join(rootPath, '.btp', 'keystone.json');
+      if (fs.existsSync(btpPath)) return btpPath;
+      const btpK = path.join(rootPath, '.btp_keystone.json');
+      if (fs.existsSync(btpK)) return btpK;
+    }
+    const homeDir = os.homedir();
+    const homeBtp = path.join(homeDir, '.btp', 'keystone.json');
+    if (fs.existsSync(homeBtp)) return homeBtp;
+    const homeBtpK = path.join(homeDir, '.btp_keystone.json');
+    if (fs.existsSync(homeBtpK)) return homeBtpK;
+    return rootPath ? path.join(rootPath, '.btp', 'keystone.json') : homeBtp;
   }
 
   function getActivePasskey(): KeystonePasskey | null {
     try {
       const p = getPasskeyPath();
       if (fs.existsSync(p)) {
-        return JSON.parse(fs.readFileSync(p, 'utf-8'));
+        const data = JSON.parse(fs.readFileSync(p, 'utf-8'));
+        if (!data.issued_at && data.created_at) {
+          data.issued_at = data.created_at;
+        }
+        return data;
       }
     } catch {}
     return null;

@@ -162,12 +162,24 @@ export class KeystoneEngine {
    * Verifies the cryptographic signature and timestamp of a passkey.
    */
   public verifyPasskey(passkey: KeystonePasskey): boolean {
+    if (!passkey || !passkey.signature) return false;
     if (this.isRevoked(passkey.passkey_id)) return false;
 
     const now = new Date().getTime();
     const expiry = new Date(passkey.expires_at).getTime();
     if (now > expiry) return false;
 
+    // 1. Direct HMAC verification against payload_hash (cross-platform compatible with Python & Node)
+    if (passkey.payload_hash) {
+      const expectedSigFromPayload = crypto.createHmac('sha256', this.signingSecret)
+        .update(passkey.payload_hash)
+        .digest('hex');
+      if (passkey.signature === expectedSigFromPayload) {
+        return true;
+      }
+    }
+
+    // 2. Direct canonical check
     const canonicalData = JSON.stringify({
       passkey_id: passkey.passkey_id,
       agent_id: passkey.agent_id,

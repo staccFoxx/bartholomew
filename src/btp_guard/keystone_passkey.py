@@ -76,15 +76,17 @@ class KeystonePasskey:
 
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> "KeystonePasskey":
+        issued_at = data.get("issued_at") or data.get("created_at") or time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        expires_at = data.get("expires_at") or time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime(time.time() + 86400 * 365))
         return cls(
-            passkey_id=data["passkey_id"],
-            agent_id=data["agent_id"],
-            issuer=data["issuer"],
-            issued_at=data["issued_at"],
-            expires_at=data["expires_at"],
-            scopes=data["scopes"],
-            payload_hash=data["payload_hash"],
-            signature=data["signature"],
+            passkey_id=data.get("passkey_id", f"key_{uuid.uuid4().hex[:16]}"),
+            agent_id=data.get("agent_id", "agent-worker-01"),
+            issuer=data.get("issuer", "Bartholomew-Keystone-Authority"),
+            issued_at=issued_at,
+            expires_at=expires_at,
+            scopes=data.get("scopes", {}),
+            payload_hash=data.get("payload_hash", ""),
+            signature=data.get("signature", ""),
         )
 
 
@@ -160,6 +162,8 @@ class KeystoneEngine:
         cached = getattr(passkey, "_sig_cache", None)
         if cached and cached[0] == scopes_repr:
             return cached[1]
+        if not passkey.signature:
+            return False
 
         canonical_data = json.dumps(
             {
@@ -172,20 +176,31 @@ class KeystoneEngine:
             },
             sort_keys=True,
         ).encode("utf-8")
-
         computed_hash = hashlib.sha256(canonical_data).hexdigest()
-        if not hmac.compare_digest(computed_hash, passkey.payload_hash):
-            return False
 
-        if computed_hash in self._verified_hashes:
-            return True
+        canonical_compact = json.dumps(
+            {
+                "passkey_id": passkey.passkey_id,
+                "agent_id": passkey.agent_id,
+                "issuer": passkey.issuer,
+                "issued_at": passkey.issued_at,
+                "expires_at": passkey.expires_at,
+                "scopes": passkey.scopes,
+            },
+            separators=(",", ":"),
+        ).encode("utf-8")
+        computed_hash_compact = hashlib.sha256(canonical_compact).hexdigest()
 
-        expected_sig = hmac.new(self.signing_secret, computed_hash.encode("utf-8"), hashlib.sha256).hexdigest()
-        valid = hmac.compare_digest(expected_sig, passkey.signature)
-        if valid:
-            self._verified_hashes.add(computed_hash)
-        setattr(passkey, "_sig_cache", (scopes_repr, valid))
-        return valid
+        for ch in (computed_hash, computed_hash_compact):
+            if not passkey.payload_hash or hmac.compare_digest(ch, passkey.payload_hash):
+                expected_sig = hmac.new(self.signing_secret, ch.encode("utf-8"), hashlib.sha256).hexdigest()
+                if hmac.compare_digest(expected_sig, passkey.signature):
+                    self._verified_hashes.add(ch)
+                    setattr(passkey, "_sig_cache", (scopes_repr, True))
+                    return True
+
+        setattr(passkey, "_sig_cache", (scopes_repr, False))
+        return False
 
     def check_clearance(
         self,
@@ -214,7 +229,10 @@ class KeystoneEngine:
         expires_epoch = getattr(passkey, "_expires_epoch", None)
         if expires_epoch is None:
             try:
-                expires_epoch = time.mktime(time.strptime(passkey.expires_at, "%Y-%m-%dT%H:%M:%SZ"))
+                import re as _re
+                from datetime import datetime as _dt
+                clean_exp = _re.sub(r"\.\d+", "", passkey.expires_at).replace("Z", "+00:00")
+                expires_epoch = _dt.fromisoformat(clean_exp).timestamp()
                 setattr(passkey, "_expires_epoch", expires_epoch)
             except Exception:
                 expires_epoch = float("inf")
@@ -237,8 +255,11 @@ class KeystoneEngine:
             file_scopes = scopes.get("files", {})
             deny_patterns = file_scopes.get("deny", [])
 
+            import fnmatch
             for pattern in deny_patterns:
-                if pattern.lower() in target_norm:
+                pat_lower = pattern.lower()
+                clean_pat = pat_lower.strip('*')
+                if fnmatch.fnmatch(target_norm, pat_lower) or (clean_pat and clean_pat in target_norm):
                     latency = (time.perf_counter_ns() - start_ns) / 1000.0
                     return ClearanceResult(
                         verdict="DENY",
