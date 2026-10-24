@@ -242,6 +242,9 @@ class ProviderStack:
         ]
         self._daily_reset_day = datetime.datetime.now(datetime.timezone.utc).date()
 
+    def _reset_if_new_day(self):
+        self._check_daily_reset()
+
     def _check_daily_reset(self):
         today = datetime.datetime.now(datetime.timezone.utc).date()
         if today != self._daily_reset_day:
