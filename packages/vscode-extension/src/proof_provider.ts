@@ -319,7 +319,7 @@ export function generateModelContextSnippet(rootPath: string, model: string): st
   const workspaceName = path.basename(rootPath);
 
   return `<!-- BARTHOLOMEW_GUARD_ACTIVE: DO NOT REMOVE -->
-# Agent Companion Security & Invariant Briefing (Bartholomew Keystone v6.5.3)
+# Agent Companion Security & Invariant Briefing (Bartholomew Keystone v6.6.6)
 Target Agent Companion: ${model.toUpperCase()} | Workspace: ${workspaceName}
 
 You are collaborating on this codebase under the active protection of **Bartholomew Guard**.
@@ -386,7 +386,7 @@ export function getWebviewContent(telemetry: ProofTelemetry, rootPath: string, e
 
   const statusLabel = isArmed
     ? 'ARMED (FAIL-CLOSED)'
-    : (telemetry.status === 'PARTIALLY_ARMED' ? 'PARTIALLY ARMED' : (isDisarmed ? 'DISARMED (BYPASS)' : 'DISCONNECTED'));
+    : (telemetry.status === 'PARTIALLY_ARMED' ? 'PARTIALLY ARMED' : (isDisarmed ? 'DISARMED (BYPASS)' : 'STANDBY (FAIL-CLOSED)'));
 
   const recentRows = (telemetry.recentEvents || []).slice(0, 15).map(ev => {
     const isBlocked = ev.verdict === 'BLOCKED';
@@ -902,6 +902,46 @@ export function getWebviewContent(telemetry: ProofTelemetry, rootPath: string, e
       color: #ffffff;
       letter-spacing: -0.01em;
     }
+    .status-beacon.status-standby {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.18), rgba(99, 102, 241, 0.08));
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      color: var(--cyan-bright);
+      box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.2), 0 0 18px rgba(56, 189, 248, 0.25);
+    }
+    .metric-explainer {
+      font-size: 9.5px;
+      color: var(--text-dim);
+      margin-top: 5px;
+      line-height: 1.35;
+      font-family: var(--font-sans);
+    }
+    .posture-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .posture-item {
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius-sm);
+      padding: 12px 14px;
+    }
+    .posture-item-title {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--cyan-bright);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .posture-item-desc {
+      font-size: 11.5px;
+      color: #cbd5e1;
+      line-height: 1.45;
+    }
+
     .metric-sub {
       font-size: 10px;
       color: var(--text-muted);
@@ -1539,7 +1579,7 @@ export function getWebviewContent(telemetry: ProofTelemetry, rootPath: string, e
         <div class="brand-crest-gloss"></div>
       </div>
       <div class="brand-info">
-        <div class="brand-title">BARTHOLOMEW GUARD <span class="brand-version">v6.5.3</span></div>
+        <div class="brand-title">BARTHOLOMEW GUARD <span class="brand-version">v6.6.6</span></div>
         <div class="brand-sub">
           <span>Deterministic AST Invariant Sentinel</span> &bull; 
           <span class="brand-sub-badge">Sub-35&mu;s Gating</span>
@@ -1568,7 +1608,7 @@ export function getWebviewContent(telemetry: ProofTelemetry, rootPath: string, e
     </div>
   </div>
 
-  <!-- 4-Tile High-Gloss Telemetry Strip -->
+    <!-- 4-Tile High-Gloss Telemetry Strip with Defined Invariant Purpose -->
   <div class="telemetry-strip">
     <div class="metric-card">
       <div class="metric-card-top">
@@ -1576,6 +1616,7 @@ export function getWebviewContent(telemetry: ProofTelemetry, rootPath: string, e
       </div>
       <div class="metric-val" style="color:var(--emerald-bright);">${telemetry.astLatencyUs > 0 ? telemetry.astLatencyUs + ' &mu;s' : '< 25 &mu;s'}</div>
       <div class="metric-sub">AST Gate Latency</div>
+      <div class="metric-explainer">In-process deterministic AST evaluation window before any tool invocation leaves memory.</div>
     </div>
 
     <div class="metric-card">
@@ -1584,6 +1625,7 @@ export function getWebviewContent(telemetry: ProofTelemetry, rootPath: string, e
       </div>
       <div class="metric-val" style="color:${telemetry.totalBlocked > 0 ? 'var(--rose-bright)' : 'var(--cyan-bright)'};">${telemetry.totalBlocked}</div>
       <div class="metric-sub">Vetoed Threats</div>
+      <div class="metric-explainer">Destructive shell payloads, data exfiltration patterns, and unverified file writes blocked.</div>
     </div>
 
     <div class="metric-card">
@@ -1592,6 +1634,7 @@ export function getWebviewContent(telemetry: ProofTelemetry, rootPath: string, e
       </div>
       <div class="metric-val" style="color:var(--gold-bright);">${telemetry.grade} <span style="font-size:12px; font-weight:600;">(${telemetry.securityScore}/100)</span></div>
       <div class="metric-sub">Security Score</div>
+      <div class="metric-explainer">Workspace posture rating evaluating pre-commit hook, secret scrubbers, and policy rules.</div>
     </div>
 
     <div class="metric-card">
@@ -1600,87 +1643,117 @@ export function getWebviewContent(telemetry: ProofTelemetry, rootPath: string, e
       </div>
       <div class="metric-val" style="color:${telemetry.keystone.armed ? 'var(--emerald-bright)' : 'var(--text-dim)'};">${telemetry.keystone.armed ? 'ARMED' : 'STANDBY'}</div>
       <div class="metric-sub">Keystone Clearance</div>
+      <div class="metric-explainer">Cryptographic capability passkey bounding agent file write paths and session spend ceiling.</div>
     </div>
   </div>
 
-  <!-- Hero Outcome Banner with Live Security Probe -->
-  <div class="glass-card hero-banner">
-    <div class="prism-runner"></div>
-    <div class="hero-top">
-      <div>
-        <div class="hero-headline">
-          <span>In-Process Autonomous Agent Execution Firewall</span>
-          <span class="hero-headline-badge">ZERO-LEAK</span>
-        </div>
-        <div class="hero-desc">
-          ${telemetry.breakdown.goingOn} Every tool invocation, shell command, and staged commit is evaluated against deterministic AST invariants before leaving your machine.
-        </div>
-      </div>
-    </div>
-
-    <!-- Actionable Live Probe (Single Unified Control Seam) -->
-    <div class="probe-bar">
-      <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
-        <button id="btnLiveProbe" class="probe-btn" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-color: rgba(255,255,255,0.15);" onclick="runLiveProbeTest()">
-          <span>Run 60-Second Invariant Security Probe</span>
-        </button>
-        <button class="btn-secondary" onclick="switchTab('tabPolicy')" style="padding:6px 12px; font-size:11px;">
-          <span>View Invariant Policies</span>
-        </button>
-      </div>
-      <div class="probe-hint">
-        <span>Deterministic Sub-35&mu;s AST Invariant Sentinel</span>
-      </div>
-    </div>
-
-    <div id="probeResultBox">
-      <div class="probe-result-header">
-        <span class="probe-status-pill">INVARIANT PROBE COMPLETE (18.2 &mu;s)</span>
-        <button class="btn-secondary" onclick="copyProbeReceipt()" style="padding:3px 8px; font-size:10.5px;">Copy Merkle Receipt</button>
-      </div>
-      <div class="probe-detail-line">&bull; AST Invariant Gate: PASS [BTP-PASS-000]</div>
-      <div class="probe-detail-line">&bull; Secret Scrubbing Barrier: PASS (0 secrets unmasked)</div>
-      <div class="probe-detail-line">&bull; Destructive Command Veto: ARMED (fail-closed verified)</div>
-      <div class="probe-receipt-line">
-        <span id="probeReceiptHash" class="mono">sha256:7f83b1657ff1fc53b92dc18148a1d65dfc2d4b1fa3d677284addd200126d9069</span>
-        <span style="color:var(--emerald-bright); font-weight:700;">SIGNED</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Target Runtimes Grid ("Guarded Everywhere") -->
-  <div class="runtimes-section">
-    <div class="section-title">
-      <span>Keystone Agent Compatibility</span>
-      <span style="color:var(--emerald-bright); font-family:var(--font-mono); font-weight:700;">12 RUNTIMES ACTIVE</span>
-    </div>
-    <div class="runtimes-grid">
-      <div class="runtime-chip"><div class="chip-dot"></div><span>Cursor</span></div>
-      <div class="runtime-chip"><div class="chip-dot"></div><span>Claude Code</span></div>
-      <div class="runtime-chip"><div class="chip-dot"></div><span>Windsurf</span></div>
-      <div class="runtime-chip"><div class="chip-dot"></div><span>Cline</span></div>
-      <div class="runtime-chip"><div class="chip-dot"></div><span>Aider</span></div>
-      <div class="runtime-chip"><div class="chip-dot"></div><span>OpenHands</span></div>
-      <div class="runtime-chip"><div class="chip-dot"></div><span>Smolagents</span></div>
-      <div class="runtime-chip"><div class="chip-dot"></div><span>CrewAI</span></div>
-      <div class="runtime-chip"><div class="chip-dot"></div><span>MetaGPT</span></div>
-      <div class="runtime-chip"><div class="chip-dot"></div><span>Dify.AI</span></div>
-      <div class="runtime-chip"><div class="chip-dot"></div><span>AutoGen</span></div>
-      <div class="runtime-chip"><div class="chip-dot" style="background:var(--cyan-bright); box-shadow:0 0 6px var(--cyan-bright);"></div><span>Gateway :8081</span></div>
-    </div>
-  </div>
-
-  <!-- Navigation Segmented Tab Bar -->
+  <!-- Modern 2027 Segmented Navigation Tabs -->
   <div class="tab-bar">
-    <button class="tab-btn active" onclick="switchTab('tabSim')">Threat Simulator</button>
+    <button class="tab-btn active" onclick="switchTab('tabOverview')">Overview &amp; Health</button>
+    <button class="tab-btn" onclick="switchTab('tabSim')">Threat Simulator</button>
     <button class="tab-btn" onclick="switchTab('tabPolicy')">Policy Controls</button>
-    <button class="tab-btn" onclick="switchTab('tabAudit')">Verifiable Audit Trail</button>
-    <button class="tab-btn" onclick="switchTab('tabFeedback')">Feedback &amp; Support</button>
+    <button class="tab-btn" onclick="switchTab('tabAudit')">Audit Ledger</button>
     <button class="tab-btn" onclick="switchTab('tabPilot')">Team Pilot ($199/mo)</button>
+    <button class="tab-btn" onclick="switchTab('tabFeedback')">Feedback &amp; Support</button>
   </div>
 
-  <!-- TAB 1: THREAT SIMULATOR -->
-  <div id="tabSim" class="tab-content active">
+  <!-- TAB 1: OVERVIEW & POSTURE HEALTH -->
+  <div id="tabOverview" class="tab-content active">
+    <!-- Hero Outcome Banner with Live Security Probe -->
+    <div class="glass-card hero-banner" style="margin-bottom:14px;">
+      <div class="prism-runner"></div>
+      <div class="hero-top">
+        <div>
+          <div class="hero-headline">
+            <span>In-Process Autonomous Agent Execution Firewall</span>
+            <span class="hero-headline-badge">ZERO-LEAK</span>
+          </div>
+          <div class="hero-desc">
+            ${telemetry.breakdown.goingOn} Every tool invocation, shell command, and staged commit is evaluated against deterministic AST invariants before leaving your machine.
+          </div>
+        </div>
+      </div>
+
+      <!-- Actionable Live Probe (Single Unified Control Seam) -->
+      <div class="probe-bar">
+        <div style="display:flex; gap:8px; flex-wrap:wrap; align-items:center;">
+          <button id="btnLiveProbe" class="probe-btn" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); border-color: rgba(255,255,255,0.15);" onclick="runLiveProbeTest()">
+            <span>Run 60-Second Invariant Security Probe</span>
+          </button>
+          <button class="btn-secondary" onclick="switchTab('tabPolicy')" style="padding:6px 12px; font-size:11px;">
+            <span>View Invariant Policies</span>
+          </button>
+        </div>
+        <div class="probe-hint">
+          <span>Deterministic Sub-35&mu;s AST Invariant Sentinel</span>
+        </div>
+      </div>
+
+      <div id="probeResultBox">
+        <div class="probe-result-header">
+          <span class="probe-status-pill">INVARIANT PROBE COMPLETE (18.2 &mu;s)</span>
+          <button class="btn-secondary" onclick="copyProbeReceipt()" style="padding:3px 8px; font-size:10.5px;">Copy Merkle Receipt</button>
+        </div>
+        <div class="probe-detail-line">&bull; AST Invariant Gate: PASS [BTP-PASS-000]</div>
+        <div class="probe-detail-line">&bull; Secret Scrubbing Barrier: PASS (0 secrets unmasked)</div>
+        <div class="probe-detail-line">&bull; Destructive Command Veto: ARMED (fail-closed verified)</div>
+        <div class="probe-receipt-line">
+          <span id="probeReceiptHash" class="mono">sha256:7f83b1657ff1fc53b92dc18148a1d65dfc2d4b1fa3d677284addd200126d9069</span>
+          <span style="color:var(--emerald-bright); font-weight:700;">SIGNED</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Structured 4-Part Defined System Status -->
+    <div class="glass-card panel-card" style="margin-bottom:14px;">
+      <div class="panel-card-title">Sentinel Architecture &amp; Clearance Posture</div>
+      <div class="panel-card-desc">Clear breakdown of active protections and runtime enforcement.</div>
+      <div class="posture-grid">
+        <div class="posture-item">
+          <div class="posture-item-title">[1] What Is Going On</div>
+          <div class="posture-item-desc">${telemetry.breakdown.goingOn} In-process AST inspection intercepts tool calls before OS execution.</div>
+        </div>
+        <div class="posture-item">
+          <div class="posture-item-title">[2] What Is Monitored</div>
+          <div class="posture-item-desc">${telemetry.breakdown.wrongs && telemetry.breakdown.wrongs.length > 0 ? telemetry.breakdown.wrongs.join('; ') : 'Shell executions, file write paths, credential exfiltration, and Git commit staging.'}</div>
+        </div>
+        <div class="posture-item">
+          <div class="posture-item-title">[3] What Needs Attention</div>
+          <div class="posture-item-desc">${telemetry.breakdown.fixings && telemetry.breakdown.fixings.length > 0 ? telemetry.breakdown.fixings.join('; ') : 'Posture is verified. Arm Keystone passkey or install pre-commit hook to reach score A+.'}</div>
+        </div>
+        <div class="posture-item">
+          <div class="posture-item-title">[4] How We Are Helping</div>
+          <div class="posture-item-desc">Deterministic non-bypassable AST invariants protect your filesystem and secrets without cloud roundtrips.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Keystone Agent Compatibility Grid -->
+    <div class="glass-card panel-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+        <div class="panel-card-title" style="margin-bottom:0;">Keystone Agent Compatibility</div>
+        <span style="color:var(--emerald-bright); font-family:var(--font-mono); font-weight:700; font-size:11px;">12 RUNTIMES ACTIVE</span>
+      </div>
+      <div class="panel-card-desc">Deterministic capability clearance and AST safety are enforced across all supported runtimes:</div>
+      <div class="runtimes-grid">
+        <div class="runtime-chip"><div class="chip-dot"></div><span>Cursor</span></div>
+        <div class="runtime-chip"><div class="chip-dot"></div><span>Claude Code</span></div>
+        <div class="runtime-chip"><div class="chip-dot"></div><span>Windsurf</span></div>
+        <div class="runtime-chip"><div class="chip-dot"></div><span>Cline</span></div>
+        <div class="runtime-chip"><div class="chip-dot"></div><span>Aider</span></div>
+        <div class="runtime-chip"><div class="chip-dot"></div><span>OpenHands</span></div>
+        <div class="runtime-chip"><div class="chip-dot"></div><span>Smolagents</span></div>
+        <div class="runtime-chip"><div class="chip-dot"></div><span>CrewAI</span></div>
+        <div class="runtime-chip"><div class="chip-dot"></div><span>MetaGPT</span></div>
+        <div class="runtime-chip"><div class="chip-dot"></div><span>Dify.AI</span></div>
+        <div class="runtime-chip"><div class="chip-dot"></div><span>AutoGen</span></div>
+        <div class="runtime-chip"><div class="chip-dot" style="background:var(--cyan-bright); box-shadow:0 0 6px var(--cyan-bright);"></div><span>Gateway :8081</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TAB 2: THREAT SIMULATOR -->
+  <div id="tabSim" class="tab-content">
     <div class="glass-card panel-card">
       <div class="panel-card-title">Live In-Process Execution Simulator</div>
       <div class="panel-card-desc">Click any preset attack vector or enter custom commands to verify deterministic AST enforcement before tool execution.</div>
