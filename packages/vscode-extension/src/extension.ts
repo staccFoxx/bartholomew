@@ -531,7 +531,7 @@ rules:
     // 6. Update status bar & refresh webview
     statusBarItem.text = `$(shield-check) Bartholomew: ARMED`;
     statusBarItem.color = '#34d399';
-    statusBarItem.tooltip = `Bartholomew Guard (v6.5.3) — Workspace Linked & Armed (Fail-Closed AST Invariants + Keystone Passkey)`;
+    statusBarItem.tooltip = `Bartholomew Guard (v6.6.5) — Workspace Linked & Armed (Fail-Closed AST Invariants + Keystone Passkey)`;
     proofProvider.refresh();
 
     vscode.window.showInformationMessage(
@@ -574,7 +574,7 @@ rules:
 
     statusBarItem.text = `$(shield-slash) Bartholomew: DISARMED`;
     statusBarItem.color = '#f43f5e';
-    statusBarItem.tooltip = `Bartholomew Guard (v6.5.3) — Workspace DISARMED. Deterministic AST invariants are in temporary bypass mode. Click to Re-Arm.`;
+    statusBarItem.tooltip = `Bartholomew Guard (v6.6.5) — Workspace DISARMED. Deterministic AST invariants are in temporary bypass mode. Click to Re-Arm.`;
     proofProvider.refresh();
 
     vscode.window.showWarningMessage(
@@ -733,7 +733,7 @@ rules:
     if (isDisarmed) {
       statusBarItem.text = `$(shield-slash) Bartholomew: DISARMED`;
       statusBarItem.color = '#f43f5e';
-      statusBarItem.tooltip = `Bartholomew Guard (v6.5.3) — Workspace DISARMED. Click for Security Menu to Re-Arm.`;
+      statusBarItem.tooltip = `Bartholomew Guard (v6.6.5) — Workspace DISARMED. Click for Security Menu to Re-Arm.`;
       return;
     }
     const hasPolicy = fs.existsSync(path.join(btpDir, 'policy.yaml')) || fs.existsSync(path.join(rootPath, 'policy.yaml'));
@@ -741,15 +741,15 @@ rules:
     if (hasPolicy && hasPasskey) {
       statusBarItem.text = `$(shield-check) Bartholomew: ARMED`;
       statusBarItem.color = '#34d399';
-      statusBarItem.tooltip = `Bartholomew Guard (v6.5.3) — ARMED (Fail-Closed AST Invariants + Keystone Passkey)`;
+      statusBarItem.tooltip = `Bartholomew Guard (v6.6.5) — ARMED (Fail-Closed AST Invariants + Keystone Passkey)`;
     } else if (hasPolicy || hasPasskey) {
       statusBarItem.text = `$(shield) Bartholomew: PARTIAL`;
       statusBarItem.color = '#fbbf24';
-      statusBarItem.tooltip = `Bartholomew Guard (v6.5.3) — Partially Armed. Click to fully Link & Arm.`;
+      statusBarItem.tooltip = `Bartholomew Guard (v6.6.5) — Partially Armed. Click to fully Link & Arm.`;
     } else {
       statusBarItem.text = `$(shield) Bartholomew: Standby`;
       statusBarItem.color = '#94a3b8';
-      statusBarItem.tooltip = `Bartholomew Guard (v6.5.3) — Workspace Not Armed. Click to Link & Arm.`;
+      statusBarItem.tooltip = `Bartholomew Guard (v6.6.5) — Workspace Not Armed. Click to Link & Arm.`;
     }
   }
 
@@ -780,7 +780,7 @@ rules:
       { label: '$(file-submodule) Vault: Export Sovereign Proof Dossier', description: '1-Click verifiable JSON proof of zero PII transmission for Auditors', action: 'vault.exportComplianceReport' },
       { label: '$(clippy) Copy Agent Context Rules', description: 'Copy system prompts for Cursor, Windsurf, Claude Code, Gemini', action: 'bartholomew.copyModelContext' }
     ];
-    const picked = await vscode.window.showQuickPick(items, { title: 'Bartholomew Agent Security Control Plane (v6.5.3)' });
+    const picked = await vscode.window.showQuickPick(items, { title: 'Bartholomew Agent Security Control Plane (v6.6.5)' });
     if (picked && picked.action) {
       vscode.commands.executeCommand(picked.action);
     }
@@ -868,30 +868,44 @@ context.subscriptions.push(
 
   // 2. Poll local daemon or files for real-time telemetry
   const pollDaemon = () => {
-    const passkeyLabel = 'Keystone';
-    const rootPath = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || '.';
-    const gitHooks = path.join(rootPath, '.git', 'hooks', 'pre-commit');
-    const hasPreCommit = fs.existsSync(gitHooks);
-    const hasPolicy = fs.existsSync(path.join(rootPath, '.btp', 'policy.yaml')) || fs.existsSync(path.join(rootPath, 'policy.yaml'));
+    const rootPath = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
+    if (!rootPath) {
+      statusBarItem.text = `$(shield) Bartholomew: Standby`;
+      statusBarItem.color = "#94a3b8";
+      statusBarItem.tooltip = "Bartholomew Guard (v6.6.5) -- Open workspace to Link & Arm.";
+      return;
+    }
+
+    const btpDir = path.join(rootPath, ".btp");
+    const isDisarmed = fs.existsSync(path.join(btpDir, ".disarmed"));
+    if (isDisarmed) {
+      statusBarItem.text = `$(shield-slash) Bartholomew: DISARMED`;
+      statusBarItem.color = "#f43f5e";
+      statusBarItem.tooltip = "Bartholomew Guard (v6.6.5) -- Workspace DISARMED. Click for Security Menu to Re-Arm.";
+      return;
+    }
+
+    const hasPasskey = Boolean(getActiveKeystonePasskey());
+    const passkeyLabel = hasPasskey ? "Keystone Armed" : "Keystone Standby";
 
     const checkPort = (port: number, onFail: () => void) => {
       const req = http.get(`http://127.0.0.1:${port}/v1/status`, (res: any) => {
         if (res.statusCode === 200) {
-          let rawData = '';
-          res.on('data', (chunk: any) => { rawData += chunk; });
-          res.on('end', () => {
+          let rawData = "";
+          res.on("data", (chunk: any) => { rawData += chunk; });
+          res.on("end", () => {
             try {
               const data = JSON.parse(rawData);
               const blocked = data.total_blocked || 0;
               const avgLat = data.average_latency_us || 24.8;
               if (blocked > 0) {
-                statusBarItem.text = `$(shield) BTP: ${blocked} BLOCKED | $(key) ${passkeyLabel}`;
-                statusBarItem.color = '#ef4444';
-                statusBarItem.tooltip = `BTP Active: ${blocked} threats blocked (${avgLat}µs). Click to view details.`;
+                statusBarItem.text = `$(shield) Bartholomew: ${blocked} BLOCKED | $(key) ${passkeyLabel}`;
+                statusBarItem.color = "#ef4444";
+                statusBarItem.tooltip = `Bartholomew Guard Active: ${blocked} threats blocked (${avgLat}us). Click to view details.`;
               } else {
-                statusBarItem.text = `$(shield) BTP: ACTIVE (${avgLat}µs) | $(key) ${passkeyLabel}`;
-                statusBarItem.color = '#10b981';
-                statusBarItem.tooltip = `BTP Guard active and monitoring on port ${port}.`;
+                statusBarItem.text = `$(shield-check) Bartholomew: ARMED (${avgLat}us) | $(key) ${passkeyLabel}`;
+                statusBarItem.color = "#10b981";
+                statusBarItem.tooltip = `Bartholomew Guard daemon active on port ${port}.`;
               }
             } catch {
               onFail();
@@ -901,7 +915,7 @@ context.subscriptions.push(
           onFail();
         }
       });
-      req.on('error', onFail);
+      req.on("error", onFail);
       req.setTimeout(1500, () => {
         try { req.abort(); } catch {}
         onFail();
@@ -910,10 +924,20 @@ context.subscriptions.push(
 
     checkPort(8081, () => {
       checkPort(8080, () => {
-        // Both daemon ports unavailable — report local Git hook & Keystone passkey status
-        statusBarItem.text = `$(shield) BTP: LOCAL HOOK ONLY | $(key) ${passkeyLabel}`;
-        statusBarItem.color = '#10b981';
-        statusBarItem.tooltip = 'BTP local Git pre-commit hook & Keystone passkey invariants active.';
+        const hasPolicy = fs.existsSync(path.join(btpDir, "policy.yaml")) || fs.existsSync(path.join(rootPath, "policy.yaml"));
+        if (hasPolicy && hasPasskey) {
+          statusBarItem.text = `$(shield-check) Bartholomew: ARMED | $(key) ${passkeyLabel}`;
+          statusBarItem.color = "#34d399";
+          statusBarItem.tooltip = "Bartholomew Guard (v6.6.5) -- ARMED (Fail-Closed AST Invariants + Keystone Passkey)";
+        } else if (hasPolicy || hasPasskey) {
+          statusBarItem.text = `$(shield) Bartholomew: PARTIAL`;
+          statusBarItem.color = "#fbbf24";
+          statusBarItem.tooltip = "Bartholomew Guard (v6.6.5) -- Partially Armed. Click to Link & Arm.";
+        } else {
+          statusBarItem.text = `$(shield) Bartholomew: Standby`;
+          statusBarItem.color = "#94a3b8";
+          statusBarItem.tooltip = "Bartholomew Guard (v6.6.5) -- Workspace Not Armed. Click to Link & Arm.";
+        }
       });
     });
   };

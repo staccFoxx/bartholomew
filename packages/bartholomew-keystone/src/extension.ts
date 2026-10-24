@@ -64,8 +64,9 @@ export function activate(context: ExtensionContext) {
         statusBarItem.tooltip = `Bartholomew Keystone -- Passkey Expired (${pk.agent_id}) | Click to Renew Capability Passkey`;
         statusBarItem.color = '#f59e0b';
       } else if (isValid) {
-        statusBarItem.text = `$(key) KEYSTONE: ${pk.agent_id} ARMED`;
-        statusBarItem.tooltip = `Bartholomew Keystone -- Active Passkey (${pk.agent_id}) | Click to open Dashboard`;
+        const spendLimit = pk.scopes?.budget?.max_spend_usd !== undefined ? `$${pk.scopes.budget.max_spend_usd.toFixed(2)}` : '$25.00';
+        statusBarItem.text = `$(key) Keystone: ${pk.agent_id} (${spendLimit} Cap)`;
+        statusBarItem.tooltip = `Bartholomew Keystone -- Active Passkey (${pk.agent_id}) with ${spendLimit} Spend Cap | Click to open Dashboard`;
         statusBarItem.color = '#10b981';
       } else {
         statusBarItem.text = `$(shield) KEYSTONE: ${pk.agent_id} UNVERIFIED`;

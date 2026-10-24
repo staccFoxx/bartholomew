@@ -14,7 +14,7 @@ export interface FirestoreTransaction {
 }
 
 export class FirestoreManager {
-  private static projectId = process.env.GCP_PROJECT || 'project-69103dd0-70f5-4f9c-a2a';
+  private static projectId = process.env.GCP_PROJECT || 'acn-26670';
   private static isConnected = false;
 
   static async init() {

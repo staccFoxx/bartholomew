@@ -33,7 +33,7 @@ from app.depin_adapters import depin
 # Config
 # 
 
-PROJECT_ID        = os.getenv("GCP_PROJECT", "project-69103dd0-70f5-4f9c-a2a")
+PROJECT_ID        = os.getenv("GCP_PROJECT", "acn-26670")
 HEARTBEAT_SEC     = 30       # node heartbeat interval
 TASK_GEN_SEC      = 120      # auto-generate tasks every 2 min
 EARN_COMPOUND_SEC = 300      # compound earnings every 5 min
@@ -276,7 +276,7 @@ async def gcp_node_manager_loop():
     Since there's no VPS, we simulate distributed compute via GCP.
     Logs Cloud Run service URLs and manages task dispatching to GCP workers.
     """
-    GCP_PROJECT = os.getenv("GCP_PROJECT", "project-69103dd0-70f5-4f9c-a2a")
+    GCP_PROJECT = os.getenv("GCP_PROJECT", "acn-26670")
     CLOUD_RUN_REGION = os.getenv("CLOUD_RUN_REGION", "us-central1")
     while True:
         try:

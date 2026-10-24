@@ -83,7 +83,7 @@ except ImportError:
     from auth import verify_operator_auth
 
 
-PROJECT_ID = os.getenv("GCP_PROJECT", "project-69103dd0-70f5-4f9c-a2a")
+PROJECT_ID = os.getenv("GCP_PROJECT", "acn-26670")
 
 try:
     db = firestore.Client(project=PROJECT_ID)
