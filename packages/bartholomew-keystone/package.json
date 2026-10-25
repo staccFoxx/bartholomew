@@ -2,7 +2,7 @@
   "name": "bartholomew-keystone",
   "displayName": "Bartholomew Keystone - Capability Passkeys & Spend Governor",
   "description": "BTP v6.6.5 Cryptographically signed clearance tokens & real-time spend governor for autonomous agents across files, shell, network, and API budgets in Cursor, Claude Code, Windsurf, and VS Code.",
-  "version": "6.6.6",
+  "version": "6.6.7",
   "publisher": "bartholomew",
   "activationEvents": [
     "onStartupFinished",

@@ -319,7 +319,7 @@ export function generateModelContextSnippet(rootPath: string, model: string): st
   const workspaceName = path.basename(rootPath);
 
   return `<!-- BARTHOLOMEW_GUARD_ACTIVE: DO NOT REMOVE -->
-# Agent Companion Security & Invariant Briefing (Bartholomew Keystone v6.6.6)
+# Agent Companion Security & Invariant Briefing (Bartholomew Keystone v6.6.7)
 Target Agent Companion: ${model.toUpperCase()} | Workspace: ${workspaceName}
 
 You are collaborating on this codebase under the active protection of **Bartholomew Guard**.
@@ -1579,7 +1579,7 @@ export function getWebviewContent(telemetry: ProofTelemetry, rootPath: string, e
         <div class="brand-crest-gloss"></div>
       </div>
       <div class="brand-info">
-        <div class="brand-title">BARTHOLOMEW GUARD <span class="brand-version">v6.6.6</span></div>
+        <div class="brand-title">BARTHOLOMEW GUARD <span class="brand-version">v6.6.7</span></div>
         <div class="brand-sub">
           <span>Deterministic AST Invariant Sentinel</span> &bull; 
           <span class="brand-sub-badge">Sub-35&mu;s Gating</span>

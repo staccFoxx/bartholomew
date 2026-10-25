@@ -898,7 +898,7 @@ export function activate(context: ExtensionContext) {
         <div class="brand-crest-gloss"></div>
       </div>
       <div>
-        <div class="brand-title">BARTHOLOMEW KEYSTONE <span class="brand-version">v6.6.6</span></div>
+        <div class="brand-title">BARTHOLOMEW KEYSTONE <span class="brand-version">v6.6.7</span></div>
         <div class="brand-sub">Autonomous Agent Capability Passkey &bull; Sub-15&mu;s Spend Governor</div>
       </div>
     </div>
