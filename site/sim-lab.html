@@ -2459,6 +2459,11 @@
     // Auto switch if hash is #stress-suite or #vault-lab or mode param or /sim path
     window.addEventListener('DOMContentLoaded', () => {
       const urlParams = new URLSearchParams(window.location.search);
+      const reqMode = urlParams.get('mode') || (window.location.hash ? window.location.hash.replace('#', '') : null);
+      if (reqMode && typeof switchMode === 'function') {
+        switchMode(reqMode);
+      }
+      const urlParams = new URLSearchParams(window.location.search);
       const modeParam = urlParams.get('mode');
       if (modeParam === 'vault-lab' || modeParam === 'vault' || window.location.hash === '#vault-lab' || window.location.hash === '#vault' || window.location.pathname.endsWith('/sim') || window.location.pathname.endsWith('/sim.html')) {
         switchMode('vault-lab');

@@ -984,15 +984,33 @@
       <!-- Embed Section -->
       <div class="embed-card">
         <div class="embed-title">
-          <span style="display:inline-flex; align-items:center; gap:6px;">Embed Verified Bartholomew Seal on <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24" style="vertical-align:middle; display:inline-block;"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg> README</span>
+          <span>Embed Verified Bartholomew Seal in Repository README</span>
           <span style="font-size:0.75rem; color:var(--emerald-light); font-family:'JetBrains Mono',monospace;">LIVE SYNCED</span>
         </div>
-        <textarea id="embedTextarea" class="embed-box" readonly onclick="this.select()">[![Verified Bartholomew Seal](https://bartholomew.info/assets/b_stamp_badge.svg)](https://bartholomew.info/verify?id=BTP-SEAL-v644-E5894F6BB021)</textarea>
+        
+        <!-- Badge Style Switcher -->
+        <div style="display:flex; gap:10px; margin: 12px 0; flex-wrap:wrap;">
+          <button type="button" class="preset-btn active" id="btnBadge1" onclick="switchBadgeStyle('shield')">1. AST Protected (Shield)</button>
+          <button type="button" class="preset-btn" id="btnBadge2" onclick="switchBadgeStyle('verified')">2. Verified Safe (Seal)</button>
+          <button type="button" class="preset-btn" id="btnBadge3" onclick="switchBadgeStyle('keystone')">3. Keystone Armed (Passkey)</button>
+        </div>
+
+        <!-- Live Badge Visual Preview -->
+        <div style="background:rgba(2,6,23,0.7); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:14px; margin-bottom:12px; display:flex; align-items:center; gap:14px;">
+          <span style="font-size:0.78rem; font-family:'JetBrains Mono',monospace; color:var(--text-muted);">PREVIEW:</span>
+          <img id="badgePreviewImg" src="/assets/badge_shield.svg" alt="Bartholomew Badge Preview" style="height:28px;">
+        </div>
+
+        <textarea id="embedTextarea" class="embed-box" readonly onclick="this.select()">[![Bartholomew AST Protected](https://bartholomew.info/assets/badge_shield.svg)](https://bartholomew.info/verify?id=BTP-SEAL-v644-E5894F6BB021)</textarea>
         
         <div class="embed-actions">
           <button class="btn-action-small primary" onclick="copyBadgeMarkdown()">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
             Copy Badge Markdown
+          </button>
+          <button class="btn-action-small" onclick="copyBadgeHtml()">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+            Copy HTML Tag
           </button>
           <button class="btn-action-small" onclick="copyVerificationUrl()">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
@@ -1247,6 +1265,39 @@
 
         showToast('Verified Bartholomew Seal Attested & Recorded on Cloud Fleet!');
       }, 2600);
+    }
+
+        let currentBadgeType = 'shield';
+    const badgeUrls = {
+      shield: { img: '/assets/badge_shield.svg', alt: 'Bartholomew AST Protected' },
+      verified: { img: '/assets/badge_verified.svg', alt: 'Bartholomew Verified Safe' },
+      keystone: { img: '/assets/badge_keystone.svg', alt: 'Bartholomew Keystone Passkey Armed' }
+    };
+
+    function switchBadgeStyle(type) {
+      currentBadgeType = type;
+      document.querySelectorAll('#btnBadge1, #btnBadge2, #btnBadge3').forEach(b => b.classList.remove('active'));
+      if (type === 'shield') document.getElementById('btnBadge1').classList.add('active');
+      if (type === 'verified') document.getElementById('btnBadge2').classList.add('active');
+      if (type === 'keystone') document.getElementById('btnBadge3').classList.add('active');
+
+      const b = badgeUrls[type] || badgeUrls.shield;
+      document.getElementById('badgePreviewImg').src = b.img;
+      
+      const sealId = document.getElementById('proofSealId').innerText.trim() || 'BTP-SEAL-v644-E5894F6BB021';
+      const md = `[![${b.alt}](https://bartholomew.info${b.img})](https://bartholomew.info/verify?id=${sealId})`;
+      document.getElementById('embedTextarea').value = md;
+    }
+
+    function copyBadgeHtml() {
+      const b = badgeUrls[currentBadgeType] || badgeUrls.shield;
+      const sealId = document.getElementById('proofSealId').innerText.trim() || 'BTP-SEAL-v644-E5894F6BB021';
+      const html = `<a href="https://bartholomew.info/verify?id=${sealId}" target="_blank" rel="noopener noreferrer"><img src="https://bartholomew.info${b.img}" alt="${b.alt}" /></a>`;
+      navigator.clipboard.writeText(html).then(() => {
+        showToast('HTML Tag copied to clipboard');
+      }).catch(() => {
+        prompt('Copy HTML code:', html);
+      });
     }
 
     function copyBadgeMarkdown() {
