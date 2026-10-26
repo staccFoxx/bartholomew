@@ -209,7 +209,7 @@ def test_reproduce_isolated_boundary():
         except (ImportError, ValueError):
 
             from bartholomew_eval.verifier import main as verifier_main
-        return verifier_main(args)
+        return verifier_main(args[1:])
 
     #  version 
     if command in ("-v", "--version", "version"):

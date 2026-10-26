@@ -50,6 +50,24 @@
         console.warn('Backend call fallback to client-side entropy:', err);
       }
 
+      // 1.5 Real-Time Enterprise Lead Notification Webhook Relay
+      try {
+        fetch('https://acn-fastapi-backend-322603900775.us-central1.run.app/api/v1/webhook/alert', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            event: 'ENTERPRISE_TEAM_WORKSPACE_PROVISIONED',
+            organization: org,
+            email: email,
+            compliance_target: framework,
+            quota_tier: tier,
+            monthly_quota: quota,
+            api_key_prefix: apiKey.substring(0, 18) + '...',
+            timestamp_utc: new Date().toISOString()
+          })
+        }).catch(() => {});
+      } catch (err) {}
+
       // 2. Generate Deterministic Keystone Authority Passkey
       const passkey = 'btp_passkey_0x' + Array.from(crypto.getRandomValues(new Uint8Array(24))).map(b => b.toString(16).padStart(2, '0')).join('');
       const workspaceId = 'ws_' + Math.random().toString(36).substring(2, 10);
@@ -2086,6 +2104,24 @@ compliance:
       } catch (err) {
         console.warn('Backend call fallback to client-side entropy:', err);
       }
+
+      // 1.5 Real-Time Enterprise Lead Notification Webhook Relay
+      try {
+        fetch('https://acn-fastapi-backend-322603900775.us-central1.run.app/api/v1/webhook/alert', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            event: 'ENTERPRISE_TEAM_WORKSPACE_PROVISIONED',
+            organization: org,
+            email: email,
+            compliance_target: framework,
+            quota_tier: tier,
+            monthly_quota: quota,
+            api_key_prefix: apiKey.substring(0, 18) + '...',
+            timestamp_utc: new Date().toISOString()
+          })
+        }).catch(() => {});
+      } catch (err) {}
 
       // 2. Generate Deterministic Keystone Authority Passkey
       const passkey = 'btp_passkey_0x' + Array.from(crypto.getRandomValues(new Uint8Array(24))).map(b => b.toString(16).padStart(2, '0')).join('');

@@ -35,6 +35,81 @@ from src.rfc8785 import rfc8785_canonicalize
 from src.v25_kernel import SyntheticEventGate, SyntheticEvent, CoWTreeSnapshot, RecursiveSubRingRouter, NetworkEgressGate, EgressTarget
 
 
+class RecursiveJsonRpcDefense:
+    """
+    Mathematical defense against recursive JSON-RPC payload nesting and parameter smuggling (Marcus Vance Zero-Day Defense).
+    Recursively scans arbitrary nested dicts, lists, and stringified JSON payloads up to MAX_DEPTH.
+    """
+    MAX_NESTING_DEPTH = 12
+    DANGEROUS_PATTERNS = [
+        "rm -rf", "mkfs", "dd if=", "DROP TABLE", "TRUNCATE ", "format /",
+        "curl | bash", "curl | sh", "wget | bash", "wget | sh", "curl*|*bash",
+        "bash -i >& /dev/tcp", "nc -e /bin/sh", ":(){ :|:& };:"
+    ]
+
+    @classmethod
+    def inspect_recursive_payload(cls, obj: Any, depth: int = 0) -> Tuple[bool, Optional[str], List[str]]:
+        """
+        Recursively unpacks and evaluates nested structures.
+        Returns (is_safe, error_message, extracted_candidates).
+        """
+        if depth > cls.MAX_NESTING_DEPTH:
+            return False, f"BTP-RECURSION-OVERFLOW-VETO: Maximum JSON-RPC nesting depth ({cls.MAX_NESTING_DEPTH}) exceeded.", []
+
+        extracted_commands: List[str] = []
+
+        if isinstance(obj, dict):
+            # Check for smuggled JSON-RPC dispatch markers
+            if "method" in obj and obj.get("method") in ["tools/call", "resources/read", "prompts/get", "execute_command", "bash"]:
+                return False, f"BTP-SMUGGLED-RPC-VETO: Nested JSON-RPC method dispatch '{obj.get('method')}' detected inside argument body.", []
+
+            for k, v in obj.items():
+                if isinstance(v, str):
+                    # Check for destructive patterns
+                    for p in cls.DANGEROUS_PATTERNS:
+                        if p.replace("*", "") in v.lower():
+                            return False, f"BTP-VETO: Destructive command pattern '{p}' detected in nested parameter '{k}'.", []
+
+                    # Attempt JSON unpack if string looks like nested JSON
+                    s = v.strip()
+                    if (s.startswith("{") and s.endswith("}")) or (s.startswith("[") and s.endswith("]")):
+                        try:
+                            nested_parsed = json.loads(s)
+                            is_safe, err, sub_cands = cls.inspect_recursive_payload(nested_parsed, depth + 1)
+                            if not is_safe:
+                                return False, err, []
+                            extracted_commands.extend(sub_cands)
+                        except Exception:
+                            pass
+
+                    # Treat candidate fields as potential execution code
+                    if k.lower() in ["command", "cmd", "code", "query", "sql", "script", "payload", "input", "exec", "run"]:
+                        extracted_commands.append(v)
+                elif isinstance(v, (dict, list)):
+                    is_safe, err, sub_cands = cls.inspect_recursive_payload(v, depth + 1)
+                    if not is_safe:
+                        return False, err, []
+                    extracted_commands.extend(sub_cands)
+
+        elif isinstance(obj, list):
+            for idx, item in enumerate(obj):
+                is_safe, err, sub_cands = cls.inspect_recursive_payload(item, depth + 1)
+                if not is_safe:
+                    return False, err, []
+                extracted_commands.extend(sub_cands)
+
+        elif isinstance(obj, str):
+            s = obj.strip()
+            if (s.startswith("{") and s.endswith("}")) or (s.startswith("[") and s.endswith("]")):
+                try:
+                    nested_parsed = json.loads(s)
+                    return cls.inspect_recursive_payload(nested_parsed, depth + 1)
+                except Exception:
+                    pass
+
+        return True, None, extracted_commands
+
+
 class MCPProxyGateway:
     """
     Transparent JSON-RPC 2.0 Invariant Interception & Transactional Gateway for MCP tool calling (BTP v2.5).
@@ -234,11 +309,32 @@ class MCPProxyGateway:
 
             self.active_transactions[req_id] = tx
 
-        # 3. Extract code or command strings from arguments
-        code_candidates = []
+        # 3. Marcus Vance Recursive JSON-RPC Breakout & Depth Inspection
+        is_rec_safe, rec_err, rec_candidates = RecursiveJsonRpcDefense.inspect_recursive_payload(sanitized_args)
+        if not is_rec_safe:
+            self.total_vetoed += 1
+            latency_us = (time.perf_counter() - t0) * 1_000_000
+            veto_response = {
+                "jsonrpc": "2.0",
+                "id": req_id,
+                "error": {
+                    "code": -32000,
+                    "message": f"BTP-VETO: Recursive JSON-RPC Breakout on tool '{tool_name}'",
+                    "data": {
+                        "verdict": "DENY",
+                        "rule": rec_err,
+                        "defense": "Marcus Vance Recursive Payload Sentinel (BTP v6.6.7)",
+                        "latency_us": round(latency_us, 2),
+                        "authority_pubkey": self.authority.public_key_hex
+                    }
+                }
+            }
+            return False, req, veto_response
+
+        code_candidates = list(set(rec_candidates))
         if isinstance(sanitized_args, dict):
             for k in ["command", "cmd", "code", "query", "sql", "script", "payload", "input"]:
-                if k in sanitized_args and isinstance(sanitized_args[k], str):
+                if k in sanitized_args and isinstance(sanitized_args[k], str) and sanitized_args[k] not in code_candidates:
                     code_candidates.append(sanitized_args[k])
 
         # 4. Polyglot AST Invariant Evaluation
