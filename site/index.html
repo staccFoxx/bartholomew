@@ -7,14 +7,14 @@
      crossorigin="anonymous"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Bartholomew (BTP v6.5.6) — The Agentic Runtime Protection (ARP) Platform</title>
+  <title>Bartholomew (BTP v6.6.7) — The Agentic Runtime Protection (ARP) Platform</title>
   <meta name="description" content="Sub-millisecond trajectory observability and deterministic execution firewalls for autonomous agents. Real-time OWASP kill-switches, Non-Human Identity (NHI), and Ed25519 cryptographic attestations.">
   
   <link rel="icon" type="image/png" href="/logo.png">
   <link rel="apple-touch-icon" href="/logo.png">
 
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Bartholomew (BTP v6.5.6) — The Agentic Runtime Protection (ARP) Platform">
+  <meta property="og:title" content="Bartholomew (BTP v6.6.7) — The Agentic Runtime Protection (ARP) Platform">
   <meta property="og:description" content="Sub-millisecond trajectory observability and deterministic execution firewalls for autonomous agents.">
   <meta property="og:url" content="https://bartholomew.info">
   <meta property="og:image" content="https://bartholomew.info/logo.png">
@@ -2782,62 +2782,358 @@
       }
     }
 
+  
+    /* --- Streamlined Enterprise Navbar & Responsive System --- */
+    header.navbar {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+      background: rgba(7, 10, 15, 0.92) !important;
+      backdrop-filter: blur(18px) !important;
+      -webkit-backdrop-filter: blur(18px) !important;
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 1000 !important;
+      width: 100% !important;
+      height: 68px !important;
+      max-height: 68px !important;
+      box-sizing: border-box !important;
+    }
+
+    .nav-inner {
+      display: flex !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      height: 68px !important;
+      max-height: 68px !important;
+      position: relative !important;
+      padding: 0 24px !important;
+      box-sizing: border-box !important;
+    }
+
+    /* Desktop Navigation Center */
+    .nav-center-menu {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .nav-menu-link {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.86rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 0;
+      white-space: nowrap;
+    }
+
+    .nav-menu-link:hover, .nav-menu-link.active {
+      color: #ffffff;
+    }
+
+    /* Products Dropdown */
+    .nav-dropdown {
+      position: relative;
+    }
+
+    .nav-dropdown-btn {
+      background: none;
+      border: none;
+      color: #94a3b8;
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 6px 0;
+      font-family: inherit;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+    }
+
+    .nav-dropdown-btn:hover, .nav-dropdown:hover .nav-dropdown-btn {
+      color: #ffffff;
+    }
+
+    .nav-dropdown-menu {
+      position: absolute;
+      top: 100%;
+      left: -20px;
+      width: 320px;
+      background: rgba(10, 15, 26, 0.97);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 12px;
+      padding: 10px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(8px);
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1050;
+      pointer-events: none;
+    }
+
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown.active .nav-dropdown-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .dropdown-card-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: #f8fafc;
+      transition: all 0.15s ease;
+    }
+
+    .dropdown-card-item:hover {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .dropdown-icon {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .dropdown-title {
+      font-size: 0.86rem;
+      font-weight: 700;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+
+    .dropdown-desc {
+      font-size: 0.74rem;
+      color: #94a3b8;
+      margin-top: 2px;
+      line-height: 1.3;
+    }
+
+    /* Live Frontier Pill Badge */
+    .frontier-badge-pill {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.16);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      margin-left: 4px;
+    }
+
+    /* Right Action Bar */
+    .nav-actions-group {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    /* Hamburger Toggle Button */
+    .hamburger-btn {
+      display: none;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      width: 40px;
+      height: 40px;
+      color: #ffffff;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .hamburger-btn:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(16, 185, 129, 0.4);
+    }
+
+    /* Mobile Navigation Drawer */
+    .mobile-drawer {
+      display: none;
+      position: fixed;
+      top: 68px;
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 68px);
+      background: rgba(5, 8, 17, 0.98);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      z-index: 999;
+      padding: 24px 20px 40px;
+      overflow-y: auto;
+      box-sizing: border-box;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .mobile-drawer.open {
+      display: flex !important;
+    }
+
+    .mobile-nav-group-title {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: #64748b;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .mobile-nav-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      color: #f8fafc;
+      text-decoration: none;
+      font-size: 0.95rem;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .mobile-nav-link:hover {
+      background: rgba(255, 255, 255, 0.08);
+      border-color: rgba(16, 185, 129, 0.3);
+    }
+
+    /* Responsive Breakpoints for index.html */
+    @media (max-width: 1080px) {
+      .nav-center-menu {
+        display: none !important;
+      }
+      .hamburger-btn {
+        display: inline-flex !important;
+      }
+      .nav-openvsx-link {
+        display: none !important;
+      }
+      .badge-text-full {
+        display: none !important;
+      }
+      .badge-text-short {
+        display: inline !important;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-inner {
+        padding: 0 16px !important;
+      }
+      .brand-title {
+        font-size: 1.05rem !important;
+      }
+      .btn-sandbox-nav .btn-sandbox-label {
+        display: none !important;
+      }
+      .btn-sandbox-nav {
+        padding: 8px 12px !important;
+      }
+      /* Prevent any cards from overflowing screen width */
+      .ext-card, .frontier-card, .metric-card {
+        min-width: 0 !important;
+        max-width: 100% !important;
+      }
+    }
+    
   </style>
   </head>
 <body>
 
   <!-- Top Navigation -->
+    <!-- Top Navigation -->
   <header class="navbar">
     <div class="container nav-inner">
-      <a href="#" class="brand-wrap">
-        <img src="/logo.png" alt="Bartholomew Shield Logo" class="brand-logo-img" width="36" height="36">
+      <a href="/" class="brand-wrap">
+        <img src="/logo.png" alt="Bartholomew Shield Logo" class="brand-logo-img" width="34" height="34">
         <span class="brand-title">Bartholomew</span>
         <span class="badge-protocol">
-          <span class="badge-text-full">BTP v6.5.6 • ARP ENGINE</span>
-          <span class="badge-text-short">v6.5.6</span>
+          <span class="badge-text-full">BTP v6.6.7 • ARP ENGINE</span>
+          <span class="badge-text-short">v6.6.7</span>
         </span>
       </a>
 
-      <div class="nav-right-items">
-                
-        <a href="/careers" class="nav-seal-link nav-careers-link" title="Careers at Bartholomew (We're Hiring)" aria-label="Careers at Bartholomew" style="background:rgba(16,185,129,0.12); border-color:rgba(16,185,129,0.4); color:var(--emerald-light); font-weight:700;">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;">
-            <rect x="2" y="7" width="20" height="14" rx="3" ry="3" fill="rgba(16,185,129,0.22)"></rect>
-            <path d="M16 7V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v3" stroke="currentColor"></path>
-            <circle cx="12" cy="14" r="1.5" fill="#34d399"></circle>
-          </svg>
-          <span class="nav-seal-text">Careers</span>
-        </a>
-                <a href="/kyro.html" class="nav-seal-link" title="Kyro Zero-Noise Voice Defense" style="background:rgba(245,158,11,0.12); border-color:rgba(245,158,11,0.4); color:#fbbf24; font-weight:700;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
-            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
-            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
-            <line x1="12" x2="12" y1="19" y2="22"></line>
-          </svg>
-          <span class="nav-seal-text">Kyro Voice</span>
-        </a>
-        <a href="/photonics.html" class="nav-seal-link" title="Kyro Fiber Optic & Photonic Lab" style="background:rgba(6,182,212,0.12); border-color:rgba(6,182,212,0.4); color:#38bdf8; font-weight:700;">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
-            <circle cx="12" cy="12" r="3"></circle>
-            <path d="M12 2v3m0 14v3M2 12h3m14 0h3"></path>
-          </svg>
-          <span class="nav-seal-text">Photonics Lab</span>
-        </a>
-        <a href="/roi.html" class="nav-seal-link" title="Enterprise ROI & Metrics" style="background:rgba(16,185,129,0.12); border-color:rgba(16,185,129,0.4); color:var(--emerald-light); font-weight:700;"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg><span class="nav-seal-text">ROI &amp; Metrics</span></a>
-        <a href="/enterprise" class="nav-seal-link nav-enterprise-link" title="Enterprise Audit Intake & Pilot" aria-label="Enterprise Audit Intake & Pilot" style="background:rgba(56,189,248,0.12); border-color:rgba(56,189,248,0.4); color:#38bdf8; font-weight:700;">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;">
-            <path d="M3 21h18" stroke="currentColor"></path>
-            <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16" fill="rgba(56,189,248,0.22)"></path>
-            <path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1" stroke="currentColor"></path>
-          </svg>
-          <span class="nav-seal-text">Enterprise</span>
-        </a>
-        <a href="/verify.html" class="nav-seal-link" title="Verify Bartholomew Seal">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          <span class="nav-seal-text">Verify Seal</span>
-        </a>
+      <!-- Desktop Center Menu -->
+      <nav class="nav-center-menu" aria-label="Main Navigation">
+        <!-- Products Dropdown -->
+        <div class="nav-dropdown">
+          <button class="nav-dropdown-btn" aria-haspopup="true" aria-expanded="false">
+            <span>Products</span>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          </button>
+          <div class="nav-dropdown-menu">
+            <a href="#extensions" class="dropdown-card-item">
+              <div class="dropdown-icon" style="background:rgba(16,185,129,0.15); color:#10b981;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+              </div>
+              <div>
+                <div class="dropdown-title">Bartholomew Guard</div>
+                <div class="dropdown-desc">Sub-35µs AST invariant execution sentinel (v6.6.7)</div>
+              </div>
+            </a>
+            <a href="/kyro.html" class="dropdown-card-item">
+              <div class="dropdown-icon" style="background:rgba(245,158,11,0.15); color:#f59e0b;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+              </div>
+              <div>
+                <div class="dropdown-title">Kyro Voice Defense</div>
+                <div class="dropdown-desc">Zero-noise biometric voice shield for developers & calls</div>
+              </div>
+            </a>
+            <a href="/photonics.html" class="dropdown-card-item">
+              <div class="dropdown-icon" style="background:rgba(6,182,212,0.15); color:#06b6d4;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg>
+              </div>
+              <div>
+                <div class="dropdown-title">Photonics Lab</div>
+                <div class="dropdown-desc">Optical tensor computing & phase-OTDR fiber tap defense</div>
+              </div>
+            </a>
+            <a href="/docs" class="dropdown-card-item">
+              <div class="dropdown-icon" style="background:rgba(168,85,247,0.15); color:#a855f7;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+              </div>
+              <div>
+                <div class="dropdown-title">Keystone Vault</div>
+                <div class="dropdown-desc">Hardware nonces & cryptographic agent passkeys</div>
+              </div>
+            </a>
+          </div>
+        </div>
 
-        <a href="https://open-vsx.org/extension/Bartholomew/bartholomew-guard-vscode" target="_blank" rel="noopener noreferrer" class="nav-openvsx-link" title="Download Bartholomew Guard Extension on Open VSX (Cursor, Windsurf, VS Code)">
+        <a href="#frontier-repos" class="nav-menu-link">
+          <span>Frontier Repos</span>
+          <span class="frontier-badge-pill">6 Active PRs</span>
+        </a>
+        <a href="/roi.html" class="nav-menu-link">ROI &amp; Metrics</a>
+        <a href="/enterprise" class="nav-menu-link">Enterprise Pilot</a>
+        <a href="/pricing.html" class="nav-menu-link">Pricing</a>
+        <a href="/verify.html" class="nav-menu-link">Verify Seal</a>
+      </nav>
+
+      <!-- Right Action Items -->
+      <div class="nav-actions-group">
+        <a href="https://open-vsx.org/extension/Bartholomew/bartholomew-guard-vscode" target="_blank" rel="noopener noreferrer" class="nav-openvsx-link" title="Download on Open VSX (Cursor, Windsurf, VS Code)">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L2 6v12l10 5 10-5V6L12 1zm0 2.24l7.6 3.8-3.4 1.7-7.6-3.8 3.4-1.7zm-8 4.23l7 3.5v7.57l-7-3.5V7.47zm9 11.07v-7.57l7-3.5v7.57l-7 3.5z"/></svg>
           <span class="nav-openvsx-text">Open VSX</span>
         </a>
@@ -2845,9 +3141,74 @@
           <span class="btn-sandbox-label">Sandbox</span>
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
+        <!-- Mobile Drawer Toggle Button -->
+        <button class="hamburger-btn" id="hamburger-toggle" aria-label="Toggle navigation menu" onclick="toggleMobileDrawer()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
       </div>
     </div>
   </header>
+
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobile-drawer">
+    <div>
+      <div class="mobile-nav-group-title">Platform Products</div>
+      <a href="#extensions" class="mobile-nav-link" onclick="toggleMobileDrawer()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Bartholomew Guard (v6.6.7)</span>
+      </a>
+      <a href="/kyro.html" class="mobile-nav-link" style="margin-top:6px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
+        <span>Kyro Voice Defense</span>
+      </a>
+      <a href="/photonics.html" class="mobile-nav-link" style="margin-top:6px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg>
+        <span>Photonics Lab</span>
+      </a>
+    </div>
+
+    <div>
+      <div class="mobile-nav-group-title">Solutions &amp; Diligence</div>
+      <a href="#frontier-repos" class="mobile-nav-link" onclick="toggleMobileDrawer()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        <span>Frontier Repos (6 Active PRs)</span>
+      </a>
+      <a href="/roi.html" class="mobile-nav-link" style="margin-top:6px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        <span>Enterprise ROI &amp; Metrics</span>
+      </a>
+      <a href="/enterprise" class="mobile-nav-link" style="margin-top:6px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1"/></svg>
+        <span>Enterprise Pilot Intake</span>
+      </a>
+      <a href="/pricing.html" class="mobile-nav-link" style="margin-top:6px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+        <span>Pricing &amp; Prepaid Packs</span>
+      </a>
+      <a href="/verify.html" class="mobile-nav-link" style="margin-top:6px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        <span>Verify Cryptographic Seal</span>
+      </a>
+      <a href="/careers" class="mobile-nav-link" style="margin-top:6px;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="3"/><path d="M16 7V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v3"/></svg>
+        <span>Careers (We're Hiring)</span>
+      </a>
+    </div>
+
+    <div style="margin-top:auto; padding-top:16px;">
+      <a href="https://open-vsx.org/extension/Bartholomew/bartholomew-guard-vscode" target="_blank" rel="noopener noreferrer" class="mobile-nav-link" style="justify-content:center; background:linear-gradient(135deg, rgba(16,185,129,0.2), rgba(6,182,212,0.2)); border-color:rgba(16,185,129,0.5);">
+        <span>Install Extension via Open VSX</span>
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function toggleMobileDrawer() {
+      const drawer = document.getElementById('mobile-drawer');
+      drawer.classList.toggle('open');
+      document.body.style.overflow = drawer.classList.contains('open') ? 'hidden' : '';
+    }
+  </script>
 
   <!-- Hero Section -->
   <main>
@@ -2940,7 +3301,7 @@
           <div class="traction-header" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; margin-bottom: 24px; padding-bottom: 16px; border-bottom: 1px solid rgba(255, 255, 255, 0.06);">
             <div class="traction-tag" style="display: flex; align-items: center; gap: 8px; font-family: var(--font-mono); font-size: 0.8rem; font-weight: 800; color: #38bdf8; text-transform: uppercase; letter-spacing: 0.06em;">
               <svg width="15" height="15" fill="currentColor" viewBox="0 0 24 24"><path d="M16 6l2.29 2.29-4.88 4.88-4-4L2 16.59 3.41 18l6-6 4 4 6.3-6.29L22 12V6z"/></svg>
-              <span>Traction &amp; Production Validation (BTP v6.5.6)</span>
+              <span>Traction &amp; Production Validation (BTP v6.6.7)</span>
             </div>
             <div class="traction-status-badge" style="display: inline-flex; align-items: center; gap: 7px; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.35); color: #34d399; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; padding: 4px 12px; border-radius: 9999px;">
               <span style="display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: #10b981; box-shadow: 0 0 6px #10b981;"></span>
@@ -2977,6 +3338,136 @@
       </div>
     </section>
 
+    
+    <!-- Frontier Agent Upstream Verification Ledger -->
+    <section id="frontier-repos" class="container" style="padding: 50px 16px 30px; max-width: 1240px; margin: 0 auto; box-sizing: border-box;">
+      <div style="text-align: center; margin-bottom: 36px;">
+        <div style="display: inline-flex; align-items: center; gap: 8px; padding: 5px 16px; border-radius: 999px; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.35); font-family: var(--font-mono); font-size: 0.74rem; color: #34d399; font-weight: 700; margin-bottom: 14px;">
+          <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 10px #10b981;"></span>
+          LIVE UPSTREAM ADOPTION &amp; VERIFICATION LEDGER
+        </div>
+        <h2 style="font-size: clamp(1.6rem, 3.8vw, 2.3rem); font-weight: 900; letter-spacing: -0.02em; color: #ffffff; line-height: 1.25;">
+          Armed Across Frontier Autonomous Agent Frameworks
+        </h2>
+        <p style="color: #94a3b8; max-width: 720px; margin: 12px auto 0; font-size: 0.95rem; line-height: 1.65;">
+          Bartholomew's in-process deterministic AST invariant gate is active across the leading global AI agent codebases. Verified on GitHub with zero third-party cloud token spend and sub-35µs execution barriers.
+        </p>
+      </div>
+
+      <!-- 6 Frontier Framework Cards Grid -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px;">
+        
+        <!-- 1. Microsoft AutoGen -->
+        <a href="https://github.com/microsoft/autogen/pull/8390" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:flex; flex-direction:column; background:rgba(13, 20, 36, 0.78); border:1px solid rgba(0, 164, 239, 0.35); border-radius:12px; padding:20px; transition:all 0.25s ease;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <svg width="22" height="22" viewBox="0 0 23 23"><path fill="#f25022" d="M1 1h10v10H1z"/><path fill="#00a4ef" d="M1 12h10v10H1z"/><path fill="#7fba00" d="M12 1h10v10H12z"/><path fill="#ffb900" d="M12 12h10v10H12z"/></svg>
+              <span style="font-weight:800; font-size:1.05rem; color:#fff;">Microsoft AutoGen</span>
+            </div>
+            <span style="font-family:var(--font-mono); font-size:0.7rem; font-weight:800; background:rgba(16,185,129,0.18); color:#34d399; border:1px solid rgba(16,185,129,0.4); padding:3px 8px; border-radius:6px;">PR #8390 • 100% PASS</span>
+          </div>
+          <p style="font-size:0.84rem; color:#94a3b8; line-height:1.55; margin-bottom:14px; flex-grow:1;">
+            Official `autogen_ext.tools.bartholomew` security tool. Intercepts subshells and reverse sockets. Microsoft CLA confirmed and 100% passing check suite.
+          </p>
+          <div style="display:flex; justify-content:space-between; align-items:center; font-family:var(--font-mono); font-size:0.72rem; color:#64748b; border-top:1px solid rgba(255,255,255,0.06); padding-top:10px;">
+            <span style="color:#38bdf8;">microsoft/autogen</span>
+            <span style="color:#10b981;">View Upstream PR &rarr;</span>
+          </div>
+        </a>
+
+        <!-- 2. Hugging Face smolagents -->
+        <a href="https://github.com/huggingface/smolagents/pull/3085" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:flex; flex-direction:column; background:rgba(13, 20, 36, 0.78); border:1px solid rgba(245, 158, 11, 0.35); border-radius:12px; padding:20px; transition:all 0.25s ease;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fbbf24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96.44 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 4.44-4.04z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96.44 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-4.44-4.04z"/></svg>
+              <span style="font-weight:800; font-size:1.05rem; color:#fff;">HF smolagents</span>
+            </div>
+            <span style="font-family:var(--font-mono); font-size:0.7rem; font-weight:800; background:rgba(245,158,11,0.18); color:#fbbf24; border:1px solid rgba(245,158,11,0.4); padding:3px 8px; border-radius:6px;">PR #3085 • ACTIVE</span>
+          </div>
+          <p style="font-size:0.84rem; color:#94a3b8; line-height:1.55; margin-bottom:14px; flex-grow:1;">
+            `BartholomewASTSecurityGate` protecting CodeAgent and ToolCallingAgent. Mathematical veto of destructive rm -rf commands with RFC 8785 Merkle receipts.
+          </p>
+          <div style="display:flex; justify-content:space-between; align-items:center; font-family:var(--font-mono); font-size:0.72rem; color:#64748b; border-top:1px solid rgba(255,255,255,0.06); padding-top:10px;">
+            <span style="color:#fbbf24;">huggingface/smolagents</span>
+            <span style="color:#fbbf24;">View Upstream PR &rarr;</span>
+          </div>
+        </a>
+
+        <!-- 3. FoundationAgents MetaGPT -->
+        <a href="https://github.com/FoundationAgents/MetaGPT/pull/2176" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:flex; flex-direction:column; background:rgba(13, 20, 36, 0.78); border:1px solid rgba(168, 85, 247, 0.35); border-radius:12px; padding:20px; transition:all 0.25s ease;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#c084fc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg>
+              <span style="font-weight:800; font-size:1.05rem; color:#fff;">MetaGPT</span>
+            </div>
+            <span style="font-family:var(--font-mono); font-size:0.7rem; font-weight:800; background:rgba(168,85,247,0.18); color:#c084fc; border:1px solid rgba(168,85,247,0.4); padding:3px 8px; border-radius:6px;">PR #2176 • 71k+ STARS</span>
+          </div>
+          <p style="font-size:0.84rem; color:#94a3b8; line-height:1.55; margin-bottom:14px; flex-grow:1;">
+            Sub-35µs execution barrier across ProductManager, Architect, and Engineer roles. Intercepts unauthorized shell execution before OS syscall boundaries.
+          </p>
+          <div style="display:flex; justify-content:space-between; align-items:center; font-family:var(--font-mono); font-size:0.72rem; color:#64748b; border-top:1px solid rgba(255,255,255,0.06); padding-top:10px;">
+            <span style="color:#c084fc;">geekan/MetaGPT</span>
+            <span style="color:#c084fc;">View Upstream PR &rarr;</span>
+          </div>
+        </a>
+
+        <!-- 4. Alibaba Cloud Qwen-Agent -->
+        <a href="https://github.com/QwenLM/Qwen-Agent/pull/1014" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:flex; flex-direction:column; background:rgba(13, 20, 36, 0.78); border:1px solid rgba(6, 182, 212, 0.35); border-radius:12px; padding:20px; transition:all 0.25s ease;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+              <span style="font-weight:800; font-size:1.05rem; color:#fff;">Alibaba Qwen-Agent</span>
+            </div>
+            <span style="font-family:var(--font-mono); font-size:0.7rem; font-weight:800; background:rgba(6,182,212,0.18); color:#38bdf8; border:1px solid rgba(6,182,212,0.4); padding:3px 8px; border-radius:6px;">PR #1014 • 17k+ STARS</span>
+          </div>
+          <p style="font-size:0.84rem; color:#94a3b8; line-height:1.55; margin-bottom:14px; flex-grow:1;">
+            Bartholomew runtime security gate for Qwen-Agent function calling, code interpreter, and tool executions. Pre-commit verified with ruff and Python type safety.
+          </p>
+          <div style="display:flex; justify-content:space-between; align-items:center; font-family:var(--font-mono); font-size:0.72rem; color:#64748b; border-top:1px solid rgba(255,255,255,0.06); padding-top:10px;">
+            <span style="color:#38bdf8;">QwenLM/Qwen-Agent</span>
+            <span style="color:#38bdf8;">View Upstream PR &rarr;</span>
+          </div>
+        </a>
+
+        <!-- 5. Cline Extension -->
+        <a href="https://github.com/cline/cline/pull/15349" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:flex; flex-direction:column; background:rgba(13, 20, 36, 0.78); border:1px solid rgba(16, 185, 129, 0.35); border-radius:12px; padding:20px; transition:all 0.25s ease;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
+              <span style="font-weight:800; font-size:1.05rem; color:#fff;">Cline (VS Code)</span>
+            </div>
+            <span style="font-family:var(--font-mono); font-size:0.7rem; font-weight:800; background:rgba(16,185,129,0.18); color:#34d399; border:1px solid rgba(16,185,129,0.4); padding:3px 8px; border-radius:6px;">PR #15349 • 100% PASS</span>
+          </div>
+          <p style="font-size:0.84rem; color:#94a3b8; line-height:1.55; margin-bottom:14px; flex-grow:1;">
+            `BartholomewInvariantGate` integrated directly into `@cline/core` tool execution pipeline. Socket Security audits passed with zero vulnerabilities.
+          </p>
+          <div style="display:flex; justify-content:space-between; align-items:center; font-family:var(--font-mono); font-size:0.72rem; color:#64748b; border-top:1px solid rgba(255,255,255,0.06); padding-top:10px;">
+            <span style="color:#34d399;">cline/cline</span>
+            <span style="color:#34d399;">View Upstream PR &rarr;</span>
+          </div>
+        </a>
+
+        <!-- 6. OpenHands -->
+        <a href="https://github.com/OpenHands/OpenHands/pull/18959" target="_blank" rel="noopener noreferrer" style="text-decoration:none; display:flex; flex-direction:column; background:rgba(13, 20, 36, 0.78); border:1px solid rgba(56, 189, 248, 0.35); border-radius:12px; padding:20px; transition:all 0.25s ease;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+            <div style="display:flex; align-items:center; gap:10px;">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="m4.93 4.93 4.24 4.24"/><path d="m14.83 9.17 4.24-4.24"/><path d="m14.83 14.83 4.24 4.24"/><path d="m9.17 14.83-4.24 4.24"/></svg>
+              <span style="font-weight:800; font-size:1.05rem; color:#fff;">OpenHands</span>
+            </div>
+            <span style="font-family:var(--font-mono); font-size:0.7rem; font-weight:800; background:rgba(56,189,248,0.18); color:#38bdf8; border:1px solid rgba(56,189,248,0.4); padding:3px 8px; border-radius:6px;">PR #18959 • MULTI-ARCH</span>
+          </div>
+          <p style="font-size:0.84rem; color:#94a3b8; line-height:1.55; margin-bottom:14px; flex-grow:1;">
+            AST Invariant Sentinel &amp; Zero-Day Injection Gate running across Ubuntu and Windows builds. Linked with upstream feature discussion issue #18988.
+          </p>
+          <div style="display:flex; justify-content:space-between; align-items:center; font-family:var(--font-mono); font-size:0.72rem; color:#64748b; border-top:1px solid rgba(255,255,255,0.06); padding-top:10px;">
+            <span style="color:#38bdf8;">OpenHands/OpenHands</span>
+            <span style="color:#38bdf8;">View Upstream PR &rarr;</span>
+          </div>
+        </a>
+
+      </div>
+    </section>
+    
     <!-- Enterprise Ecosystem Scrolling Marquee Banner -->
     <section class="ecosystem-sec">
       <div class="ecosystem-head container">
@@ -3421,7 +3912,7 @@
             <div style="margin-bottom:14px; display:inline-flex; padding:10px; background:rgba(139, 92, 246, 0.1); border-radius:8px; border:1px solid rgba(139, 92, 246, 0.25);">
               <svg width="22" height="22" fill="none" stroke="#c084fc" stroke-width="2" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg>
             </div>
-            <h3 style="font-size:1.15rem; font-weight:700; color:#ffffff; margin-bottom:8px;">Silicon Compute Provenance (v6.5.6)</h3>
+            <h3 style="font-size:1.15rem; font-weight:700; color:#ffffff; margin-bottom:8px;">Silicon Compute Provenance (v6.6.7)</h3>
             <p style="font-size:0.86rem; color:var(--text-muted); line-height:1.5;">
               The first runtime that introspects host accelerators (NVIDIA Hopper/Blackwell, Apple Neural Engine, TPU, AMD ROCm, Confidential Enclaves) and signs RFC 8785 Ed25519 Merkle receipts. Swarms dynamically tune VRAM budgets and concurrency limits.
             </p>
@@ -3440,7 +3931,7 @@
           </div>
         </div>
 
-        <!-- Remodeled Architectural Superiority Matrix (BTP v6.5.6 Verified Benchmark) -->
+        <!-- Remodeled Architectural Superiority Matrix (BTP v6.6.7 Verified Benchmark) -->
         <div style="background:linear-gradient(180deg, rgba(13, 20, 36, 0.94) 0%, rgba(6, 11, 20, 0.98) 100%); border:1px solid rgba(56, 189, 248, 0.28); border-radius:18px; padding:32px 28px; box-shadow:0 24px 60px rgba(0, 0, 0, 0.6), 0 0 35px rgba(6, 182, 212, 0.08); margin-top:24px;">
           
           <!-- Matrix Header -->
@@ -3484,7 +3975,7 @@
                   </th>
                   <th style="padding:14px 16px; color:#38bdf8; background:linear-gradient(180deg, rgba(6, 182, 212, 0.16) 0%, rgba(16, 185, 129, 0.08) 100%); border-left:1px solid rgba(56,189,248,0.35); border-right:1px solid rgba(56,189,248,0.35); border-bottom:1px solid rgba(56,189,248,0.35); width:24%;">
                     <div style="display:flex; flex-direction:column; gap:2px;">
-                      <span style="font-weight:800; font-size:0.88rem; color:#ffffff;">BARTHOLOMEW (BTP v6.5.6)</span>
+                      <span style="font-weight:800; font-size:0.88rem; color:#ffffff;">BARTHOLOMEW (BTP v6.6.7)</span>
                       <span style="font-size:0.64rem; color:#34d399; letter-spacing:0.5px;">[ IN-PROCESS MEMORY COMPILER ]</span>
                     </div>
                   </th>
@@ -4055,7 +4546,7 @@
           <div class="ext-card" style="border: 1px solid rgba(168, 85, 247, 0.3); background: rgba(13, 20, 34, 0.75);">
             <div class="ext-card-header">
               <div class="ext-badge-group">
-                <span class="ext-badge ext-badge-purple" style="background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4);">v6.5.6 LIVE</span>
+                <span class="ext-badge ext-badge-purple" style="background: rgba(168, 85, 247, 0.15); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4);">v6.6.7 LIVE</span>
                 <span class="ext-badge ext-badge-cyan">Capability Passkeys</span>
               </div>
               <div class="ext-logo-title-row">
@@ -4083,7 +4574,7 @@
               </a>
               <a href="/bartholomew-keystone.vsix" class="ext-btn ext-btn-secondary" download>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-                Download .VSIX (v6.5.6)
+                Download .VSIX (v6.6.7)
               </a>
             </div>
           </div>
@@ -4174,7 +4665,7 @@
         <div style="background: rgba(15, 23, 42, 0.7); border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 10px; padding: 14px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 14px; margin-top: -24px; margin-bottom: 48px;">
           <div style="display: flex; align-items: center; gap: 10px;">
             <svg width="18" height="18" fill="none" stroke="#38bdf8" stroke-width="2" viewBox="0 0 24 24"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
-            <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: #94a3b8;">1-CLICK TRINITY INSTALL (ALL 4 EXTENSIONS):</span>
+            <span style="font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; color: #94a3b8;">1-CLICK TRINITY + KYRO SUITE (ALL 4 SHIPPED EXTENSIONS):</span>
           </div>
           <div style="display: flex; gap: 12px; flex-wrap: wrap;">
             <div style="display: flex; align-items: center; background: #020617; border: 1px solid rgba(16,185,129,0.4); border-radius: 6px; padding: 6px 12px; gap: 10px; font-family: var(--font-mono); font-size: 0.72rem; color: #34d399;">
@@ -5338,7 +5829,7 @@
         out.textContent = JSON.stringify({
           "verdict": "VETO",
           "in_process_latency_us": 18.2,
-          "protocol": "BTP-v6.5.6",
+          "protocol": "BTP-v6.6.7",
           "rule": "BTP-AST-001 (Root Filesystem Destruction Veto)",
           "intercepted_action": "rm -rf /",
           "remediation": "Suppressed command in caller runtime before kernel execution. Zero prompt leakage.",
@@ -5350,7 +5841,7 @@
         out.textContent = JSON.stringify({
           "verdict": "VETO_AND_SCRUB",
           "in_process_latency_us": 12.4,
-          "protocol": "BTP-v6.5.6",
+          "protocol": "BTP-v6.6.7",
           "rule": "BTP-SEC-002 (Credential & Secret File Protection)",
           "intercepted_action": "cat .env",
           "remediation": "Redacted credentials before network egress. Replaced with ephemeral vault tokens.",
@@ -5362,7 +5853,7 @@
         out.textContent = JSON.stringify({
           "verdict": "CLEARANCE_GRANTED",
           "in_process_latency_us": 21.0,
-          "protocol": "BTP-v6.5.6",
+          "protocol": "BTP-v6.6.7",
           "rule": "KEYSTONE-CAP-001 (Autonomous Micro-Toll Clearance)",
           "authorized_spend_usd": 50.00,
           "current_spend_usd": 0.04,

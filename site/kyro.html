@@ -796,6 +796,85 @@
       .kpi-strip { grid-template-columns: 1fr; }
       .hero-h1 { font-size: 2.2rem; }
     }
+  
+    /* Mobile Responsive Enhancement for Kyro */
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      margin-bottom: 24px;
+      border-radius: var(--radius-md);
+    }
+
+    .hamburger-btn-kyro {
+      display: none;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      border-radius: 8px;
+      width: 38px;
+      height: 38px;
+      color: #ffffff;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    }
+
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none !important;
+      }
+      .hamburger-btn-kyro {
+        display: inline-flex !important;
+      }
+      .terminal-install-box {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
+        word-break: break-all !important;
+      }
+      .hero-actions {
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .hero-actions a {
+        width: 100% !important;
+        justify-content: center !important;
+      }
+    }
+
+    /* Kyro Mobile Drawer */
+    .mobile-drawer-kyro {
+      display: none;
+      position: fixed;
+      top: 60px;
+      left: 0;
+      width: 100%;
+      height: calc(100vh - 60px);
+      background: rgba(5, 8, 17, 0.98);
+      backdrop-filter: blur(20px);
+      z-index: 999;
+      padding: 24px 20px;
+      flex-direction: column;
+      gap: 14px;
+      overflow-y: auto;
+    }
+
+    .mobile-drawer-kyro.open {
+      display: flex !important;
+    }
+
+    .mobile-drawer-kyro a {
+      display: flex;
+      align-items: center;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 8px;
+      color: #fff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
   </style>
 </head>
 <body>
@@ -819,9 +898,28 @@
         <a href="https://open-vsx.org/extension/Bartholomew/cyphervoice-vscode" target="_blank" rel="noopener noreferrer" class="btn-nav-install">
           Install Extension
         </a>
+        <button class="hamburger-btn-kyro" id="hamburger-kyro" aria-label="Toggle Navigation" onclick="toggleKyroMenu()">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
       </nav>
     </div>
   </header>
+      <div class="mobile-drawer-kyro" id="mobile-drawer-kyro">
+        <a href="/" onclick="toggleKyroMenu()">Bartholomew Home</a>
+        <a href="/docs">Documentation</a>
+        <a href="/control-plane">Control Plane</a>
+        <a href="/kyro.html" style="border-color:#00e5a3; color:#00e5a3;">Kyro Voice Platform</a>
+        <a href="/photonics.html">Photonics Lab</a>
+        <a href="/enterprise">Enterprise</a>
+        <a href="https://open-vsx.org/extension/Bartholomew/cyphervoice-vscode" target="_blank" style="background:linear-gradient(135deg, #059669, #00e5a3); color:#000; font-weight:800; justify-content:center;">Install on Open VSX</a>
+      </div>
+      <script>
+        function toggleKyroMenu() {
+          const m = document.getElementById('mobile-drawer-kyro');
+          m.classList.toggle('open');
+          document.body.style.overflow = m.classList.contains('open') ? 'hidden' : '';
+        }
+      </script>
 
   <!-- Hero -->
   <section class="hero">
@@ -1030,6 +1128,7 @@
         <p class="section-sub">Speak natural developer phrases directly to your editor during pair-programming calls.</p>
       </div>
 
+      <div class="table-responsive">
       <table class="actions-table">
         <thead>
           <tr>
@@ -1076,6 +1175,7 @@
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
   </section>
 
