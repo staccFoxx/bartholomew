@@ -554,154 +554,128 @@
 
   <!-- Main Pricing Grid -->
   <main class="container">
-    <div class="pricing-grid">
+        <div class="pricing-grid" style="grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px;">
 
-      <!-- Tier 1: Developer Edition -->
+      <!-- Pack 1: $5 Starter Pack -->
       <div class="pricing-card">
         <div>
-          <div class="card-tier">INDIVIDUAL DEVELOPER</div>
-          <h2 class="card-title">Developer Edition</h2>
-          <div class="card-desc">Personal execution guardrails for engineers using Cursor, Claude Code, Windsurf, and Copilot.</div>
+          <div class="card-tier">MICRO-STARTER</div>
+          <h2 class="card-title">$5 Usage Balance</h2>
+          <div class="card-desc">Instant entry for solo developers testing agent safety with zero commitment or subscription.</div>
           
           <div class="price-box">
-            <span class="price-val">$0</span>
-            <span class="price-period">Free Forever (Apache-2.0 License)</span>
+            <span class="price-val">$5</span>
+            <span class="price-period">One-time prepaid credit. Zero card on file.</span>
           </div>
 
           <ul class="feature-list">
             <li class="feature-item">
               <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-              <span><strong>microsecond-latency In-Process AST Gate</strong>: Blocks destructive shell commands (rm -rf, format C:, disk wipes).</span>
+              <span><strong>50,000 AST Invariant Evaluations</strong>: Deterministic sub-35us in-process safety gate.</span>
             </li>
             <li class="feature-item">
               <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-              <span><strong>In-Flight Secret Scrubber</strong>: Automatically redacts .env credentials and API bearer keys before egress.</span>
+              <span><strong>Destructive Command Veto</strong>: Intercepts rm -rf, format, DROP TABLE in RAM.</span>
             </li>
             <li class="feature-item">
               <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-              <span><strong>Local Action Forensics</strong>: Tamper-evident ledger with RFC 8785 SHA-256 receipts.</span>
+              <span><strong>Zero Recurring Fees</strong>: Balance never auto-renews. When depleted, agent safely pauses.</span>
             </li>
             <li class="feature-item">
               <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-              <span><strong>VS Code &amp; Cursor Extension</strong>: Includes interactive 60-second live safety probe.</span>
+              <span><strong>Instant Digital Passkey</strong>: Auto-delivered on checkout to paste into .btp/config.</span>
             </li>
           </ul>
         </div>
 
-        <a href="https://open-vsx.org/extension/Bartholomew/bartholomew-guard-vscode" class="btn-action secondary">INSTALL EXTENSION FREE &rarr;</a>
+        <a href="https://buy.stripe.com/8x23cveZL4PUeuIflS9R606" class="btn-action secondary" target="_blank" rel="noopener noreferrer">BUY $5 CREDIT PACK &rarr;</a>
       </div>
 
-      <!-- Tier 2: 30-Day Team Pilot (Featured) -->
+      <!-- Pack 2: $10 Developer Pack (Featured) -->
       <div class="pricing-card featured" id="team-pilot">
-        <div class="featured-ribbon">100% MONEY-BACK GUARANTEE</div>
+        <div class="featured-ribbon">MOST POPULAR</div>
         <div>
-          <div class="card-tier">ENGINEERING TEAMS &amp; PLATFORMS</div>
-          <h2 class="card-title">30-Day Guided Team Pilot</h2>
-          <div class="card-desc">For engineering leads, platform teams, and CISOs rolling out coding agents across shared repositories.</div>
+          <div class="card-tier">DEVELOPER &amp; BUILDER</div>
+          <h2 class="card-title">$10 Usage Balance</h2>
+          <div class="card-desc">Recommended for engineers deploying active autonomous agents in Cursor, Claude Code, and Windsurf.</div>
           
           <div class="price-box">
-            <span class="price-val">$490</span>
-            <span class="price-period">flat one-time (no recurring subscriptions)</span>
+            <span class="price-val">$10</span>
+            <span class="price-period">One-time prepaid credit. Zero card on file.</span>
           </div>
 
           <ul class="feature-list">
             <li class="feature-item">
               <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-              <span><strong>Includes up to 10 Engineers</strong> ($20/engineer/mo thereafter).</span>
+              <span><strong>100,000 AST Invariant Evaluations</strong>: Full coverage across shell, SQL, and tool calls.</span>
             </li>
             <li class="feature-item">
               <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-              <span><strong>Centralized Repo Policy Sync</strong>: One .btp/policy.yaml enforced across Cursor, Claude Code, and Windsurf.</span>
+              <span><strong>In-Flight Secret Tokenization</strong>: Scrubs API keys (.env, bearer tokens) before outbound calls.</span>
             </li>
             <li class="feature-item">
               <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-              <span><strong>Fail-Closed Git Hooks</strong>: Blocks bad agent-authored commits before they ever exit developer machines.</span>
+              <span><strong>RFC 8785 Merkle Audit Ledger</strong>: Tamper-evident cryptographic receipt generation in .btp/audit.log.</span>
             </li>
             <li class="feature-item">
               <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-              <span><strong>CISO &amp; SOC 2 Audit Dossier</strong>: Cryptographically signed evidence package exportable for security auditors.</span>
+              <span><strong>Recursive JSON-RPC Breakout Shield</strong>: Unpacks nested smuggled calls up to 12 layers.</span>
             </li>
             <li class="feature-item">
               <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-              <span><strong>30-Minute Kickoff &amp; Setup</strong>: Founder-led custom boundary configuration session for your stack.</span>
-            </li>
-            <li class="feature-item">
-              <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
-              <span><strong>Full Refund Guarantee</strong>: If Bartholomew introduces noticeable developer latency or fails to intercept a threat, 100% refund.</span>
+              <span><strong>100% Satisfaction Guarantee</strong>: Top up only when you need it. No monthly lock-in.</span>
             </li>
           </ul>
         </div>
 
-        <a href="#enroll" class="btn-action primary">ACTIVATE 30-DAY TEAM PILOT &rarr;</a>
+        <a href="https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607" class="btn-action primary" target="_blank" rel="noopener noreferrer">GET $10 DEVELOPER PACK &rarr;</a>
+      </div>
+
+      <!-- Pack 3: $15 Swarm Pack -->
+      <div class="pricing-card">
+        <div>
+          <div class="card-tier">MULTI-AGENT SWARM</div>
+          <h2 class="card-title">$15 Usage Balance</h2>
+          <div class="card-desc">For developers running autonomous background swarms, AutoGen, CrewAI, and LangGraph pipelines.</div>
+          
+          <div class="price-box">
+            <span class="price-val">$15</span>
+            <span class="price-period">One-time prepaid credit. Zero card on file.</span>
+          </div>
+
+          <ul class="feature-list">
+            <li class="feature-item">
+              <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              <span><strong>150,000 AST Invariant Evaluations</strong>: High-throughput capacity for continuous agent loops.</span>
+            </li>
+            <li class="feature-item">
+              <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              <span><strong>Keystone Spend Limit Enforcement</strong>: Caps financial or tool actions per agent run.</span>
+            </li>
+            <li class="feature-item">
+              <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              <span><strong>Git Pre-Commit Hook Barrier</strong>: Blocks dangerous agent-generated code before git push.</span>
+            </li>
+            <li class="feature-item">
+              <svg fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>
+              <span><strong>Offline Merkle Auditor Verifier</strong>: Instant 1-line verification with btp-guard verify.</span>
+            </li>
+          </ul>
+        </div>
+
+        <a href="https://buy.stripe.com/cNi3cv6tf6Y2cmAgpW9R608" class="btn-action secondary" target="_blank" rel="noopener noreferrer">ACTIVATE $15 SWARM PACK &rarr;</a>
       </div>
 
     </div>
 
-    <!-- Direct Enrollment Form -->
-    <div class="enroll-section" id="enroll">
-      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 20px;">
-        <div>
-          <h3 style="font-size: 20px; font-weight: 800; margin-bottom: 6px;">Initiate 30-Day Team Pilot</h3>
-          <p style="font-size: 13px; color: var(--text-muted);">Fill in your team details below. We will immediately dispatch your evaluation passkey and schedule your 30-minute kickoff walkthrough.</p>
-        </div>
-        <div style="font-size: 11px; font-family: var(--font-mono); color: var(--emerald); background: rgba(16, 185, 129, 0.12); padding: 4px 10px; border-radius: 4px; border: 1px solid rgba(16, 185, 129, 0.3);">
-          FLAT RATE: $490 ONE-TIME
-        </div>
+    <!-- Custom Balance Top-Up Callout -->
+    <div style="background: rgba(13, 19, 34, 0.78); border: 1px solid rgba(45, 62, 80, 0.65); border-radius: 12px; padding: 24px; margin: 32px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px;">
+      <div>
+        <div style="font-family: var(--font-mono); font-size: 11px; color: var(--emerald-light); font-weight: 700; text-transform: uppercase; margin-bottom: 4px;">[ CUSTOM BALANCE TOP-UP ]</div>
+        <h3 style="font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 4px;">Need a Custom Balance or Team Allowance?</h3>
+        <p style="font-size: 0.88rem; color: var(--text-muted); margin: 0;">Top up any custom amount ($25, $50, $100+) with Apple Pay, Google Pay, or card. 100% prepaid, zero card saved on file.</p>
       </div>
-
-      <form id="pilot-form" onsubmit="handlePilotEnroll(event)">
-        <div class="form-grid">
-          <div class="form-group">
-            <label>Team / Organization Name</label>
-            <input type="text" id="team-name" placeholder="e.g. Acme Fintech Engineering" required>
-          </div>
-          <div class="form-group">
-            <label>Lead / Admin Email</label>
-            <input type="email" id="lead-email" placeholder="you@company.com" required>
-          </div>
-          <div class="form-group">
-            <label>Team Seats (Engineers)</label>
-            <select id="seat-count">
-              <option value="5">Up to 5 Engineers ($490 flat)</option>
-              <option value="10" selected>Up to 10 Engineers ($490 flat)</option>
-              <option value="25">Up to 25 Engineers ($950 flat)</option>
-              <option value="50">Up to 50 Engineers ($1,850 flat)</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Primary AI Coding Runtimes</label>
-            <select id="primary-agent">
-              <option value="cursor">Cursor (Composer)</option>
-              <option value="claude-code">Claude Code (CLI)</option>
-              <option value="windsurf">Windsurf (Codeium Cascade)</option>
-              <option value="cline">Cline / Roo Code</option>
-              <option value="mixed">Mixed Multi-Agent Tooling</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Billing Structure</label>
-            <select id="billing-structure">
-              <option value="onetime" selected>One-Time Flat Pilot Package ($490 flat, zero recurring fees)</option>
-              <option value="audit">Enterprise Architecture &amp; Security Audit ($950 flat)</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Target Kickoff Date</label>
-            <input type="date" id="kickoff-date">
-          </div>
-        </div>
-
-        <div style="margin-top: 24px; display: flex; align-items: center; justify-content: space-between;">
-          <div style="font-size: 11px; color: var(--text-dim); max-width: 480px;">
-            Includes 100% money-back guarantee. Zero telemetry leaves your workstation without your explicit policy approval.
-          </div>
-          <button type="submit" class="btn-action primary" style="width: auto; padding: 12px 28px;">
-            CONFIRM &amp; ACTIVATE PILOT &rarr;
-          </button>
-        </div>
-      </form>
-
-      <div id="enroll-result" style="display: none; margin-top: 20px; padding: 16px; border-radius: 8px; font-family: var(--font-mono); font-size: 12px;"></div>
+      <a href="https://buy.stripe.com/3cI6oHbNz3LQ4U84He9R605" class="btn-action primary" style="width: auto; padding: 12px 24px; margin: 0;" target="_blank" rel="noopener noreferrer">CUSTOM TOP-UP &rarr;</a>
     </div>
 
     <!-- Precise Scope Matrix -->

@@ -2867,6 +2867,80 @@ function runAuditBoundaryCli(subArgs = []) {
 }
 
 
+
+function runWalletCli() {
+  printBanner();
+  console.log(`======================================================================`);
+  console.log(`  ${BOLD}${GREEN}BARTHOLOMEW PREPAID USAGE WALLET & BALANCE (BTP v6.6.7)${RESET}`);
+  console.log(`======================================================================`);
+
+  const walletDir = path.join(os.homedir(), '.btp', 'wallets');
+  const walletPath = path.join(walletDir, 'default_wallet.json');
+
+  let wallet = {
+    agent_id: "agent-default",
+    balance_usd: 5.00,
+    actions_evaluated: 0,
+    updated_at: Date.now()
+  };
+
+  try {
+    if (fs.existsSync(walletPath)) {
+      wallet = JSON.parse(fs.readFileSync(walletPath, 'utf-8'));
+    } else {
+      fs.mkdirSync(walletDir, { recursive: true });
+      fs.writeFileSync(walletPath, JSON.stringify(wallet, null, 2));
+    }
+  } catch (_) {}
+
+  const scansRemaining = Math.max(0, Math.round(wallet.balance_usd / 0.0001));
+
+  console.log(`  Wallet Identity  : ${CYAN}${wallet.agent_id}${RESET}`);
+  console.log(`  Prepaid Balance  : ${GREEN}${BOLD}$${wallet.balance_usd.toFixed(2)} USD${RESET}`);
+  console.log(`  Scans Remaining  : ~${scansRemaining.toLocaleString()} In-Process AST Evaluations`);
+  console.log(`  Card on File     : ${MAGENTA}NONE (100% Prepaid, Zero Subscriptions)${RESET}`);
+  console.log(`  Ledger Storage   : ${DIM}${walletPath}${RESET}\n`);
+
+  console.log(`  ${BOLD}1-CLICK TOP-UP PACKS (ZERO RECURRING FEES):${RESET}`);
+  console.log(`  - Buy $5 Pack   (50k scans)  : ${BOLD}npx btp-guard topup 5${RESET}`);
+  console.log(`  - Buy $10 Pack (100k scans)  : ${BOLD}npx btp-guard topup 10${RESET}`);
+  console.log(`  - Buy $15 Pack (150k scans)  : ${BOLD}npx btp-guard topup 15${RESET}`);
+  console.log(`  - Custom Top-Up Link         : ${CYAN}https://buy.stripe.com/3cI6oHbNz3LQ4U84He9R605${RESET}`);
+  console.log(`======================================================================\n`);
+}
+
+function runTopupCli(subargs = []) {
+  printBanner();
+  const amt = (subargs[0] || '10').replace('$', '');
+  let url = 'https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607'; // default $10
+
+  if (amt === '5') {
+    url = 'https://buy.stripe.com/8x23cveZL4PUeuIflS9R606';
+  } else if (amt === '10') {
+    url = 'https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607';
+  } else if (amt === '15') {
+    url = 'https://buy.stripe.com/cNi3cv6tf6Y2cmAgpW9R608';
+  } else {
+    url = 'https://buy.stripe.com/3cI6oHbNz3LQ4U84He9R605';
+  }
+
+  console.log(`======================================================================`);
+  console.log(`  ${BOLD}${GREEN}BARTHOLOMEW INSTANT PREPAID TOP-UP ($${amt} USD)${RESET}`);
+  console.log(`======================================================================`);
+  console.log(`  Billing Type     : 100% Prepaid (Zero Card on File, Zero Subscriptions)`);
+  console.log(`  Payment Methods  : Apple Pay, Google Pay, Credit Card (via Stripe)`);
+  console.log(`  Checkout URL     : ${CYAN}${url}${RESET}`);
+  console.log(`======================================================================\n`);
+
+  const startCmd = process.platform === 'win32' ? `start "" "${url}"` : (process.platform === 'darwin' ? `open "${url}"` : `xdg-open "${url}"`);
+  try {
+    exec(startCmd);
+    console.log(`  [BTP] Opened Stripe Checkout in your default browser.\n`);
+  } catch (_) {
+    console.log(`  [BTP] Visit the checkout link above to complete your top-up.\n`);
+  }
+}
+
 function runScanCli(subargs = []) {
   printBanner();
   console.log(`======================================================================`);
@@ -3393,6 +3467,15 @@ switch (command) {
     break;
   case 'test-drive':
   case 'testdrive':
+  case 'wallet':
+  case 'balance':
+    runWalletCli();
+    break;
+  case 'topup':
+  case 'top-up':
+  case 'buy':
+    runTopupCli(args.slice(1));
+    break;
   case 'scan':
     runScanCli(args.slice(1));
     break;
@@ -3615,7 +3698,7 @@ switch (command) {
   case '-h':
     printBanner();
     console.log(`Usage:
-  ${BOLD}npx btp-guard scan [path]           Sub-35us Deterministic Repository AST Scan & Posture Score\n  ${BOLD}npx btp-guard demo${RESET}                Run 6-vector interactive zero-cloud attack test-drive\n  ${BOLD}npx btp-guard [auto]${RESET}${RESET}              Auto-Pilot: 1-Command Posture Scan & Workspace Immunization
+  ${BOLD}npx btp-guard wallet                 Check prepaid balance & AST scan quota\n  ${BOLD}npx btp-guard topup [5|10|15]${RESET}        1-Click prepaid top-up (zero card on file)\n  ${BOLD}npx btp-guard scan [path]${RESET}           Sub-35us Deterministic Repository AST Scan & Posture Score\n  ${BOLD}npx btp-guard demo${RESET}                Run 6-vector interactive zero-cloud attack test-drive\n  ${BOLD}npx btp-guard [auto]${RESET}${RESET}              Auto-Pilot: 1-Command Posture Scan & Workspace Immunization
   ${BOLD}npx btp-guard run <cmd>${RESET}           Mediate and sandbox any agent/process with <35µs AST Gate
   ${BOLD}npx btp-guard hud [--mobile] [--port 3500]${RESET} Launch cybersecurity HUD dashboard & mobile companion
   ${BOLD}npx btp-guard create <name>${RESET}       Scaffold production-grade agent (native, fastmcp, langgraph, crewai)

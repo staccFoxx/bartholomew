@@ -202,6 +202,70 @@ def test_reproduce_isolated_boundary():
 
     #  verify 
     # scan
+    # wallet / balance
+    if command in ("wallet", "balance"):
+        import os
+        import json
+        from pathlib import Path
+
+        wallet_dir = Path.home() / ".btp" / "wallets"
+        wallet_file = wallet_dir / "default_wallet.json"
+        wallet_dir.mkdir(parents=True, exist_ok=True)
+
+        wallet = {"agent_id": "agent-default", "balance_usd": 5.00, "actions_evaluated": 0}
+        if wallet_file.exists():
+            try:
+                wallet = json.loads(wallet_file.read_text(encoding="utf-8"))
+            except Exception:
+                pass
+        else:
+            wallet_file.write_text(json.dumps(wallet, indent=2), encoding="utf-8")
+
+        scans_remaining = int(wallet.get("balance_usd", 5.00) / 0.0001)
+
+        print("=" * 70)
+        print("  BARTHOLOMEW PREPAID USAGE WALLET & BALANCE (BTP v6.6.7)")
+        print("=" * 70)
+        print(f"  Wallet Identity  : {wallet.get('agent_id', 'agent-default')}")
+        print(f"  Prepaid Balance  : ${wallet.get('balance_usd', 5.00):.2f} USD")
+        print(f"  Scans Remaining  : ~{scans_remaining:,} In-Process AST Evaluations")
+        print("  Card on File     : NONE (100% Prepaid, Zero Subscriptions)")
+        print(f"  Ledger Storage   : {wallet_file}\n")
+        print("  1-CLICK TOP-UP PACKS (ZERO RECURRING FEES):")
+        print("  - Buy $5 Pack   (50k scans)  : bartholomew topup 5")
+        print("  - Buy $10 Pack (100k scans)  : bartholomew topup 10")
+        print("  - Buy $15 Pack (150k scans)  : bartholomew topup 15")
+        print("  - Custom Top-Up Link         : https://buy.stripe.com/3cI6oHbNz3LQ4U84He9R605")
+        print("=" * 70 + "\n")
+        return 0
+
+    # topup
+    if command in ("topup", "top-up", "buy"):
+        import webbrowser
+        amt = (args[1] if len(args) > 1 else "10").replace("$", "")
+        if amt == "5":
+            url = "https://buy.stripe.com/8x23cveZL4PUeuIflS9R606"
+        elif amt == "10":
+            url = "https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607"
+        elif amt == "15":
+            url = "https://buy.stripe.com/cNi3cv6tf6Y2cmAgpW9R608"
+        else:
+            url = "https://buy.stripe.com/3cI6oHbNz3LQ4U84He9R605"
+
+        print("=" * 70)
+        print(f"  BARTHOLOMEW INSTANT PREPAID TOP-UP (${amt} USD)")
+        print("=" * 70)
+        print("  Billing Type     : 100% Prepaid (Zero Card on File, Zero Subscriptions)")
+        print("  Payment Methods  : Apple Pay, Google Pay, Credit Card (via Stripe)")
+        print(f"  Checkout URL     : {url}")
+        print("=" * 70 + "\n")
+        try:
+            webbrowser.open(url)
+            print("  [BTP] Opened Stripe Checkout in your default browser.\n")
+        except Exception:
+            print(f"  [BTP] Visit {url} to complete your top-up.\n")
+        return 0
+
     if command == "scan":
         import os
         import time
