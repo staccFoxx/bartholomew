@@ -11,7 +11,18 @@ import sys
 import time
 from typing import List, Optional
 
-from .engine import BartholomewEngine
+try:
+    try:
+
+        from .engine import BartholomewEngine
+
+    except (ImportError, ValueError):
+
+        from bartholomew_eval.engine import BartholomewEngine
+except (ImportError, ValueError):
+    import os, sys
+    sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+    from bartholomew_eval.engine import BartholomewEngine
 
 _HELP = """
 +----------------------------------------------------------------------------------+
@@ -46,7 +57,6 @@ def main(args: Optional[List[str]] = None) -> int:
     # protect / arm
     if command in ("protect", "arm", "immunize"):
         import os
-        import json
         import hashlib
         import datetime
 
@@ -192,7 +202,13 @@ def test_reproduce_isolated_boundary():
 
     #  verify 
     if command == "verify":
-        from .verifier import main as verifier_main
+        try:
+
+            from .verifier import main as verifier_main
+
+        except (ImportError, ValueError):
+
+            from bartholomew_eval.verifier import main as verifier_main
         return verifier_main(args)
 
     #  version 
@@ -204,7 +220,13 @@ def test_reproduce_isolated_boundary():
     #  quarantine 
     if command == "quarantine":
         test_name = args[1] if len(args) > 1 else "test_async_worker_timeout"
-        from .flaky_quarantine import FlakyTestQuarantineEngine
+        try:
+
+            from .flaky_quarantine import FlakyTestQuarantineEngine
+
+        except (ImportError, ValueError):
+
+            from bartholomew_eval.flaky_quarantine import FlakyTestQuarantineEngine
         engine = FlakyTestQuarantineEngine()
         # Simulated run history: 7 passes, 3 failures across 10 runs
         sample_runs = [True, True, False, True, False, True, True, True, False, True]
@@ -220,7 +242,13 @@ def test_reproduce_isolated_boundary():
 
     #  eval-models 
     if command in ("eval-models", "leaderboard"):
-        from .multimodel_benchmark import MultiModelBenchmarkEngine
+        try:
+
+            from .multimodel_benchmark import MultiModelBenchmarkEngine
+
+        except (ImportError, ValueError):
+
+            from bartholomew_eval.multimodel_benchmark import MultiModelBenchmarkEngine
         engine = MultiModelBenchmarkEngine()
         print("\n[BARTHOLOMEW MULTI-MODEL REPAIR BENCHMARK LEADERBOARD]:\n")
         board = engine.run_comparative_leaderboard()
@@ -283,7 +311,13 @@ def test_reproduce_isolated_boundary():
 
     #  scan-codebase 
     if command in ("scan-codebase", "scan-vulnerabilities", "vuln-scan"):
-        from .vulnerability_scanner import BartholomewVulnerabilityScanner
+        try:
+
+            from .vulnerability_scanner import BartholomewVulnerabilityScanner
+
+        except (ImportError, ValueError):
+
+            from bartholomew_eval.vulnerability_scanner import BartholomewVulnerabilityScanner
         target_dir = args[1] if len(args) > 1 else "."
         print(f"[BARTHOLOMEW] Launching Enterprise AST Taint & Vulnerability Audit on `{target_dir}`...")
         scanner = BartholomewVulnerabilityScanner()
@@ -357,7 +391,13 @@ def test_reproduce_isolated_boundary():
         try:
             with open(filepath, "r", encoding="utf-8") as f:
                 data = json.load(f)
-            from .swarm_federation import SovereignSwarmFederation
+            try:
+
+                from .swarm_federation import SovereignSwarmFederation
+
+            except (ImportError, ValueError):
+
+                from bartholomew_eval.swarm_federation import SovereignSwarmFederation
             swarm = SovereignSwarmFederation()
             task = data.get("task", "Unspecified task")
             propositions = data.get("propositions", [])
