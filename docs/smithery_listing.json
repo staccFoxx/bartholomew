@@ -2,9 +2,9 @@
   "name": "bartholomew-guard",
   "displayName": "Bartholomew Guard \u2014 Sovereign AI Agent Security Layer",
   "description": "Layer 0 trust and security for every AI coding agent. 40 native MCP tools covering: Prompt Injection Firewall, Dependency Threat Scanner, Workspace Intelligence, Context Drift Detection, Token Budget Governance, Permission Scope Guard, Action Replay Ledger, Secret Masking, ZK-Mesh Attestation, SIEM Relay, and Ring-0 protection.",
-  "version": "6.0.0-rc1",
+  "version": "6.6.7",
   "author": "Bartholomew",
-  "repository": "https://github.com/ivegotahunnitonit/bartholomew",
+  "repository": "https://github.com/staccFoxx/bartholomew",
   "categories": [
     "security",
     "agent-safety",
