@@ -17,6 +17,7 @@
       --accent-green: #00ff88;
       --accent-purple: #a855f7;
       --accent-amber: #f59e0b;
+      --accent-rose: #ff007f;
       --text-main: #f0f6fc;
       --text-muted: #8b949e;
       --mono: 'JetBrains Mono', monospace;
@@ -32,7 +33,7 @@
       line-height: 1.5;
     }
     .container {
-      max-width: 1200px;
+      max-width: 1280px;
       margin: 0 auto;
     }
     header {
@@ -64,8 +65,9 @@
     }
     .stats-bar {
       display: flex;
-      gap: 20px;
+      gap: 14px;
       align-items: center;
+      flex-wrap: wrap;
     }
     .stat-pill {
       background: rgba(255,255,255,0.03);
@@ -115,7 +117,7 @@
     }
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(370px, 1fr));
       gap: 20px;
     }
     .card {
@@ -225,54 +227,6 @@
     .btn-copy:hover {
       background: rgba(255,255,255,0.12);
     }
-    .preview-modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(4px);
-      z-index: 1000;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
-    .preview-modal.open {
-      display: flex;
-    }
-    .modal-box {
-      background: var(--panel);
-      border: 1px solid var(--panel-border);
-      border-radius: 12px;
-      max-width: 720px;
-      width: 100%;
-      max-height: 85vh;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-    }
-    .modal-header {
-      padding: 18px 24px;
-      border-bottom: 1px solid var(--panel-border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .modal-body {
-      padding: 24px;
-      overflow-y: auto;
-      font-family: var(--mono);
-      font-size: 0.82rem;
-      white-space: pre-wrap;
-      color: #e2e8f0;
-      line-height: 1.6;
-    }
-    .modal-close {
-      background: transparent;
-      border: none;
-      color: var(--text-muted);
-      font-size: 1.2rem;
-      cursor: pointer;
-    }
   </style>
 </head>
 <body>
@@ -286,18 +240,18 @@
       </div>
     </div>
     <div class="stats-bar">
-      <div class="stat-pill"><div class="dot"></div> 10 Targets Ready</div>
+      <div class="stat-pill"><div class="dot"></div> 18 Targets Live</div>
       <div class="stat-pill">AST Latency: 15.10 µs</div>
-      <div class="stat-pill"><a href="https://bartholomew.info" style="color:var(--accent-cyan); text-decoration:none;">Live Portal ↗</a></div>
+      <div class="stat-pill"><a href="https://bartholomew.info" style="color:var(--accent-cyan); text-decoration:none;">Live Portal -></a></div>
     </div>
   </header>
 
   <div class="controls-bar">
-    <div style="display:flex; gap:8px;">
-      <button class="filter-btn active" onclick="filterCategory('ALL')">All Targets (10)</button>
+    <div style="display:flex; gap:8px; flex-wrap:wrap;">
+      <button class="filter-btn active" onclick="filterCategory('ALL')">All Accounts (18)</button>
       <button class="filter-btn" onclick="filterCategory('ENTERPRISE')">Enterprise (2)</button>
       <button class="filter-btn" onclick="filterCategory('SPONSOR')">Sponsors (3)</button>
-      <button class="filter-btn" onclick="filterCategory('STARTUP')">SWE Startups (5)</button>
+      <button class="filter-btn" onclick="filterCategory('SWE')">SWE Startups (13)</button>
     </div>
     <div style="font-family:var(--mono); font-size:0.75rem; color:var(--text-muted);">
       Pressing "Dispatch (Mailto)" opens pre-filled email in your default client
@@ -316,10 +270,10 @@
         <div class="target-role">Chief AI Compliance and Security Officer (CAISO)</div>
         <div class="target-email">chandra@eightfold.ai</div>
         <div class="subject-box"><strong>Subj:</strong> In-Process Agent Invariant Verification for ISO 42001 & FedRAMP at Eightfold</div>
-        <div class="passkey-pill"><strong>Ref:</strong> key_0d1405b53ecfd49acab0c81e</div>
+        <div class="passkey-pill"><strong>Ref:</strong> key_0bd2cf61dc307dbc77cff89c</div>
       </div>
       <div class="btn-row">
-        <a class="btn-send" href="mailto:chandra@eightfold.ai?subject=In-Process%20Agent%20Invariant%20Verification%20for%20ISO%2042001%20%26%20FedRAMP%20at%20Eightfold&body=Dear%20Chandra%2C%0A%0ACongratulations%20on%20Eightfold%27s%20pioneering%20achievement%20as%20the%20first%20HR%20tech%20enterprise%20to%20secure%20ISO/IEC%2042001%20across%20Developer%2C%20Provider%2C%20and%20Consumer%20layers%20alongside%20your%20FedRAMP%20Moderate%20authorization.%0A%0AAs%20Eightfold%20accelerates%20the%20rollout%20of%20autonomous%20Talent%20Agents%20%28AI%20Interviewers%2C%20Interview%20Companions%2C%20and%20automated%20sourcers%29%2C%20your%20security%20perimeter%20faces%20a%20critical%20challenge%3A%20ensuring%20agent%20tool%20invocations%20cannot%20be%20subverted%20by%20prompt-injected%20candidate%20resumes%2C%20while%20guaranteeing%20candidate%20PII%20never%20leaves%20your%20FedRAMP%20Moderate%20boundary.%0A%0ATraditional%20cloud%20guardrails%20add%20500ms%20to%202%2C000ms%20of%20latency%20per%20turn%20and%20transmit%20candidate%20attributes%20to%20third-party%20model%20APIs.%0A%0ABartholomew%20Protocol%20%28BTP%20v6.6.7%29%20provides%20a%20zero-cloud%2C%20compiled%20in-process%20security%20firewall%20for%20AI%20agents%3A%0A1.%20Sub-35%C2%B5s%20AST%20Invariant%20Gate%3A%20Deterministically%20intercepts%20dangerous%20or%20unauthorized%20agent%20tool%20calls%20before%20OS%20or%20network%20dispatch.%0A2.%20In-Memory%20PII%20Zeroization%3A%20Candidate%20contact%20data%20and%20protected%20demographic%20attributes%20are%20scrubbed%20in-flight%20with%20zero%20external%20network%20egress.%0A3.%20RFC%208785%20Ed25519%20Merkle%20Receipts%3A%20Every%20allowed%20or%20blocked%20agent%20action%20produces%20an%20immutable%20audit%20receipt%20directly%20consumable%20by%20BABL%20AI%20and%20BLDS%20for%20NYC%20Local%20Law%20144%20and%20ISO%2042001%20compliance.%0A%0AWe%20have%20provisioned%20an%20Enterprise%20Evaluation%20Clearance%20for%20your%20security%20architecture%20team%3A%0A-%20Pilot%20License%3A%20BTP-EVAL-EIGHTFOLD%0A-%20Capability%20Passkey%3A%20key_0d1405b53ecfd49acab0c81e%0A-%20In-Process%20Latency%20Ceiling%3A%20%3C%2035%20Microseconds%20%285%2C000%2C000%20AST%20Evaluations%29%0A-%20Validity%3A%2030%20Days%20%28Expires%202026-11-26%29%0A%0AQuickstart%20in%2060%20seconds%3A%0A%24%20pip%20install%20btp-guard%0A%24%20code%20--install-extension%20Bartholomew.bartholomew-guard-vscode%0A%0AWe%20would%20welcome%2020%20minutes%20with%20you%20or%20your%20security%20team%20to%20review%20our%20live%20telemetry%20benchmarks%20and%20assist%20with%20pilot%20sandbox%20verification.%0A%0ABest%20regards%2C%0A%0AThe%20Bartholomew%20Protocol%20Team%0Acontact%40bartholomew.info%20%7C%20help%40bartholomew.info%0Ahttps%3A//bartholomew.info%0AGitHub%3A%20https%3A//github.com/staccFoxx/bartholomew" target="_blank">
+        <a class="btn-send" href="mailto:chandra@eightfold.ai?subject=In-Process%20Agent%20Invariant%20Verification%20for%20ISO%2042001%20%26%20FedRAMP%20at%20Eightfold&body=Dear%20Chandra%2C%0A%0ACongratulations%20on%20Eightfold%27s%20pioneering%20achievement%20as%20the%20first%20HR%20tech%20enterprise%20to%20secure%20ISO/IEC%2042001%20across%20Developer%2C%20Provider%2C%20and%20Consumer%20layers%20alongside%20your%20FedRAMP%20Moderate%20authorization.%0A%0AAs%20Eightfold%20accelerates%20the%20rollout%20of%20autonomous%20Talent%20Agents%20%28AI%20Interviewers%2C%20Interview%20Companions%2C%20and%20automated%20sourcers%29%2C%20your%20security%20perimeter%20faces%20a%20critical%20challenge%3A%20ensuring%20agent%20tool%20invocations%20cannot%20be%20subverted%20by%20prompt-injected%20candidate%20resumes%2C%20while%20guaranteeing%20candidate%20PII%20never%20leaves%20your%20FedRAMP%20Moderate%20boundary.%0A%0ATraditional%20cloud%20guardrails%20add%20500ms%20to%202%2C000ms%20of%20latency%20per%20turn%20and%20transmit%20candidate%20attributes%20to%20third-party%20model%20APIs.%0A%0ABartholomew%20Protocol%20%28BTP%20v6.6.7%29%20provides%20a%20zero-cloud%2C%20compiled%20in-process%20security%20firewall%20for%20AI%20agents%3A%0A1.%20Sub-35%C2%B5s%20AST%20Invariant%20Gate%3A%20Deterministically%20intercepts%20dangerous%20or%20unauthorized%20agent%20tool%20calls%20before%20OS%20or%20network%20dispatch.%0A2.%20In-Memory%20PII%20Zeroization%3A%20Candidate%20contact%20data%20and%20protected%20demographic%20attributes%20are%20scrubbed%20in-flight%20with%20zero%20external%20network%20egress.%0A3.%20RFC%208785%20Ed25519%20Merkle%20Receipts%3A%20Every%20allowed%20or%20blocked%20agent%20action%20produces%20an%20immutable%20audit%20receipt%20directly%20consumable%20by%20BABL%20AI%20and%20BLDS%20for%20NYC%20Local%20Law%20144%20and%20ISO%2042001%20compliance.%0A%0AWe%20have%20provisioned%20an%20Enterprise%20Evaluation%20Clearance%20for%20your%20security%20architecture%20team%3A%0A-%20Pilot%20License%3A%20BTP-EVAL-EIGHTFOLD%0A-%20Capability%20Passkey%3A%20key_0bd2cf61dc307dbc77cff89c%0A-%20In-Process%20Latency%20Ceiling%3A%20%3C%2035%20Microseconds%20%285%2C000%2C000%20AST%20Evaluations%29%0A-%20Validity%3A%2030%20Days%20%28Expires%202026-11-26%29%0A%0AQuickstart%20in%2060%20seconds%3A%0A%24%20pip%20install%20btp-guard%0A%24%20code%20--install-extension%20Bartholomew.bartholomew-guard-vscode%0A%0AWe%20would%20welcome%2020%20minutes%20with%20you%20or%20your%20security%20team%20to%20review%20our%20live%20telemetry%20benchmarks%20and%20assist%20with%20pilot%20sandbox%20verification.%0A%0ABest%20regards%2C%0A%0AThe%20Bartholomew%20Protocol%20Team%0Acontact%40bartholomew.info%20%7C%20help%40bartholomew.info%0Ahttps%3A//bartholomew.info%0AGitHub%3A%20https%3A//github.com/staccFoxx/bartholomew" target="_blank">
           Dispatch (Mailto)
         </a>
         <button class="btn-copy" onclick="copyBriefing(0)" title="Copy Email Text">
@@ -345,7 +299,7 @@ Bartholomew Protocol (BTP v6.6.7) provides a zero-cloud, compiled in-process sec
 
 We have provisioned an Enterprise Evaluation Clearance for your security architecture team:
 - Pilot License: BTP-EVAL-EIGHTFOLD
-- Capability Passkey: key_0d1405b53ecfd49acab0c81e
+- Capability Passkey: key_0bd2cf61dc307dbc77cff89c
 - In-Process Latency Ceiling: < 35 Microseconds (5,000,000 AST Evaluations)
 - Validity: 30 Days (Expires 2026-11-26)
 
@@ -372,10 +326,10 @@ GitHub: https://github.com/staccFoxx/bartholomew</textarea>
         <div class="target-role">Co-Founder & Chief Technology Officer (CTO)</div>
         <div class="target-email">varun@eightfold.ai</div>
         <div class="subject-box"><strong>Subj:</strong> Sub-35µs In-Process Agent AST Firewall for Eightfold Talent Agents</div>
-        <div class="passkey-pill"><strong>Ref:</strong> key_7f971c5128fc0f137ae87984</div>
+        <div class="passkey-pill"><strong>Ref:</strong> key_35d91239123129472ea92283</div>
       </div>
       <div class="btn-row">
-        <a class="btn-send" href="mailto:varun@eightfold.ai?subject=Sub-35%C2%B5s%20In-Process%20Agent%20AST%20Firewall%20for%20Eightfold%20Talent%20Agents&body=Varun%2C%0A%0AGiven%20your%20background%20architecting%20hyper-scale%20search%20and%20recommendation%20engines%20at%20Google%20and%20Facebook%2C%20you%20know%20that%20introducing%201%2C000ms%20network%20round-trips%20for%20external%20LLM%20guardrails%20destroys%20talent%20matching%20pipeline%20throughput.%0A%0AWhen%20Eightfold%20agents%20execute%20autonomous%20tool%20calls%20across%20applicant%20tracking%20and%20talent%20exchange%20pipelines%2C%20regex%20filters%20and%20external%20cloud%20moderation%20cannot%20guarantee%20deterministic%20code%20safety%20or%20prevent%20resume%20injection%20attacks%20without%20massive%20latency%20penalties.%0A%0ABartholomew%20%28BTP%20v6.6.7%29%20runs%20compiled%20AST%20invariant%20evaluations%20in-process%20in%20%3C%2035%20microseconds%3A%0A-%20Drop-in%20Python/Go%20agent%20wrapper%20%28%40btp_guard.enforce_invariant%29%0A-%20Keystone%20Capability%20Passkeys%20preventing%20unauthorized%20tool%20execution%20%28compensation%20tampering%2C%20rogue%20candidate%20rejection%29%0A-%20RFC%208785%20Ed25519%20Merkle%20receipts%20providing%20cryptographic%20non-repudiation%0A-%20100%25%20air-gapped%3B%20zero%20external%20network%20egress%0A%0AWe%20have%20provisioned%20a%20dedicated%20evaluation%20clearance%20for%20Eightfold%27s%20engineering%20team%3A%0A-%20License%20ID%3A%20BTP-EVAL-EIGHTFOLD%0A-%20Passkey%3A%20key_7f971c5128fc0f137ae87984%0A-%20Evaluation%20Cap%3A%205%2C000%2C000%20AST%20tool%20checks%20%28%3C35%C2%B5s%20latency%20ceiling%29%0A%0ATechnical%20documentation%20and%20live%20simulator%3A%20https%3A//bartholomew.info%0ARelease%20v6.6.7%20VSIX%3A%20https%3A//github.com/staccFoxx/bartholomew/releases/tag/v6.6.7%0A%0AWould%20love%20to%20get%20this%20in%20the%20hands%20of%20your%20platform%20engineering%20team%20this%20week.%0A%0ABest%20regards%2C%0A%0AThe%20Bartholomew%20Protocol%20Team%0Acontact%40bartholomew.info%20%7C%20help%40bartholomew.info" target="_blank">
+        <a class="btn-send" href="mailto:varun@eightfold.ai?subject=Sub-35%C2%B5s%20In-Process%20Agent%20AST%20Firewall%20for%20Eightfold%20Talent%20Agents&body=Varun%2C%0A%0AGiven%20your%20background%20architecting%20hyper-scale%20search%20and%20recommendation%20engines%20at%20Google%20and%20Facebook%2C%20you%20know%20that%20introducing%201%2C000ms%20network%20round-trips%20for%20external%20LLM%20guardrails%20destroys%20talent%20matching%20pipeline%20throughput.%0A%0AWhen%20Eightfold%20agents%20execute%20autonomous%20tool%20calls%20across%20applicant%20tracking%20and%20talent%20exchange%20pipelines%2C%20regex%20filters%20and%20external%20cloud%20moderation%20cannot%20guarantee%20deterministic%20code%20safety%20or%20prevent%20resume%20injection%20attacks%20without%20massive%20latency%20penalties.%0A%0ABartholomew%20%28BTP%20v6.6.7%29%20runs%20compiled%20AST%20invariant%20evaluations%20in-process%20in%20%3C%2035%20microseconds%3A%0A-%20Drop-in%20Python/Go%20agent%20wrapper%20%28%40btp_guard.enforce_invariant%29%0A-%20Keystone%20Capability%20Passkeys%20preventing%20unauthorized%20tool%20execution%20%28compensation%20tampering%2C%20rogue%20candidate%20rejection%29%0A-%20RFC%208785%20Ed25519%20Merkle%20receipts%20providing%20cryptographic%20non-repudiation%0A-%20100%25%20air-gapped%3B%20zero%20external%20network%20egress%0A%0AWe%20have%20provisioned%20a%20dedicated%20evaluation%20clearance%20for%20Eightfold%27s%20engineering%20team%3A%0A-%20License%20ID%3A%20BTP-EVAL-EIGHTFOLD%0A-%20Passkey%3A%20key_35d91239123129472ea92283%0A-%20Evaluation%20Cap%3A%205%2C000%2C000%20AST%20tool%20checks%20%28%3C35%C2%B5s%20latency%20ceiling%29%0A%0ATechnical%20documentation%20and%20live%20simulator%3A%20https%3A//bartholomew.info%0ARelease%20v6.6.7%20VSIX%3A%20https%3A//github.com/staccFoxx/bartholomew/releases/tag/v6.6.7%0A%0AWould%20love%20to%20get%20this%20in%20the%20hands%20of%20your%20platform%20engineering%20team%20this%20week.%0A%0ABest%20regards%2C%0A%0AThe%20Bartholomew%20Protocol%20Team%0Acontact%40bartholomew.info%20%7C%20help%40bartholomew.info" target="_blank">
           Dispatch (Mailto)
         </a>
         <button class="btn-copy" onclick="copyBriefing(1)" title="Copy Email Text">
@@ -400,7 +354,7 @@ Bartholomew (BTP v6.6.7) runs compiled AST invariant evaluations in-process in <
 
 We have provisioned a dedicated evaluation clearance for Eightfold's engineering team:
 - License ID: BTP-EVAL-EIGHTFOLD
-- Passkey: key_7f971c5128fc0f137ae87984
+- Passkey: key_35d91239123129472ea92283
 - Evaluation Cap: 5,000,000 AST tool checks (<35µs latency ceiling)
 
 Technical documentation and live simulator: https://bartholomew.info
@@ -543,10 +497,10 @@ contact@bartholomew.info</textarea>
         <div class="target-role">Co-Founder & CEO</div>
         <div class="target-email">eno@factory.ai</div>
         <div class="subject-box"><strong>Subj:</strong> Sub-35µs AST Invariant Sentinel for Factory Droids</div>
-        <div class="passkey-pill"><strong>Ref:</strong> key_81f426a4cc2ce94809be90c1</div>
+        <div class="passkey-pill"><strong>Ref:</strong> key_cdebef18b798de587666e53c</div>
       </div>
       <div class="btn-row">
-        <a class="btn-send" href="mailto:eno@factory.ai?subject=Sub-35%C2%B5s%20AST%20Invariant%20Sentinel%20for%20Factory%20Droids&body=Hi%20Eno%2C%0A%0AHuge%20fan%20of%20the%20autonomy%20Factory%20Droids%20bring%20to%20enterprise%20engineering%20workflows.%0A%0AWhen%20Droids%20autonomously%20refactor%20code%2C%20run%20migrations%2C%20and%20execute%20terminal%20commands%2C%20the%20primary%20obstacle%20in%20enterprise%20security%20reviews%20is%20deterministic%20tool%20safety%3A%20ensuring%20a%20Droid%20cannot%20hallucinate%20a%20destructive%20shell%20command%20%28%60rm%20-rf%60%2C%20recursive%20delete%29%2C%20mutate%20production%20databases%2C%20or%20leak%20high-entropy%20credentials%20from%20developer%20environments%20into%20prompt%20logs.%0A%0ACalling%20cloud%20guardrails%20on%20every%20agent%20step%20adds%201%2C000ms%2B%20of%20latency%20and%20doubles%20token%20burn.%0A%0AWe%20built%20Bartholomew%20Protocol%20%28BTP%20v6.6.7%29%20%E2%80%94%20an%20in-process%2C%20compiled%20AST%20security%20runtime%20%28%3C35%C2%B5s%20latency%29%3A%0A1.%20In-process%20AST%20Invariant%20Gate%3A%20Intercepts%20destructive%20shell%20calls%20and%20database%20mutations%20before%20OS%20execution.%0A2.%20In-Memory%20Secret%20Zeroization%3A%20Protects%20API%20keys%20and%20SSH%20tokens%20with%20zero%20external%20cloud%20egress.%0A3.%20RFC%208785%20Ed25519%20Merkle%20Receipts%3A%20Cryptographic%20machine-signed%20audit%20proof%20verifying%20every%20action%20for%20enterprise%20SOC%202%20compliance.%0A%0AWe%27ve%20provisioned%20an%20evaluation%20clearance%20for%20the%20Factory%20engineering%20team%3A%0A-%20Pilot%20License%3A%20BTP-EVAL-FACTORYAI%0A-%20Passkey%3A%20key_81f426a4cc2ce94809be90c1%0A-%20In-Process%20Latency%3A%2015.10%20Microseconds%20%28%3C%200.035%20ms%29%0A-%20Quota%3A%202%2C500%2C000%20AST%20checks%20%2830-day%20evaluation%29%0A%0AQuickstart%20in%20Python/Node%3A%0A%24%20pip%20install%20btp-guard%0A%40btp_guard.enforce_invariant%28strict%3DTrue%29%0A%0ADocumentation%20%26%20Live%20Simulator%3A%20https%3A//bartholomew.info%0AGitHub%3A%20https%3A//github.com/staccFoxx/bartholomew%0A%0AWould%20you%20be%20open%20to%20a%2015-minute%20technical%20demo%20with%20your%20agent%20runtime%20team%20this%20week%3F%0A%0ABest%20regards%2C%0A%0AThe%20Bartholomew%20Protocol%20Team%0Acontact%40bartholomew.info%20%7C%20help%40bartholomew.info" target="_blank">
+        <a class="btn-send" href="mailto:eno@factory.ai?subject=Sub-35%C2%B5s%20AST%20Invariant%20Sentinel%20for%20Factory%20Droids&body=Hi%20Eno%2C%0A%0AHuge%20fan%20of%20the%20autonomy%20Factory%20Droids%20bring%20to%20enterprise%20engineering%20workflows.%0A%0AWhen%20Droids%20autonomously%20refactor%20code%2C%20run%20migrations%2C%20and%20execute%20terminal%20commands%2C%20the%20primary%20obstacle%20in%20enterprise%20security%20reviews%20is%20deterministic%20tool%20safety%3A%20ensuring%20a%20Droid%20cannot%20hallucinate%20a%20destructive%20shell%20command%20%28%60rm%20-rf%60%2C%20recursive%20delete%29%2C%20mutate%20production%20databases%2C%20or%20leak%20high-entropy%20credentials%20from%20developer%20environments%20into%20prompt%20logs.%0A%0ACalling%20cloud%20guardrails%20on%20every%20agent%20step%20adds%201%2C000ms%2B%20of%20latency%20and%20doubles%20token%20burn.%0A%0AWe%20built%20Bartholomew%20Protocol%20%28BTP%20v6.6.7%29%20%E2%80%94%20an%20in-process%2C%20compiled%20AST%20security%20runtime%20%28%3C35%C2%B5s%20latency%29%3A%0A1.%20In-process%20AST%20Invariant%20Gate%3A%20Intercepts%20destructive%20shell%20calls%20and%20database%20mutations%20before%20OS%20execution.%0A2.%20In-Memory%20Secret%20Zeroization%3A%20Protects%20API%20keys%20and%20SSH%20tokens%20with%20zero%20external%20cloud%20egress.%0A3.%20RFC%208785%20Ed25519%20Merkle%20Receipts%3A%20Cryptographic%20machine-signed%20audit%20proof%20verifying%20every%20action%20for%20enterprise%20SOC%202%20compliance.%0A%0AWe%27ve%20provisioned%20an%20evaluation%20clearance%20for%20the%20Factory%20engineering%20team%3A%0A-%20Pilot%20License%3A%20BTP-EVAL-FACTORYAI%0A-%20Passkey%3A%20key_cdebef18b798de587666e53c%0A-%20In-Process%20Latency%3A%2015.10%20Microseconds%20%28%3C%200.035%20ms%29%0A-%20Quota%3A%202%2C500%2C000%20AST%20checks%20%2830-day%20evaluation%29%0A%0AQuickstart%20in%20Python/Node%3A%0A%24%20pip%20install%20btp-guard%0A%40btp_guard.enforce_invariant%28strict%3DTrue%29%0A%0ADocumentation%20%26%20Live%20Simulator%3A%20https%3A//bartholomew.info%0AGitHub%3A%20https%3A//github.com/staccFoxx/bartholomew%0A%0AWould%20you%20be%20open%20to%20a%2015-minute%20technical%20demo%20with%20your%20agent%20runtime%20team%20this%20week%3F%0A%0ABest%20regards%2C%0A%0AThe%20Bartholomew%20Protocol%20Team%0Acontact%40bartholomew.info%20%7C%20help%40bartholomew.info" target="_blank">
           Dispatch (Mailto)
         </a>
         <button class="btn-copy" onclick="copyBriefing(5)" title="Copy Email Text">
@@ -572,7 +526,7 @@ We built Bartholomew Protocol (BTP v6.6.7) — an in-process, compiled AST secur
 
 We've provisioned an evaluation clearance for the Factory engineering team:
 - Pilot License: BTP-EVAL-FACTORYAI
-- Passkey: key_81f426a4cc2ce94809be90c1
+- Passkey: key_cdebef18b798de587666e53c
 - In-Process Latency: 15.10 Microseconds (< 0.035 ms)
 - Quota: 2,500,000 AST checks (30-day evaluation)
 
@@ -600,10 +554,10 @@ contact@bartholomew.info | help@bartholomew.info</textarea>
         <div class="target-role">Chief Executive Officer (CEO)</div>
         <div class="target-email">scott@augmentcode.com</div>
         <div class="subject-box"><strong>Subj:</strong> In-process AST security runtime & secret zeroization for Augment Enterprise</div>
-        <div class="passkey-pill"><strong>Ref:</strong> key_f45c02a79e1d47ca49ac812a</div>
+        <div class="passkey-pill"><strong>Ref:</strong> key_75a03f9ef5d5f9aaa04c006c</div>
       </div>
       <div class="btn-row">
-        <a class="btn-send" href="mailto:scott@augmentcode.com?subject=In-process%20AST%20security%20runtime%20%26%20secret%20zeroization%20for%20Augment%20Enterprise&body=Hi%20Scott%2C%0A%0AAugment%27s%20cross-codebase%20intelligence%20is%20setting%20a%20new%20benchmark%20for%20enterprise%20developer%20speed.%0A%0AAs%20Augment%20moves%20into%20deeper%20enterprise%20deployments%2C%20Fortune%20500%20CISOs%20inevitably%20raise%20the%20liability%20boundary%20question%3A%20how%20does%20the%20platform%20guarantee%20that%20autonomous%20code%20modifications%20and%20agentic%20terminal%20invocations%20adhere%20to%20strict%20customer%20data%20segregation%20and%20never%20leak%20proprietary%20tokens%20or%20credentials%3F%0A%0ABartholomew%20Protocol%20%28BTP%20v6.6.7%29%20provides%20a%20compiled%20in-process%20AST%20security%20gate%20%28%3C35%C2%B5s%20latency%20ceiling%2C%20zero%20cloud%20overhead%29%3A%0A-%20Evaluates%20code%20mutations%20and%20command%20executions%20against%20deterministic%20AST%20safety%20invariants%20in-memory.%0A-%20Zeroizes%20credentials%20and%20secrets%20before%20any%20prompt%20serialization.%0A-%20Emits%20RFC%208785%20Ed25519%20Merkle%20audit%20receipts%20satisfying%20SOC%202%20Type%20II%20and%20ISO%2042001%20verification.%0A%0AWe%20have%20set%20up%20an%20enterprise%20evaluation%20profile%20for%20Augment%3A%0A-%20Pilot%20License%3A%20BTP-EVAL-AUGMENTCOD%0A-%20Passkey%3A%20key_f45c02a79e1d47ca49ac812a%0A-%20AST%20Evaluation%20Cap%3A%202%2C500%2C000%20checks%0A-%20Live%20AST%20Benchmark%3A%2015.10%20%C2%B5s%20%28%3C%200.035%20ms%29%0A%0ALive%20portal%3A%20https%3A//bartholomew.info%0AGitHub%3A%20https%3A//github.com/staccFoxx/bartholomew%0A%0AWould%20your%20engineering%20leadership%20welcome%20a%20brief%20technical%20walkthrough%20on%20how%20BTP%20embeds%20into%20enterprise%20SWE%20agent%20runtimes%3F%0A%0ABest%20regards%2C%0A%0AThe%20Bartholomew%20Protocol%20Team%0Acontact%40bartholomew.info" target="_blank">
+        <a class="btn-send" href="mailto:scott@augmentcode.com?subject=In-process%20AST%20security%20runtime%20%26%20secret%20zeroization%20for%20Augment%20Enterprise&body=Hi%20Scott%2C%0A%0AAugment%27s%20cross-codebase%20intelligence%20is%20setting%20a%20new%20benchmark%20for%20enterprise%20developer%20speed.%0A%0AAs%20Augment%20moves%20into%20deeper%20enterprise%20deployments%2C%20Fortune%20500%20CISOs%20inevitably%20raise%20the%20liability%20boundary%20question%3A%20how%20does%20the%20platform%20guarantee%20that%20autonomous%20code%20modifications%20and%20agentic%20terminal%20invocations%20adhere%20to%20strict%20customer%20data%20segregation%20and%20never%20leak%20proprietary%20tokens%20or%20credentials%3F%0A%0ABartholomew%20Protocol%20%28BTP%20v6.6.7%29%20provides%20a%20compiled%20in-process%20AST%20security%20gate%20%28%3C35%C2%B5s%20latency%20ceiling%2C%20zero%20cloud%20overhead%29%3A%0A-%20Evaluates%20code%20mutations%20and%20command%20executions%20against%20deterministic%20AST%20safety%20invariants%20in-memory.%0A-%20Zeroizes%20credentials%20and%20secrets%20before%20any%20prompt%20serialization.%0A-%20Emits%20RFC%208785%20Ed25519%20Merkle%20audit%20receipts%20satisfying%20SOC%202%20Type%20II%20and%20ISO%2042001%20verification.%0A%0AWe%20have%20set%20up%20an%20enterprise%20evaluation%20profile%20for%20Augment%3A%0A-%20Pilot%20License%3A%20BTP-EVAL-AUGMENTCOD%0A-%20Passkey%3A%20key_75a03f9ef5d5f9aaa04c006c%0A-%20AST%20Evaluation%20Cap%3A%202%2C500%2C000%20checks%0A-%20Live%20AST%20Benchmark%3A%2015.10%20%C2%B5s%20%28%3C%200.035%20ms%29%0A%0ALive%20portal%3A%20https%3A//bartholomew.info%0AGitHub%3A%20https%3A//github.com/staccFoxx/bartholomew%0A%0AWould%20your%20engineering%20leadership%20welcome%20a%20brief%20technical%20walkthrough%20on%20how%20BTP%20embeds%20into%20enterprise%20SWE%20agent%20runtimes%3F%0A%0ABest%20regards%2C%0A%0AThe%20Bartholomew%20Protocol%20Team%0Acontact%40bartholomew.info" target="_blank">
           Dispatch (Mailto)
         </a>
         <button class="btn-copy" onclick="copyBriefing(6)" title="Copy Email Text">
@@ -627,7 +581,7 @@ Bartholomew Protocol (BTP v6.6.7) provides a compiled in-process AST security ga
 
 We have set up an enterprise evaluation profile for Augment:
 - Pilot License: BTP-EVAL-AUGMENTCOD
-- Passkey: key_f45c02a79e1d47ca49ac812a
+- Passkey: key_75a03f9ef5d5f9aaa04c006c
 - AST Evaluation Cap: 2,500,000 checks
 - Live AST Benchmark: 15.10 µs (< 0.035 ms)
 
@@ -651,10 +605,10 @@ contact@bartholomew.info</textarea>
         <div class="target-role">Co-Founder & CEO</div>
         <div class="target-email">kevin@sweep.dev</div>
         <div class="subject-box"><strong>Subj:</strong> Deterministic AST rogue-command firewall for Sweep PR agents</div>
-        <div class="passkey-pill"><strong>Ref:</strong> key_86deb006e581bf766800cc4f</div>
+        <div class="passkey-pill"><strong>Ref:</strong> key_628e46a6cce9eb3c3098030b</div>
       </div>
       <div class="btn-row">
-        <a class="btn-send" href="mailto:kevin@sweep.dev?subject=Deterministic%20AST%20rogue-command%20firewall%20for%20Sweep%20PR%20agents&body=Hey%20Kevin%2C%0A%0AReally%20impressed%20with%20Sweep%27s%20evolution%20turning%20GitHub%20issues%20directly%20into%20clean%2C%20test-passing%20pull%20requests.%0A%0AWhen%20Sweep%20agents%20execute%20shell%20environments%20to%20run%20tests%20and%20linters%20on%20arbitrary%20open-source%20or%20client%20repositories%2C%20prompt%20injection%20via%20issues%20or%20malicious%20repos%20poses%20a%20real%20container%20escape%20and%20secret%20harvesting%20threat.%0A%0AStandard%20LLM%20moderation%20adds%20800ms%20per%20agent%20turn%20and%20easily%20misses%20obfuscated%20bash%20commands%20%28%60base64%20-d%60%2C%20eval%20chains%29.%0A%0AWe%20built%20Bartholomew%20Protocol%20%28BTP%20v6.6.7%29%3A%0A-%20Sub-35%C2%B5s%20compiled%20AST%20invariant%20engine%20running%20locally%20in%20your%20Python%20agent%20runtime.%0A-%20Deterministically%20blocks%20unauthorized%20directory%20destruction%2C%20network%20exfiltration%2C%20and%20privilege%20escalation.%0A-%20Zero%20external%20network%20dependencies%20%28100%25%20air-gapped%29.%0A%0AWe%27ve%20provisioned%20an%20evaluation%20passkey%20for%20Sweep%3A%0A-%20Pilot%20License%3A%20BTP-EVAL-SWEEPAI%0A-%20Passkey%3A%20key_86deb006e581bf766800cc4f%0A-%20Latency%3A%2015.10%20Microseconds%20%28%3C0.035%20ms%29%0A%0ADocumentation%20%26%20Sandbox%3A%20https%3A//bartholomew.info%0AGitHub%3A%20https%3A//github.com/staccFoxx/bartholomew%0A%0AWould%20love%20to%20hop%20on%20a%20quick%2010-minute%20sync%20to%20show%20how%20easily%20this%20drops%20into%20Sweep%27s%20runner%20pipeline.%0A%0ABest%2C%0A%0AThe%20Bartholomew%20Protocol%20Team%0Acontact%40bartholomew.info" target="_blank">
+        <a class="btn-send" href="mailto:kevin@sweep.dev?subject=Deterministic%20AST%20rogue-command%20firewall%20for%20Sweep%20PR%20agents&body=Hey%20Kevin%2C%0A%0AReally%20impressed%20with%20Sweep%27s%20evolution%20turning%20GitHub%20issues%20directly%20into%20clean%2C%20test-passing%20pull%20requests.%0A%0AWhen%20Sweep%20agents%20execute%20shell%20environments%20to%20run%20tests%20and%20linters%20on%20arbitrary%20open-source%20or%20client%20repositories%2C%20prompt%20injection%20via%20issues%20or%20malicious%20repos%20poses%20a%20real%20container%20escape%20and%20secret%20harvesting%20threat.%0A%0AStandard%20LLM%20moderation%20adds%20800ms%20per%20agent%20turn%20and%20easily%20misses%20obfuscated%20bash%20commands%20%28%60base64%20-d%60%2C%20eval%20chains%29.%0A%0AWe%20built%20Bartholomew%20Protocol%20%28BTP%20v6.6.7%29%3A%0A-%20Sub-35%C2%B5s%20compiled%20AST%20invariant%20engine%20running%20locally%20in%20your%20Python%20agent%20runtime.%0A-%20Deterministically%20blocks%20unauthorized%20directory%20destruction%2C%20network%20exfiltration%2C%20and%20privilege%20escalation.%0A-%20Zero%20external%20network%20dependencies%20%28100%25%20air-gapped%29.%0A%0AWe%27ve%20provisioned%20an%20evaluation%20passkey%20for%20Sweep%3A%0A-%20Pilot%20License%3A%20BTP-EVAL-SWEEPAI%0A-%20Passkey%3A%20key_628e46a6cce9eb3c3098030b%0A-%20Latency%3A%2015.10%20Microseconds%20%28%3C0.035%20ms%29%0A%0ADocumentation%20%26%20Sandbox%3A%20https%3A//bartholomew.info%0AGitHub%3A%20https%3A//github.com/staccFoxx/bartholomew%0A%0AWould%20love%20to%20hop%20on%20a%20quick%2010-minute%20sync%20to%20show%20how%20easily%20this%20drops%20into%20Sweep%27s%20runner%20pipeline.%0A%0ABest%2C%0A%0AThe%20Bartholomew%20Protocol%20Team%0Acontact%40bartholomew.info" target="_blank">
           Dispatch (Mailto)
         </a>
         <button class="btn-copy" onclick="copyBriefing(7)" title="Copy Email Text">
@@ -680,7 +634,7 @@ We built Bartholomew Protocol (BTP v6.6.7):
 
 We've provisioned an evaluation passkey for Sweep:
 - Pilot License: BTP-EVAL-SWEEPAI
-- Passkey: key_86deb006e581bf766800cc4f
+- Passkey: key_628e46a6cce9eb3c3098030b
 - Latency: 15.10 Microseconds (<0.035 ms)
 
 Documentation & Sandbox: https://bartholomew.info
@@ -703,10 +657,10 @@ contact@bartholomew.info</textarea>
         <div class="target-role">Co-Founder & CEO</div>
         <div class="target-email">alistair@cosine.sh</div>
         <div class="subject-box"><strong>Subj:</strong> 15µs AST Invariant Sentinel for Genie (Zero Latency Overhead on SWE-bench)</div>
-        <div class="passkey-pill"><strong>Ref:</strong> key_41816e07d273789d0cfcc871</div>
+        <div class="passkey-pill"><strong>Ref:</strong> key_b394357bf8a1ce3fde46577d</div>
       </div>
       <div class="btn-row">
-        <a class="btn-send" href="mailto:alistair@cosine.sh?subject=15%C2%B5s%20AST%20Invariant%20Sentinel%20for%20Genie%20%28Zero%20Latency%20Overhead%20on%20SWE-bench%29&body=Hi%20Alistair%2C%0A%0ACongratulations%20on%20Genie%27s%20standout%20performance%20leading%20SWE-bench%20benchmarks.%0A%0AWith%20high-trajectory%20SWE%20agents%20executing%2050%2B%20tool%20and%20terminal%20steps%20per%20task%2C%20latency%20per%20turn%20is%20the%20biggest%20drag%20on%20developer%20experience.%20Cloud%20guardrail%20APIs%20adding%20500-1%2C000ms%20per%20turn%20severely%20bottleneck%20agent%20reasoning%20loops.%0A%0ABartholomew%20Protocol%20%28BTP%20v6.6.7%29%20is%20built%20specifically%20for%20frontier%20coding%20agents%3A%0A-%2015.10%20Microsecond%20AST%20evaluation%20latency%20%2880%2C000x%20faster%20than%20cloud%20moderation%29%0A-%20Intercepts%20destructive%20commands%20and%20file%20corruption%20in-process%20before%20OS%20syscall%0A-%20In-memory%20secret%20scrubbing%20without%20external%20API%20calls%0A-%20RFC%208785%20Ed25519%20Merkle%20receipts%20providing%20tamper-proof%20audit%20trails%0A%0AWe%20have%20provisioned%20an%20evaluation%20clearance%20for%20Cosine%20Genie%3A%0A-%20Pilot%20License%3A%20BTP-EVAL-COSINE%0A-%20Passkey%3A%20key_41816e07d273789d0cfcc871%0A-%20In-Process%20Latency%20Ceiling%3A%20%3C%2035%20Microseconds%0A%0ADocs%20%26%20Interactive%20Simulator%3A%20https%3A//bartholomew.info%0ARelease%20v6.6.7%3A%20https%3A//github.com/staccFoxx/bartholomew/releases/tag/v6.6.7%0A%0AWould%20you%20be%20open%20to%20a%2010-minute%20technical%20exchange%20on%20embedding%20BTP%20into%20Genie%27s%20execution%20sandbox%3F%0A%0ABest%20regards%2C%0A%0AThe%20Bartholomew%20Protocol%20Team%0Acontact%40bartholomew.info" target="_blank">
+        <a class="btn-send" href="mailto:alistair@cosine.sh?subject=15%C2%B5s%20AST%20Invariant%20Sentinel%20for%20Genie%20%28Zero%20Latency%20Overhead%20on%20SWE-bench%29&body=Hi%20Alistair%2C%0A%0ACongratulations%20on%20Genie%27s%20standout%20performance%20leading%20SWE-bench%20benchmarks.%0A%0AWith%20high-trajectory%20SWE%20agents%20executing%2050%2B%20tool%20and%20terminal%20steps%20per%20task%2C%20latency%20per%20turn%20is%20the%20biggest%20drag%20on%20developer%20experience.%20Cloud%20guardrail%20APIs%20adding%20500-1%2C000ms%20per%20turn%20severely%20bottleneck%20agent%20reasoning%20loops.%0A%0ABartholomew%20Protocol%20%28BTP%20v6.6.7%29%20is%20built%20specifically%20for%20frontier%20coding%20agents%3A%0A-%2015.10%20Microsecond%20AST%20evaluation%20latency%20%2880%2C000x%20faster%20than%20cloud%20moderation%29%0A-%20Intercepts%20destructive%20commands%20and%20file%20corruption%20in-process%20before%20OS%20syscall%0A-%20In-memory%20secret%20scrubbing%20without%20external%20API%20calls%0A-%20RFC%208785%20Ed25519%20Merkle%20receipts%20providing%20tamper-proof%20audit%20trails%0A%0AWe%20have%20provisioned%20an%20evaluation%20clearance%20for%20Cosine%20Genie%3A%0A-%20Pilot%20License%3A%20BTP-EVAL-COSINE%0A-%20Passkey%3A%20key_b394357bf8a1ce3fde46577d%0A-%20In-Process%20Latency%20Ceiling%3A%20%3C%2035%20Microseconds%0A%0ADocs%20%26%20Interactive%20Simulator%3A%20https%3A//bartholomew.info%0ARelease%20v6.6.7%3A%20https%3A//github.com/staccFoxx/bartholomew/releases/tag/v6.6.7%0A%0AWould%20you%20be%20open%20to%20a%2010-minute%20technical%20exchange%20on%20embedding%20BTP%20into%20Genie%27s%20execution%20sandbox%3F%0A%0ABest%20regards%2C%0A%0AThe%20Bartholomew%20Protocol%20Team%0Acontact%40bartholomew.info" target="_blank">
           Dispatch (Mailto)
         </a>
         <button class="btn-copy" onclick="copyBriefing(8)" title="Copy Email Text">
@@ -731,7 +685,7 @@ Bartholomew Protocol (BTP v6.6.7) is built specifically for frontier coding agen
 
 We have provisioned an evaluation clearance for Cosine Genie:
 - Pilot License: BTP-EVAL-COSINE
-- Passkey: key_41816e07d273789d0cfcc871
+- Passkey: key_b394357bf8a1ce3fde46577d
 - In-Process Latency Ceiling: < 35 Microseconds
 
 Docs & Interactive Simulator: https://bartholomew.info
@@ -754,10 +708,10 @@ contact@bartholomew.info</textarea>
         <div class="target-role">Co-Founder & CEO</div>
         <div class="target-email">itamar@qodo.ai</div>
         <div class="subject-box"><strong>Subj:</strong> In-process AST capability passkeys for Qodo enterprise code integrity</div>
-        <div class="passkey-pill"><strong>Ref:</strong> key_1562af24aaf185d262e85e06</div>
+        <div class="passkey-pill"><strong>Ref:</strong> key_8b9343b69e650a59d90663a6</div>
       </div>
       <div class="btn-row">
-        <a class="btn-send" href="mailto:itamar@qodo.ai?subject=In-process%20AST%20capability%20passkeys%20for%20Qodo%20enterprise%20code%20integrity&body=Hi%20Itamar%2C%0A%0AQodo%27s%20focus%20on%20enterprise%20code%20integrity%20and%20test%20quality%20is%20exactly%20where%20developer%20agent%20tooling%20needs%20to%20go.%0A%0AFor%20enterprise%20buyers%2C%20the%20critical%20missing%20primitive%20in%20autonomous%20agent%20workflows%20is%20deterministic%20runtime%20capability%20gating%3A%20cryptographically%20bounding%20what%20an%20agent%20can%20mutate%20during%20automated%20test%20generation%20and%20refactoring.%0A%0ABartholomew%20Protocol%20%28BTP%20v6.6.7%29%20solves%20this%20with%20in-process%20AST%20enforcement%20%28%3C35%C2%B5s%20latency%29%3A%0A1.%20Invariant%20Enforcement%3A%20Deterministically%20blocks%20out-of-scope%20mutations%2C%20destructive%20file%20operations%2C%20and%20credential%20access.%0A2.%20Keystone%20Capability%20Passkeys%3A%20Granular%2C%20scope-bounded%20execution%20permissions%20per%20agent%20task.%0A3.%20Cryptographic%20Audit%20Receipts%3A%20Ed25519%20signed%20JSON%20receipts%20consumable%20by%20enterprise%20compliance%20platforms.%0A%0AWe%27ve%20provisioned%20an%20evaluation%20profile%20for%20Qodo%3A%0A-%20Pilot%20License%3A%20BTP-EVAL-QODO%0A-%20Passkey%3A%20key_1562af24aaf185d262e85e06%0A-%20Quota%3A%202%2C500%2C000%20AST%20checks%0A%0ADocumentation%20%26%20Live%20Sandbox%3A%20https%3A//bartholomew.info%0AGitHub%3A%20https%3A//github.com/staccFoxx/bartholomew%0A%0AWould%20love%20to%20connect%20for%2015%20minutes%20to%20discuss%20runtime%20integrity%20integrations%20for%20Qodo%27s%20enterprise%20customers.%0A%0ABest%20regards%2C%0A%0AThe%20Bartholomew%20Protocol%20Team%0Acontact%40bartholomew.info" target="_blank">
+        <a class="btn-send" href="mailto:itamar@qodo.ai?subject=In-process%20AST%20capability%20passkeys%20for%20Qodo%20enterprise%20code%20integrity&body=Hi%20Itamar%2C%0A%0AQodo%27s%20focus%20on%20enterprise%20code%20integrity%20and%20test%20quality%20is%20exactly%20where%20developer%20agent%20tooling%20needs%20to%20go.%0A%0AFor%20enterprise%20buyers%2C%20the%20critical%20missing%20primitive%20in%20autonomous%20agent%20workflows%20is%20deterministic%20runtime%20capability%20gating%3A%20cryptographically%20bounding%20what%20an%20agent%20can%20mutate%20during%20automated%20test%20generation%20and%20refactoring.%0A%0ABartholomew%20Protocol%20%28BTP%20v6.6.7%29%20solves%20this%20with%20in-process%20AST%20enforcement%20%28%3C35%C2%B5s%20latency%29%3A%0A1.%20Invariant%20Enforcement%3A%20Deterministically%20blocks%20out-of-scope%20mutations%2C%20destructive%20file%20operations%2C%20and%20credential%20access.%0A2.%20Keystone%20Capability%20Passkeys%3A%20Granular%2C%20scope-bounded%20execution%20permissions%20per%20agent%20task.%0A3.%20Cryptographic%20Audit%20Receipts%3A%20Ed25519%20signed%20JSON%20receipts%20consumable%20by%20enterprise%20compliance%20platforms.%0A%0AWe%27ve%20provisioned%20an%20evaluation%20profile%20for%20Qodo%3A%0A-%20Pilot%20License%3A%20BTP-EVAL-QODO%0A-%20Passkey%3A%20key_8b9343b69e650a59d90663a6%0A-%20Quota%3A%202%2C500%2C000%20AST%20checks%0A%0ADocumentation%20%26%20Live%20Sandbox%3A%20https%3A//bartholomew.info%0AGitHub%3A%20https%3A//github.com/staccFoxx/bartholomew%0A%0AWould%20love%20to%20connect%20for%2015%20minutes%20to%20discuss%20runtime%20integrity%20integrations%20for%20Qodo%27s%20enterprise%20customers.%0A%0ABest%20regards%2C%0A%0AThe%20Bartholomew%20Protocol%20Team%0Acontact%40bartholomew.info" target="_blank">
           Dispatch (Mailto)
         </a>
         <button class="btn-copy" onclick="copyBriefing(9)" title="Copy Email Text">
@@ -781,13 +735,405 @@ Bartholomew Protocol (BTP v6.6.7) solves this with in-process AST enforcement (<
 
 We've provisioned an evaluation profile for Qodo:
 - Pilot License: BTP-EVAL-QODO
-- Passkey: key_1562af24aaf185d262e85e06
+- Passkey: key_8b9343b69e650a59d90663a6
 - Quota: 2,500,000 AST checks
 
 Documentation & Live Sandbox: https://bartholomew.info
 GitHub: https://github.com/staccFoxx/bartholomew
 
 Would love to connect for 15 minutes to discuss runtime integrity integrations for Qodo's enterprise customers.
+
+Best regards,
+
+The Bartholomew Protocol Team
+contact@bartholomew.info</textarea>
+
+    <div class="card" data-category="FRONTIER SWE AGENT">
+      <div class="card-top">
+        <span class="category-tag" style="color:#ff007f; border-left: 2px solid #ff007f;">
+          FRONTIER SWE AGENT
+        </span>
+        <div class="target-company">Cognition (Devin)</div>
+        <div class="target-contact">Scott Wu</div>
+        <div class="target-role">Co-Founder & CEO</div>
+        <div class="target-email">scott@cognition.ai</div>
+        <div class="subject-box"><strong>Subj:</strong> 15µs in-process AST invariant gate for Devin long-running containers</div>
+        <div class="passkey-pill"><strong>Ref:</strong> key_c51fdbf651434e6eafc25843</div>
+      </div>
+      <div class="btn-row">
+        <a class="btn-send" href="mailto:scott@cognition.ai?subject=15%C2%B5s%20in-process%20AST%20invariant%20gate%20for%20Devin%20long-running%20containers&body=Hi%20Scott%2C%0A%0AWhat%20your%20team%20has%20achieved%20with%20Devin%20is%20fundamentally%20reshaping%20how%20software%20gets%20built.%0A%0AAs%20Devin%20takes%20on%20longer-running%20enterprise%20missions%20across%20client%20infrastructure%2C%20ensuring%20the%20agent%20cannot%20execute%20destructive%20shell%20commands%20%28%60rm%20-rf%60%2C%20disk%20wipes%29%2C%20mutate%20production%20schemas%2C%20or%20leak%20high-entropy%20credentials%20during%20self-healing%20loops%20is%20critical%20for%20enterprise%20security%20sign-off.%0A%0ACalling%20cloud-based%20moderation%20APIs%20on%20every%20agent%20turn%20adds%20hundreds%20of%20milliseconds%20per%20step%20and%20risks%20leaking%20code%20outside%20the%20execution%20sandbox.%0A%0ABartholomew%20Protocol%20%28BTP%20v6.6.7%29%20is%20a%20compiled%20in-process%20AST%20invariant%20runtime%20%28%3C35%C2%B5s%20latency%29%3A%0A1.%20In-Process%20AST%20Gate%3A%20Deterministically%20intercepts%20rogue%20terminal%20commands%20and%20database%20mutations%20in%2015.10%20microseconds%20before%20process%20binding.%0A2.%20In-Memory%20Secret%20Zeroization%3A%20Masks%20API%20keys%2C%20SSH%20certs%2C%20and%20.env%20secrets%20with%20zero%20external%20cloud%20egress.%0A3.%20RFC%208785%20Ed25519%20Merkle%20Receipts%3A%20Machine-signed%20cryptographic%20proof%20verifying%20every%20Devin%20action%20for%20enterprise%20SOC%202%20/%20ISO%2042001%20audits.%0A%0AWe%20have%20provisioned%20a%20dedicated%20evaluation%20clearance%20for%20Cognition%3A%0A-%20Pilot%20License%3A%20BTP-EVAL-COGNITION%28%0A-%20Passkey%3A%20key_c51fdbf651434e6eafc25843%0A-%20In-Process%20Latency%3A%2015.10%20%C2%B5s%20%28%3C0.035%20ms%29%0A-%20Quota%3A%205%2C000%2C000%20AST%20checks%0A%0ALive%20Simulator%20%26%20Documentation%3A%20https%3A//bartholomew.info%0AGitHub%3A%20https%3A//github.com/staccFoxx/bartholomew%0A%0AWould%20you%20or%20your%20runtime%20sandbox%20leads%20be%20open%20to%20a%2015-minute%20technical%20briefing%20this%20week%3F%0A%0ABest%20regards%2C%0A%0AThe%20Bartholomew%20Protocol%20Team%0Acontact%40bartholomew.info%20%7C%20help%40bartholomew.info" target="_blank">
+          Dispatch (Mailto)
+        </a>
+        <button class="btn-copy" onclick="copyBriefing(10)" title="Copy Email Text">
+          Copy
+        </button>
+      </div>
+    </div>
+    <textarea id="briefing_10" style="display:none;">To: scott@cognition.ai
+Subject: 15µs in-process AST invariant gate for Devin long-running containers
+
+Hi Scott,
+
+What your team has achieved with Devin is fundamentally reshaping how software gets built.
+
+As Devin takes on longer-running enterprise missions across client infrastructure, ensuring the agent cannot execute destructive shell commands (`rm -rf`, disk wipes), mutate production schemas, or leak high-entropy credentials during self-healing loops is critical for enterprise security sign-off.
+
+Calling cloud-based moderation APIs on every agent turn adds hundreds of milliseconds per step and risks leaking code outside the execution sandbox.
+
+Bartholomew Protocol (BTP v6.6.7) is a compiled in-process AST invariant runtime (<35µs latency):
+1. In-Process AST Gate: Deterministically intercepts rogue terminal commands and database mutations in 15.10 microseconds before process binding.
+2. In-Memory Secret Zeroization: Masks API keys, SSH certs, and .env secrets with zero external cloud egress.
+3. RFC 8785 Ed25519 Merkle Receipts: Machine-signed cryptographic proof verifying every Devin action for enterprise SOC 2 / ISO 42001 audits.
+
+We have provisioned a dedicated evaluation clearance for Cognition:
+- Pilot License: BTP-EVAL-COGNITION(
+- Passkey: key_c51fdbf651434e6eafc25843
+- In-Process Latency: 15.10 µs (<0.035 ms)
+- Quota: 5,000,000 AST checks
+
+Live Simulator & Documentation: https://bartholomew.info
+GitHub: https://github.com/staccFoxx/bartholomew
+
+Would you or your runtime sandbox leads be open to a 15-minute technical briefing this week?
+
+Best regards,
+
+The Bartholomew Protocol Team
+contact@bartholomew.info | help@bartholomew.info</textarea>
+
+    <div class="card" data-category="FRONTIER SWE AGENT">
+      <div class="card-top">
+        <span class="category-tag" style="color:#ff007f; border-left: 2px solid #ff007f;">
+          FRONTIER SWE AGENT
+        </span>
+        <div class="target-company">Magic AI</div>
+        <div class="target-contact">Eric Steinberger</div>
+        <div class="target-role">Co-Founder & CEO</div>
+        <div class="target-email">eric@magic.dev</div>
+        <div class="subject-box"><strong>Subj:</strong> In-process AST capability gate (<35µs) for Magic LTM code models</div>
+        <div class="passkey-pill"><strong>Ref:</strong> key_f44f99c3c67075a1abc45598</div>
+      </div>
+      <div class="btn-row">
+        <a class="btn-send" href="mailto:eric@magic.dev?subject=In-process%20AST%20capability%20gate%20%28%3C35%C2%B5s%29%20for%20Magic%20LTM%20code%20models&body=Hi%20Eric%2C%0A%0AExcited%20to%20see%20Magic%20pushing%20ultra-long%20context%20models%20%28LTM-2-mini%29%20for%20autonomous%20software%20engineering.%0A%0AWith%20100M%2B%20token%20contexts%20generating%20autonomous%20multi-file%20refactors%2C%20runtime%20execution%20safety%20requires%20deterministic%2C%20in-process%20invariant%20enforcement%20rather%20than%20relying%20on%20LLM%20self-policing%20or%20sluggish%20external%20guardrails.%0A%0ABartholomew%20Protocol%20%28BTP%20v6.6.7%29%20runs%20compiled%20byte-range%20AST%20inspections%20in%2015.10%20microseconds%3A%0A-%20Intercepts%20destructive%20filesystem%20operations%20and%20unauthorized%20network%20sockets%20before%20syscall%20execution%0A-%20In-memory%20credential%20protection%20with%20zero%20third-party%20egress%0A-%20Ed25519%20Merkle%20receipts%20providing%20non-repudiation%20for%20enterprise%20deployments%0A%0AWe%27ve%20provisioned%20an%20evaluation%20license%20for%20Magic%3A%0A-%20Pilot%20License%3A%20BTP-EVAL-MAGICAI%0A-%20Passkey%3A%20key_f44f99c3c67075a1abc45598%0A-%20Latency%20Ceiling%3A%20%3C%2035%20Microseconds%0A%0ADocumentation%20%26%20Sandbox%3A%20https%3A//bartholomew.info%0AGitHub%3A%20https%3A//github.com/staccFoxx/bartholomew%0A%0AWould%20love%20to%20share%20how%20BTP%20embeds%20into%20long-context%20agent%20sandboxes.%0A%0ABest%20regards%2C%0A%0AThe%20Bartholomew%20Protocol%20Team%0Acontact%40bartholomew.info" target="_blank">
+          Dispatch (Mailto)
+        </a>
+        <button class="btn-copy" onclick="copyBriefing(11)" title="Copy Email Text">
+          Copy
+        </button>
+      </div>
+    </div>
+    <textarea id="briefing_11" style="display:none;">To: eric@magic.dev
+Subject: In-process AST capability gate (<35µs) for Magic LTM code models
+
+Hi Eric,
+
+Excited to see Magic pushing ultra-long context models (LTM-2-mini) for autonomous software engineering.
+
+With 100M+ token contexts generating autonomous multi-file refactors, runtime execution safety requires deterministic, in-process invariant enforcement rather than relying on LLM self-policing or sluggish external guardrails.
+
+Bartholomew Protocol (BTP v6.6.7) runs compiled byte-range AST inspections in 15.10 microseconds:
+- Intercepts destructive filesystem operations and unauthorized network sockets before syscall execution
+- In-memory credential protection with zero third-party egress
+- Ed25519 Merkle receipts providing non-repudiation for enterprise deployments
+
+We've provisioned an evaluation license for Magic:
+- Pilot License: BTP-EVAL-MAGICAI
+- Passkey: key_f44f99c3c67075a1abc45598
+- Latency Ceiling: < 35 Microseconds
+
+Documentation & Sandbox: https://bartholomew.info
+GitHub: https://github.com/staccFoxx/bartholomew
+
+Would love to share how BTP embeds into long-context agent sandboxes.
+
+Best regards,
+
+The Bartholomew Protocol Team
+contact@bartholomew.info</textarea>
+
+    <div class="card" data-category="FOUNDATION SWE MODEL">
+      <div class="card-top">
+        <span class="category-tag" style="color:#00f0ff; border-left: 2px solid #00f0ff;">
+          FOUNDATION SWE MODEL
+        </span>
+        <div class="target-company">Poolside AI</div>
+        <div class="target-contact">Jason Warner</div>
+        <div class="target-role">Co-Founder & CEO</div>
+        <div class="target-email">jason@poolside.ai</div>
+        <div class="subject-box"><strong>Subj:</strong> Deterministic AST runtime sentinel for Poolside code generation</div>
+        <div class="passkey-pill"><strong>Ref:</strong> key_19b8ec4716956b9a96521cc7</div>
+      </div>
+      <div class="btn-row">
+        <a class="btn-send" href="mailto:jason@poolside.ai?subject=Deterministic%20AST%20runtime%20sentinel%20for%20Poolside%20code%20generation&body=Hi%20Jason%2C%0A%0AGiven%20your%20tenure%20leading%20engineering%20at%20GitHub%2C%20you%20understand%20that%20enterprise%20developers%20will%20only%20grant%20autonomous%20agents%20write%20access%20to%20production%20codebases%20when%20execution%20safety%20is%20provably%20deterministic.%0A%0ABartholomew%20Protocol%20%28BTP%20v6.6.7%29%20provides%20an%20in-process%2C%20compiled%20AST%20security%20runtime%3A%0A-%20Latency%3A%2015.10%20%C2%B5s%20%28%3C0.035%20ms%29%20%E2%80%94%2080%2C000x%20faster%20than%20cloud%20moderation%0A-%20Intercepts%20rogue%20shell%20deletions%2C%20database%20mutations%2C%20and%20secret%20leakage%20in-flight%0A-%20Generates%20machine-signed%20RFC%208785%20Ed25519%20Merkle%20receipts%20for%20enterprise%20compliance%0A%0AWe%27ve%20provisioned%20an%20evaluation%20clearance%20for%20the%20Poolside%20team%3A%0A-%20Pilot%20License%3A%20BTP-EVAL-POOLSIDEAI%0A-%20Passkey%3A%20key_19b8ec4716956b9a96521cc7%0A-%20Evaluation%20Cap%3A%205%2C000%2C000%20AST%20checks%0A%0ADocs%20%26%20Benchmark%3A%20https%3A//bartholomew.info%0ARelease%20v6.6.7%3A%20https%3A//github.com/staccFoxx/bartholomew/releases/tag/v6.6.7%0A%0AWould%20welcome%2015%20minutes%20to%20review%20technical%20integration%20details.%0A%0ABest%20regards%2C%0A%0AThe%20Bartholomew%20Protocol%20Team%0Acontact%40bartholomew.info" target="_blank">
+          Dispatch (Mailto)
+        </a>
+        <button class="btn-copy" onclick="copyBriefing(12)" title="Copy Email Text">
+          Copy
+        </button>
+      </div>
+    </div>
+    <textarea id="briefing_12" style="display:none;">To: jason@poolside.ai
+Subject: Deterministic AST runtime sentinel for Poolside code generation
+
+Hi Jason,
+
+Given your tenure leading engineering at GitHub, you understand that enterprise developers will only grant autonomous agents write access to production codebases when execution safety is provably deterministic.
+
+Bartholomew Protocol (BTP v6.6.7) provides an in-process, compiled AST security runtime:
+- Latency: 15.10 µs (<0.035 ms) — 80,000x faster than cloud moderation
+- Intercepts rogue shell deletions, database mutations, and secret leakage in-flight
+- Generates machine-signed RFC 8785 Ed25519 Merkle receipts for enterprise compliance
+
+We've provisioned an evaluation clearance for the Poolside team:
+- Pilot License: BTP-EVAL-POOLSIDEAI
+- Passkey: key_19b8ec4716956b9a96521cc7
+- Evaluation Cap: 5,000,000 AST checks
+
+Docs & Benchmark: https://bartholomew.info
+Release v6.6.7: https://github.com/staccFoxx/bartholomew/releases/tag/v6.6.7
+
+Would welcome 15 minutes to review technical integration details.
+
+Best regards,
+
+The Bartholomew Protocol Team
+contact@bartholomew.info</textarea>
+
+    <div class="card" data-category="OPEN-SOURCE SWE ECOSYSTEM">
+      <div class="card-top">
+        <span class="category-tag" style="color:#00ff88; border-left: 2px solid #00ff88;">
+          OPEN-SOURCE SWE ECOSYSTEM
+        </span>
+        <div class="target-company">Continue.dev</div>
+        <div class="target-contact">Ty Dunn & Nate Sesti</div>
+        <div class="target-role">Co-Founders, Continue</div>
+        <div class="target-email">ty@continue.dev</div>
+        <div class="subject-box"><strong>Subj:</strong> In-process AST security runtime integration for Continue.dev</div>
+        <div class="passkey-pill"><strong>Ref:</strong> key_769cb3f5b7a2cbd67fe58b1e</div>
+      </div>
+      <div class="btn-row">
+        <a class="btn-send" href="mailto:ty@continue.dev?subject=In-process%20AST%20security%20runtime%20integration%20for%20Continue.dev&body=Hey%20Ty%20%26%20Nate%2C%0A%0AHuge%20supporters%20of%20Continue%20as%20the%20standard%20open-source%20AI%20code%20assistant%20in%20VS%20Code%20and%20JetBrains.%0A%0AWhen%20developers%20run%20Continue%20with%20slash%20commands%2C%20terminal%20execution%2C%20and%20local%20MCP%20tool%20calling%2C%20having%20an%20in-process%20safety%20gate%20prevents%20accidental%20%60rm%20-rf%60%2C%20database%20schema%20drops%2C%20or%20high-entropy%20credential%20leakage%20in%20prompt%20histories.%0A%0ABartholomew%20Protocol%20%28BTP%20v6.6.7%29%20is%20a%20zero-cloud%20in-process%20AST%20sentinel%3A%0A-%20Latency%3A%2015.10%20Microseconds%20%28%3C0.035%20ms%29%0A-%20In-memory%20secret%20scrubbing%20before%20prompt%20serialization%0A-%20Drop-in%20Python/TypeScript%20library%20with%20full%20MCP%20tool%20support%0A%0AWe%27d%20love%20to%20collaborate%20on%20a%20native%20%60%40btp_guard%60%20safety%20integration%20for%20Continue%20users%20and%20feature%20Continue%20on%20our%20Verified%20Ecosystem%20directory%20%28https%3A//bartholomew.info%23sponsors%29.%0A%0APilot%20License%3A%20BTP-EVAL-CONTINUEDE%0APasskey%3A%20key_769cb3f5b7a2cbd67fe58b1e%0A%0AGitHub%3A%20https%3A//github.com/staccFoxx/bartholomew%0A%0AOpen%20to%20a%20quick%20sync%20this%20week%3F%0A%0ABest%2C%0A%0AThe%20Bartholomew%20Protocol%20Team%0Acontact%40bartholomew.info" target="_blank">
+          Dispatch (Mailto)
+        </a>
+        <button class="btn-copy" onclick="copyBriefing(13)" title="Copy Email Text">
+          Copy
+        </button>
+      </div>
+    </div>
+    <textarea id="briefing_13" style="display:none;">To: ty@continue.dev
+Subject: In-process AST security runtime integration for Continue.dev
+
+Hey Ty & Nate,
+
+Huge supporters of Continue as the standard open-source AI code assistant in VS Code and JetBrains.
+
+When developers run Continue with slash commands, terminal execution, and local MCP tool calling, having an in-process safety gate prevents accidental `rm -rf`, database schema drops, or high-entropy credential leakage in prompt histories.
+
+Bartholomew Protocol (BTP v6.6.7) is a zero-cloud in-process AST sentinel:
+- Latency: 15.10 Microseconds (<0.035 ms)
+- In-memory secret scrubbing before prompt serialization
+- Drop-in Python/TypeScript library with full MCP tool support
+
+We'd love to collaborate on a native `@btp_guard` safety integration for Continue users and feature Continue on our Verified Ecosystem directory (https://bartholomew.info#sponsors).
+
+Pilot License: BTP-EVAL-CONTINUEDE
+Passkey: key_769cb3f5b7a2cbd67fe58b1e
+
+GitHub: https://github.com/staccFoxx/bartholomew
+
+Open to a quick sync this week?
+
+Best,
+
+The Bartholomew Protocol Team
+contact@bartholomew.info</textarea>
+
+    <div class="card" data-category="ENTERPRISE CODE AI">
+      <div class="card-top">
+        <span class="category-tag" style="color:#a855f7; border-left: 2px solid #a855f7;">
+          ENTERPRISE CODE AI
+        </span>
+        <div class="target-company">Tabnine</div>
+        <div class="target-contact">Dror Weiss</div>
+        <div class="target-role">Co-Founder & CEO</div>
+        <div class="target-email">dror@tabnine.com</div>
+        <div class="subject-box"><strong>Subj:</strong> Sub-35µs AST Invariant Sentinel for Tabnine Enterprise Deployments</div>
+        <div class="passkey-pill"><strong>Ref:</strong> key_68c31db9bc52d4ab16a80689</div>
+      </div>
+      <div class="btn-row">
+        <a class="btn-send" href="mailto:dror@tabnine.com?subject=Sub-35%C2%B5s%20AST%20Invariant%20Sentinel%20for%20Tabnine%20Enterprise%20Deployments&body=Hi%20Dror%2C%0A%0ATabnine%27s%20enterprise-first%2C%20air-gapped%20approach%20to%20developer%20AI%20has%20always%20set%20the%20industry%20standard%20for%20customer%20trust.%0A%0AAs%20Tabnine%20adds%20agentic%20capabilities%20%28autonomous%20test%20writing%2C%20multi-step%20refactors%2C%20and%20terminal%20interactions%29%2C%20enterprise%20CISOs%20require%20deterministic%20guarantees%20that%20agent%20actions%20cannot%20violate%20host%20filesystem%20integrity%20or%20exfiltrate%20private%20credentials.%0A%0ABartholomew%20Protocol%20%28BTP%20v6.6.7%29%20is%20built%20precisely%20for%20air-gapped%2C%20zero-cloud%20enterprise%20environments%3A%0A-%20100%25%20in-process%20compiled%20AST%20policy%20checks%20%28%3C%2035%20microseconds%29%0A-%20Zero%20external%20network%20egress%0A-%20RFC%208785%20Ed25519%20Merkle%20receipts%20satisfying%20SOC%202%20Type%20II%20audit%20requirements%0A%0AWe%27ve%20provisioned%20an%20evaluation%20profile%20for%20Tabnine%3A%0A-%20License%20ID%3A%20BTP-EVAL-TABNINE%0A-%20Passkey%3A%20key_68c31db9bc52d4ab16a80689%0A-%20Quota%3A%205%2C000%2C000%20AST%20checks%0A%0ALive%20Portal%3A%20https%3A//bartholomew.info%0AGitHub%3A%20https%3A//github.com/staccFoxx/bartholomew%0A%0AWould%20your%20engineering%20leadership%20welcome%20a%2015-minute%20technical%20demo%3F%0A%0ABest%20regards%2C%0A%0AThe%20Bartholomew%20Protocol%20Team%0Acontact%40bartholomew.info" target="_blank">
+          Dispatch (Mailto)
+        </a>
+        <button class="btn-copy" onclick="copyBriefing(14)" title="Copy Email Text">
+          Copy
+        </button>
+      </div>
+    </div>
+    <textarea id="briefing_14" style="display:none;">To: dror@tabnine.com
+Subject: Sub-35µs AST Invariant Sentinel for Tabnine Enterprise Deployments
+
+Hi Dror,
+
+Tabnine's enterprise-first, air-gapped approach to developer AI has always set the industry standard for customer trust.
+
+As Tabnine adds agentic capabilities (autonomous test writing, multi-step refactors, and terminal interactions), enterprise CISOs require deterministic guarantees that agent actions cannot violate host filesystem integrity or exfiltrate private credentials.
+
+Bartholomew Protocol (BTP v6.6.7) is built precisely for air-gapped, zero-cloud enterprise environments:
+- 100% in-process compiled AST policy checks (< 35 microseconds)
+- Zero external network egress
+- RFC 8785 Ed25519 Merkle receipts satisfying SOC 2 Type II audit requirements
+
+We've provisioned an evaluation profile for Tabnine:
+- License ID: BTP-EVAL-TABNINE
+- Passkey: key_68c31db9bc52d4ab16a80689
+- Quota: 5,000,000 AST checks
+
+Live Portal: https://bartholomew.info
+GitHub: https://github.com/staccFoxx/bartholomew
+
+Would your engineering leadership welcome a 15-minute technical demo?
+
+Best regards,
+
+The Bartholomew Protocol Team
+contact@bartholomew.info</textarea>
+
+    <div class="card" data-category="TERMINAL PAIR PROGRAMMING">
+      <div class="card-top">
+        <span class="category-tag" style="color:#f59e0b; border-left: 2px solid #f59e0b;">
+          TERMINAL PAIR PROGRAMMING
+        </span>
+        <div class="target-company">Aider</div>
+        <div class="target-contact">Paul Gauthier</div>
+        <div class="target-role">Creator, Aider</div>
+        <div class="target-email">paul@aider.chat</div>
+        <div class="subject-box"><strong>Subj:</strong> In-process AST safety gate for Aider terminal executions</div>
+        <div class="passkey-pill"><strong>Ref:</strong> key_db568122f84f21c1465f63e4</div>
+      </div>
+      <div class="btn-row">
+        <a class="btn-send" href="mailto:paul@aider.chat?subject=In-process%20AST%20safety%20gate%20for%20Aider%20terminal%20executions&body=Hi%20Paul%2C%0A%0AAider%20is%20by%20far%20one%20of%20the%20most%20effective%20and%20widely%20adopted%20terminal-based%20AI%20pair%20programmers%20in%20the%20developer%20community.%0A%0AWhen%20developers%20use%20Aider%20in%20auto-commit%20and%20terminal%20run%20modes%2C%20having%20an%20ultra-fast%2C%20in-process%20invariant%20gate%20ensures%20that%20generated%20shell%20commands%20never%20perform%20unintended%20directory%20deletes%20or%20commit%20private%20environment%20secrets.%0A%0ABartholomew%20Protocol%20runs%20in-process%20in%20Python%3A%0A-%20Latency%3A%2015.10%20%C2%B5s%20%28%3C0.035%20ms%29%0A-%20Blocks%20destructive%20commands%20and%20redacts%20API%20keys%20before%20git%20commit%0A-%20Zero%20cloud%20moderation%20latency%3B%20100%25%20local%0A%0AEvaluation%20Passkey%3A%20key_db568122f84f21c1465f63e4%0ALicense%3A%20BTP-EVAL-AIDER%0A%0ALive%20Simulator%3A%20https%3A//bartholomew.info%0AGitHub%3A%20https%3A//github.com/staccFoxx/bartholomew%0A%0AWould%20love%20to%20see%20if%20this%20is%20something%20Aider%20users%20would%20find%20valuable%20as%20an%20optional%20security%20flag%20%28%60--btp-guard%60%29.%0A%0ABest%2C%0A%0AThe%20Bartholomew%20Protocol%20Team%0Acontact%40bartholomew.info" target="_blank">
+          Dispatch (Mailto)
+        </a>
+        <button class="btn-copy" onclick="copyBriefing(15)" title="Copy Email Text">
+          Copy
+        </button>
+      </div>
+    </div>
+    <textarea id="briefing_15" style="display:none;">To: paul@aider.chat
+Subject: In-process AST safety gate for Aider terminal executions
+
+Hi Paul,
+
+Aider is by far one of the most effective and widely adopted terminal-based AI pair programmers in the developer community.
+
+When developers use Aider in auto-commit and terminal run modes, having an ultra-fast, in-process invariant gate ensures that generated shell commands never perform unintended directory deletes or commit private environment secrets.
+
+Bartholomew Protocol runs in-process in Python:
+- Latency: 15.10 µs (<0.035 ms)
+- Blocks destructive commands and redacts API keys before git commit
+- Zero cloud moderation latency; 100% local
+
+Evaluation Passkey: key_db568122f84f21c1465f63e4
+License: BTP-EVAL-AIDER
+
+Live Simulator: https://bartholomew.info
+GitHub: https://github.com/staccFoxx/bartholomew
+
+Would love to see if this is something Aider users would find valuable as an optional security flag (`--btp-guard`).
+
+Best,
+
+The Bartholomew Protocol Team
+contact@bartholomew.info</textarea>
+
+    <div class="card" data-category="AI CODE EDITOR">
+      <div class="card-top">
+        <span class="category-tag" style="color:#06b6d4; border-left: 2px solid #06b6d4;">
+          AI CODE EDITOR
+        </span>
+        <div class="target-company">Melty</div>
+        <div class="target-contact">Charlie Holtz</div>
+        <div class="target-role">Co-Founder, Melty</div>
+        <div class="target-email">charlie@melty.com</div>
+        <div class="subject-box"><strong>Subj:</strong> Sub-35µs AST safety sentinel for Melty code editor</div>
+        <div class="passkey-pill"><strong>Ref:</strong> key_577facf40e6c6ec5b705acaf</div>
+      </div>
+      <div class="btn-row">
+        <a class="btn-send" href="mailto:charlie@melty.com?subject=Sub-35%C2%B5s%20AST%20safety%20sentinel%20for%20Melty%20code%20editor&body=Hey%20Charlie%2C%0A%0ALoving%20Melty%27s%20vision%20of%20an%20AI%20code%20editor%20that%20understands%20developer%20thoughts%20and%20terminal%20context.%0A%0AWhen%20autonomous%20editor%20agents%20inspect%20developer%20diffs%2C%20run%20linters%2C%20and%20propose%20automated%20refactors%2C%20keeping%20execution%20strictly%20bounded%20and%20secret-safe%20without%20UI%20lag%20is%20paramount.%0A%0ABartholomew%20Protocol%20%28BTP%20v6.6.7%29%20provides%3A%0A-%2015.10%20%C2%B5s%20AST%20evaluation%20%28%3C0.035%20ms%29%0A-%20In-memory%20secret%20scrubbing%0A-%20Ed25519%20cryptographic%20audit%20receipts%0A%0APilot%20License%3A%20BTP-EVAL-MELTY%0APasskey%3A%20key_577facf40e6c6ec5b705acaf%0A%0ASandbox%3A%20https%3A//bartholomew.info%0AGitHub%3A%20https%3A//github.com/staccFoxx/bartholomew%0A%0AWould%20love%20to%20chat%20for%2010%20minutes%20about%20agent%20runtime%20safety%20in%20AI%20editors%21%0A%0ABest%2C%0A%0AThe%20Bartholomew%20Protocol%20Team%0Acontact%40bartholomew.info" target="_blank">
+          Dispatch (Mailto)
+        </a>
+        <button class="btn-copy" onclick="copyBriefing(16)" title="Copy Email Text">
+          Copy
+        </button>
+      </div>
+    </div>
+    <textarea id="briefing_16" style="display:none;">To: charlie@melty.com
+Subject: Sub-35µs AST safety sentinel for Melty code editor
+
+Hey Charlie,
+
+Loving Melty's vision of an AI code editor that understands developer thoughts and terminal context.
+
+When autonomous editor agents inspect developer diffs, run linters, and propose automated refactors, keeping execution strictly bounded and secret-safe without UI lag is paramount.
+
+Bartholomew Protocol (BTP v6.6.7) provides:
+- 15.10 µs AST evaluation (<0.035 ms)
+- In-memory secret scrubbing
+- Ed25519 cryptographic audit receipts
+
+Pilot License: BTP-EVAL-MELTY
+Passkey: key_577facf40e6c6ec5b705acaf
+
+Sandbox: https://bartholomew.info
+GitHub: https://github.com/staccFoxx/bartholomew
+
+Would love to chat for 10 minutes about agent runtime safety in AI editors!
+
+Best,
+
+The Bartholomew Protocol Team
+contact@bartholomew.info</textarea>
+
+    <div class="card" data-category="AGENT WORKFLOW PLATFORM">
+      <div class="card-top">
+        <span class="category-tag" style="color:#10b981; border-left: 2px solid #10b981;">
+          AGENT WORKFLOW PLATFORM
+        </span>
+        <div class="target-company">Superagent</div>
+        <div class="target-contact">Ismail Pelaseyed</div>
+        <div class="target-role">Founder, Superagent</div>
+        <div class="target-email">ismail@superagent.sh</div>
+        <div class="subject-box"><strong>Subj:</strong> Sub-35µs in-process guardrail integration for Superagent workflows</div>
+        <div class="passkey-pill"><strong>Ref:</strong> key_2143f95530743687f23f6ebd</div>
+      </div>
+      <div class="btn-row">
+        <a class="btn-send" href="mailto:ismail@superagent.sh?subject=Sub-35%C2%B5s%20in-process%20guardrail%20integration%20for%20Superagent%20workflows&body=Hi%20Ismail%2C%0A%0AHuge%20fan%20of%20the%20Superagent%20agent%20workflow%20and%20orchestration%20platform.%0A%0AFor%20developers%20deploying%20autonomous%20agents%20with%20custom%20tools%20and%20bash%20runners%2C%20cloud%20guardrails%20introduce%20unacceptable%201%2C000ms%20latency%20bottlenecks.%0A%0ABartholomew%20Protocol%20provides%20a%20compiled%2C%20in-process%20AST%20gate%20%28%3C35%C2%B5s%20latency%29%20that%20acts%20as%20an%20instant%20killswitch%20for%20destructive%20actions%20and%20credential%20leakage.%0A%0AWe%27ve%20provisioned%20an%20evaluation%20passkey%20for%20Superagent%3A%0A-%20License%3A%20BTP-EVAL-SUPERAGENT%0A-%20Passkey%3A%20key_2143f95530743687f23f6ebd%0A%0ADocs%20%26%20Demo%3A%20https%3A//bartholomew.info%0AGitHub%3A%20https%3A//github.com/staccFoxx/bartholomew%0A%0AWould%20love%20to%20explore%20adding%20Bartholomew%20as%20a%20recommended%20runtime%20guardrail%20for%20Superagent%21%0A%0ABest%20regards%2C%0A%0AThe%20Bartholomew%20Protocol%20Team%0Acontact%40bartholomew.info" target="_blank">
+          Dispatch (Mailto)
+        </a>
+        <button class="btn-copy" onclick="copyBriefing(17)" title="Copy Email Text">
+          Copy
+        </button>
+      </div>
+    </div>
+    <textarea id="briefing_17" style="display:none;">To: ismail@superagent.sh
+Subject: Sub-35µs in-process guardrail integration for Superagent workflows
+
+Hi Ismail,
+
+Huge fan of the Superagent agent workflow and orchestration platform.
+
+For developers deploying autonomous agents with custom tools and bash runners, cloud guardrails introduce unacceptable 1,000ms latency bottlenecks.
+
+Bartholomew Protocol provides a compiled, in-process AST gate (<35µs latency) that acts as an instant killswitch for destructive actions and credential leakage.
+
+We've provisioned an evaluation passkey for Superagent:
+- License: BTP-EVAL-SUPERAGENT
+- Passkey: key_2143f95530743687f23f6ebd
+
+Docs & Demo: https://bartholomew.info
+GitHub: https://github.com/staccFoxx/bartholomew
+
+Would love to explore adding Bartholomew as a recommended runtime guardrail for Superagent!
 
 Best regards,
 
@@ -809,7 +1155,7 @@ function filterCategory(cat) {
       card.style.display = 'flex';
     } else if (cat === 'SPONSOR' && card.dataset.category.includes('SPONSOR')) {
       card.style.display = 'flex';
-    } else if (cat === 'STARTUP' && card.dataset.category.includes('STARTUP')) {
+    } else if (cat === 'SWE' && !card.dataset.category.includes('SPONSOR') && !card.dataset.category.includes('ENTERPRISE')) {
       card.style.display = 'flex';
     } else {
       card.style.display = 'none';
