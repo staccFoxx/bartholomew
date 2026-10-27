@@ -1,4 +1,4 @@
-# Open VSX Registry & Cursor Marketplace Publishing Guide (v6.3.0)
+# Open VSX Registry & Cursor Marketplace Publishing Guide (v6.6.7)
 
 This guide documents the exact 1-command publication workflow for **Bartholomew Agent Guard** (`Bartholomew.bartholomew-guard-vscode`) on the [Open VSX Registry](https://open-vsx.org/).
 
@@ -22,16 +22,16 @@ publish-open-vsx.bat
 
 ### Direct CLI command via npx:
 ```bash
-npx ovsx publish bartholomew-guard-vscode-6.3.0.vsix -p $OVSX_PAT
+npx ovsx publish bartholomew-guard-vscode-6.6.7.vsix -p $OVSX_PAT
 ```
 
 ---
 
 ## 2. Generating Your Open VSX Personal Access Token (PAT)
 
-1. Navigate to [https://open-vsx.org/](https://open-vsx.org/) and log in using your GitHub account (`ivegotahunnitonit`).
+1. Navigate to [https://open-vsx.org/](https://open-vsx.org/) and log in using your GitHub account (`staccFoxx`).
 2. Click your avatar in the upper right corner and select **Access Tokens**.
-3. Click **Generate Token**, name it `bartholomew-release-v6.3.0`, and copy the generated token string.
+3. Click **Generate Token**, name it `bartholomew-release-v6.6.7`, and copy the generated token string.
 4. If you have not claimed the namespace yet, visit [Open VSX Namespaces](https://open-vsx.org/user-settings/namespaces) and claim `Bartholomew`.
 
 ---
@@ -40,7 +40,7 @@ npx ovsx publish bartholomew-guard-vscode-6.3.0.vsix -p $OVSX_PAT
 
 Publication is also fully automated via GitHub Actions in [`.github/workflows/publish-extensions.yml`](../../.github/workflows/publish-extensions.yml):
 - Add your Open VSX token as a repository secret: `OVSX_PAT` in **GitHub Repository Settings > Secrets and variables > Actions**.
-- Trigger the workflow on demand via the **Actions** tab ("Run workflow") or by pushing a new release tag `git tag v6.3.0 && git push origin v6.3.0`.
+- Trigger the workflow on demand via the **Actions** tab ("Run workflow") or by pushing a new release tag `git tag v6.6.7 && git push origin v6.6.7`.
 
 ---
 
