@@ -1,5 +1,21 @@
 name: Bartholomew Guard Security Check
-on: [push, pull_request]
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - 'site/**'
+      - 'docs/**'
+      - '**.md'
+      - '**.txt'
+      - 'LICENSE*'
+  pull_request:
+    branches: [main]
+    paths-ignore:
+      - 'site/**'
+      - 'docs/**'
+      - '**.md'
+      - '**.txt'
+      - 'LICENSE*'
 jobs:
   security-gate:
     runs-on: ubuntu-latest

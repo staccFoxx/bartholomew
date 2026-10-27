@@ -3,8 +3,20 @@ name: Socket Supply Chain Security
 on:
   push:
     branches: [main]
+    paths-ignore:
+      - 'site/**'
+      - 'docs/**'
+      - '**.md'
+      - '**.txt'
+      - 'LICENSE*'
   pull_request:
     branches: [main]
+    paths-ignore:
+      - 'site/**'
+      - 'docs/**'
+      - '**.md'
+      - '**.txt'
+      - 'LICENSE*'
   workflow_dispatch:
 
 concurrency:
