@@ -1,0 +1,42 @@
+﻿From 6e96d13267e9be9d339e1daaf411b203734d7569 Mon Sep 17 00:00:00 2001
+From: Autonomous Circularity Network <contact@autonomouscircularity.network>
+Date: Sun, 25 Oct 2026 22:08:33 -0600
+Subject: [PATCH] ci: add Bartholomew AST invariant sentinel and secret audit
+ workflow
+
+---
+ .github/workflows/bartholomew-guard.yml | 22 ++++++++++++++++++++++
+ 1 file changed, 22 insertions(+)
+ create mode 100644 .github/workflows/bartholomew-guard.yml
+
+diff --git a/.github/workflows/bartholomew-guard.yml b/.github/workflows/bartholomew-guard.yml
+new file mode 100644
+index 0000000..0295c9c
+--- /dev/null
++++ b/.github/workflows/bartholomew-guard.yml
+@@ -0,0 +1,22 @@
++name: Bartholomew AST Invariant Sentinel
++
++on:
++  pull_request:
++    types: [opened, synchronize, reopened]
++  push:
++    branches: [main]
++
++jobs:
++  btp-guard:
++    name: Deterministic AST Invariant Sentinel & Secret Gate
++    runs-on: ubuntu-latest
++    steps:
++      - name: Checkout Repository
++        uses: actions/checkout@v4
++
++      - name: Run Bartholomew Invariant Sentinel
++        uses: staccFoxx/bartholomew@main
++        with:
++          audit-path: "."
++          fail-on-violation: false
++          min-score: 80
+-- 
+2.55.0.windows.3
+
