@@ -38,8 +38,8 @@ test = ["pytest>=7.0.0"]
 [project.urls]
 Homepage = "https://bartholomew.info"
 Documentation = "https://bartholomew.info#sdk"
-Repository = "https://github.com/ivegotahunnitonit/bartholomew"
-Tracker = "https://github.com/ivegotahunnitonit/bartholomew/issues"
+Repository = "https://github.com/staccFoxx/bartholomew"
+Tracker = "https://github.com/staccFoxx/bartholomew/issues"
 
 
 [project.scripts]

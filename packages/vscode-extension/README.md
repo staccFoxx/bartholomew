@@ -2,7 +2,7 @@
   <img src="https://acn-26670.web.app/assets/guard_logo.png" width="96" height="96" alt="Bartholomew Guard Logo" />
 </p>
 
-# **Bartholomew Guard (v6.6.3)**
+# **Bartholomew Guard (v6.6.7)**
 ### **In-Process AI Agent Firewall, Guardrails & Execution Security for Cursor, Claude Code, Windsurf & Copilot**
 
 [![Open-VSX Version](https://img.shields.io/open-vsx/v/Bartholomew/bartholomew-guard-vscode?style=for-the-badge&color=emerald)](https://open-vsx.org/extension/Bartholomew/bartholomew-guard-vscode)
@@ -75,6 +75,14 @@ Click the **Bartholomew Shield icon** in your activity bar to view your live exe
 
 ---
 
+
+## **Pricing & Capability Passkeys**
+
+* **[Activate $10 Developer Passkey (100k Evals)](https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607)**: Full in-process AST gate, secret zeroization, and Ed25519 Merkle receipts.
+* **[Activate $15 Swarm Passkey (150k Evals)](https://buy.stripe.com/cNi3cv6tf6Y2cmAgpW9R608)**: Multi-agent consensus & swarm coordination.
+* **[Enterprise Pilot & SOC 2 Certification ($950)](https://buy.stripe.com/3cI6oHbNz3LQ4U84He9R605)**: 250 agent identities, dedicated SLA, and compliance attestation dossier.
+
+---
 ## **Enterprise Compliance & Auditing**
 
 * **EU AI Act Conformity**: Article 14 (Human Oversight) and Article 15 (Cybersecurity & Accuracy) attestations.
@@ -86,8 +94,8 @@ Click the **Bartholomew Shield icon** in your activity bar to view your live exe
 ## **Community & Feedback**
 
 * **Official Portal**: [https://bartholomew.info](https://bartholomew.info)
-* **GitHub Repository**: [https://github.com/ivegotahunnitonit/bartholomew](https://github.com/ivegotahunnitonit/bartholomew)
-* **Report Issues / Feedback**: [https://github.com/ivegotahunnitonit/bartholomew/issues](https://github.com/ivegotahunnitonit/bartholomew/issues)
+* **GitHub Repository**: [https://github.com/staccFoxx/bartholomew](https://github.com/staccFoxx/bartholomew)
+* **Report Issues / Feedback**: [https://github.com/staccFoxx/bartholomew/issues](https://github.com/staccFoxx/bartholomew/issues)
 
 If Bartholomew Guard saved your workspace from an accidental deletion or credential leak, please **leave a review on the marketplace** and star the repository!
 

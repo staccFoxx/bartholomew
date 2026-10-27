@@ -15,7 +15,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/ivegotahunnitonit/bartholomew.git",
+    "url": "https://github.com/staccFoxx/bartholomew.git",
     "directory": "packages/vscode-extension"
   },
   "engines": {
