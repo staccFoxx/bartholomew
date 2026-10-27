@@ -2058,7 +2058,7 @@
       }
       .nav-right-items {
         flex-wrap: wrap !important;
-        gap: 8px !important;
+        gap: 6px !important;
       }
     }
 
@@ -2722,7 +2722,7 @@
       }
       .nav-links, .nav-right-items {
         flex-wrap: wrap !important;
-        gap: 8px !important;
+        gap: 6px !important;
       }
     }
 
@@ -2783,10 +2783,33 @@
     }
 
   
-    /* --- Streamlined Enterprise Navbar & Responsive System --- */
+    
+    /* --- Neat Symbol Pill Navigation System --- */\n
+    @media (min-width: 1181px) {
+      .nav-pills-track {
+        display: flex !important;
+        gap: 5px !important;
+        padding: 4px 0 !important;
+        flex-wrap: nowrap !important;
+      }
+      .nav-seal-link {
+        padding: 5px 8px !important;
+        font-size: 0.73rem !important;
+        gap: 5px !important;
+      }
+      .btn-sandbox-nav {
+        padding: 6px 12px !important;
+        font-size: 0.78rem !important;
+      }
+      header.navbar .container {
+        max-width: 100% !important;
+        padding: 0 16px !important;
+      }
+    }
+
     header.navbar {
       border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
-      background: rgba(7, 10, 15, 0.92) !important;
+      background: rgba(7, 10, 15, 0.94) !important;
       backdrop-filter: blur(18px) !important;
       -webkit-backdrop-filter: blur(18px) !important;
       position: sticky !important;
@@ -2804,167 +2827,197 @@
       justify-content: space-between !important;
       height: 68px !important;
       max-height: 68px !important;
-      position: relative !important;
-      padding: 0 24px !important;
+      padding: 0 20px !important;
       box-sizing: border-box !important;
+      gap: 16px !important;
     }
 
-    /* Desktop Navigation Center */
-    .nav-center-menu {
-      display: flex;
-      align-items: center;
-      gap: 20px;
+    /* Brand Logo & Title */
+    .brand-wrap {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 10px !important;
+      text-decoration: none !important;
+      color: #ffffff !important;
+      flex-shrink: 0 !important;
     }
 
-    .nav-menu-link {
-      color: #94a3b8;
-      text-decoration: none;
-      font-size: 0.86rem;
-      font-weight: 600;
-      transition: all 0.2s ease;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      padding: 6px 0;
-      white-space: nowrap;
+    .brand-title {
+      font-size: 1.15rem !important;
+      font-weight: 800 !important;
+      letter-spacing: -0.02em !important;
+      color: #ffffff !important;
     }
 
-    .nav-menu-link:hover, .nav-menu-link.active {
-      color: #ffffff;
+    .badge-protocol {
+      font-family: var(--font-mono) !important;
+      font-size: 0.72rem !important;
+      font-weight: 700 !important;
+      padding: 3px 8px !important;
+      border-radius: 999px !important;
+      background: rgba(16, 185, 129, 0.12) !important;
+      border: 1px solid rgba(16, 185, 129, 0.35) !important;
+      color: #34d399 !important;
+      white-space: nowrap !important;
     }
 
-    /* Products Dropdown */
-    .nav-dropdown {
-      position: relative;
+    /* Desktop Pill Track (Single clean row with neat symbols) */
+    .nav-pills-track {
+      display: flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      flex-wrap: nowrap !important;
+      overflow-x: auto !important;
+      scrollbar-width: none !important;
+      -ms-overflow-style: none !important;
+      padding: 4px 0 !important;
     }
 
-    .nav-dropdown-btn {
-      background: none;
-      border: none;
-      color: #94a3b8;
-      font-size: 0.86rem;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      padding: 6px 0;
-      font-family: inherit;
-      transition: all 0.2s ease;
-      white-space: nowrap;
+    .nav-pills-track::-webkit-scrollbar {
+      display: none !important;
     }
 
-    .nav-dropdown-btn:hover, .nav-dropdown:hover .nav-dropdown-btn {
-      color: #ffffff;
+    /* Individual Symbol Link Badge */
+    .nav-seal-link {
+      font-family: var(--font-mono) !important;
+      font-size: 0.74rem !important;
+      font-weight: 700 !important;
+      text-decoration: none !important;
+      padding: 5px 9px !important;
+      border-radius: 8px !important;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 5px !important;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+      border: 1px solid rgba(255, 255, 255, 0.1) !important;
+      background: rgba(255, 255, 255, 0.04) !important;
+      color: #cbd5e1 !important;
     }
 
-    .nav-dropdown-menu {
-      position: absolute;
-      top: 100%;
-      left: -20px;
-      width: 320px;
-      background: rgba(10, 15, 26, 0.97);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      border-radius: 12px;
-      padding: 10px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
-      opacity: 0;
-      visibility: hidden;
-      transform: translateY(8px);
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 1050;
-      pointer-events: none;
+    .nav-seal-link:hover {
+      transform: translateY(-1px) !important;
+      color: #ffffff !important;
     }
 
-    .nav-dropdown:hover .nav-dropdown-menu,
-    .nav-dropdown.active .nav-dropdown-menu {
-      opacity: 1;
-      visibility: visible;
-      transform: translateY(0);
-      pointer-events: auto;
+    /* Custom badge color accents */
+    .nav-badge-kyro {
+      background: rgba(245, 158, 11, 0.1) !important;
+      border-color: rgba(245, 158, 11, 0.35) !important;
+      color: #fbbf24 !important;
+    }
+    .nav-badge-kyro:hover {
+      background: rgba(245, 158, 11, 0.18) !important;
+      border-color: #f59e0b !important;
+      color: #fde68a !important;
     }
 
-    .dropdown-card-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      padding: 10px 12px;
-      border-radius: 8px;
-      text-decoration: none;
-      color: #f8fafc;
-      transition: all 0.15s ease;
+    .nav-badge-photonics {
+      background: rgba(6, 182, 212, 0.1) !important;
+      border-color: rgba(6, 182, 212, 0.35) !important;
+      color: #38bdf8 !important;
+    }
+    .nav-badge-photonics:hover {
+      background: rgba(6, 182, 212, 0.18) !important;
+      border-color: #06b6d4 !important;
+      color: #7dd3fc !important;
     }
 
-    .dropdown-card-item:hover {
-      background: rgba(255, 255, 255, 0.06);
+    .nav-badge-frontier {
+      background: rgba(16, 185, 129, 0.1) !important;
+      border-color: rgba(16, 185, 129, 0.35) !important;
+      color: #34d399 !important;
+    }
+    .nav-badge-frontier:hover {
+      background: rgba(16, 185, 129, 0.18) !important;
+      border-color: #10b981 !important;
+      color: #6ee7b7 !important;
     }
 
-    .dropdown-icon {
-      width: 32px;
-      height: 32px;
-      border-radius: 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
+    .nav-badge-roi {
+      background: rgba(16, 185, 129, 0.1) !important;
+      border-color: rgba(16, 185, 129, 0.35) !important;
+      color: #34d399 !important;
+    }
+    .nav-badge-roi:hover {
+      background: rgba(16, 185, 129, 0.18) !important;
+      border-color: #10b981 !important;
+      color: #6ee7b7 !important;
     }
 
-    .dropdown-title {
-      font-size: 0.86rem;
-      font-weight: 700;
-      color: #ffffff;
-      line-height: 1.2;
+    .nav-badge-enterprise {
+      background: rgba(56, 189, 248, 0.1) !important;
+      border-color: rgba(56, 189, 248, 0.35) !important;
+      color: #38bdf8 !important;
+    }
+    .nav-badge-enterprise:hover {
+      background: rgba(56, 189, 248, 0.18) !important;
+      border-color: #38bdf8 !important;
+      color: #bae6fd !important;
     }
 
-    .dropdown-desc {
-      font-size: 0.74rem;
-      color: #94a3b8;
-      margin-top: 2px;
-      line-height: 1.3;
+    .nav-badge-verify {
+      background: rgba(16, 185, 129, 0.1) !important;
+      border-color: rgba(16, 185, 129, 0.35) !important;
+      color: #34d399 !important;
+    }
+    .nav-badge-verify:hover {
+      background: rgba(16, 185, 129, 0.18) !important;
+      border-color: #10b981 !important;
+      color: #a7f3d0 !important;
     }
 
-    /* Live Frontier Pill Badge */
-    .frontier-badge-pill {
-      font-size: 0.68rem;
-      font-weight: 700;
-      padding: 2px 7px;
-      border-radius: 999px;
-      background: rgba(16, 185, 129, 0.16);
-      color: #34d399;
-      border: 1px solid rgba(16, 185, 129, 0.4);
-      margin-left: 4px;
+    .nav-badge-openvsx {
+      background: rgba(168, 85, 247, 0.1) !important;
+      border-color: rgba(168, 85, 247, 0.35) !important;
+      color: #c084fc !important;
+    }
+    .nav-badge-openvsx:hover {
+      background: rgba(168, 85, 247, 0.18) !important;
+      border-color: #a855f7 !important;
+      color: #e9d5ff !important;
     }
 
-    /* Right Action Bar */
-    .nav-actions-group {
-      display: flex;
-      align-items: center;
-      gap: 12px;
+    .btn-sandbox-nav {
+      background: linear-gradient(135deg, #eab308 0%, #10b981 60%, #059669 100%) !important;
+      color: #030712 !important;
+      font-weight: 900 !important;
+      font-size: 0.82rem !important;
+      padding: 7px 15px !important;
+      border-radius: 8px !important;
+      text-decoration: none !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 5px !important;
+      border: none !important;
+      cursor: pointer !important;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+      box-shadow: 0 2px 10px rgba(16, 185, 129, 0.25) !important;
+      transition: all 0.2s ease !important;
     }
 
-    /* Hamburger Toggle Button */
+    .btn-sandbox-nav:hover {
+      transform: translateY(-1px) !important;
+      box-shadow: 0 4px 16px rgba(234, 179, 8, 0.35) !important;
+    }
+
     .hamburger-btn {
-      display: none;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      border-radius: 8px;
-      width: 40px;
-      height: 40px;
-      color: #ffffff;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      transition: all 0.2s ease;
+      display: none !important;
+      background: rgba(255, 255, 255, 0.06) !important;
+      border: 1px solid rgba(255, 255, 255, 0.15) !important;
+      border-radius: 8px !important;
+      width: 38px !important;
+      height: 38px !important;
+      color: #ffffff !important;
+      align-items: center !important;
+      justify-content: center !important;
+      cursor: pointer !important;
+      flex-shrink: 0 !important;
     }
 
-    .hamburger-btn:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(16, 185, 129, 0.4);
-    }
-
-    /* Mobile Navigation Drawer */
+    /* Mobile Drawer */
     .mobile-drawer {
       display: none;
       position: fixed;
@@ -2981,52 +3034,20 @@
       overflow-y: auto;
       box-sizing: border-box;
       flex-direction: column;
-      gap: 20px;
+      gap: 14px;
     }
 
     .mobile-drawer.open {
       display: flex !important;
     }
 
-    .mobile-nav-group-title {
-      font-family: var(--font-mono);
-      font-size: 0.72rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      color: #64748b;
-      text-transform: uppercase;
-      margin-bottom: 8px;
-    }
-
-    .mobile-nav-link {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 12px 14px;
-      border-radius: 8px;
-      color: #f8fafc;
-      text-decoration: none;
-      font-size: 0.95rem;
-      font-weight: 600;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-    }
-
-    .mobile-nav-link:hover {
-      background: rgba(255, 255, 255, 0.08);
-      border-color: rgba(16, 185, 129, 0.3);
-    }
-
-    /* Responsive Breakpoints for index.html */
-    @media (max-width: 1080px) {
-      .nav-center-menu {
+    /* Breakpoint: switch from horizontal track to hamburger */
+    @media (max-width: 1180px) {
+      .nav-pills-track {
         display: none !important;
       }
       .hamburger-btn {
         display: inline-flex !important;
-      }
-      .nav-openvsx-link {
-        display: none !important;
       }
       .badge-text-full {
         display: none !important;
@@ -3036,10 +3057,18 @@
       }
     }
 
-    @media (max-width: 640px) {
-      .nav-inner {
-        padding: 0 16px !important;
+    @media (max-width: 480px) {
+      .brand-title {
+        font-size: 1.05rem !important;
       }
+      .btn-sandbox-nav .btn-sandbox-label {
+        display: none !important;
+      }
+      .btn-sandbox-nav {
+        padding: 7px 10px !important;
+      }
+    }
+    
       .brand-title {
         font-size: 1.05rem !important;
       }
@@ -3060,8 +3089,7 @@
   </head>
 <body>
 
-  <!-- Top Navigation -->
-    <!-- Top Navigation -->
+    <!-- Top Navigation with Neat SVG Symbols -->
   <header class="navbar">
     <div class="container nav-inner">
       <a href="/" class="brand-wrap">
@@ -3073,75 +3101,79 @@
         </span>
       </a>
 
-      <!-- Desktop Center Menu -->
-      <nav class="nav-center-menu" aria-label="Main Navigation">
-        <!-- Products Dropdown -->
-        <div class="nav-dropdown">
-          <button class="nav-dropdown-btn" aria-haspopup="true" aria-expanded="false">
-            <span>Products</span>
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
-          </button>
-          <div class="nav-dropdown-menu">
-            <a href="#extensions" class="dropdown-card-item">
-              <div class="dropdown-icon" style="background:rgba(16,185,129,0.15); color:#10b981;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-              </div>
-              <div>
-                <div class="dropdown-title">Bartholomew Guard</div>
-                <div class="dropdown-desc">Sub-35µs AST invariant execution sentinel (v6.6.7)</div>
-              </div>
-            </a>
-            <a href="/kyro.html" class="dropdown-card-item">
-              <div class="dropdown-icon" style="background:rgba(245,158,11,0.15); color:#f59e0b;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
-              </div>
-              <div>
-                <div class="dropdown-title">Kyro Voice Defense</div>
-                <div class="dropdown-desc">Zero-noise biometric voice shield for developers & calls</div>
-              </div>
-            </a>
-            <a href="/photonics.html" class="dropdown-card-item">
-              <div class="dropdown-icon" style="background:rgba(6,182,212,0.15); color:#06b6d4;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg>
-              </div>
-              <div>
-                <div class="dropdown-title">Photonics Lab</div>
-                <div class="dropdown-desc">Optical tensor computing & phase-OTDR fiber tap defense</div>
-              </div>
-            </a>
-            <a href="/docs" class="dropdown-card-item">
-              <div class="dropdown-icon" style="background:rgba(168,85,247,0.15); color:#a855f7;">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              </div>
-              <div>
-                <div class="dropdown-title">Keystone Vault</div>
-                <div class="dropdown-desc">Hardware nonces & cryptographic agent passkeys</div>
-              </div>
-            </a>
-          </div>
-        </div>
-
-        <a href="#frontier-repos" class="nav-menu-link">
-          <span>Frontier Repos</span>
-          <span class="frontier-badge-pill">6 Active PRs</span>
+      <!-- Neat Desktop Symbol Pill Track -->
+      <nav class="nav-pills-track" aria-label="Main Navigation">
+        <!-- Frontier Repos (6 Active) -->
+        <a href="#frontier-repos" class="nav-seal-link nav-badge-frontier" title="Frontier Agent Upstream Verification Ledger">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <span>Frontier Repos (6 PRs)</span>
         </a>
-        <a href="/roi.html" class="nav-menu-link">ROI &amp; Metrics</a>
-        <a href="/enterprise" class="nav-menu-link">Enterprise Pilot</a>
-        <a href="/pricing.html" class="nav-menu-link">Pricing</a>
-        <a href="/verify.html" class="nav-menu-link">Verify Seal</a>
+
+        <!-- Kyro Voice -->
+        <a href="/kyro.html" class="nav-seal-link nav-badge-kyro" title="Kyro Zero-Noise Voice Defense">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+            <line x1="12" x2="12" y1="19" y2="22"></line>
+          </svg>
+          <span>Kyro Voice</span>
+        </a>
+
+        <!-- Photonics Lab -->
+        <a href="/photonics.html" class="nav-seal-link nav-badge-photonics" title="Kyro Optical Computing & Photonic Defense">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M12 2v3m0 14v3M2 12h3m14 0h3"></path>
+          </svg>
+          <span>Photonics Lab</span>
+        </a>
+
+        <!-- ROI & Metrics -->
+        <a href="/roi.html" class="nav-seal-link nav-badge-roi" title="Enterprise ROI & Cost Savings">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+            <line x1="18" y1="20" x2="18" y2="10"></line>
+            <line x1="12" y1="20" x2="12" y2="4"></line>
+            <line x1="6" y1="20" x2="6" y2="14"></line>
+          </svg>
+          <span>ROI &amp; Metrics</span>
+        </a>
+
+        <!-- Enterprise Pilot -->
+        <a href="/enterprise" class="nav-seal-link nav-badge-enterprise" title="Enterprise Audit Intake & Pilot">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+            <path d="M3 21h18"></path>
+            <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path>
+            <path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1"></path>
+          </svg>
+          <span>Enterprise</span>
+        </a>
+
+        <!-- Verify Seal -->
+        <a href="/verify.html" class="nav-seal-link nav-badge-verify" title="Verify Bartholomew Cryptographic Seal">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+          </svg>
+          <span>Verify Seal</span>
+        </a>
+
+        <!-- Open VSX -->
+        <a href="https://open-vsx.org/extension/Bartholomew/bartholomew-guard-vscode" target="_blank" rel="noopener noreferrer" class="nav-seal-link nav-badge-openvsx" title="Download Bartholomew Extension on Open VSX">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;">
+            <path d="M12 1L2 6v12l10 5 10-5V6L12 1zm0 2.24l7.6 3.8-3.4 1.7-7.6-3.8 3.4-1.7zm-8 4.23l7 3.5v7.57l-7-3.5V7.47zm9 11.07v-7.57l7-3.5v7.57l-7 3.5z"/>
+          </svg>
+          <span>Open VSX</span>
+        </a>
       </nav>
 
-      <!-- Right Action Items -->
-      <div class="nav-actions-group">
-        <a href="https://open-vsx.org/extension/Bartholomew/bartholomew-guard-vscode" target="_blank" rel="noopener noreferrer" class="nav-openvsx-link" title="Download on Open VSX (Cursor, Windsurf, VS Code)">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L2 6v12l10 5 10-5V6L12 1zm0 2.24l7.6 3.8-3.4 1.7-7.6-3.8 3.4-1.7zm-8 4.23l7 3.5v7.57l-7-3.5V7.47zm9 11.07v-7.57l7-3.5v7.57l-7 3.5z"/></svg>
-          <span class="nav-openvsx-text">Open VSX</span>
-        </a>
+      <!-- Right Action Items (Sandbox CTA & Hamburger) -->
+      <div style="display: flex; align-items: center; gap: 10px; flex-shrink: 0;">
         <button onclick="document.getElementById('sandbox').scrollIntoView({ behavior: 'smooth' })" class="btn-sandbox-nav" title="Launch Interactive Sandbox">
           <span class="btn-sandbox-label">Sandbox</span>
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
-        <!-- Mobile Drawer Toggle Button -->
+
         <button class="hamburger-btn" id="hamburger-toggle" aria-label="Toggle navigation menu" onclick="toggleMobileDrawer()">
           <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
         </button>
@@ -3149,55 +3181,47 @@
     </div>
   </header>
 
-  <!-- Mobile Drawer Menu -->
+  <!-- Mobile Drawer Menu with Neat Symbol Badges -->
   <div class="mobile-drawer" id="mobile-drawer">
-    <div>
-      <div class="mobile-nav-group-title">Platform Products</div>
-      <a href="#extensions" class="mobile-nav-link" onclick="toggleMobileDrawer()">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        <span>Bartholomew Guard (v6.6.7)</span>
-      </a>
-      <a href="/kyro.html" class="mobile-nav-link" style="margin-top:6px;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" x2="12" y1="19" y2="22"/></svg>
-        <span>Kyro Voice Defense</span>
-      </a>
-      <a href="/photonics.html" class="mobile-nav-link" style="margin-top:6px;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#06b6d4" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3"/></svg>
-        <span>Photonics Lab</span>
-      </a>
-    </div>
-
-    <div>
-      <div class="mobile-nav-group-title">Solutions &amp; Diligence</div>
-      <a href="#frontier-repos" class="mobile-nav-link" onclick="toggleMobileDrawer()">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    <div style="display: flex; flex-direction: column; gap: 10px;">
+      <a href="#frontier-repos" class="nav-seal-link nav-badge-frontier" style="padding: 12px 14px; font-size: 0.92rem;" onclick="toggleMobileDrawer()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
         <span>Frontier Repos (6 Active PRs)</span>
       </a>
-      <a href="/roi.html" class="mobile-nav-link" style="margin-top:6px;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+      <a href="/kyro.html" class="nav-seal-link nav-badge-kyro" style="padding: 12px 14px; font-size: 0.92rem;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" x2="12" y1="19" y2="22"></line></svg>
+        <span>Kyro Voice Defense</span>
+      </a>
+      <a href="/photonics.html" class="nav-seal-link nav-badge-photonics" style="padding: 12px 14px; font-size: 0.92rem;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><circle cx="12" cy="12" r="3"></circle><path d="M12 2v3m0 14v3M2 12h3m14 0h3"></path></svg>
+        <span>Photonics Lab</span>
+      </a>
+      <a href="/roi.html" class="nav-seal-link nav-badge-roi" style="padding: 12px 14px; font-size: 0.92rem;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
         <span>Enterprise ROI &amp; Metrics</span>
       </a>
-      <a href="/enterprise" class="mobile-nav-link" style="margin-top:6px;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#38bdf8" stroke-width="2"><path d="M3 21h18"/><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"/><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1"/></svg>
+      <a href="/enterprise" class="nav-seal-link nav-badge-enterprise" style="padding: 12px 14px; font-size: 0.92rem;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M3 21h18"></path><path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path><path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1"></path></svg>
         <span>Enterprise Pilot Intake</span>
       </a>
-      <a href="/pricing.html" class="mobile-nav-link" style="margin-top:6px;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
-        <span>Pricing &amp; Prepaid Packs</span>
-      </a>
-      <a href="/verify.html" class="mobile-nav-link" style="margin-top:6px;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      <a href="/verify.html" class="nav-seal-link nav-badge-verify" style="padding: 12px 14px; font-size: 0.92rem;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
         <span>Verify Cryptographic Seal</span>
       </a>
-      <a href="/careers" class="mobile-nav-link" style="margin-top:6px;">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="3"/><path d="M16 7V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v3"/></svg>
+      <a href="/pricing.html" class="nav-seal-link" style="padding: 12px 14px; font-size: 0.92rem; border-color: rgba(168,85,247,0.4); color: #c084fc;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"></rect><line x1="2" y1="10" x2="22" y2="10"></line></svg>
+        <span>Pricing &amp; Prepaid Packs</span>
+      </a>
+      <a href="/careers" class="nav-seal-link" style="padding: 12px 14px; font-size: 0.92rem; border-color: rgba(16,185,129,0.4); color: #34d399;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="3"></rect><path d="M16 7V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v3"></path></svg>
         <span>Careers (We're Hiring)</span>
       </a>
     </div>
 
-    <div style="margin-top:auto; padding-top:16px;">
-      <a href="https://open-vsx.org/extension/Bartholomew/bartholomew-guard-vscode" target="_blank" rel="noopener noreferrer" class="mobile-nav-link" style="justify-content:center; background:linear-gradient(135deg, rgba(16,185,129,0.2), rgba(6,182,212,0.2)); border-color:rgba(16,185,129,0.5);">
-        <span>Install Extension via Open VSX</span>
+    <div style="margin-top: auto; padding-top: 16px;">
+      <a href="https://open-vsx.org/extension/Bartholomew/bartholomew-guard-vscode" target="_blank" rel="noopener noreferrer" class="nav-seal-link nav-badge-openvsx" style="justify-content: center; padding: 12px 14px; font-size: 0.92rem; background: linear-gradient(135deg, rgba(16,185,129,0.2), rgba(6,182,212,0.2)) !important;">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L2 6v12l10 5 10-5V6L12 1zm0 2.24l7.6 3.8-3.4 1.7-7.6-3.8 3.4-1.7zm-8 4.23l7 3.5v7.57l-7-3.5V7.47zm9 11.07v-7.57l7-3.5v7.57l-7 3.5z"/></svg>
+        <span>Download on Open VSX (Free)</span>
       </a>
     </div>
   </div>
