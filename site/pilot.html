@@ -637,7 +637,14 @@
         </div>
       </div>
 
-      <form id="pilot-form" onsubmit="handlePilotEnroll(event)">
+      <div style="background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 8px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px;">
+          <div>
+            <div style="font-weight: 800; color: #38bdf8; font-size: 0.92rem;">Direct Enterprise Pilot Inquiries</div>
+            <div style="font-size: 0.82rem; color: #94a3b8; margin-top: 2px;">Prefer to coordinate directly with our engineering team? Email us at <a href="mailto:contact@bartholomew.info?subject=Enterprise%20Pilot%20Direct%20Inquiry" style="color: #38bdf8; text-decoration: underline;">contact@bartholomew.info</a> or <a href="mailto:help@bartholomew.info?subject=Enterprise%20Pilot%20Direct%20Inquiry" style="color: #38bdf8; text-decoration: underline;">help@bartholomew.info</a>.</div>
+          </div>
+          <a href="mailto:contact@bartholomew.info?subject=Enterprise%20Pilot%20Direct%20Inquiry" style="background: #38bdf8; color: #030712; padding: 8px 16px; border-radius: 6px; font-weight: 800; font-size: 0.82rem; text-decoration: none;">Email Enterprise Team &rarr;</a>
+        </div>
+        <form id="pilot-form" onsubmit="handlePilotEnroll(event)">
         <div class="form-grid">
           <div class="form-group">
             <label>Team / Organization Name</label>
@@ -652,7 +659,7 @@
             <select id="seat-count">
               <option value="5">Up to 5 Engineers ($490 flat)</option>
               <option value="10" selected>Up to 10 Engineers ($490 flat)</option>
-              <option value="25">Up to 25 Engineers ($950 flat)</option>
+              <option value="25">Up to 25 Engineers (Enterprise Pilot)</option>
               <option value="50">Up to 50 Engineers ($1,850 flat)</option>
             </select>
           </div>
@@ -670,7 +677,7 @@
             <label>Billing Structure</label>
             <select id="billing-structure">
               <option value="onetime" selected>One-Time Flat Pilot Package ($490 flat, zero recurring fees)</option>
-              <option value="audit">Enterprise Architecture &amp; Security Audit ($950 flat)</option>
+              <option value="audit">Enterprise Architecture &amp; Security Audit (Contact directly)</option>
             </select>
           </div>
           <div class="form-group">
@@ -760,7 +767,7 @@
   <footer>
     <div class="container">
       <p>Bartholomew Protocol &bull; Deterministic Invariant Protection for Autonomous Agent Runtimes</p>
-      <p style="margin-top: 6px;">Questions? Contact founders directly: <a href="mailto:founders@bartholomew.info" style="color: var(--cyan); text-decoration: none;">founders@bartholomew.info</a></p>
+      <p style="margin-top: 6px;">Questions? Contact founders directly: <a href="mailto:contact@bartholomew.info" style="color: var(--cyan); text-decoration: none;">contact@bartholomew.info</a></p>
     </div>
   </footer>
 
@@ -880,7 +887,7 @@
         actionsDiv.appendChild(sepSpan);
 
         const invoiceLink = document.createElement('a');
-        invoiceLink.href = 'mailto:founders@bartholomew.info?subject=' + encodeURIComponent('Team Pilot Invoice Request (' + data.team_name + ')') +
+        invoiceLink.href = 'mailto:contact@bartholomew.info?subject=' + encodeURIComponent('Team Pilot Invoice Request (' + data.team_name + ')') +
           '&body=' + encodeURIComponent('Team: ' + data.team_name + '\nSeats: ' + data.seats + '\nBilling: ' + data.billing);
         invoiceLink.style.color = '#06b6d4';
         invoiceLink.style.textDecoration = 'underline';

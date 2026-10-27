@@ -80,7 +80,7 @@ Click the **Bartholomew Shield icon** in your activity bar to view your live exe
 
 * **[Activate $10 Developer Passkey (100k Evals)](https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607)**: Full in-process AST gate, secret zeroization, and Ed25519 Merkle receipts.
 * **[Activate $15 Swarm Passkey (150k Evals)](https://buy.stripe.com/cNi3cv6tf6Y2cmAgpW9R608)**: Multi-agent consensus & swarm coordination.
-* **[Enterprise Pilot & SOC 2 Certification ($950)](https://buy.stripe.com/3cI6oHbNz3LQ4U84He9R605)**: 250 agent identities, dedicated SLA, and compliance attestation dossier.
+* **Enterprise Pilot & SOC 2 Certification**: Contact [contact@bartholomew.info](mailto:contact@bartholomew.info?subject=Enterprise%20Pilot%20Inquiry) or [help@bartholomew.info](mailto:help@bartholomew.info?subject=Enterprise%20Pilot%20Inquiry) for dedicated enterprise pilot onboarding, 250+ agent identities, and compliance attestation dossiers.
 
 ---
 ## **Enterprise Compliance & Auditing**
