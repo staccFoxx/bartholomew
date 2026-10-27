@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Bartholomew Invariant Gating
-        uses: ivegotahunnitonit/bartholomew@main
+        uses: staccFoxx/bartholomew@main
         with:
           fail-on-violation: 'true'
           scan-path: '.'
