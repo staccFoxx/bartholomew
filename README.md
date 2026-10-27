@@ -22,9 +22,9 @@
 
 ## **Capability Passkeys & Commercial Licensing**
 
-* **[⚡ Activate $10 Developer Passkey (100k AST Evals)](https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607)**: Full in-process AST gate, in-memory secret zeroization, and Ed25519 Merkle receipts.
-* **[⚡ Activate $15 Swarm Passkey (150k AST Evals)](https://buy.stripe.com/cNi3cv6tf6Y2cmAgpW9R608)**: Multi-agent consensus, swarm arbitration, and cross-agent invariants.
-* **[🏢 Enterprise Pilot & SOC 2 Certification](mailto:contact@bartholomew.info?subject=Enterprise%20Pilot%20Inquiry)**: Contact `contact@bartholomew.info` or `help@bartholomew.info` for dedicated onboarding (50–250+ engineers, custom compliance dossier for ISO 42001 & NYC LL144).
+* **[Activate $10 Developer Passkey (100k AST Evals)](https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607)**: Full in-process AST gate, in-memory secret zeroization, and Ed25519 Merkle receipts.
+* **[Activate $15 Swarm Passkey (150k AST Evals)](https://buy.stripe.com/cNi3cv6tf6Y2cmAgpW9R608)**: Multi-agent consensus, swarm arbitration, and cross-agent invariants.
+* **[Enterprise Pilot & SOC 2 Certification](mailto:contact@bartholomew.info?subject=Enterprise%20Pilot%20Inquiry)**: Contact `contact@bartholomew.info` or `help@bartholomew.info` for dedicated onboarding (50–250+ engineers, custom compliance dossier for ISO 42001 & NYC LL144).
 
 ---
 
