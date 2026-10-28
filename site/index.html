@@ -2784,40 +2784,40 @@
 
   
     
-    /* --- Neat Symbol Pill Navigation System --- */\n
+    /* --- Refined Desktop Navigation & HUD Ticker System --- */
     @media (min-width: 1181px) {
       .nav-pills-track {
         display: flex !important;
-        gap: 5px !important;
-        padding: 4px 0 !important;
+        gap: 3px !important;
+        padding: 3px 6px !important;
         flex-wrap: nowrap !important;
       }
       .nav-seal-link {
-        padding: 5px 8px !important;
-        font-size: 0.73rem !important;
-        gap: 5px !important;
+        padding: 5px 10px !important;
+        font-size: 0.77rem !important;
+        gap: 6px !important;
       }
       .btn-sandbox-nav {
         padding: 6px 12px !important;
         font-size: 0.78rem !important;
       }
       header.navbar .container {
-        max-width: 100% !important;
-        padding: 0 16px !important;
+        max-width: 1440px !important;
+        padding: 0 24px !important;
       }
     }
 
     header.navbar {
       border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
       background: rgba(7, 10, 15, 0.94) !important;
-      backdrop-filter: blur(18px) !important;
-      -webkit-backdrop-filter: blur(18px) !important;
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
       position: sticky !important;
       top: 0 !important;
       z-index: 1000 !important;
       width: 100% !important;
-      height: 68px !important;
-      max-height: 68px !important;
+      height: 64px !important;
+      max-height: 64px !important;
       box-sizing: border-box !important;
     }
 
@@ -2825,9 +2825,11 @@
       display: flex !important;
       align-items: center !important;
       justify-content: space-between !important;
-      height: 68px !important;
-      max-height: 68px !important;
-      padding: 0 20px !important;
+      height: 64px !important;
+      max-height: 64px !important;
+      max-width: 1440px !important;
+      margin: 0 auto !important;
+      padding: 0 24px !important;
       box-sizing: border-box !important;
       gap: 16px !important;
     }
@@ -2851,156 +2853,165 @@
 
     .badge-protocol {
       font-family: var(--font-mono) !important;
-      font-size: 0.72rem !important;
+      font-size: 0.7rem !important;
       font-weight: 700 !important;
-      padding: 3px 8px !important;
+      padding: 2px 8px !important;
       border-radius: 999px !important;
       background: rgba(16, 185, 129, 0.12) !important;
       border: 1px solid rgba(16, 185, 129, 0.35) !important;
       color: #34d399 !important;
       white-space: nowrap !important;
-    }
-
-    /* Desktop Pill Track (Single clean row with neat symbols) */
-    .nav-pills-track {
-      display: flex !important;
-      align-items: center !important;
-      gap: 6px !important;
-      flex-wrap: nowrap !important;
-      overflow-x: auto !important;
-      scrollbar-width: none !important;
-      -ms-overflow-style: none !important;
-      padding: 4px 0 !important;
-    }
-
-    .nav-pills-track::-webkit-scrollbar {
-      display: none !important;
-    }
-
-    /* Individual Symbol Link Badge */
-    .nav-seal-link {
-      font-family: var(--font-mono) !important;
-      font-size: 0.74rem !important;
-      font-weight: 700 !important;
-      text-decoration: none !important;
-      padding: 5px 9px !important;
-      border-radius: 8px !important;
-      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1) !important;
       display: inline-flex !important;
       align-items: center !important;
       gap: 5px !important;
+    }
+    .badge-protocol::before {
+      content: "";
+      display: inline-block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 6px #10b981;
+    }
+
+    /* Desktop Pill Track (Single sleek floating capsule container) */
+    .nav-pills-track {
+      display: flex !important;
+      align-items: center !important;
+      gap: 3px !important;
+      flex-wrap: nowrap !important;
+      background: rgba(255, 255, 255, 0.03) !important;
+      border: 1px solid rgba(255, 255, 255, 0.08) !important;
+      border-radius: 999px !important;
+      padding: 3px 6px !important;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.25) !important;
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+    }
+
+    /* Individual Nav Links - Crisp, uncrowded, modern */
+    .nav-seal-link {
+      font-family: var(--font-mono) !important;
+      font-size: 0.76rem !important;
+      font-weight: 600 !important;
+      text-decoration: none !important;
+      padding: 5px 10px !important;
+      border-radius: 999px !important;
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
       white-space: nowrap !important;
       flex-shrink: 0 !important;
-      border: 1px solid rgba(255, 255, 255, 0.1) !important;
-      background: rgba(255, 255, 255, 0.04) !important;
-      color: #cbd5e1 !important;
+      border: 1px solid transparent !important;
+      background: transparent !important;
+      color: #94a3b8 !important;
+    }
+
+    .nav-seal-link svg {
+      opacity: 0.75;
+      transition: opacity 0.18s ease;
     }
 
     .nav-seal-link:hover {
       transform: translateY(-1px) !important;
       color: #ffffff !important;
+      background: rgba(255, 255, 255, 0.08) !important;
+    }
+    .nav-seal-link:hover svg {
+      opacity: 1;
     }
 
-    /* Custom badge color accents */
-    .nav-badge-kyro {
-      background: rgba(245, 158, 11, 0.1) !important;
-      border-color: rgba(245, 158, 11, 0.35) !important;
-      color: #fbbf24 !important;
-    }
+    /* Custom subtle hover color accents */
     .nav-badge-kyro:hover {
-      background: rgba(245, 158, 11, 0.18) !important;
-      border-color: #f59e0b !important;
       color: #fde68a !important;
+      background: rgba(245, 158, 11, 0.12) !important;
+      border-color: rgba(245, 158, 11, 0.25) !important;
     }
 
-    .nav-badge-photonics {
-      background: rgba(6, 182, 212, 0.1) !important;
-      border-color: rgba(6, 182, 212, 0.35) !important;
-      color: #38bdf8 !important;
-    }
     .nav-badge-photonics:hover {
-      background: rgba(6, 182, 212, 0.18) !important;
-      border-color: #06b6d4 !important;
       color: #7dd3fc !important;
+      background: rgba(6, 182, 212, 0.12) !important;
+      border-color: rgba(6, 182, 212, 0.25) !important;
     }
 
-    .nav-badge-frontier {
-      background: rgba(16, 185, 129, 0.1) !important;
-      border-color: rgba(16, 185, 129, 0.35) !important;
-      color: #34d399 !important;
-    }
     .nav-badge-frontier:hover {
-      background: rgba(16, 185, 129, 0.18) !important;
-      border-color: #10b981 !important;
       color: #6ee7b7 !important;
+      background: rgba(16, 185, 129, 0.12) !important;
+      border-color: rgba(16, 185, 129, 0.25) !important;
     }
 
-    .nav-badge-roi {
-      background: rgba(16, 185, 129, 0.1) !important;
-      border-color: rgba(16, 185, 129, 0.35) !important;
-      color: #34d399 !important;
-    }
     .nav-badge-roi:hover {
-      background: rgba(16, 185, 129, 0.18) !important;
-      border-color: #10b981 !important;
       color: #6ee7b7 !important;
+      background: rgba(16, 185, 129, 0.12) !important;
+      border-color: rgba(16, 185, 129, 0.25) !important;
     }
 
-    .nav-badge-enterprise {
-      background: rgba(56, 189, 248, 0.1) !important;
-      border-color: rgba(56, 189, 248, 0.35) !important;
-      color: #38bdf8 !important;
-    }
     .nav-badge-enterprise:hover {
-      background: rgba(56, 189, 248, 0.18) !important;
-      border-color: #38bdf8 !important;
       color: #bae6fd !important;
+      background: rgba(56, 189, 248, 0.12) !important;
+      border-color: rgba(56, 189, 248, 0.25) !important;
     }
 
-    .nav-badge-verify {
-      background: rgba(16, 185, 129, 0.1) !important;
-      border-color: rgba(16, 185, 129, 0.35) !important;
-      color: #34d399 !important;
-    }
     .nav-badge-verify:hover {
-      background: rgba(16, 185, 129, 0.18) !important;
-      border-color: #10b981 !important;
       color: #a7f3d0 !important;
+      background: rgba(16, 185, 129, 0.12) !important;
+      border-color: rgba(16, 185, 129, 0.25) !important;
     }
 
-    .nav-badge-openvsx {
-      background: rgba(168, 85, 247, 0.1) !important;
-      border-color: rgba(168, 85, 247, 0.35) !important;
-      color: #c084fc !important;
-    }
     .nav-badge-openvsx:hover {
-      background: rgba(168, 85, 247, 0.18) !important;
-      border-color: #a855f7 !important;
       color: #e9d5ff !important;
+      background: rgba(168, 85, 247, 0.12) !important;
+      border-color: rgba(168, 85, 247, 0.25) !important;
+    }
+
+    /* Right Action CTAs */
+    .btn-nav-passkey {
+      background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%) !important;
+      color: #020617 !important;
+      font-weight: 800 !important;
+      font-size: 0.78rem !important;
+      padding: 7px 13px !important;
+      border-radius: 7px !important;
+      text-decoration: none !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+      box-shadow: 0 2px 10px rgba(16, 185, 129, 0.25) !important;
+      white-space: nowrap !important;
+      transition: all 0.2s ease !important;
+      border: none !important;
+    }
+    .btn-nav-passkey:hover {
+      transform: translateY(-1px) !important;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.45) !important;
     }
 
     .btn-sandbox-nav {
-      background: linear-gradient(135deg, #eab308 0%, #10b981 60%, #059669 100%) !important;
-      color: #030712 !important;
-      font-weight: 900 !important;
-      font-size: 0.82rem !important;
-      padding: 7px 15px !important;
-      border-radius: 8px !important;
+      background: rgba(255, 255, 255, 0.05) !important;
+      border: 1px solid rgba(255, 255, 255, 0.14) !important;
+      color: #e2e8f0 !important;
+      font-weight: 600 !important;
+      font-size: 0.78rem !important;
+      padding: 6px 12px !important;
+      border-radius: 7px !important;
       text-decoration: none !important;
       display: inline-flex !important;
       align-items: center !important;
       gap: 5px !important;
-      border: none !important;
       cursor: pointer !important;
       white-space: nowrap !important;
       flex-shrink: 0 !important;
-      box-shadow: 0 2px 10px rgba(16, 185, 129, 0.25) !important;
+      box-shadow: none !important;
       transition: all 0.2s ease !important;
     }
 
     .btn-sandbox-nav:hover {
       transform: translateY(-1px) !important;
-      box-shadow: 0 4px 16px rgba(234, 179, 8, 0.35) !important;
+      background: rgba(255, 255, 255, 0.1) !important;
+      border-color: rgba(255, 255, 255, 0.28) !important;
+      color: #ffffff !important;
     }
 
     .hamburger-btn {
@@ -3008,13 +3019,110 @@
       background: rgba(255, 255, 255, 0.06) !important;
       border: 1px solid rgba(255, 255, 255, 0.15) !important;
       border-radius: 8px !important;
-      width: 38px !important;
-      height: 38px !important;
+      width: 36px !important;
+      height: 36px !important;
       color: #ffffff !important;
       align-items: center !important;
       justify-content: center !important;
       cursor: pointer !important;
       flex-shrink: 0 !important;
+    }
+
+    /* Live Telemetry & Invariant Defense HUD Ticker */
+    .live-telemetry-hud {
+      background: rgba(3, 7, 18, 0.96) !important;
+      border-bottom: 1px solid rgba(16, 185, 129, 0.2) !important;
+      height: 36px !important;
+      font-family: 'JetBrains Mono', monospace !important;
+      font-size: 0.7rem !important;
+      color: #94a3b8 !important;
+      overflow: hidden !important;
+      position: relative !important;
+      z-index: 90 !important;
+      display: flex !important;
+      align-items: center !important;
+      padding: 0 !important;
+    }
+
+    .hud-inner {
+      display: flex !important;
+      align-items: center !important;
+      max-width: 1440px !important;
+      width: 100% !important;
+      margin: 0 auto !important;
+      height: 100% !important;
+      padding: 0 24px !important;
+      gap: 16px !important;
+      box-sizing: border-box !important;
+    }
+
+    .hud-sentinel-badge {
+      display: flex !important;
+      align-items: center !important;
+      gap: 7px !important;
+      flex-shrink: 0 !important;
+      padding-right: 14px !important;
+      border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+    }
+
+    .hud-radar-dot {
+      display: inline-block !important;
+      width: 7px !important;
+      height: 7px !important;
+      border-radius: 50% !important;
+      background: #10b981 !important;
+      box-shadow: 0 0 8px #10b981 !important;
+      animation: radarPulse 2s infinite !important;
+    }
+
+    @keyframes radarPulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.45; transform: scale(0.8); }
+    }
+
+    .hud-marquee-viewport {
+      flex: 1 !important;
+      overflow: hidden !important;
+      position: relative !important;
+      mask-image: linear-gradient(90deg, transparent 0%, #000 24px, #000 calc(100% - 24px), transparent 100%) !important;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 24px, #000 calc(100% - 24px), transparent 100%) !important;
+    }
+
+    .hud-marquee-track {
+      display: flex !important;
+      gap: 28px !important;
+      align-items: center !important;
+      white-space: nowrap !important;
+      width: max-content !important;
+      animation: hudMarqueeScroll 45s linear infinite !important;
+    }
+
+    .hud-marquee-track:hover {
+      animation-play-state: paused !important;
+    }
+
+    @keyframes hudMarqueeScroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    .hud-claim-pill {
+      background: rgba(16, 185, 129, 0.1) !important;
+      border: 1px solid rgba(16, 185, 129, 0.3) !important;
+      color: #34d399 !important;
+      text-decoration: none !important;
+      font-weight: 700 !important;
+      font-size: 0.7rem !important;
+      padding: 3px 9px !important;
+      border-radius: 4px !important;
+      white-space: nowrap !important;
+      flex-shrink: 0 !important;
+      transition: all 0.18s ease !important;
+    }
+    .hud-claim-pill:hover {
+      background: rgba(16, 185, 129, 0.22) !important;
+      border-color: #10b981 !important;
+      color: #ffffff !important;
     }
 
     
@@ -3454,7 +3562,7 @@
         <img src="/logo.png" alt="Bartholomew Shield Logo" class="brand-logo-img" width="34" height="34">
         <span class="brand-title">Bartholomew</span>
         <span class="badge-protocol">
-          <span class="badge-text-full">BTP v6.6.7 • ARP ENGINE</span>
+          <span class="badge-text-full">v6.6.7</span>
           <span class="badge-text-short">v6.6.7</span>
         </span>
       </a>
@@ -3463,15 +3571,15 @@
       <nav class="nav-pills-track" aria-label="Main Navigation">
         <!-- Frontier Repos (6 Active) -->
         <a href="#frontier-repos" class="nav-seal-link nav-badge-frontier" title="Frontier Agent Upstream Verification Ledger">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
           </svg>
-          <span>Frontier Repos (6 PRs)</span>
+          <span>Frontier (6 PRs)</span>
         </a>
 
         <!-- Kyro Voice -->
         <a href="/kyro.html" class="nav-seal-link nav-badge-kyro" title="Kyro Zero-Noise Voice Defense">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
             <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
             <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
             <line x1="12" x2="12" y1="19" y2="22"></line>
@@ -3481,7 +3589,7 @@
 
         <!-- Photonics Lab -->
         <a href="/photonics.html" class="nav-seal-link nav-badge-photonics" title="Kyro Optical Computing & Photonic Defense">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
             <circle cx="12" cy="12" r="3"></circle>
             <path d="M12 2v3m0 14v3M2 12h3m14 0h3"></path>
           </svg>
@@ -3490,7 +3598,7 @@
 
         <!-- ROI & Metrics -->
         <a href="/roi.html" class="nav-seal-link nav-badge-roi" title="Enterprise ROI & Cost Savings">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
             <line x1="18" y1="20" x2="18" y2="10"></line>
             <line x1="12" y1="20" x2="12" y2="4"></line>
             <line x1="6" y1="20" x2="6" y2="14"></line>
@@ -3500,7 +3608,7 @@
 
         <!-- Enterprise Pilot -->
         <a href="/enterprise" class="nav-seal-link nav-badge-enterprise" title="Enterprise Audit Intake & Pilot">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
             <path d="M3 21h18"></path>
             <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path>
             <path d="M9 7h1M14 7h1M9 11h1M14 11h1M9 15h1M14 15h1"></path>
@@ -3518,22 +3626,22 @@
 
         <!-- Open VSX -->
         <a href="https://open-vsx.org/extension/Bartholomew/bartholomew-guard-vscode" target="_blank" rel="noopener noreferrer" class="nav-seal-link nav-badge-openvsx" title="Download Bartholomew Extension on Open VSX">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="flex-shrink:0;">
             <path d="M12 1L2 6v12l10 5 10-5V6L12 1zm0 2.24l7.6 3.8-3.4 1.7-7.6-3.8 3.4-1.7zm-8 4.23l7 3.5v7.57l-7-3.5V7.47zm9 11.07v-7.57l7-3.5v7.57l-7 3.5z"/>
           </svg>
           <span>Open VSX</span>
         </a>
       </nav>
 
-      <!-- Right Action Items (Sandbox CTA & Hamburger) -->
-      <div style="display: flex; align-items: center; gap: 10px; flex-shrink: 0;">
-        <a href="https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); color: #030712; font-weight: 900; font-size: 0.82rem; padding: 8px 14px; border-radius: 6px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35); white-space: nowrap;">
+      <!-- Right Action Items (Passkey CTA, Sandbox & Hamburger) -->
+      <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+        <a href="https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607" target="_blank" rel="noopener noreferrer" class="btn-nav-passkey">
           <span>Get Passkey ($10)</span>
           <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
         <button onclick="document.getElementById('sandbox').scrollIntoView({ behavior: 'smooth' })" class="btn-sandbox-nav" title="Launch Interactive Sandbox">
           <span class="btn-sandbox-label">Sandbox</span>
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </button>
 
         <button class="hamburger-btn" id="hamburger-toggle" aria-label="Toggle navigation menu" onclick="toggleMobileDrawer()">
@@ -3543,33 +3651,48 @@
     </div>
   </header>
   <!-- Live Telemetry & Invariant Defense HUD Ticker -->
-  <div class="live-telemetry-hud" style="background: rgba(3, 7, 18, 0.98); border-bottom: 1px solid rgba(16, 185, 129, 0.3); padding: 9px 18px; font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; color: #94a3b8; overflow: hidden; position: relative; z-index: 90;">
-    <div style="display: flex; align-items: center; justify-content: space-between; max-width: 1400px; margin: 0 auto; gap: 16px;">
-      <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
-        <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #10b981; box-shadow: 0 0 10px #10b981;"></span>
+  <div class="live-telemetry-hud">
+    <div class="hud-inner">
+      <div class="hud-sentinel-badge">
+        <span class="hud-radar-dot"></span>
         <span style="font-weight: 800; color: #10b981; letter-spacing: 0.08em; text-transform: uppercase;">REAL-TIME ARP SENTINEL:</span>
       </div>
-      <div id="hudTickerTrack" style="display: flex; gap: 20px; align-items: center; color: #cbd5e1; flex-grow: 1; overflow-x: auto; scrollbar-width: none; white-space: nowrap;">
-        <span><strong style="color:#38bdf8;">14.80&mu;s</strong> In-Process AST Intercept &bull; Blocked recursive JSON-RPC bash breakout</span>
-        <span style="color:rgba(255,255,255,0.2);">&bull;</span>
-        <span><strong style="color:#10b981;">Passkey Activated</strong> &bull; $10 Dev Pack (Cursor IDE, Austin TX)</span>
-        <span style="color:rgba(255,255,255,0.2);">&bull;</span>
-        <span><strong style="color:#facc15;">SpaceX &amp; Grok Telemetry</strong> &bull; Sub-35&mu;s Invariant Gating (0.00% Drift Verified)</span>
-        <span style="color:rgba(255,255,255,0.2);">&bull;</span>
-        <span><strong style="color:#38bdf8;">Secret Zeroized</strong> &bull; sk-proj-... masked in thought stream (&lt;0.01ms)</span>
-        <span style="color:rgba(255,255,255,0.2);">&bull;</span>
-        <span><strong style="color:#10b981;">Passkey Activated</strong> &bull; $15 Swarm Pack (CrewAI Multi-Agent Mesh, SF)</span>
-        <span style="color:rgba(255,255,255,0.2);">&bull;</span>
-        <span><strong style="color:#c084fc;">FIPS 186-5 Attested</strong> &bull; RFC 8785 Ed25519 Merkle receipt minted</span>
+      <div class="hud-marquee-viewport">
+        <div class="hud-marquee-track">
+          <span><strong style="color:#38bdf8;">14.80&mu;s</strong> In-Process AST Intercept &bull; Blocked recursive JSON-RPC bash breakout</span>
+          <span style="color:rgba(255,255,255,0.2);">&bull;</span>
+          <span><strong style="color:#10b981;">Passkey Activated</strong> &bull; $10 Dev Pack (Cursor IDE, Austin TX)</span>
+          <span style="color:rgba(255,255,255,0.2);">&bull;</span>
+          <span><strong style="color:#facc15;">SpaceX &amp; Grok Telemetry</strong> &bull; Sub-35&mu;s Invariant Gating (0.00% Drift Verified)</span>
+          <span style="color:rgba(255,255,255,0.2);">&bull;</span>
+          <span><strong style="color:#38bdf8;">Secret Zeroized</strong> &bull; sk-proj-... masked in thought stream (&lt;0.01ms)</span>
+          <span style="color:rgba(255,255,255,0.2);">&bull;</span>
+          <span><strong style="color:#10b981;">Passkey Activated</strong> &bull; $15 Swarm Pack (CrewAI Multi-Agent Mesh, SF)</span>
+          <span style="color:rgba(255,255,255,0.2);">&bull;</span>
+          <span><strong style="color:#c084fc;">FIPS 186-5 Attested</strong> &bull; RFC 8785 Ed25519 Merkle receipt minted</span>
+          <span style="color:rgba(255,255,255,0.2);">&bull;</span>
+          <!-- Duplicate set for seamless continuous marquee loop -->
+          <span><strong style="color:#38bdf8;">14.80&mu;s</strong> In-Process AST Intercept &bull; Blocked recursive JSON-RPC bash breakout</span>
+          <span style="color:rgba(255,255,255,0.2);">&bull;</span>
+          <span><strong style="color:#10b981;">Passkey Activated</strong> &bull; $10 Dev Pack (Cursor IDE, Austin TX)</span>
+          <span style="color:rgba(255,255,255,0.2);">&bull;</span>
+          <span><strong style="color:#facc15;">SpaceX &amp; Grok Telemetry</strong> &bull; Sub-35&mu;s Invariant Gating (0.00% Drift Verified)</span>
+          <span style="color:rgba(255,255,255,0.2);">&bull;</span>
+          <span><strong style="color:#38bdf8;">Secret Zeroized</strong> &bull; sk-proj-... masked in thought stream (&lt;0.01ms)</span>
+          <span style="color:rgba(255,255,255,0.2);">&bull;</span>
+          <span><strong style="color:#10b981;">Passkey Activated</strong> &bull; $15 Swarm Pack (CrewAI Multi-Agent Mesh, SF)</span>
+          <span style="color:rgba(255,255,255,0.2);">&bull;</span>
+          <span><strong style="color:#c084fc;">FIPS 186-5 Attested</strong> &bull; RFC 8785 Ed25519 Merkle receipt minted</span>
+        </div>
       </div>
-      <div style="display: flex; align-items: center; gap: 10px; flex-shrink: 0;">
-        <a href="#pricing" style="background: rgba(16, 185, 129, 0.15); border: 1px solid rgba(16, 185, 129, 0.4); color: #10b981; text-decoration: none; font-weight: 800; font-size: 0.72rem; padding: 4px 10px; border-radius: 4px;">Claim Passkey ($5) &rarr;</a>
+      <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+        <a href="#pricing" class="hud-claim-pill">Passkey ($5) &rarr;</a>
       </div>
     </div>
   </div>
 
 
-  <!-- Mobile Drawer Menu with Perfectly Synced Symbols & Letterings -->
+    <!-- Mobile Drawer Menu with Perfectly Synced Symbols & Letterings -->
   <div class="mobile-drawer" id="mobile-drawer" aria-label="Mobile Navigation Menu">
     <div class="mobile-nav-list">
       <!-- High-Converting Instant Stripe Checkout Passkey -->
