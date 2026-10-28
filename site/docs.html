@@ -7,7 +7,7 @@
      crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Developer Documentation — Bartholomew Agentic Runtime Protection (BTP v6.4.4)</title>
+  <title>Developer Documentation — Bartholomew Agentic Runtime Protection (BTP v6.6.7)</title>
   <meta name="description" content="Technical documentation and developer integration guide for Bartholomew: microsecond-latency AST invariant gating, universal 1-line agent wrappers, and eBPF kernel process sandboxing." />
   <link rel="icon" type="image/png" href="/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -564,7 +564,7 @@
     <a href="/" class="nav-brand">
       <img src="/logo.png" alt="Bartholomew Sentinel Logo" />
       <span>Bartholomew</span>
-      <span class="nav-tag">BTP v6.4.4</span>
+      <span class="nav-tag">BTP v6.6.7</span>
     </a>
     <ul class="nav-links">
       <li><a href="/docs.html" class="active">Docs</a></li>
@@ -574,7 +574,11 @@
       <li><a href="/investors.html">Investors</a></li>
       <li><a href="/telemetry.html">Telemetry</a></li>
       <li>
-        </li>
+        <a href="https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607" target="_blank" rel="noopener noreferrer" style="background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); color: #030712; font-weight: 800; font-size: 0.82rem; padding: 6px 14px; border-radius: 8px; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; box-shadow: 0 0 14px rgba(16,185,129,0.35); transition: all 0.2s ease;">
+          <span>Get Passkey ($10)</span>
+          <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </li>
     </ul>
   </header>
 
@@ -607,6 +611,7 @@
       <div class="sidebar-group-title">Getting Started</div>
       <ul class="sidebar-nav">
         <li><a href="#quickstart" class="active">1-Line Installation</a></li>
+        <li><a href="#capability-passkeys" style="color:var(--emerald); font-weight:700;">Capability Passkeys ($10)</a></li>
         <li><a href="#core-architecture">Architecture &amp; Benchmarks</a></li>
         <li><a href="#compute-provenance">Compute Provenance &amp; Swarms</a></li>
         <li><a href="#rest-api">REST &amp; OpenAPI Endpoints</a></li>
@@ -663,6 +668,28 @@
       <div class="docs-hero">
         <h1 class="docs-title">Bartholomew Developer Documentation</h1>
         <p class="docs-sub">Deterministic microsecond-latency AST invariant verification, credential scrubbing, and eBPF kernel process sandboxing for autonomous agent swarms.</p>
+      </div>
+
+      <!-- High-Conversion Passkey Callout Strip -->
+      <div style="background: linear-gradient(135deg, rgba(16,185,129,0.09) 0%, rgba(6,182,212,0.09) 100%); border: 1px solid rgba(16,185,129,0.35); border-radius: 12px; padding: 14px 18px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; box-shadow: 0 4px 20px rgba(0,0,0,0.3);">
+        <div style="display:flex; align-items:center; gap:12px;">
+          <div style="width:38px; height:38px; border-radius:8px; background:rgba(16,185,129,0.18); display:flex; align-items:center; justify-content:center; color:var(--emerald); flex-shrink:0;">
+            <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 7a2 2 0 0 1 2 2m4 0a6 6 0 0 1-7.743 5.743L11 17H9v2H7v2H4a1 1 0 0 1-1-1v-2.586a1 1 0 0 1 .293-.707l5.964-5.964A6 6 0 1 1 21 9Z"/></svg>
+          </div>
+          <div>
+            <div style="font-weight:700; font-size:0.95rem; color:#f8fafc; display:flex; align-items:center; gap:8px;">
+              <span>Developer Capability Passkeys</span>
+              <span style="background:var(--emerald); color:#030712; font-size:0.68rem; font-weight:800; padding:1px 6px; border-radius:4px; text-transform:uppercase;">Live Production</span>
+            </div>
+            <div style="font-size:0.82rem; color:var(--text-muted); margin-top:2px;">
+              Uncap 100k+ in-process AST evaluations, FIPS 186-5 Merkle receipts, and micro-toll spend caps for Cursor, Claude Code, and Python.
+            </div>
+          </div>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; flex-shrink:0;">
+          <a href="https://buy.stripe.com/8x23cveZL4PUeuIflS9R606" target="_blank" rel="noopener noreferrer" style="padding:7px 14px; border-radius:8px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); color:#fff; text-decoration:none; font-size:0.82rem; font-weight:600;">$5 Starter</a>
+          <a href="https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607" target="_blank" rel="noopener noreferrer" style="padding:7px 16px; border-radius:8px; background:linear-gradient(135deg, #10b981 0%, #06b6d4 100%); color:#030712; text-decoration:none; font-size:0.82rem; font-weight:800; box-shadow:0 0 14px rgba(16,185,129,0.35);">Activate $10 Dev Pack &rarr;</a>
+        </div>
       </div>
 
       <!-- Quickstart Section -->
@@ -1117,7 +1144,7 @@ user_proxy.initiate_chat(assistant, message="Plot normalized retention cohort cu
     <span style="color:#94a3b8;">runs-on</span>: ubuntu-latest
     <span style="color:var(--gold);">steps</span>:
       - <span style="color:var(--gold);">uses</span>: actions/checkout@v4
-      - <span style="color:var(--gold);">uses</span>: ivegotahunnitonit/bartholomew@v6.4.4
+      - <span style="color:var(--gold);">uses</span>: staccFoxx/bartholomew@main
         <span style="color:var(--gold);">with</span>:
           <span style="color:#94a3b8;">scan-paths</span>: <span style="color:#38bdf8;">'.cursorrules, CLAUDE.md, GEMINI.md, copilot-instructions.md'</span>
           <span style="color:#94a3b8;">fail-on-exploit</span>: <span style="color:#38bdf8;">true</span></code></pre>
@@ -1188,8 +1215,8 @@ docker exec btp-sandbox btp-guard run -- "python agent_script.py"</code></pre>
 code --install-extension Bartholomew.bartholomew-guard-vscode
 code --install-extension Bartholomew.bartholomew-keystone</pre>
             <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-              <a href="/bartholomew-guard-vscode-6.4.4.vsix" download style="background:#38bdf8; color:#030712; font-family:var(--font-mono); font-size:0.75rem; font-weight:800; padding:7px 14px; border-radius:6px; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
-                Download VSIX Package (v6.4.4) &darr;
+              <a href="/bartholomew-guard-vscode-6.6.7.vsix" download style="background:#38bdf8; color:#030712; font-family:var(--font-mono); font-size:0.75rem; font-weight:800; padding:7px 14px; border-radius:6px; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                Download VSIX Package (v6.6.7) &darr;
               </a>
               <span style="font-size:0.75rem; color:var(--text-muted); font-family:var(--font-mono);">Works offline in air-gapped clusters &amp; enterprise CVMs</span>
             </div>
@@ -1209,7 +1236,7 @@ steps:
             <button class="copy-btn" onclick="copySnippet(this)">Copy</button>
             <pre class="code-block"># .github/workflows/verify.yml
 steps:
-- uses: ivegotahunnitonit/bartholomew@v5.4.23
+- uses: staccFoxx/bartholomew@main
   with:
     path: '.'
     strict: 'true'</pre>
@@ -1353,7 +1380,7 @@ btp-guard export-compliance --out soc2_dossier.json</pre>
           <pre><code><span style="color:#64748b;"># docker-compose.sidecar.yml</span>
 <span style="color:var(--gold);">services</span>:
   <span style="color:var(--emerald);">bartholomew-sidecar</span>:
-    <span style="color:#94a3b8;">image</span>: ghcr.io/ivegotahunnitonit/bartholomew-sidecar:v6.4.4
+    <span style="color:#94a3b8;">image</span>: ghcr.io/staccfoxx/bartholomew-sidecar:v6.6.7
     <span style="color:#94a3b8;">ports</span>:
       - <span style="color:#38bdf8;">"9090:9090"</span>
     <span style="color:#94a3b8;">environment</span>:
@@ -1381,7 +1408,7 @@ btp-guard export-compliance --out soc2_dossier.json</pre>
     <span style="color:#94a3b8;">spec</span>:
       <span style="color:#94a3b8;">containers</span>:
         - <span style="color:var(--emerald);">name</span>: bartholomew-proxy
-          <span style="color:#94a3b8;">image</span>: ghcr.io/ivegotahunnitonit/bartholomew-sidecar:v6.4.4
+          <span style="color:#94a3b8;">image</span>: ghcr.io/staccfoxx/bartholomew-sidecar:v6.6.7
           <span style="color:#94a3b8;">ports</span>:
             - <span style="color:#94a3b8;">containerPort</span>: 9090
           <span style="color:#94a3b8;">resources</span>:
@@ -1426,7 +1453,7 @@ docker run -d \
   -e BTP_SOVEREIGN_MODE=true \
   -e BTP_MAX_LATENCY_US=35 \
   -v $(pwd)/btp-config:/etc/btp \
-  ghcr.io/ivegotahunnitonit/bartholomew:v6.4.4
+  ghcr.io/staccfoxx/bartholomew:v6.6.7
 
 <span style="color:#64748b;"># 2. Test local in-process health endpoint</span>
 curl -s http://127.0.0.1:8080/health | jq .
@@ -1450,12 +1477,12 @@ helm install bartholomew-guard bartholomew/agent-guard \
 
         <div id="tab-selfhost-airgap" class="tab-pane" data-group="selfhost">
           <pre><code><span style="color:#64748b;"># Step 1: Export signed container image to air-gapped removable media</span>
-docker pull ghcr.io/ivegotahunnitonit/bartholomew:v6.4.4
-docker save ghcr.io/ivegotahunnitonit/bartholomew:v6.4.4 -o bartholomew-v6.4.4.tar
+docker pull ghcr.io/staccfoxx/bartholomew:v6.6.7
+docker save ghcr.io/staccfoxx/bartholomew:v6.6.7 -o bartholomew-v6.6.7.tar
 
 <span style="color:#64748b;"># Step 2: Load and run in zero-egress offline SCIF environment</span>
-docker load -i bartholomew-v6.4.4.tar
-docker run -d --net=none -p 8080:8080 -v /etc/btp:/etc/btp bartholomew:v6.4.4 --airgapped</code></pre>
+docker load -i bartholomew-v6.6.7.tar
+docker run -d --net=none -p 8080:8080 -v /etc/btp:/etc/btp bartholomew:v6.6.7 --airgapped</code></pre>
         </div>
       </section>
 
@@ -1541,6 +1568,107 @@ print(f"Policy Active: {policy['policy_id']} | Merkle Bond: {policy['bond_hash']
             <span>Cryptographic Proof of Coverage</span>
           </div>
           <p>Every policy issues an Ed25519-signed Merkle voucher tied to the agent's Keystone passkey. Claims undergo automated consensus arbitration before payout.</p>
+        </div>
+      </section>
+
+      <!-- Section: Capability Passkeys & Production Licensing -->
+      <section id="capability-passkeys" class="docs-section">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:12px;">
+          <h2 class="section-title" style="margin:0;">
+            <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="color:var(--emerald);"><path stroke-linecap="round" stroke-linejoin="round" d="M15 7a2 2 0 0 1 2 2m4 0a6 6 0 0 1-7.743 5.743L11 17H9v2H7v2H4a1 1 0 0 1-1-1v-2.586a1 1 0 0 1 .293-.707l5.964-5.964A6 6 0 1 1 21 9Z"/></svg>
+            Capability Passkeys &amp; Commercial Licensing
+          </h2>
+          <span style="font-family:var(--font-mono); font-size:0.75rem; background:rgba(16,185,129,0.15); color:var(--emerald); border:1px solid rgba(16,185,129,0.3); padding:4px 10px; border-radius:9999px; font-weight:700;">Instant Key Delivery via Stripe</span>
+        </div>
+        <p class="section-desc">
+          Bartholomew operates on a transparent, developer-first capability passkey architecture. Passkeys unlock high-throughput in-process AST gating, in-flight secret scrubbing, FIPS 186-5 Ed25519 Merkle receipts, and cross-agent micro-toll budgeting without recurring seat locks or cloud vendor lock-in.
+        </p>
+
+        <!-- Pricing Cards Grid -->
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(260px, 1fr)); gap:16px; margin:24px 0;">
+          
+          <!-- Tier 1: Micro-Starter -->
+          <div style="background:rgba(13,20,36,0.7); border:1px solid var(--border-subtle); border-radius:12px; padding:20px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <span style="font-size:0.8rem; font-family:var(--font-mono); color:var(--text-muted); text-transform:uppercase; letter-spacing:0.05em;">Micro-Starter</span>
+                <span style="font-size:0.75rem; background:rgba(255,255,255,0.06); color:#cbd5e1; padding:2px 8px; border-radius:4px;">1 Dev</span>
+              </div>
+              <div style="font-size:1.8rem; font-weight:800; color:#fff; margin-bottom:4px;">$5 <span style="font-size:0.85rem; font-weight:400; color:var(--text-muted);">flat</span></div>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:16px;">Ideal for personal weekend projects and early Cursor/Claude testing.</p>
+              <ul style="font-size:0.8rem; color:#cbd5e1; list-style:none; padding:0; margin:0 0 20px 0; display:flex; flex-direction:column; gap:8px;">
+                <li style="display:flex; align-items:center; gap:8px;"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="color:var(--emerald);"><path d="M20 6L9 17l-5-5"/></svg> 50,000 In-Process AST Evals</li>
+                <li style="display:flex; align-items:center; gap:8px;"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="color:var(--emerald);"><path d="M20 6L9 17l-5-5"/></svg> Secret Zeroization &amp; Masking</li>
+                <li style="display:flex; align-items:center; gap:8px;"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="color:var(--emerald);"><path d="M20 6L9 17l-5-5"/></svg> Standard Ed25519 Receipts</li>
+              </ul>
+            </div>
+            <a href="https://buy.stripe.com/8x23cveZL4PUeuIflS9R606" target="_blank" rel="noopener noreferrer" style="display:block; text-align:center; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.2); color:#fff; padding:10px; border-radius:8px; font-weight:700; font-size:0.85rem; text-decoration:none; transition:all 0.15s ease;">Claim $5 Starter Pack &rarr;</a>
+          </div>
+
+          <!-- Tier 2: Developer Passkey (Featured) -->
+          <div style="background:linear-gradient(180deg, rgba(16,185,129,0.12) 0%, rgba(13,20,36,0.9) 100%); border:1.5px solid rgba(16,185,129,0.5); border-radius:12px; padding:20px; display:flex; flex-direction:column; justify-content:space-between; position:relative; box-shadow:0 0 24px rgba(16,185,129,0.15);">
+            <div style="position:absolute; top:-10px; right:16px; background:linear-gradient(135deg, #10b981, #06b6d4); color:#030712; font-size:0.68rem; font-weight:800; padding:2px 8px; border-radius:4px; text-transform:uppercase;">Most Popular</div>
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <span style="font-size:0.8rem; font-family:var(--font-mono); color:var(--emerald); text-transform:uppercase; letter-spacing:0.05em; font-weight:700;">Developer Passkey</span>
+                <span style="font-size:0.75rem; background:rgba(16,185,129,0.2); color:#34d399; padding:2px 8px; border-radius:4px; font-weight:600;">Production Ready</span>
+              </div>
+              <div style="font-size:1.8rem; font-weight:800; color:#fff; margin-bottom:4px;">$10 <span style="font-size:0.85rem; font-weight:400; color:var(--text-muted);">flat</span></div>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:16px;">Full capability protection for active engineers building autonomous agents.</p>
+              <ul style="font-size:0.8rem; color:#cbd5e1; list-style:none; padding:0; margin:0 0 20px 0; display:flex; flex-direction:column; gap:8px;">
+                <li style="display:flex; align-items:center; gap:8px;"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="color:var(--emerald);"><path d="M20 6L9 17l-5-5"/></svg> <strong>100,000 In-Process AST Evals</strong></li>
+                <li style="display:flex; align-items:center; gap:8px;"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="color:var(--emerald);"><path d="M20 6L9 17l-5-5"/></svg> Cursor + Claude Code + Windsurf</li>
+                <li style="display:flex; align-items:center; gap:8px;"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="color:var(--emerald);"><path d="M20 6L9 17l-5-5"/></svg> FIPS 186-5 Ed25519 Merkle Receipts</li>
+                <li style="display:flex; align-items:center; gap:8px;"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="color:var(--emerald);"><path d="M20 6L9 17l-5-5"/></svg> Autonomous Micro-Toll Clearance</li>
+              </ul>
+            </div>
+            <a href="https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607" target="_blank" rel="noopener noreferrer" style="display:block; text-align:center; background:linear-gradient(135deg, #10b981 0%, #06b6d4 100%); color:#030712; padding:11px; border-radius:8px; font-weight:800; font-size:0.88rem; text-decoration:none; box-shadow:0 4px 16px rgba(16,185,129,0.4); transition:all 0.15s ease;">Activate $10 Developer Passkey &rarr;</a>
+          </div>
+
+          <!-- Tier 3: Swarm Passkey -->
+          <div style="background:rgba(13,20,36,0.7); border:1px solid rgba(234,179,8,0.35); border-radius:12px; padding:20px; display:flex; flex-direction:column; justify-content:space-between;">
+            <div>
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                <span style="font-size:0.8rem; font-family:var(--font-mono); color:#fcd34d; text-transform:uppercase; letter-spacing:0.05em; font-weight:700;">Swarm Passkey</span>
+                <span style="font-size:0.75rem; background:rgba(234,179,8,0.15); color:#fcd34d; padding:2px 8px; border-radius:4px;">Multi-Agent</span>
+              </div>
+              <div style="font-size:1.8rem; font-weight:800; color:#fff; margin-bottom:4px;">$15 <span style="font-size:0.85rem; font-weight:400; color:var(--text-muted);">flat</span></div>
+              <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:16px;">Designed for distributed multi-agent clusters, CrewAI swarms &amp; AutoGen.</p>
+              <ul style="font-size:0.8rem; color:#cbd5e1; list-style:none; padding:0; margin:0 0 20px 0; display:flex; flex-direction:column; gap:8px;">
+                <li style="display:flex; align-items:center; gap:8px;"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="color:var(--emerald);"><path d="M20 6L9 17l-5-5"/></svg> 150,000 In-Process AST Evals</li>
+                <li style="display:flex; align-items:center; gap:8px;"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="color:var(--emerald);"><path d="M20 6L9 17l-5-5"/></svg> Multi-Agent Consensus Attestation</li>
+                <li style="display:flex; align-items:center; gap:8px;"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="color:var(--emerald);"><path d="M20 6L9 17l-5-5"/></svg> Swarm Arbitration &amp; Escrow Slashing</li>
+                <li style="display:flex; align-items:center; gap:8px;"><svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24" style="color:var(--emerald);"><path d="M20 6L9 17l-5-5"/></svg> Priority WebSocket Clearinghouse</li>
+              </ul>
+            </div>
+            <a href="https://buy.stripe.com/cNi3cv6tf6Y2cmAgpW9R608" target="_blank" rel="noopener noreferrer" style="display:block; text-align:center; background:rgba(234,179,8,0.15); border:1px solid rgba(234,179,8,0.4); color:#fcd34d; padding:10px; border-radius:8px; font-weight:700; font-size:0.85rem; text-decoration:none; transition:all 0.15s ease;">Activate $15 Swarm Passkey &rarr;</a>
+          </div>
+
+        </div>
+
+        <!-- 3-Step Configuration Tutorial -->
+        <h3 style="font-size:1.05rem; font-weight:700; color:#fff; margin:24px 0 12px 0;">Activating Your Passkey in 60 Seconds</h3>
+        
+        <div class="code-block-wrap" style="margin-bottom:16px;">
+          <div class="code-header" style="font-size:0.75rem;">Step 1: Set Your Environment Variable (.env or CI)</div>
+          <pre class="code-block"># Add to your project root .env or export in shell
+BTP_PASSKEY="btp_live_948f2a1b7c093e4b7a19280d94f281e05a8b7c3d"</pre>
+        </div>
+
+        <div class="code-block-wrap" style="margin-bottom:16px;">
+          <div class="code-header" style="font-size:0.75rem;">Step 2: Initialize In Your Agent Runtime (Python or Node.js)</div>
+          <pre class="code-block"># Python
+from btp_guard import protect_agent
+
+# Protect Cursor / Claude Code / CrewAI tools
+guard = protect_agent(passkey="btp_live_...")
+print(f"Bartholomew Keystone Verified: {guard.status}")</pre>
+        </div>
+
+        <div class="code-block-wrap" style="margin-bottom:16px;">
+          <div class="code-header" style="font-size:0.75rem;">Step 3: Verify Cryptographic Clearance via CLI</div>
+          <pre class="code-block"># Attest local capability quota and Merkle signature root
+btp keystone verify --token $BTP_PASSKEY</pre>
         </div>
       </section>
 

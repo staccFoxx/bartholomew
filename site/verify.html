@@ -1377,7 +1377,7 @@
       if (type === 'action') {
         const b4 = document.getElementById('btnBadge4');
         if (b4) b4.classList.add('active');
-        document.getElementById('embedTextarea').value = `# .github/workflows/security.yml\nname: Bartholomew Security Gate\non: [push, pull_request]\n\njobs:\n  btp-guard:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: ivegotahunnitonit/bartholomew@main\n        with:\n          fail-on-violation: true\n          min-score: 80`;
+        document.getElementById('embedTextarea').value = `# .github/workflows/security.yml\nname: Bartholomew Security Gate\non: [push, pull_request]\n\njobs:\n  btp-guard:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v4\n      - uses: staccFoxx/bartholomew@main\n        with:\n          fail-on-violation: true\n          min-score: 80`;
         return;
       }
 

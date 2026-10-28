@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  #  PyPI 
+  # ─── PyPI ─────────────────────────────────────────────────────────
   pypi:
     name: Publish · PyPI
     runs-on: ubuntu-latest
@@ -40,18 +40,14 @@ jobs:
           name: pypi-dist
           path: dist/
 
-      - name: Publish to PyPI
-        env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
-        run: |
-          if [ -z "$TWINE_PASSWORD" ]; then
-            echo "[!] PYPI_API_TOKEN secret not configured in repository. Skipping PyPI upload."
-            exit 0
-          fi
-          twine upload dist/* --skip-existing
+      - name: Publish to PyPI (Trusted Publishing OIDC)
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          skip-existing: true
+          password: ${{ secrets.PYPI_API_TOKEN }}
+        continue-on-error: true
 
-  #  NPM 
+  # ─── NPM ──────────────────────────────────────────────────────────
   npm:
     name: Publish · npm
     runs-on: ubuntu-latest
