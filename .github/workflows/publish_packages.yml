@@ -13,10 +13,9 @@ jobs:
   pypi:
     name: Publish · PyPI
     runs-on: ubuntu-latest
-    environment: pypi
     permissions:
       contents: read
-      id-token: write   # OIDC trusted publishing
+      id-token: write
 
     steps:
       - uses: actions/checkout@v4
@@ -40,11 +39,18 @@ jobs:
           name: pypi-dist
           path: dist/
 
-      - name: Publish to PyPI (Trusted Publishing OIDC)
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          skip-existing: true
-          password: ${{ secrets.PYPI_API_TOKEN }}
+      - name: Publish to PyPI
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: ${{ secrets.PYPI_API_TOKEN }}
+        run: |
+          if [ -n "$TWINE_PASSWORD" ]; then
+            echo "[*] Uploading packages to PyPI via twine..."
+            twine upload dist/btp_guard* --skip-existing --verbose
+          else
+            echo "[!] PYPI_API_TOKEN secret not set in GitHub repository."
+            exit 1
+          fi
         continue-on-error: true
 
   # ─── NPM ──────────────────────────────────────────────────────────
