@@ -6827,22 +6827,22 @@
 
 
   <!-- Persistent Sticky Bottom Conversion Dock -->
-  <aside class="sticky-conversion-dock" aria-label="Passkey Checkout">
-    <div class="dock-inner">
-      <div class="dock-info">
-        <div class="dock-pulse-dot"></div>
+  <aside class="sticky-conversion-dock" aria-label="Passkey Checkout" style="position: fixed !important; bottom: 0 !important; left: 0 !important; right: 0 !important; z-index: 9999 !important; background: rgba(7, 10, 18, 0.94) !important; backdrop-filter: blur(16px) !important; -webkit-backdrop-filter: blur(16px) !important; border-top: 1px solid rgba(16, 185, 129, 0.35) !important; box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.65) !important; padding: 12px 20px !important;">
+    <div class="dock-inner" style="max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+      <div class="dock-info" style="display: flex; align-items: center; gap: 14px;">
+        <div class="dock-pulse-dot" style="width: 10px; height: 10px; border-radius: 50%; background: #10b981; box-shadow: 0 0 10px #10b981; flex-shrink: 0;"></div>
         <div>
-          <div class="dock-title">Arm Cursor &amp; Claude Code (<span style="color:#10b981;">&lt;35&mu;s In-Process AST Gate</span>)</div>
-          <div class="dock-sub">Zero cloud lag &bull; Secret zeroization &bull; RFC 8785 Merkle receipts &bull; Instant Passkey</div>
+          <div class="dock-title" style="font-weight: 800; font-size: 0.92rem; color: #ffffff;">Arm Cursor &amp; Claude Code (<span style="color:#10b981;">&lt;35&mu;s In-Process AST Gate</span>)</div>
+          <div class="dock-sub" style="font-size: 0.78rem; color: #94a3b8; font-family: var(--font-mono, monospace);">Zero cloud lag &bull; Secret zeroization &bull; RFC 8785 Merkle receipts &bull; Instant Passkey</div>
         </div>
       </div>
-      <div class="dock-actions">
-        <a href="https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607" target="_blank" rel="noopener noreferrer" class="dock-btn-primary">
+      <div class="dock-actions" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
+        <a href="https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607" target="_blank" rel="noopener noreferrer" class="dock-btn-primary" style="background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%) !important; color: #030712 !important; font-weight: 900 !important; font-size: 0.84rem !important; padding: 10px 18px !important; border-radius: 6px !important; text-decoration: none !important; display: inline-flex !important; align-items: center !important; gap: 6px !important; box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4) !important; white-space: nowrap !important;">
           <span>Activate $10 Dev Passkey</span>
           <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
         </a>
-        <a href="https://buy.stripe.com/cNi3cv6tf6Y2cmAgpW9R608" target="_blank" rel="noopener noreferrer" class="dock-btn-secondary">
-          Swarm Passkey ($15) &rarr;
+        <a href="https://buy.stripe.com/cNi3cv6tf6Y2cmAgpW9R608" target="_blank" rel="noopener noreferrer" class="dock-btn-secondary" style="background: rgba(234, 179, 8, 0.15) !important; border: 1px solid rgba(234, 179, 8, 0.45) !important; color: #fcd34d !important; font-weight: 800 !important; font-size: 0.82rem !important; padding: 9px 15px !important; border-radius: 6px !important; text-decoration: none !important; white-space: nowrap !important;">
+          <span>Swarm Passkey ($15) &rarr;</span>
         </a>
       </div>
     </div>
