@@ -3330,7 +3330,120 @@
       }
     }
     
-  </style>
+  
+    /* Sticky Bottom Conversion Dock (High-Conversion Engine) */
+    .sticky-conversion-dock {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 9999;
+      background: rgba(7, 10, 18, 0.94);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid rgba(16, 185, 129, 0.35);
+      box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.65);
+      padding: 12px 20px;
+      transition: transform 0.3s ease;
+    }
+    .dock-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .dock-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .dock-pulse-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 10px #10b981;
+      flex-shrink: 0;
+      animation: dockPulse 2s infinite;
+    }
+    @keyframes dockPulse {
+      0% { opacity: 0.6; transform: scale(0.95); }
+      50% { opacity: 1; transform: scale(1.15); }
+      100% { opacity: 0.6; transform: scale(0.95); }
+    }
+    .dock-title {
+      font-weight: 800;
+      font-size: 0.92rem;
+      color: #ffffff;
+      letter-spacing: -0.01em;
+    }
+    .dock-sub {
+      font-size: 0.78rem;
+      color: #94a3b8;
+      font-family: var(--font-mono, monospace);
+    }
+    .dock-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .dock-btn-primary {
+      background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+      color: #030712 !important;
+      font-weight: 900;
+      font-size: 0.84rem;
+      padding: 10px 18px;
+      border-radius: 6px;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      box-shadow: 0 4px 16px rgba(16, 185, 129, 0.4);
+      white-space: nowrap;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .dock-btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 22px rgba(16, 185, 129, 0.6);
+    }
+    .dock-btn-secondary {
+      background: rgba(234, 179, 8, 0.15);
+      border: 1px solid rgba(234, 179, 8, 0.45);
+      color: #fcd34d !important;
+      font-weight: 800;
+      font-size: 0.82rem;
+      padding: 9px 15px;
+      border-radius: 6px;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background 0.2s;
+    }
+    .dock-btn-secondary:hover {
+      background: rgba(234, 179, 8, 0.25);
+    }
+    @media (max-width: 640px) {
+      .dock-inner {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 10px;
+      }
+      .dock-actions {
+        width: 100%;
+      }
+      .dock-btn-primary, .dock-btn-secondary {
+        flex: 1;
+        text-align: center;
+        justify-content: center;
+      }
+      body {
+        padding-bottom: 90px !important;
+      }
+    }
+</style>
   </head>
 <body>
 
@@ -3605,32 +3718,26 @@
           Sub-millisecond trajectory observability and deterministic execution firewalls for autonomous agents. Real-time OWASP 2026 kill-switches, Non-Human Identity (NHI) passports, and cryptographic FIPS 186-5 attestations.
         </p>
 
-      <div class="hero-cta-buttons" style="display:flex; justify-content:center; align-items:center; gap:14px; margin:32px auto 44px; flex-wrap:wrap;">
-          <a href="https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607" target="_blank" rel="noopener noreferrer" class="btn-primary-hero" style="background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); color: #030712; font-weight: 900; text-decoration: none; padding: 12px 22px; box-shadow: 0 4px 20px rgba(16, 185, 129, 0.45); display: inline-flex; align-items: center; gap: 8px;">
+      <div class="hero-cta-buttons" style="display:flex; justify-content:center; align-items:center; gap:14px; margin:28px auto 16px; flex-wrap:wrap;">
+          <a href="https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607" target="_blank" rel="noopener noreferrer" class="btn-primary-hero" style="background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%); color: #030712; font-weight: 900; text-decoration: none; padding: 13px 26px; font-size: 0.98rem; box-shadow: 0 4px 22px rgba(16, 185, 129, 0.45); display: inline-flex; align-items: center; gap: 8px;">
             <span>Activate $10 Developer Passkey</span>
-            <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
           </a>
-          <a href="https://buy.stripe.com/cNi3cv6tf6Y2cmAgpW9R608" target="_blank" rel="noopener noreferrer" class="btn-action-hero" style="background: rgba(234, 179, 8, 0.15); border: 1px solid rgba(234, 179, 8, 0.45); color: #fcd34d; text-decoration: none; font-weight: 800; padding: 12px 20px;">
+          <a href="https://buy.stripe.com/cNi3cv6tf6Y2cmAgpW9R608" target="_blank" rel="noopener noreferrer" class="btn-action-hero" style="background: rgba(234, 179, 8, 0.15); border: 1px solid rgba(234, 179, 8, 0.45); color: #fcd34d; text-decoration: none; font-weight: 800; padding: 13px 22px; font-size: 0.94rem;">
             <span>Swarm Passkey ($15) &rarr;</span>
           </a>
-          <button onclick="document.getElementById('sandbox').scrollIntoView({ behavior: 'smooth' })" class="btn-action-hero" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); color: #f8fafc; font-weight: 700; padding: 12px 18px; cursor: pointer;">
+          <button onclick="document.getElementById('sandbox').scrollIntoView({ behavior: 'smooth' })" class="btn-action-hero" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.18); color: #f8fafc; font-weight: 700; padding: 13px 20px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px;">
             <svg width="14" height="14" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-            Audit Agent Simulator
+            <span>Try AST Simulator Free</span>
           </button>
-          <a href="/verify.html" class="btn-action-hero" style="background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.4); color:#34d399; text-decoration:none;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            Verified Bartholomew Seal
-          </a>
-          <a href="#unbeatable-moat" class="btn-action-hero" style="background:rgba(56,189,248,0.15); border:1px solid rgba(56,189,248,0.5); color:#38bdf8; text-decoration:none;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> The 4-Pillar Moat &rarr;</a>
-          <a href="/sim-lab.html" class="btn-action-hero" style="background:rgba(99,102,241,0.15); border:1px solid rgba(99,102,241,0.5); color:#a5b4fc; text-decoration:none;" title="Interactive Attack Simulation Lab">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            Interactive Sim Lab &rarr;
-          </a>
-          <a href="/telemetry.html" class="btn-action-hero" style="background:rgba(56,189,248,0.12); border:1px solid rgba(56,189,248,0.4); color:#38bdf8; text-decoration:none;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-            Live Threat Telemetry
-          </a>
-          </div>
+        </div>
+
+        <!-- High-Conversion Trust & Guarantees Strip -->
+        <div style="display:flex; justify-content:center; align-items:center; gap:20px; flex-wrap:wrap; margin-bottom:34px; font-family:var(--font-mono, monospace); font-size:0.75rem; color:#94a3b8;">
+          <span style="display:flex; align-items:center; gap:6px;"><span style="color:#10b981;">&bull;</span> 100,000 In-Process AST Checks</span>
+          <span style="display:flex; align-items:center; gap:6px;"><span style="color:#38bdf8;">&bull;</span> Sub-35&mu;s Zero-Cloud Latency</span>
+          <span style="display:flex; align-items:center; gap:6px;"><span style="color:#eab308;">&bull;</span> Instant Key via Apple Pay / Card</span>
+        </div>
 
         <!-- Instant 3-Second AST Gate Sandbox -->
         <div style="max-width: 900px; margin: 0 auto 36px; background: rgba(3, 7, 18, 0.95); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 12px; padding: 18px 20px; box-shadow: 0 12px 32px rgba(0,0,0,0.7); text-align: left;">
