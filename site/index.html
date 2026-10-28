@@ -3758,6 +3758,16 @@
           </button>
         </div>
 
+        
+        <!-- Terminal 1-Line Quickstart Bar -->
+        <div class="hero-quickstart-bar" style="max-width: 640px; margin: 0 auto 24px; background: rgba(3, 7, 18, 0.95); border: 1px solid rgba(255, 255, 255, 0.14); border-radius: 8px; padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; box-shadow: 0 4px 20px rgba(0,0,0,0.6);">
+          <div style="display: flex; align-items: center; gap: 10px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">
+            <span style="color: #10b981; font-weight: 800;">$</span>
+            <code id="installCmdText" style="color: #cbd5e1;">curl -fsSL https://bartholomew.info/install.sh | bash</code>
+          </div>
+          <button onclick="navigator.clipboard.writeText('curl -fsSL https://bartholomew.info/install.sh | bash'); this.innerText='Copied!'; setTimeout(()=>this.innerText='Copy', 2000)" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.22); color: #f8fafc; font-family: 'JetBrains Mono', monospace; font-size: 0.74rem; font-weight: 700; padding: 5px 12px; border-radius: 4px; cursor: pointer; flex-shrink: 0;">Copy</button>
+        </div>
+
         <!-- High-Conversion Trust & Guarantees Strip -->
         <div style="display:flex; justify-content:center; align-items:center; gap:20px; flex-wrap:wrap; margin-bottom:34px; font-family:var(--font-mono, monospace); font-size:0.75rem; color:#94a3b8;">
           <span style="display:flex; align-items:center; gap:6px;"><span style="color:#10b981;">&bull;</span> 100,000 In-Process AST Checks</span>

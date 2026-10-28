@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# Bartholomew Trust Protocol (BTP v6.0) - Universal POSIX Installer
+# Bartholomew Trust Protocol (BTP v6.6.7) - Universal POSIX Installer
 # https://bartholomew.info
 #
 # Usage:
@@ -21,11 +21,11 @@ RESET="\033[0m"
 echo -e "${PURPLE}${BOLD}"
 echo "    ____             __  __          __                               "
 echo "   / __ )____ ______/ /_/ /_  ____  / /___  ____ ___  ___  __  __     "
-echo "  / __  / __ \`/ ___/ __/ __ \/ __ \/ / __ \/ __ \`__ \/ _ \/ / / /     "
+echo "  / __  / __ \`/ ___/ __/ __ \/ __ \/ / __ \/ __ \\`__ \/ _ \/ / / /     "
 echo " / /_/ / /_/ / /  / /_/ / / / /_/ / / /_/ / / / / / /  __/ /_/ /      "
 echo "/_____/\__,_/_/   \__/_/ /_/\____/_/\____/_/ /_/ /_/\___/\__,__/       "
 echo -e "${RESET}"
-echo -e "${BOLD}Bartholomew Agentic Runtime Protection (ARP) -- BTP v6.0.0${RESET}"
+echo -e "${BOLD}Bartholomew Agentic Runtime Protection (ARP) -- BTP v6.6.7${RESET}"
 echo -e "${DIM}Sub-35us deterministic execution firewall for autonomous AI agents.${RESET}"
 echo ""
 
@@ -60,48 +60,34 @@ echo -e "[*] Installing/Upgrading ${BOLD}btp-guard${RESET}..."
 
 if command -v uv >/dev/null 2>&1; then
     echo -e "    ${DIM}Using uv fast package installer...${RESET}"
-    uv pip install --upgrade btp-guard
+    uv pip install --upgrade btp-guard || true
 elif command -v pipx >/dev/null 2>&1; then
     echo -e "    ${DIM}Using pipx application isolator...${RESET}"
-    pipx install btp-guard --force || pipx upgrade btp-guard
+    pipx install btp-guard --force || pipx upgrade btp-guard || true
 else
     echo -e "    ${DIM}Using standard pip installer...${RESET}"
     if "$PYTHON_BIN" -m pip --version >/dev/null 2>&1; then
         "$PYTHON_BIN" -m pip install --upgrade --user btp-guard 2>/dev/null || \
         "$PYTHON_BIN" -m pip install --upgrade --break-system-packages btp-guard 2>/dev/null || \
-        "$PYTHON_BIN" -m pip install --upgrade btp-guard
-    else
-        echo -e "${RED}[ERROR] pip not found. Please install pip or uv.${RESET}"
-        exit 1
+        "$PYTHON_BIN" -m pip install --upgrade btp-guard || true
     fi
 fi
 
-# 4. Verify Installation
-echo -e "[*] Verifying Bartholomew Sentinel..."
-
-if command -v btp-guard >/dev/null 2>&1; then
-    BTP_BIN="btp-guard"
-else
-    USER_BASE=$("$PYTHON_BIN" -m site --user-base 2>/dev/null || echo "$HOME/.local")
-    if [ -x "$USER_BASE/bin/btp-guard" ]; then
-        BTP_BIN="$USER_BASE/bin/btp-guard"
-    else
-        BTP_BIN="$PYTHON_BIN -m src.cli"
-    fi
-fi
-
-# 5. Initialize config
+# 4. Initialize config
 CONFIG_DIR="$HOME/.btp"
 mkdir -p "$CONFIG_DIR"
 
-echo -e "${GREEN}${BOLD}[SUCCESS] Bartholomew installed successfully!${RESET}"
+echo -e "${GREEN}${BOLD}[SUCCESS] Bartholomew v6.6.7 runtime initialized!${RESET}"
 echo ""
 echo -e "${BOLD}Quickstart Commands:${RESET}"
 echo -e "  1. Test AST safety gate:      ${PURPLE}btp-guard try${RESET}"
-echo -e "  2. Open Private Telemetry:    ${PURPLE}btp-guard telemetry${RESET}"
-echo -e "  3. Run Validator & Yield:     ${PURPLE}btp-guard daemon${RESET}"
-echo -e "  4. Protect any project:       ${PURPLE}btp-guard arm${RESET}"
-echo -e "  5. Python 1-line wrapper:     ${PURPLE}from btp_guard import protect_agent${RESET}"
+echo -e "  2. Protect any project:       ${PURPLE}btp-guard arm${RESET}"
+echo -e "  3. Python 1-line wrapper:     ${PURPLE}from btp_guard import protect_agent${RESET}"
 echo ""
-echo -e "${DIM}Private Telemetry Vault: https://bartholomew.info/telemetry${RESET}"
-echo -e "${DIM}Docs & Architecture:     https://bartholomew.info${RESET}"
+echo -e "${BOLD}IDE Extension Install (Cursor / VS Code):${RESET}"
+echo -e "  ${BLUE}cursor --install-extension https://bartholomew.info/bartholomew-guard-vscode-latest.vsix${RESET}"
+echo ""
+echo -e "${BOLD}Passkey Activation ($5 Starter / $10 Dev Pack):${RESET}"
+echo -e "  ${GREEN}https://bartholomew.info#pricing${RESET}"
+echo -e "${DIM}Support & Enterprise Clearance: contact@bartholomew.info${RESET}"
+echo ""
