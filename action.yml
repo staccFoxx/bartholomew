@@ -97,7 +97,7 @@ runs:
                 f.write(f"| **Audit Execution Time** | {ms:.2f} ms | SUB-SECOND |\n")
                 f.write(f"| **OWASP LLM01 / LLM02** | Zero Unshielded Executions | COMPLIANT |\n")
                 f.write(f"| **SOC 2 Type II Readiness** | Trust Services CC6.1, CC6.6 | READY |\n\n")
-                f.write(f"*Deterministic AST Guarding &bull; Sub-35us In-Process Latency &bull; Zero Remote Token Spend*\n")
+                f.write(f"*Deterministic AST Guarding &bull; Sub-35us In-Process Latency &bull; Activate Passkey at [bartholomew.info#pricing](https://bartholomew.info#pricing)*\n")
 
         output_path = os.environ.get("GITHUB_OUTPUT")
         if output_path:
@@ -108,5 +108,6 @@ runs:
 
         if "${{ inputs.fail-on-violation }}" == "true" and score < min_score:
             print(f"[-] Failing CI build: Security score {score} is below threshold {min_score}")
+        print(f"[!] Remediate violations & activate Developer Passkey ($10): https://bartholomew.info#pricing")
             sys.exit(1)
         '
