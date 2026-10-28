@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <title>Bartholomew Sentinel &bull; Agensi Marketplace Bundle</title>
+  <meta name="description" content="Official Agensi.io marketplace bundle for Bartholomew Sentinel. Deterministic in-process AST invariant gate and secret protection for Cursor, Claude Code, and autonomous swarms.">
+  <link rel="icon" type="image/png" href="/logo.png">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-dark: #070a0f;
+      --bg-card: rgba(13, 18, 31, 0.85);
+      --bg-card-alt: rgba(18, 25, 43, 0.6);
+      --border-emerald: rgba(16, 185, 129, 0.35);
+      --border-gold: rgba(245, 158, 11, 0.4);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --emerald: #10b981;
+      --emerald-light: #34d399;
+      --gold: #f59e0b;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: 'Inter', -apple-system, sans-serif;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(circle at 50% 10%, rgba(16, 185, 129, 0.12) 0%, transparent 60%),
+        radial-gradient(circle at 80% 80%, rgba(6, 182, 212, 0.08) 0%, transparent 50%),
+        linear-gradient(180deg, #070a0f 0%, #0a0e1a 100%);
+    }
+
+    .container {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 32px 24px 60px 24px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--border-subtle);
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+      color: var(--text-main);
+    }
+    .brand img { width: 34px; height: 34px; border-radius: 8px; }
+    .brand-title { font-weight: 800; font-size: 1.15rem; letter-spacing: -0.02em; }
+    .badge-release {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.72rem;
+      padding: 3px 8px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid var(--border-emerald);
+      color: var(--emerald-light);
+      border-radius: 9999px;
+      font-weight: 700;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .nav-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 500;
+      transition: color 0.15s ease;
+    }
+    .nav-links a:hover { color: var(--text-main); }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(16, 185, 129, 0.08) 0%, rgba(13, 18, 31, 0.9) 100%);
+      border: 1.5px solid var(--border-emerald);
+      border-radius: 16px;
+      padding: 36px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .hero-tag {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--emerald-light);
+      font-weight: 700;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 10px var(--emerald);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 720px;
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn-download {
+      background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+      color: #030712;
+      font-weight: 900;
+      text-decoration: none;
+      padding: 13px 24px;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+      transition: all 0.2s ease;
+    }
+    .btn-download:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 26px rgba(16, 185, 129, 0.55);
+    }
+
+    .btn-passkey {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #ffffff;
+      font-weight: 700;
+      text-decoration: none;
+      padding: 13px 20px;
+      border-radius: 8px;
+      font-size: 0.92rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+    }
+    .btn-passkey:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .spec-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 30px;
+    }
+    .spec-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 20px;
+    }
+    .spec-title {
+      font-size: 0.82rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--emerald-light);
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .spec-body {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .code-box {
+      background: #030712;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 10px;
+      padding: 18px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.84rem;
+      color: #cbd5e1;
+      overflow-x: auto;
+      margin-bottom: 30px;
+      line-height: 1.6;
+    }
+
+    footer {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid var(--border-subtle);
+      color: var(--text-dim);
+      font-size: 0.8rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <a href="/" class="brand">
+        <img src="/logo.png" alt="Bartholomew Shield Logo">
+        <span class="brand-title">Bartholomew Sentinel</span>
+        <span class="badge-release">Agensi Ready &bull; v6.6.7</span>
+      </a>
+      <div class="nav-links">
+        <a href="/docs.html">Docs</a>
+        <a href="/docs.html#capability-passkeys" style="color:var(--emerald-light); font-weight:700;">Get Passkey ($10)</a>
+        <a href="https://github.com/staccFoxx/bartholomew" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </header>
+
+    <div class="hero-card">
+      <div class="hero-tag">Official Agensi Marketplace Package</div>
+      <h1>Bartholomew Sentinel Distribution</h1>
+      <p class="hero-desc">
+        Pre-packaged zero-cloud AST security gate and credential vault for Agensi.io agentic workflows. Intercepts destructive bash commands, drops prompt jailbreaks, scrubs credentials, and logs Ed25519 Merkle receipts with sub-35&mu;s latency.
+      </p>
+
+      <div class="cta-row">
+        <a href="/downloads/bartholomew-sentinel.zip" class="btn-download" download>
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/></svg>
+          <span>Download Agensi Bundle (.zip)</span>
+        </a>
+        <a href="https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607" target="_blank" rel="noopener" class="btn-passkey">
+          <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+          <span>Claim $10 Dev Passkey &rarr;</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Technical Specifications -->
+    <div class="spec-grid">
+      <div class="spec-card">
+        <div class="spec-title">Manifest &amp; Protocol</div>
+        <div class="spec-body">
+          Contains compliant <code>manifest.json</code> (v1.0.0), <code>SKILL.md</code>, and native MCP stdio configuration for instant Agensi client execution.
+        </div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-title">Microsecond AST Gating</div>
+        <div class="spec-body">
+          Average AST evaluation latency of <strong>15.10 &mu;s</strong>. Operates 100% in-process without network latency or cloud token tax.
+        </div>
+      </div>
+      <div class="spec-card">
+        <div class="spec-title">Commercial Passkeys</div>
+        <div class="spec-body">
+          Unmetered 100k+ evaluation passkeys ready for immediate developer provisioning via Stripe Apple Pay or Credit Card.
+        </div>
+      </div>
+    </div>
+
+    <h2 style="font-size:1.25rem; font-weight:800; margin-bottom:12px;">Package Contents (Preview)</h2>
+    <div class="code-box">
+{
+  "name": "bartholomew-sentinel",
+  "version": "6.6.7",
+  "author": "Bartholomew Sentinel Network",
+  "description": "In-process deterministic AST security gate, secret zeroization, and cryptographic invariant receipts for autonomous agents.",
+  "entrypoint": "SKILL.md",
+  "protocols": ["mcp", "btp-v6.6.7", "ed25519-merkle"],
+  "homepage": "https://bartholomew.info",
+  "license": "Apache-2.0"
+}</div>
+
+    <footer>
+      &copy; 2026 Bartholomew Sentinel Network &bull; <a href="https://bartholomew.info" style="color:var(--text-muted); text-decoration:none;">bartholomew.info</a> &bull; Verified BTP v6.6.7
+    </footer>
+  </div>
+
+</body>
+</html>

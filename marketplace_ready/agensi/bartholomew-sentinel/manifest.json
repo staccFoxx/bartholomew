@@ -1,0 +1,34 @@
+{
+  "name": "bartholomew-sentinel",
+  "displayName": "Bartholomew Sentinel Guard & Spend Governor",
+  "version": "6.6.7",
+  "description": "Deterministic in-process AST security proxy, credential scrubber, and spend governor for MCP AI agents (<35µs latency).",
+  "author": "Bartholomew AI",
+  "homepage": "https://bartholomew.info",
+  "repository": "https://github.com/staccFoxx/bartholomew",
+  "pricing": {
+    "type": "freemium",
+    "starterPriceUsd": 0,
+    "passkeyDevUsd": 10,
+    "passkeySwarmUsd": 15
+  },
+  "mcp": {
+    "command": "npx",
+    "args": ["-y", "btp-guard", "mcp"],
+    "env": {
+      "BTP_MODE": "enforce",
+      "BTP_ZERO_EGRESS": "true"
+    }
+  },
+  "compatibleAgents": [
+    "claude-code",
+    "cursor",
+    "copilot",
+    "codex-cli",
+    "antigravity",
+    "openclaw",
+    "autogen",
+    "crewai"
+  ]
+}
+

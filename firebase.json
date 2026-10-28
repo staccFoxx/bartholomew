@@ -21,6 +21,10 @@
     ],
     "rewrites": [
       {
+        "source": "/agensi",
+        "destination": "/agensi.html"
+      },
+      {
         "source": "/enterprise",
         "destination": "/enterprise.html"
       },

@@ -209,6 +209,8 @@ src/python_backend/PITCH_DECK.html
 # Local generated audit and marketplace packages
 dossier*.json
 marketplace_ready/
+!marketplace_ready/agensi/
+!marketplace_ready/agensi/**
 
 # Keystone local capability passkeys
 .btp_keystone.json
