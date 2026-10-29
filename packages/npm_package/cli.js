@@ -229,10 +229,10 @@ function printPasskeyStatus() {
   if (process.env.BTP_QUIET === 'true') return;
   const hasPasskey = Boolean(process.env.BTP_PASSKEY || process.env.BTP_API_KEY);
   if (hasPasskey) {
-    console.log(`  ${GREEN}✔ Keystone Passkey:${RESET} ${BOLD}Active (100k+ Unmetered Invariants)${RESET}`);
+    console.log(`  ${GREEN}[+] Keystone Passkey:${RESET} ${BOLD}Active (100k+ Unmetered Invariants)${RESET}`);
   } else {
-    console.log(`  ${YELLOW}⚡ Mode:${RESET} Free Community Tier ${DIM}(Sub-35µs AST Invariant Gate Active)${RESET}`);
-    console.log(`  ${CYAN}👉 Unlock 100k+ Swarm Evals & Ed25519 Merkle Receipts ($10):${RESET}`);
+    console.log(`  ${YELLOW}[*] Mode:${RESET} Free Community Tier ${DIM}(Sub-35µs AST Invariant Gate Active)${RESET}`);
+    console.log(`  ${CYAN}[>] Unlock 100k+ Swarm Evals & Ed25519 Merkle Receipts ($10):${RESET}`);
     console.log(`     ${BOLD}https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607${RESET}`);
   }
 }
@@ -246,15 +246,15 @@ function showFirstUseUpgradeOffer() {
 
   fs.mkdirSync(markerDir, { recursive: true });
   fs.writeFileSync(markerPath, JSON.stringify({ shown_at: Date.now() }, null, 2));
-  console.log(`${BOLD}${GREEN}✔ BTP Sentinel initialized in Community Evaluation mode.${RESET}`);
+  console.log(`${BOLD}${GREEN}[+] BTP Sentinel initialized in Community Evaluation mode.${RESET}`);
   console.log(`  Deterministic AST invariant gate active (<35µs overhead).`);
-  console.log(`  ${CYAN}👉 Activate $10 Developer Passkey (100k Evals & Merkle Receipts):${RESET}`);
+  console.log(`  ${CYAN}[>] Activate $10 Developer Passkey (100k Evals & Merkle Receipts):${RESET}`);
   console.log(`     ${BOLD}https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607${RESET}\n`);
 }
 
 function printBanner() {
   console.log(`
-${BOLD}${CYAN}   🛡️  BARTHOLOMEW SENTINEL — AGENTIC RUNTIME PROTECTION (BTP v6.6.8)${RESET}
+${BOLD}${CYAN}   BARTHOLOMEW SENTINEL — AGENTIC RUNTIME PROTECTION (BTP v6.6.8)${RESET}
    ${DIM}Sub-35µs In-Process Tool Invariants, In-Flight Vault & Zero-Cloud Gating${RESET}`);
   printPasskeyStatus();
   console.log();
@@ -2362,8 +2362,8 @@ function runAutoPilot(subargs = []) {
   console.log(`  AST Enforcement  : ${BOLD}${GREEN}ACTIVE (<35µs SLA)${RESET}`);
   console.log(`----------------------------------------------------------------------`);
   if (!process.env.BTP_PASSKEY && !process.env.BTP_API_KEY) {
-    console.log(`  ${YELLOW}⚡ TIER: Free Community Evaluation${RESET}`);
-    console.log(`  ${CYAN}👉 Uncap 100k+ In-Process Invariants across Cursor & CI/CD ($10):${RESET}`);
+    console.log(`  ${YELLOW}[*] TIER: Free Community Evaluation${RESET}`);
+    console.log(`  ${CYAN}[>] Uncap 100k+ In-Process Invariants across Cursor & CI/CD ($10):${RESET}`);
     console.log(`     ${BOLD}https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607${RESET}`);
     console.log(`----------------------------------------------------------------------`);
   }
@@ -2405,8 +2405,8 @@ function runCommandWrapper(subargs = []) {
     console.error(`  Merkle Leaf  : ${leaf}`);
     console.error(`  Status       : Process spawn prevented. Exit code 126.`);
     if (!process.env.BTP_PASSKEY && !process.env.BTP_API_KEY) {
-      console.error(`\n  ${YELLOW}⚡ Free Community Quota Active${RESET}`);
-      console.error(`  ${CYAN}👉 Unlock Unmetered Swarm Evals & CI/CD Passkey ($10):${RESET} ${BOLD}https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607${RESET}\n`);
+      console.error(`\n  ${YELLOW}[*] Free Community Quota Active${RESET}`);
+      console.error(`  ${CYAN}[>] Unlock Unmetered Swarm Evals & CI/CD Passkey ($10):${RESET} ${BOLD}https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607${RESET}\n`);
     } else {
       console.error();
     }
