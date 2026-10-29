@@ -21,6 +21,10 @@
     ],
     "rewrites": [
       {
+        "source": "/marketplace/register",
+        "destination": "/marketplace/register.html"
+      },
+      {
         "source": "/agensi",
         "destination": "/agensi.html"
       },
