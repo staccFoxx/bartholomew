@@ -774,6 +774,7 @@ rules:
       { label: '$(beaker) Run Red-Team Agent Fuzzer', description: 'Run 10-vector in-process adversarial benchmark (<10s)', action: 'bartholomew.runRedTeamBenchmark' },
       { label: '$(verified) Immunize Workspace (1-Click)', description: 'Arm .cursorrules, .windsurfrules, and CLAUDE.md', action: 'bartholomew.protectWorkspace' },
       { label: '$(file-code) Export SOC 2 & EU AI Act Dossier', description: 'Generate machine-signed audit dossier with Merkle proofs', action: 'bartholomew.exportAuditDossier' },
+      { label: '$(credit-card) Activate $10 Developer Passkey', description: 'Unlock 100k+ in-process AST evals & FIPS 186-5 Merkle receipts', action: 'bartholomew.upgradeDeveloperPasskey' },
       { label: '$(key) Issue Keystone Capability Passkey', description: 'Generate Ed25519 passkey with $25 daily autonomous spend limit', action: 'bartholomew.issueKeystonePasskey' },
       { label: '$(lock) Vault: Tokenize Selected Text / PII', description: 'Convert live credentials & PHI to format-preserving surrogates', action: 'vault.tokenizeSelection' },
       { label: '$(unlock) Vault: Detokenize Selection (Authorized View)', description: 'Restore live values in active document buffer', action: 'vault.detokenizeSelection' },
@@ -980,6 +981,11 @@ context.subscriptions.push(
   });
 
   // 4. Command: Issue Keystone Agent Capability Passkey
+  const upgradePasskeyCmd = vscode.commands.registerCommand('bartholomew.upgradeDeveloperPasskey', () => {
+    vscode.env.openExternal(vscode.Uri.parse('https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607'));
+  });
+  context.subscriptions.push(upgradePasskeyCmd);
+
   const issueKeystoneCmd = vscode.commands.registerCommand('bartholomew.issueKeystonePasskey', async () => {
     const agentId = await vscode.window.showInputBox({
       prompt: 'Enter Autonomous Agent ID or Name',
@@ -1042,10 +1048,13 @@ context.subscriptions.push(
     const passkey = getActiveKeystonePasskey();
     if (!passkey) {
       vscode.window.showInformationMessage(
-        'No active Keystone Passkey found in this workspace.',
-        'Issue New Passkey'
+        'No active Keystone Passkey found in this workspace. Run on community evaluation tier or upgrade to production.',
+        'Get Passkey ($10)',
+        'Issue Ephemeral Key'
       ).then((choice: string | undefined) => {
-        if (choice === 'Issue New Passkey') {
+        if (choice === 'Get Passkey ($10)') {
+          vscode.commands.executeCommand('bartholomew.upgradeDeveloperPasskey');
+        } else if (choice === 'Issue Ephemeral Key') {
           vscode.commands.executeCommand('bartholomew.issueKeystonePasskey');
         }
       });

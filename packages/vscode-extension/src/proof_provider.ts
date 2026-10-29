@@ -1845,7 +1845,8 @@ export function getWebviewContent(telemetry: ProofTelemetry, rootPath: string, e
         <button class="btn-secondary" onclick="validatePolicy()">Validate Invariants</button>
         <button class="btn-secondary" onclick="openPreCommitInstall()">Configure Pre-Commit Hook</button>
         <button class="btn-secondary" onclick="openImmunize()">Protect Workspace</button>
-        <button class="btn-secondary" onclick="openPasskey()">Issue Keystone Passkey</button>
+        <button class="btn-secondary" onclick="openPasskey()">Issue Ephemeral Key</button>
+        <button class="btn-primary" onclick="upgradePasskey()" style="background:linear-gradient(135deg, #10b981 0%, #06b6d4 100%); color:#030712; font-weight:800; border:none; padding:8px 14px; border-radius:6px; cursor:pointer;">Get Developer Passkey ($10) &rarr;</button>
       </div>
     </div>
   </div>
@@ -2161,6 +2162,10 @@ export function getWebviewContent(telemetry: ProofTelemetry, rootPath: string, e
       vscode.postMessage({ command: 'passkey' });
     }
 
+    function upgradePasskey() {
+      vscode.postMessage({ command: 'upgradePasskey' });
+    }
+
     function filterAudit(filter) {
       document.querySelectorAll('#filterBtnAll, #filterBtnBlocked, #filterBtnAllowed').forEach(b => b.classList.remove('active'));
       const activeBtn = document.getElementById(filter === 'ALL' ? 'filterBtnAll' : (filter === 'BLOCKED' ? 'filterBtnBlocked' : 'filterBtnAllowed'));
@@ -2345,6 +2350,8 @@ export class BartholomewProofViewProvider implements vscode.WebviewViewProvider 
         vscode.commands.executeCommand('bartholomew.protectWorkspace');
       } else if (message.command === 'scanActiveFile') {
         vscode.commands.executeCommand('bartholomew.scanActiveFile');
+      } else if (message.command === 'upgradePasskey') {
+        vscode.commands.executeCommand('bartholomew.upgradeDeveloperPasskey');
       } else if (message.command === 'passkey') {
         vscode.commands.executeCommand('bartholomew.issueKeystonePasskey');
       } else if (message.command === 'precommit') {

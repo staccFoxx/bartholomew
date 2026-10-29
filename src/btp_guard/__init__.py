@@ -73,7 +73,7 @@ def scrub_secrets(text_or_data):
         return masked
     return masker.mask_dict(text_or_data)
 
-__version__ = "6.5.5"
+__version__ = "6.6.8"
 
 __all__ = [
     "Guard",

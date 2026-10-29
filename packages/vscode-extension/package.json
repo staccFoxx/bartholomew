@@ -120,6 +120,12 @@
         "icon": "$(shield)"
       },
       {
+        "command": "bartholomew.upgradeDeveloperPasskey",
+        "title": "Bartholomew: Activate Developer Passkey ($10)",
+        "category": "Bartholomew Guard",
+        "icon": "$(credit-card)"
+      },
+      {
         "command": "bartholomew.issueKeystonePasskey",
         "title": "Keystone: Issue Agent Capability Passkey",
         "icon": "$(key)"
@@ -272,6 +278,6 @@
   ],
   "homepage": "https://bartholomew.info",
   "sponsor": {
-    "url": "https://buy.stripe.com/3cI6oHbNz3LQ4U84He9R605"
+    "url": "https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607"
   }
 }
