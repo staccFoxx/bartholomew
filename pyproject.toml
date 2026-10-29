@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "btp-guard"
-version = "6.6.8"
+version = "6.7.0"
 description = "Bartholomew Trust Protocol - In-Process Agentic Execution Gateway. Sub-millisecond execution gating, AST inspection, cryptographic audit trails, and tool-call security for autonomous agents."
 readme = "README.md"
 authors = [

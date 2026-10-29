@@ -1,6 +1,6 @@
 name: bartholomew-guard
 description: Deterministic in-process AST gating, secret redaction, and capability passkey security for MCP AI agents and tools.
-version: 6.6.7
+version: 6.7.0
 repository: https://github.com/staccFoxx/bartholomew
 startCommand:
   type: stdio
