@@ -2,7 +2,7 @@
   "name": "bartholomew-guard-vscode",
   "displayName": "Bartholomew Guard \u2014 AI Agent Firewall, Guardrails & Security for Cursor, Claude & Copilot",
   "description": "BTP v6.6.5 In-Process AST Guardrails, Claude Code & LlamaIndex Middleware, AI Agent Firewall, OWASP LLM Defense & Kyro Photonic Audio Shield for Cursor, Claude, Windsurf, Copilot, and VS Code.",
-  "version": "6.6.7",
+  "version": "6.6.8",
   "publisher": "Bartholomew",
   "icon": "icon.png",
   "license": "Apache-2.0",
