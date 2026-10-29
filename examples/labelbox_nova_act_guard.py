@@ -101,3 +101,4 @@ if __name__ == "__main__":
     print(f"  -> Allowed: {res3['allowed']}")
     print(f"  -> Scrubbed Payload: {res3['payload']}")
     print(f"  -> Cryptographic Receipt: {res3['receipt_sha256']}")
+
