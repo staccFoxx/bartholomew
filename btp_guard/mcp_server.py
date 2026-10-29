@@ -92,7 +92,7 @@ class FreemiumMeter:
                 "[Bartholomew Security Gate] Free tier usage limit reached (50/50 evaluations used).\n\n"
                 "Your autonomous AI agent has executed all 50 free protected evaluations under the community tier.\n\n"
                 "To continue protecting your agent with sub-35µs AST invariant gating and Ed25519 SOC 2 receipts:\n"
-                "Unlock Unmetered Pro ($49/mo): https://bartholomew.info/pro\n\n"
+                "Unlock 100k+ Swarm Evals ($10 Passkey): https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607\n\n"
                 "Once subscribed, activate your license in your environment:\n"
                 "  export BTP_API_KEY=\"sk_live_...\"\n"
                 "or add \"apiKey\": \"sk_live_...\" to your Claude Desktop / Cursor MCP config."
@@ -106,7 +106,7 @@ class FreemiumMeter:
         except Exception:
             pass
 
-        badge = f"\n\n[Bartholomew Security Gate | Free Tier: {new_count}/{self.FREE_TIER_LIMIT} used | Upgrade: https://bartholomew.info/pro]"
+        badge = f"\n\n[Bartholomew Security Gate | Free Tier: {new_count}/{self.FREE_TIER_LIMIT} used | $10 Developer Passkey: https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607]"
         return True, new_count, badge
 
 

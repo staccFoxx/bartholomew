@@ -24,6 +24,9 @@ A2A_LEDGER_PATH = REPO_ROOT / ".btp" / "a2a_pilot_outreach_ledger.jsonl"
 EVAL_SECRET_SALT = b"BTP_SOVEREIGN_EVALUATION_SALT_2026"
 
 TARGET_AGENT_ECOSYSTEMS = [
+    # Category 0: Frontier RLVR & Managed Agent Platforms (Strategic Enterprise)
+    {"agent_id": "agent-labelbox-horizon-recursion", "name": "Labelbox Horizon & Recursion Managed Agents", "runtime_type": "RLVR_SANDBOX_EVAL_FLEET", "channel": "In-Process AST Gate / API", "lead_contact_role": "CEO (Manu Sharma) / SVP Eng (Keshav Sahoo)", "pain_point": "High microVM sandbox compute costs in RLVR and lack of in-container execution boundaries for enterprise agent fleets"},
+
     # Category 1: IDE Coding Agents
     {"agent_id": "agent-cursor-cascade", "name": "Cursor / Anysphere Agentic IDE", "runtime_type": "IDE_CODING_AGENT", "channel": "MCP / Local Sentinel", "lead_contact_role": "Platform Lead", "pain_point": "Agent running unauthorized terminal commands or deleting local state"},
     {"agent_id": "agent-claude-code", "name": "Claude Code (Anthropic Research CLI)", "runtime_type": "CLI_AUTONOMOUS_ENGINEER", "channel": "CLI Terminal Shim", "lead_contact_role": "Head of Engineering", "pain_point": "Non-deterministic git commits and sensitive credential reading"},

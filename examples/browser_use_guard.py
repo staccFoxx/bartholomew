@@ -67,3 +67,4 @@ if __name__ == "__main__":
     res = guard_browser_action("input", "input#token", "User API Key: sk_live_998877665544332211")
     print(f"[+] Approved DOM payload: {res['payload']}")
     print(f"    Receipt SHA-256: {res['receipt']}")
+
