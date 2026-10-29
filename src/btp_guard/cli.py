@@ -267,12 +267,17 @@ def cmd_profile(args):
 
 
 def cmd_version(args):
-    print("Bartholomew Protocol (BTP v5.4.25) -- The #1 Agentic Runtime Protection (ARP) Platform")
-    print("Engine: In-Process AST Gating, In-Flight Secret Scrubber & SOC 2 Merkle Receipts")
+    print("Bartholomew Protocol (BTP v6.6.7) -- #1 Agentic Runtime Protection (ARP) Gateway")
+    print("Engine: In-Process AST Gating, In-Flight Secret Scrubber & Ed25519 Merkle Receipts")
     print("Latency: Sub-35 microseconds (in-process) | Throughput: 1.05M evals/sec")
-    print("Status: Community Free Tier active (Local AST Gating)")
-    print("[+] Bartholomew Sovereign Sentinel & L402 Swarm Settlement Active:")
-    print("    https://bartholomew.info/cloud | https://buy.stripe.com/3cI6oHbNz3LQ4U84He9R605")
+    passkey = os.getenv("BTP_PASSKEY") or os.getenv("BTP_API_KEY")
+    if passkey:
+        print("[+] Keystone Passkey: ACTIVE (Production Clearance)")
+    else:
+        print("[*] Tier: Community Evaluation (Local Invariant Protection)")
+        print("[+] Unlock 100k+ Invariants & Multi-Agent Receipts ($10 Passkey):")
+        print("    https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607")
+        print("    Swarm Tier ($15): https://buy.stripe.com/cNi3cv6tf6Y2cmAgpW9R608")
 
 
 def cmd_shield(args):
@@ -5653,6 +5658,11 @@ def main():
         else:
             config_p.print_help()
     else:
+        passkey = os.getenv("BTP_PASSKEY") or os.getenv("BTP_API_KEY")
+        if not passkey and os.getenv("BTP_QUIET") != "true":
+            print("[*] Bartholomew Sentinel (BTP v6.6.7) - Community Evaluation Tier")
+            print("    Unlock 100k+ AST Invariants & Swarm Consensus ($10 Developer Passkey):")
+            print("    https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607\n")
         parser.print_help()
 
 
