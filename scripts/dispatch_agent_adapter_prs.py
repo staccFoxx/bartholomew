@@ -28,6 +28,34 @@ def generate_framework_prs():
 
     prs = [
         {
+            "target_repo": "OpenInterpreter/open-interpreter",
+            "branch_name": "feature/btp-ast-execution-gate",
+            "pr_title": "feat(security): Add BTP sub-35us AST invariant gate to prevent catastrophic shell calls",
+            "target_file": "interpreter/terminal/btp_guard.py",
+            "pr_body": """### Summary
+Integrates Bartholomew Sentinel AST Invariant Gate before local terminal executions in Open-Interpreter.
+
+### Key Capabilities
+- **Sub-35us AST Invariant Check:** Blocks catastrophic commands (rm -rf, DROP TABLE, destructive disk operations) fail-closed.
+- **Secret Vault Scrubbing:** Automatically scrubs API keys (sk_live_*, .env tokens) before terminal execution.
+- **Cryptographic Merkle Receipts:** Stamps every terminal execution with an offline Ed25519 receipt.
+"""
+        },
+        {
+            "target_repo": "browser-use/browser-use",
+            "branch_name": "feature/btp-browser-action-guard",
+            "pr_title": "feat(security): Add BTP invariant action guard to block exfiltration domains & destructive DOM actions",
+            "target_file": "browser_use/security/btp_guard.py",
+            "pr_body": """### Summary
+Adds zero-latency action validation and credential protection to autonomous browser agents in Browser-Use.
+
+### Key Capabilities
+- **Egress Domain Containment:** Prevents agent navigation to known credential exfiltration listeners.
+- **Destructive DOM Veto:** Intercepts high-risk DOM actions (delete_account, unauthorized payment/transfer triggers).
+- **Form Secret Scrubbing:** Scrubs accidental API keys or passwords before form inputs are submitted to the DOM.
+"""
+        },
+        {
             "target_repo": "langchain-ai/langgraph",
             "branch_name": "feature/btp-cryptographic-agent-guard",
             "pr_title": "feat(security): Add BTP sub-35us cryptographic tool delegation & offline verification guard",
