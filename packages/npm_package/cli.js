@@ -3118,6 +3118,8 @@ function runScanCli(subargs = []) {
     console.log(`  Run: ${BOLD}${GREEN}npx btp-guard protect${RESET}`);
     console.log(`  Automatically injects sub-35us AST invariant sentinel, arms git hooks,`);
     console.log(`  and generates an offline RFC 8785 Merkle audit ledger.`);
+    console.log(`  ${CYAN}[>] Unlock 100k+ Unmetered Evals & SOC 2 Merkle Dossiers (${BOLD}$10 Developer Passkey${CYAN}):${RESET}`);
+    console.log(`     ${BOLD}https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607${RESET}`);
   } else {
     console.log(`  ${GREEN}${BOLD}WORKSPACE IS IMMUNIZED AND IN COMPLIANCE.${RESET}`);
     console.log(`  Run: ${BOLD}npx btp-guard verify dossier.json${RESET} to re-verify cryptographic attestation.`);
@@ -3383,6 +3385,10 @@ exit 0
   console.log(`  Keystone Passkey : .btp/keystone_passkey.json (CLEARANCE_GRANTED)`);
   console.log(`  AST Gate Latency : <25 microseconds`);
   console.log(`  Extension Status : ARMED (FAIL-CLOSED)`);
+  console.log(`======================================================================`);
+  console.log(`  ${CYAN}[>] Unlock Continuous Swarm Protection & Merkle Receipts (${BOLD}$10 Developer Passkey${CYAN}):${RESET}`);
+  console.log(`     ${BOLD}https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607${RESET}`);
+  console.log(`  Activate in 1-line: ${BOLD}npx btp-guard activate <KEY>${RESET}`);
   console.log(`======================================================================\n`);
 }
 
