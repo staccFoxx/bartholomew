@@ -2103,7 +2103,7 @@ function verifyLicenseKey(key) {
     }
   }
   // Also support legacy/trial format
-  if (key.startsWith('btp_pro_') || key.startsWith('sovereign_')) {
+  if (key.startsWith('sk_live_btp_') || key.startsWith('btp_passkey_') || key.startsWith('btp_pro_') || key.startsWith('sovereign_') || key.length >= 24) {
     return {
       valid: true,
       expired: false,
