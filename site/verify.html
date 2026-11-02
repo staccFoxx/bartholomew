@@ -1078,9 +1078,13 @@
       <!-- Drag & Drop Zone -->
       <div class="dropzone" id="dossierDropzone" onclick="document.getElementById('dossierFileInput').click()">
         <input type="file" id="dossierFileInput" style="display:none" accept=".json,application/json" onchange="handleFileUpload(event)">
-        <div style="display:flex; align-items:center; justify-content:center; gap:10px; color:var(--text-muted); font-size:0.88rem;">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
-          <span>Drag & Drop <strong>SOC2_COMPLIANCE_EVIDENCE_PACK.json</strong> or click to browse</span>
+        <div class="dropzone-content">
+          <svg class="dropzone-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="17 8 12 3 7 8"></polyline><line x1="12" y1="3" x2="12" y2="15"></line></svg>
+          <div class="dropzone-text">
+            <span>Drag &amp; Drop </span>
+            <span class="evidence-filename">SOC2_COMPLIANCE_EVIDENCE_PACK.json</span>
+            <span> or click to browse</span>
+          </div>
         </div>
       </div>
 
@@ -1857,6 +1861,352 @@
   </script>
   <style>
     @keyframes spin { 100% { transform: rotate(360deg); } }
+  
+    /* === VERIFY SEAL RESPONSIVE ALIGNMENT & MARGINS REFACTOR === */
+    .dropzone-content {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      width: 100%;
+      box-sizing: border-box;
+      text-align: center;
+    }
+    .dropzone-icon {
+      flex-shrink: 0;
+      color: #38bdf8;
+    }
+    .dropzone-text {
+      line-height: 1.5;
+      word-break: break-word;
+      overflow-wrap: break-word;
+      max-width: 100%;
+    }
+    .evidence-filename {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 2px 6px;
+      border-radius: 4px;
+      display: inline-block;
+      word-break: break-all;
+    }
+
+    @media (max-width: 768px) {
+      /* 1. Viewport & Universal Margin Guard */
+      html, body {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+        width: 100% !important;
+      }
+      *, *::before, *::after {
+        box-sizing: border-box !important;
+      }
+      .container {
+        max-width: 100% !important;
+        padding: 14px 12px 36px !important;
+        box-sizing: border-box !important;
+      }
+
+      /* 2. Responsive Header Navigation */
+      header {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 12px !important;
+        padding-bottom: 14px !important;
+        margin-bottom: 20px !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+      }
+      .brand {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        width: 100% !important;
+      }
+      .nav-links {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: flex-start !important;
+        gap: 6px !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        width: 100% !important;
+        padding-bottom: 4px !important;
+      }
+      .nav-links a {
+        white-space: nowrap !important;
+        font-size: 0.75rem !important;
+        padding: 4px 8px !important;
+      }
+
+      /* 3. Cards Symmetrical Padding & Sizing */
+      .mint-card,
+      .cert-card,
+      .embed-card,
+      .dossier-card {
+        width: 100% !important;
+        max-width: 100% !important;
+        margin: 0 0 18px 0 !important;
+        padding: 16px 14px !important;
+        border-radius: 12px !important;
+        box-sizing: border-box !important;
+      }
+
+      /* 4. Mint Form Reflow */
+      .mint-form {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+        width: 100% !important;
+      }
+      .mint-input {
+        width: 100% !important;
+        padding: 11px 12px !important;
+        font-size: 0.80rem !important;
+        box-sizing: border-box !important;
+      }
+      .mint-btn {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 11px 16px !important;
+        font-size: 0.86rem !important;
+      }
+
+      /* 5. Cert Hero & Repository Pill Reflow */
+      .cert-hero {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 14px !important;
+        margin-bottom: 16px !important;
+      }
+      .seal-graphic {
+        width: 68px !important;
+        height: 68px !important;
+        margin: 0 auto !important;
+      }
+      .cert-meta {
+        text-align: center !important;
+        width: 100% !important;
+      }
+      .cert-title {
+        font-size: clamp(1.4rem, 6vw, 1.8rem) !important;
+        line-height: 1.25 !important;
+      }
+      .cert-target {
+        font-size: 0.74rem !important;
+        padding: 6px 10px !important;
+        max-width: 100% !important;
+        word-break: break-all !important;
+        display: inline-block !important;
+        margin: 10px auto !important;
+        box-sizing: border-box !important;
+      }
+
+      /* 6. KPI Grid Reflow (2x2 Matrix) */
+      .kpi-row {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+        margin: 16px 0 !important;
+        width: 100% !important;
+      }
+      .kpi-item {
+        padding: 10px 8px !important;
+        border-radius: 8px !important;
+        text-align: center !important;
+      }
+      .kpi-val {
+        font-size: 1.15rem !important;
+        line-height: 1.2 !important;
+      }
+      .kpi-lbl {
+        font-size: 0.60rem !important;
+      }
+
+      /* 7. Proof Table Mobile Card Reflow (Zero Margin Squeeze) */
+      .proof-table {
+        display: block !important;
+        width: 100% !important;
+        margin: 14px 0 !important;
+      }
+      .proof-table tbody {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 8px !important;
+        width: 100% !important;
+      }
+      .proof-table tr {
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 9px 12px !important;
+        background: rgba(255, 255, 255, 0.02) !important;
+        border: 1px solid rgba(255, 255, 255, 0.06) !important;
+        border-radius: 8px !important;
+        gap: 3px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .proof-lbl {
+        width: 100% !important;
+        font-size: 0.66rem !important;
+        color: #94a3b8 !important;
+        text-transform: uppercase !important;
+        letter-spacing: 0.04em !important;
+        padding: 0 !important;
+        border: none !important;
+      }
+      .proof-val {
+        width: 100% !important;
+        font-size: 0.72rem !important;
+        word-break: break-all !important;
+        padding: 0 !important;
+        border: none !important;
+        color: #f1f5f9 !important;
+      }
+
+      /* 8. SOC 2 COMPLIANCE EVIDENCE & DRAG 'N' DROP SECTION */
+      .dossier-card {
+        padding: 18px 14px !important;
+        border-radius: 12px !important;
+        margin-top: 20px !important;
+      }
+      .dossier-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+        margin-bottom: 12px !important;
+      }
+      .dossier-title {
+        font-size: clamp(1.15rem, 5vw, 1.4rem) !important;
+        line-height: 1.25 !important;
+      }
+      .dossier-desc {
+        font-size: 0.80rem !important;
+        line-height: 1.5 !important;
+        margin-bottom: 14px !important;
+      }
+
+      /* Presets Bar */
+      .dossier-presets {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 6px !important;
+        margin-bottom: 12px !important;
+        width: 100% !important;
+      }
+      .preset-label {
+        grid-column: 1 / -1 !important;
+        font-size: 0.66rem !important;
+        margin-bottom: 2px !important;
+        color: #94a3b8 !important;
+      }
+      .preset-btn {
+        width: 100% !important;
+        padding: 7px 6px !important;
+        font-size: 0.68rem !important;
+        text-align: center !important;
+        white-space: normal !important;
+        min-height: 34px !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border-radius: 6px !important;
+        box-sizing: border-box !important;
+      }
+      .preset-btn.outline {
+        grid-column: 1 / -1 !important;
+      }
+
+      /* Drag & Drop Zone Box (Within Symmetrical Margins) */
+      .dropzone {
+        width: 100% !important;
+        box-sizing: border-box !important;
+        padding: 14px 10px !important;
+        margin-bottom: 12px !important;
+        border-radius: 8px !important;
+        overflow: hidden !important;
+      }
+      .dropzone-content {
+        flex-direction: column !important;
+        gap: 6px !important;
+        text-align: center !important;
+        width: 100% !important;
+      }
+      .dropzone-icon {
+        width: 22px !important;
+        height: 22px !important;
+      }
+      .dropzone-text {
+        font-size: 0.74rem !important;
+        line-height: 1.45 !important;
+        max-width: 100% !important;
+      }
+      .evidence-filename {
+        font-size: 0.68rem !important;
+        display: inline-block !important;
+        margin: 3px 0 !important;
+        word-break: break-all !important;
+        max-width: 100% !important;
+        padding: 2px 6px !important;
+      }
+
+      /* Dossier Textarea & Verify Action Button */
+      .dossier-textarea {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+        font-size: 0.70rem !important;
+        min-height: 120px !important;
+        max-height: 200px !important;
+        padding: 10px !important;
+        border-radius: 8px !important;
+        margin-bottom: 10px !important;
+      }
+      #verifyDossierBtn {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 11px 16px !important;
+        font-size: 0.86rem !important;
+      }
+
+      /* 9. Result Banner & Merkle Inspector */
+      .result-banner {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 8px !important;
+        padding: 12px 14px !important;
+      }
+      .tree-inspector-header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 4px !important;
+        padding: 8px 10px !important;
+        font-size: 0.68rem !important;
+      }
+      .tree-inspector-content {
+        padding: 10px !important;
+        font-size: 0.68rem !important;
+      }
+
+      /* 10. Embed Card */
+      .embed-card {
+        padding: 16px 12px !important;
+        border-radius: 12px !important;
+        margin-top: 18px !important;
+      }
+      .embed-card pre,
+      .embed-card code {
+        font-size: 0.68rem !important;
+        padding: 8px !important;
+      }
+    }
+    
   </style>
 </body>
 </html>
