@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "btp-guard"
-version = "6.6.3"
+version = "6.8.0"
 authors = [
   { name="Bartholomew Security Contributors", email="security@bartholomew.info" },
 ]
