@@ -1,7 +1,7 @@
 {
   "name": "bartholomew-sentinel",
   "displayName": "Bartholomew Sentinel Guard & Spend Governor",
-  "version": "6.6.7",
+  "version": "6.8.0",
   "description": "Deterministic in-process AST security proxy, credential scrubber, and spend governor for MCP AI agents (<35µs latency).",
   "author": "Bartholomew AI",
   "homepage": "https://bartholomew.info",

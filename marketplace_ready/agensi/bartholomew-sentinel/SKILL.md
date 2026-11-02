@@ -1,7 +1,7 @@
 ---
 name: bartholomew-sentinel
 description: Deterministic in-process AST security proxy, credential scrubber, and spend governor for MCP AI agents and developer runtimes (<35µs latency).
-version: 6.6.7
+version: 6.8.0
 author: Bartholomew AI
 license: Apache-2.0
 homepage: https://bartholomew.info

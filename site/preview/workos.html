@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Workos x Bartholomew | Native Ecosystem Integration & ROI Showcase</title>
+  <meta name="description" content="Executive integration briefing: How Workos drives qualified developer adoption and reduces CAC across 70,000+ active software engineers.">
+  <style>
+    :root {
+      --bg: #030712;
+      --card-bg: rgba(17, 24, 39, 0.75);
+      --card-border: rgba(56, 189, 248, 0.2);
+      --card-border-glow: rgba(56, 189, 248, 0.4);
+      --accent-cyan: #38bdf8;
+      --accent-emerald: #10b981;
+      --accent-purple: #a855f7;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      padding: clamp(20px, 4vw, 48px) clamp(16px, 3vw, 32px);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrapper {
+      max-width: 1040px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* Top Navigation / Brand Row */
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+    .brand-duo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: -0.01em;
+    }
+    .brand-badge {
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent-cyan);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .contact-link {
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      text-decoration: none;
+      font-family: var(--font-mono);
+      transition: color 0.2s;
+    }
+    .contact-link:hover { color: #ffffff; }
+
+    /* Hero Section */
+    .hero-sec {
+      margin-bottom: 40px;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34d399;
+      font-size: 0.8rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: 0.02em;
+    }
+    h1 {
+      font-size: clamp(1.85rem, 5vw, 2.75rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.025em;
+      margin-bottom: 16px;
+    }
+    h1 span {
+      background: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero-desc {
+      color: var(--text-muted);
+      font-size: clamp(1.02rem, 2.5vw, 1.2rem);
+      line-height: 1.6;
+      max-width: 820px;
+      margin-bottom: 28px;
+    }
+
+    /* 3-Column Value Matrix: Make Money / Save Money / Developer Benefit */
+    .matrix-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin-bottom: 40px;
+    }
+    .matrix-card {
+      background: var(--card-bg);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      padding: 24px 20px;
+      position: relative;
+      overflow: hidden;
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+    }
+    .matrix-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+    }
+    .matrix-card.green::before { background: linear-gradient(90deg, #10b981, #34d399); }
+    .matrix-card.cyan::before { background: linear-gradient(90deg, #0284c7, #38bdf8); }
+    .matrix-card.purple::before { background: linear-gradient(90deg, #7c3aed, #a855f7); }
+
+    .matrix-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .matrix-icon {
+      width: 34px; height: 34px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .icon-green { background: rgba(16, 185, 129, 0.15); color: #34d399; }
+    .icon-cyan { background: rgba(56, 189, 248, 0.15); color: #38bdf8; }
+    .icon-purple { background: rgba(168, 85, 247, 0.15); color: #c084fc; }
+
+    .matrix-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .matrix-stat {
+      font-size: 1.7rem;
+      font-weight: 800;
+      margin: 10px 0;
+      letter-spacing: -0.02em;
+    }
+    .matrix-desc {
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      line-height: 1.55;
+      margin-top: auto;
+    }
+
+    /* Interactive Integration Preview Showcase */
+    .preview-section {
+      background: rgba(13, 20, 34, 0.85);
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      border-radius: 18px;
+      padding: clamp(20px, 4vw, 36px);
+      margin-bottom: 40px;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+    }
+    .sec-badge {
+      color: var(--accent-cyan);
+      font-size: 0.8rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .sec-title {
+      font-size: clamp(1.3rem, 3vw, 1.8rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.015em;
+    }
+    .sec-desc {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 24px;
+      max-width: 780px;
+    }
+
+    .mockup-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .window-card {
+      background: #090d16;
+      border: 1px solid #1e293b;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .window-bar {
+      background: #111827;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.76rem;
+      color: #94a3b8;
+      border-bottom: 1px solid #1f293d;
+      font-family: var(--font-mono);
+    }
+    .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot-r { background: #ef4444; } .dot-y { background: #f59e0b; } .dot-g { background: #10b981; }
+    
+    .window-body {
+      padding: 18px;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      line-height: 1.6;
+      color: #cbd5e1;
+      overflow-x: auto;
+      flex-grow: 1;
+    }
+    .window-body pre { margin: 0; }
+    .highlight-action {
+      background: rgba(56, 189, 248, 0.08);
+      border-left: 3px solid var(--accent-cyan);
+      padding: 8px 12px;
+      margin: 12px 0 6px;
+      border-radius: 0 6px 6px 0;
+      color: #e2e8f0;
+    }
+
+    /* Interactive ROI Calculator */
+    .calc-card {
+      background: linear-gradient(135deg, rgba(17, 24, 39, 0.9) 0%, rgba(15, 23, 42, 0.9) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 18px;
+      padding: clamp(24px, 4vw, 36px);
+      margin-bottom: 40px;
+    }
+    .calc-slider-box {
+      margin: 24px 0 28px;
+    }
+    .slider-labels {
+      display: flex;
+      justify-content: space-between;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .reach-slider {
+      width: 100%;
+      height: 8px;
+      border-radius: 4px;
+      background: #1f293d;
+      outline: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+    .reach-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 22px; height: 22px;
+      border-radius: 50%;
+      background: var(--accent-emerald);
+      box-shadow: 0 0 12px rgba(16, 185, 129, 0.6);
+      cursor: pointer;
+    }
+    .calc-metrics-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      text-align: center;
+    }
+    .calc-box {
+      background: rgba(3, 7, 18, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 16px 12px;
+    }
+    .calc-val {
+      font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+    .calc-lbl {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    /* Executive Call to Action Box */
+    .cta-box {
+      background: linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(99, 102, 241, 0.12) 100%);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      border-radius: 18px;
+      padding: clamp(24px, 5vw, 44px);
+      text-align: center;
+      position: relative;
+    }
+    .cta-badge {
+      background: rgba(56, 189, 248, 0.15);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: var(--accent-cyan);
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 9999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .cta-box h2 {
+      font-size: clamp(1.4rem, 4vw, 2.1rem);
+      font-weight: 800;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+    .cta-box p {
+      color: #cbd5e1;
+      font-size: clamp(0.95rem, 2vw, 1.1rem);
+      max-width: 680px;
+      margin: 0 auto 28px;
+      line-height: 1.6;
+    }
+    .cta-buttons {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 26px;
+      border-radius: 10px;
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #059669, #10b981);
+      color: #ffffff;
+      box-shadow: 0 4px 18px rgba(16, 185, 129, 0.35);
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #10b981, #34d399);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 24px rgba(16, 185, 129, 0.5);
+    }
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.06);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-2px);
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 768px) {
+      .matrix-grid { grid-template-columns: 1fr; }
+      .mockup-grid { grid-template-columns: 1fr; }
+      .calc-metrics-row { grid-template-columns: 1fr 1fr; }
+      .cta-buttons { flex-direction: column; width: 100%; }
+      .btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- Top Navigation -->
+    <div class="nav-bar">
+      <div class="brand-duo">
+        <span>Bartholomew Network</span>
+        <span style="color: var(--text-muted);">&times;</span>
+        <span style="color: var(--accent-cyan);">Workos</span>
+        <span class="brand-badge">Integration Brief</span>
+      </div>
+      <a href="mailto:itsub@bartholomew.info" class="contact-link">itsub@bartholomew.info &bull; 587-429-1476</a>
+    </div>
+
+    <!-- Hero Header -->
+    <section class="hero-sec">
+      <div class="hero-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+        Targeted Developer Adoption Brief
+      </div>
+      <h1>Accelerate <span>Workos</span> Adoption Inside Active Engineering Workflows</h1>
+      <p class="hero-desc">
+        Bartholomew is the open-source in-process safety sentinel protecting <strong>70,000+ active software engineers</strong> across VS Code, Cursor, Windsurf, and terminal CLI. 
+        Instead of noisy banner ads, our partner program integrates Workos natively into contextual developer workflows right when engineers need Enterprise Developer Toolchain Leader.
+      </p>
+    </section>
+
+    <!-- The 3-Pillar Win-Win Matrix -->
+    <div class="matrix-grid">
+      <!-- 1. Make Money -->
+      <div class="matrix-card green">
+        <div class="matrix-header">
+          <div class="matrix-icon icon-green">&uarr;$</div>
+          <div class="matrix-title">How You Make Money</div>
+        </div>
+        <div class="matrix-stat" style="color: #34d399;">$42,000 - $90,000</div>
+        <div class="matrix-desc">
+          <strong>Direct High-Intent Pipeline:</strong> Recommends Workos to Software engineers, AI developers, and system architects building production systems. with 1-click execution. Commands convert at <strong>34% activation rate</strong> vs &lt;1.2% on standard web ads.
+        </div>
+      </div>
+
+      <!-- 2. Save Money -->
+      <div class="matrix-card cyan">
+        <div class="matrix-header">
+          <div class="matrix-icon icon-cyan">&darr;%</div>
+          <div class="matrix-title">How You Save Money</div>
+        </div>
+        <div class="matrix-stat" style="color: #38bdf8;">85% CAC Drop</div>
+        <div class="matrix-desc">
+          <strong>Slash DevRel &amp; Acquisition Burn:</strong> Standard Google Search / LinkedIn developer CAC is <strong>$175</strong>. Bartholomew in-workflow recommendation averages <strong>$2.10</strong> per activated developer account.
+        </div>
+      </div>
+
+      <!-- 3. Mutual Benefit -->
+      <div class="matrix-card purple">
+        <div class="matrix-header">
+          <div class="matrix-icon icon-purple">&hearts;</div>
+          <div class="matrix-title">How Developers Benefit</div>
+        </div>
+        <div class="matrix-stat" style="color: #c084fc;">Zero Spam</div>
+        <div class="matrix-desc">
+          <strong>Contextual Utility:</strong> Developers never see irrelevant banners. Recommendations only trigger when their project actively requires Enterprise Developer Toolchain Leader, saving engineers hours of tool hunting.
+        </div>
+      </div>
+    </div>
+
+    <!-- Live Integration Showcase (Terminal + IDE QuickFix) -->
+    <section class="preview-section">
+      <span class="sec-badge">Native Runtime Experience</span>
+      <h2 class="sec-title">Where Developers Discover Workos</h2>
+      <p class="sec-desc">
+        See how Workos appears in real time when an engineer is building software inside their local IDE or running CLI security audits:
+      </p>
+
+      <div class="mockup-grid">
+        <!-- Mockup 1: CLI Terminal Output -->
+        <div class="window-card">
+          <div class="window-bar">
+            <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+            <span>Terminal: zsh (380k monthly CLI executions)</span>
+          </div>
+          <div class="window-body">
+            <pre><span style="color:#94a3b8;">$</span> btp-guard verify --ast ./services/backend.ts
+<span style="color:#10b981;">[PASS] 0 critical AST violations detected.</span>
+<span style="color:#94a3b8;">[INFO] Detected requirement: Enterprise Developer Toolchain Leader</span>
+
+<div class="highlight-action"><span style="color:#38bdf8; font-weight:700;">[Bartholomew Recommendation: Workos]</span>
+Next-generation engineering infrastructure and developer tools built for modern software teams.
+Run: <span style="color:#34d399;">btp integrate workos</span></div>
+<span style="color:#64748b;">Telemetry hash: 0x8f2a...c01e (RFC 8785 canonical)</span></pre>
+          </div>
+        </div>
+
+        <!-- Mockup 2: IDE Editor QuickFix (Cursor, VS Code, Windsurf) -->
+        <div class="window-card">
+          <div class="window-bar">
+            <span class="dot dot-r"></span><span class="dot dot-y"></span><span class="dot dot-g"></span>
+            <span>VS Code / Cursor Problem Lens (70k active engineers)</span>
+          </div>
+          <div class="window-body">
+            <pre><span style="color:#64748b;">// src/config/service.ts</span>
+<span style="color:#f43f5e;">const backend_endpoint = process.env.SERVICE_URL;</span>
+<span style="color:#f59e0b;">&uarr; Missing production-grade infrastructure</span>
+
+<div class="highlight-action"><span style="color:#c084fc; font-weight:700;">💡 1-Click Action Provider:</span>
+&bull; Integrate Workos with 1-click in developer environment
+&bull; Initialize free developer tier (<span style="color:#38bdf8;">https://workos.com</span>)</div>
+<span style="color:#10b981;">[BTP Sentinel Status Bar: ARMED &bull; &lt;18&mu;s]</span></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive CAC & ROI Calculator -->
+    <div class="calc-card">
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+        <div>
+          <span class="sec-badge" style="color:#34d399;">Performance Economics</span>
+          <h3 style="font-size:1.35rem; font-weight:800;">Estimated ROI &amp; Acquisition Projection</h3>
+        </div>
+        <div style="font-family:var(--font-mono); font-size:0.85rem; color:#94a3b8;">
+          Adjust reach to simulate economics
+        </div>
+      </div>
+
+      <div class="calc-slider-box">
+        <div class="slider-labels">
+          <span>10,000 Engineers</span>
+          <span id="sliderDisplay" style="color:#34d399; font-weight:800;">70,000 Active Developers (Full Fleet)</span>
+          <span>100,000 Engineers</span>
+        </div>
+        <input type="range" min="10000" max="100000" step="5000" value="70000" class="reach-slider" id="reachSlider" oninput="updateCalculator(this.value)">
+      </div>
+
+      <div class="calc-metrics-row">
+        <div class="calc-box">
+          <div class="calc-val" id="calcSignups" style="color:#38bdf8;">1,150</div>
+          <div class="calc-lbl">Est. Monthly Signups</div>
+        </div>
+        <div class="calc-box">
+          <div class="calc-val" id="calcCac" style="color:#34d399;">$2.10</div>
+          <div class="calc-lbl">BTP In-Flow CAC</div>
+        </div>
+        <div class="calc-box">
+          <div class="calc-val" id="calcSaved" style="color:#fbbf24;">$165,000</div>
+          <div class="calc-lbl">Ad Spend Saved vs Google</div>
+        </div>
+        <div class="calc-box">
+          <div class="calc-val" id="calcPipeline" style="color:#c084fc;">$42,000 - $90,000</div>
+          <div class="calc-lbl">Est. ARR Pipeline Generated</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Executive Pilot Activation Call To Action -->
+    <div class="cta-box">
+      <span class="cta-badge">Zero-Risk Trial Flight</span>
+      <h2>Test Workos in Production: Complimentary 48-Hour Flight</h2>
+      <p>
+        We are offering a zero-risk <strong>48-Hour Pilot Flight across the first 2,500 active developer CLI sessions</strong> at zero cost. 
+        Track real developer traffic, command activations, and signups in your referral telemetry. If it delivers exceptional ROI, reserve your monthly category placement. If not, it costs you nothing.
+      </p>
+      <div class="cta-buttons">
+        <a href="mailto:itsub@bartholomew.info?subject=Activate%2048-Hour%20Pilot%20for%20Workos&body=Hi%20Itsub,%0D%0A%0D%0AWe%20would%20like%20to%20activate%20our%20complimentary%2048-hour%20pilot%20flight%20for%20Workos.%0D%0A%0D%0AOur%20preferred%20developer%20destination%20link:%20https://workos.com%0D%0APreferred%20CLI%20trigger%20or%20tagline:%20Next-generation%20engineering%20infrastructure%20and%20developer%20tools%20built%20for%20modern%20software%20teams." class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+          Activate 48-Hour Pilot Flight (Zero Cost)
+        </a>
+        <a href="https://bartholomew.info" target="_blank" class="btn btn-secondary">
+          Explore Bartholomew Network &rarr;
+        </a>
+      </div>
+      <div style="margin-top:24px; font-size:0.82rem; color:var(--text-muted); font-family:var(--font-mono);">
+        Managing Director: Itsub Alemayehu &bull; <a href="mailto:itsub@bartholomew.info" style="color:#38bdf8;">itsub@bartholomew.info</a> &bull; Direct: 587-429-1476
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function updateCalculator(val) {
+      const v = parseInt(val, 10);
+      document.getElementById('sliderDisplay').textContent = v.toLocaleString() + ' Active Developers';
+      const factor = v / 70000.0;
+      
+      const baseSignups = parseInt('1,150'.replace(/,/g, ''), 10) || 1200;
+      const signupsNow = Math.round(baseSignups * factor);
+      document.getElementById('calcSignups').textContent = signupsNow.toLocaleString();
+      
+      const savedSpend = Math.round(signupsNow * 165);
+      document.getElementById('calcSaved').textContent = '$' + savedSpend.toLocaleString();
+      
+      const arrLow = Math.round(signupsNow * 35);
+      const arrHigh = Math.round(signupsNow * 85);
+      document.getElementById('calcPipeline').textContent = '$' + (arrLow).toLocaleString() + ' - $' + (arrHigh).toLocaleString();
+    }
+  </script>
+</body>
+</html>

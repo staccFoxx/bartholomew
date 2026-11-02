@@ -47,6 +47,10 @@
       {
         "source": "/sim",
         "destination": "/sim-lab.html"
+      },
+      {
+        "source": "/preview/**",
+        "destination": "/preview/index.html"
       }
     ]
   }
