@@ -1121,6 +1121,85 @@ class BartholomewMCPServer:
                                     }
                         }
             }
+,
+            {
+                "name": "btp_workspace_snapshot",
+                "description": "Deterministic microsecond copy-on-write snapshot of workspace source files before agent edits or shell commands. Enables zero-blast-radius execution and instant rollback.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "description": {
+                            "type": "string",
+                            "description": "Reason or description for this snapshot (e.g. 'Before refactoring auth module')"
+                        },
+                        "target_files": {
+                            "type": "array",
+                            "items": {"type": "string"},
+                            "description": "Optional list of relative file paths to snapshot. Defaults to active workspace source files."
+                        }
+                    }
+                }
+            },
+            {
+                "name": "btp_workspace_rollback",
+                "description": "Instantly rollback workspace to the latest or specified snapshot in <10ms, undoing broken builds, unwanted edits, or stray created files.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "snapshot_id": {
+                            "type": "string",
+                            "description": "Optional snapshot ID to restore. If omitted, restores the most recent snapshot."
+                        }
+                    }
+                }
+            },
+            {
+                "name": "btp_runaway_guard",
+                "description": "Circuit-breaker governor evaluating agent loops, preventing runaway token spend, detecting repetitive tool invocations, and catching recursive failure loops.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "tool_name": {
+                            "type": "string",
+                            "description": "Name of the tool the agent is invoking"
+                        },
+                        "tool_args": {
+                            "type": "string",
+                            "description": "Arguments payload string or summary"
+                        },
+                        "error_output": {
+                            "type": "string",
+                            "description": "Optional stderr or error message from previous turn"
+                        },
+                        "cost_usd": {
+                            "type": "number",
+                            "description": "Estimated cost in USD of current turn (defaults to 0.02)"
+                        }
+                    },
+                    "required": ["tool_name"]
+                }
+            },
+            {
+                "name": "btp_mint_aibom",
+                "description": "Mints an Ed25519 cryptographically signed AI Bill of Materials (AIBOM) attestation for git commits, certifying secret zeroization, model provenance, and AST safety verification.",
+                "inputSchema": {
+                    "type": "object",
+                    "properties": {
+                        "model_name": {
+                            "type": "string",
+                            "description": "Identifier of the generative model authoring the code (e.g. 'claude-3-5-sonnet')"
+                        },
+                        "files_hash": {
+                            "type": "string",
+                            "description": "Git tree or workspace hash"
+                        },
+                        "secrets_scrubbed": {
+                            "type": "integer",
+                            "description": "Number of in-memory API keys or secrets zeroized"
+                        }
+                    }
+                }
+            }
 ]
 
     def _is_safe_path(self, target_rel_path: str) -> bool:
@@ -2302,6 +2381,82 @@ class BartholomewMCPServer:
                 "content": [{"type": "text", "text": json.dumps(report, indent=2)}]
             }
 
+        
+        elif name == "btp_workspace_snapshot":
+            from btp_guard.workspace_time_machine import WorkspaceTimeMachine
+            wtm = WorkspaceTimeMachine()
+            desc = arguments.get("description", "Pre-turn snapshot")
+            targets = arguments.get("target_files")
+            snap = wtm.create_snapshot(description=desc, target_files=targets)
+            return {
+                "isError": False,
+                "content": [{
+                    "type": "text",
+                    "text": json.dumps({
+                        "status": "SUCCESS",
+                        "snapshot_id": snap.snapshot_id,
+                        "description": snap.description,
+                        "files_backed_up": snap.total_files_backed_up,
+                        "merkle_root": snap.merkle_root,
+                        "instructions": "If subsequent commands or edits break tests or damage workspace, invoke btp_workspace_rollback to instantly restore exact state."
+                    }, indent=2)
+                }]
+            }
+
+        elif name == "btp_workspace_rollback":
+            from btp_guard.workspace_time_machine import WorkspaceTimeMachine
+            wtm = WorkspaceTimeMachine()
+            sid = arguments.get("snapshot_id")
+            res = wtm.rollback(snapshot_id=sid)
+            return {
+                "isError": res.get("status") == "ERROR",
+                "content": [{"type": "text", "text": json.dumps(res, indent=2)}]
+            }
+
+        elif name == "btp_runaway_guard":
+            from btp_guard.runaway_circuit_breaker import RunawayCircuitBreaker
+            if not hasattr(self, "_circuit_breaker"):
+                self._circuit_breaker = RunawayCircuitBreaker()
+            t_name = arguments.get("tool_name", "unknown")
+            t_args = arguments.get("tool_args", {})
+            err = arguments.get("error_output")
+            cost = float(arguments.get("cost_usd", 0.02))
+            status = self._circuit_breaker.record_turn(tool_name=t_name, tool_args=t_args, error_output=err, cost_usd=cost)
+            return {
+                "isError": status.tripped,
+                "content": [{
+                    "type": "text",
+                    "text": json.dumps({
+                        "tripped": status.tripped,
+                        "reason": status.reason,
+                        "category": status.category,
+                        "cumulative_spend_usd": status.cumulative_spend_usd,
+                        "recommended_action": status.recommended_action,
+                        "suggest_rollback": status.suggest_rollback
+                    }, indent=2)
+                }]
+            }
+
+        elif name == "btp_mint_aibom":
+            from btp_guard.aibom_attestation import AIBOMAttestor
+            attestor = AIBOMAttestor()
+            m_name = arguments.get("model_name", "claude-3-5-sonnet")
+            f_hash = arguments.get("files_hash", "head")
+            scrubbed = int(arguments.get("secrets_scrubbed", 0))
+            att = attestor.generate_attestation(model_name=m_name, files_hash=f_hash, secrets_scrubbed=scrubbed)
+            return {
+                "isError": False,
+                "content": [{
+                    "type": "text",
+                    "text": json.dumps({
+                        "status": "ATTESTED",
+                        "aibom_version": att.version,
+                        "merkle_root": att.merkle_root,
+                        "signature": att.signature,
+                        "git_commit_trailers": att.to_commit_trailers()
+                    }, indent=2)
+                }]
+            }
         else:
             return {
                 "isError": True,

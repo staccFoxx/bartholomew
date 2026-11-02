@@ -4639,6 +4639,69 @@ def cmd_provenance(args):
     print("=" * 76 + "\n")
 
 
+
+def cmd_snapshot(args):
+    """Creates a deterministic microsecond workspace snapshot before agent turns."""
+    from btp_guard.workspace_time_machine import WorkspaceTimeMachine
+    wtm = WorkspaceTimeMachine()
+    desc = getattr(args, "desc", "Pre-turn developer snapshot") or "Pre-turn developer snapshot"
+    targets = getattr(args, "files", None)
+    snap = wtm.create_snapshot(description=desc, target_files=targets)
+    print(f"[+] [BTP Snapshot Created] ID: {snap.snapshot_id}")
+    print(f"    Description:    {snap.description}")
+    print(f"    Files Protected:{snap.total_files_backed_up}")
+    print(f"    Merkle Root:    {snap.merkle_root[:16]}...")
+    print(f"[*] In case of agent errors or broken builds, run: btp rollback --id {snap.snapshot_id}")
+
+
+def cmd_rollback(args):
+    """Restores workspace to the last or specified snapshot."""
+    from btp_guard.workspace_time_machine import WorkspaceTimeMachine
+    wtm = WorkspaceTimeMachine()
+    snap_id = getattr(args, "id", None)
+    res = wtm.rollback(snapshot_id=snap_id)
+    if res.get("status") == "SUCCESS":
+        print(f"[+] [BTP Rollback Complete] Restored to {res.get('snapshot_id')} ({res.get('latency_ms')}ms)")
+        print(f"    Files Restored: {res.get('restored_count')}")
+        print(f"    Stray Files Purged: {res.get('purged_count')}")
+    else:
+        print(f"[!] [BTP Rollback Error] {res.get('message')}")
+
+
+def cmd_circuit_breaker(args):
+    """Inspects or resets autonomous agent runaway loop tracking."""
+    from btp_guard.runaway_circuit_breaker import RunawayCircuitBreaker
+    cb = RunawayCircuitBreaker()
+    if getattr(args, "reset", False):
+        cb.reset()
+        print("[+] [BTP Circuit Breaker] Reset turn history and spend counters.")
+    else:
+        print(f"[*] [BTP Circuit Breaker Governor v7.0.0]")
+        print(f"    Max Turns Per Task:      {cb.max_turns_per_task}")
+        print(f"    Max Spend Hard Ceiling:  ${cb.max_spend_usd:.2f} USD")
+        print(f"    Max Identical Tool Calls:{cb.max_identical_tool_calls}")
+        print(f"    Max Repeated Errors:     {cb.max_identical_errors}")
+        print(f"    Status:                  ACTIVE & ARMED")
+
+
+def cmd_aibom(args):
+    """Generates an Ed25519 cryptographic AI Bill of Materials for git commit trailers."""
+    from btp_guard.aibom_attestation import AIBOMAttestor
+    attestor = AIBOMAttestor()
+    model = getattr(args, "model", "claude-3-5-sonnet") or "claude-3-5-sonnet"
+    att = attestor.generate_attestation(model_name=model)
+    print("=" * 65)
+    print(" BTP CRYPTOGRAPHIC AI BILL OF MATERIALS (AIBOM v7.0.0)")
+    print("=" * 65)
+    print(f" Model Provenance:       {att.model_identifier}")
+    print(f" AST Safety Check:       {att.ast_safety_verdict}")
+    print(f" In-Memory Secrets Scrub:{att.secrets_zeroized_count}")
+    print(f" Merkle Root:            {att.merkle_root}")
+    print(f" Ed25519 Signature:      {att.signature[:32]}...")
+    print("-" * 65)
+    print("Git Commit Trailers:")
+    print(att.to_commit_trailers())
+
 def main():
     parser = argparse.ArgumentParser(description="Bartholomew Autonomous Agent Guardrail CLI")
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
@@ -5520,6 +5583,21 @@ def main():
     vault_parser.add_argument("vault_action", nargs="?", default="init", choices=["init", "status", "lock"], help="Vault action")
     vault_parser.add_argument("--dir", default=".", help="Target workspace directory")
 
+    
+    # --- BTP v7.0.0 Breakthrough Tools ---
+    snap_p = subparsers.add_parser("snapshot", help="Create deterministic micro-snapshot of workspace before agent action")
+    snap_p.add_argument("--desc", default="Pre-turn developer snapshot", help="Snapshot description")
+    snap_p.add_argument("--files", nargs="*", help="Optional target files to snapshot")
+
+    rb_p = subparsers.add_parser("rollback", help="Instant zero-loss rollback restoring workspace to snapshot (<10ms)")
+    rb_p.add_argument("--id", default=None, help="Snapshot ID to restore (defaults to latest)")
+
+    cb_p = subparsers.add_parser("circuit-breaker", help="Runaway loop and spend governor status")
+    cb_p.add_argument("--reset", action="store_true", help="Reset loop tracking and spend counters")
+
+    aibom_p = subparsers.add_parser("aibom", help="Mint Ed25519 cryptographic AI Bill of Materials for git commits")
+    aibom_p.add_argument("--model", default="claude-3-5-sonnet", help="Model identifier")
+
     args = parser.parse_args()
 
     if args.command == "vault":
@@ -6021,6 +6099,14 @@ def main():
             cmd_config_get_treasury(args)
         else:
             config_p.print_help()
+    elif args.command == "snapshot":
+        cmd_snapshot(args)
+    elif args.command == "rollback":
+        cmd_rollback(args)
+    elif args.command == "circuit-breaker":
+        cmd_circuit_breaker(args)
+    elif args.command == "aibom":
+        cmd_aibom(args)
     else:
         parser.print_help()
 
