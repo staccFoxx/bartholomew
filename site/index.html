@@ -3583,8 +3583,27 @@
       word-break: break-word !important;
     }
 
+    /* === PRISTINE UNCLUTTERED MOBILE ARCHITECTURE (<= 768px) === */
     @media (max-width: 768px) {
-      /* 1. Eliminate fixed overlay clutter completely */
+      /* 1. Global Viewport & Flow Integrity */
+      html, body {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+        width: 100% !important;
+      }
+      *, *::before, *::after {
+        box-sizing: border-box !important;
+      }
+      body {
+        padding-bottom: 24px !important;
+      }
+      .container {
+        padding-left: 14px !important;
+        padding-right: 14px !important;
+        max-width: 100% !important;
+      }
+
+      /* 2. Total Elimination of Fixed Overlays & Screen-Covering Popups */
       .sticky-conversion-dock,
       aside.sticky-conversion-dock,
       .live-telemetry-hud,
@@ -3600,27 +3619,23 @@
         pointer-events: none !important;
       }
 
-      body {
-        padding-bottom: 30px !important;
-      }
-
-      /* 2. Clean, minimal navbar */
+      /* 3. Streamlined Minimal Navbar (Zero Overlap) */
       header.navbar {
-        height: 56px !important;
-        background: rgba(7, 10, 15, 0.95) !important;
-        backdrop-filter: blur(12px) !important;
-        -webkit-backdrop-filter: blur(12px) !important;
+        height: 54px !important;
+        background: rgba(7, 10, 15, 0.96) !important;
+        backdrop-filter: blur(14px) !important;
+        -webkit-backdrop-filter: blur(14px) !important;
         position: sticky !important;
         top: 0 !important;
         z-index: 1000 !important;
         border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
       }
       .nav-inner {
-        height: 56px !important;
+        height: 54px !important;
         display: flex !important;
         justify-content: space-between !important;
         align-items: center !important;
-        padding: 0 16px !important;
+        padding: 0 14px !important;
       }
       .btn-nav-passkey,
       .btn-sandbox-nav,
@@ -3630,88 +3645,371 @@
       }
       .hamburger-btn {
         display: inline-flex !important;
-        padding: 8px !important;
-        border-radius: 8px !important;
+        padding: 6px !important;
+        border-radius: 6px !important;
       }
 
-      /* 3. Spacious, breathable Hero section */
+      /* 4. Spacious, Uncluttered Hero Section */
       .hero {
-        padding: 32px 0 24px !important;
+        padding: 24px 0 20px !important;
       }
       .hero-shield-showcase {
-        margin-bottom: 14px !important;
+        margin-bottom: 12px !important;
       }
       .hero-shield-img {
-        width: 64px !important;
-        height: 64px !important;
+        width: 54px !important;
+        height: 54px !important;
       }
       .hero-title {
-        font-size: clamp(1.65rem, 6.5vw, 2.1rem) !important;
-        line-height: 1.25 !important;
-        letter-spacing: -0.02em !important;
-        margin-bottom: 14px !important;
+        font-size: clamp(1.65rem, 6.8vw, 2.15rem) !important;
+        line-height: 1.2 !important;
+        letter-spacing: -0.025em !important;
+        margin-bottom: 12px !important;
       }
       .hero-desc {
-        font-size: 0.94rem !important;
-        line-height: 1.55 !important;
+        font-size: 0.90rem !important;
+        line-height: 1.5 !important;
         color: #94a3b8 !important;
-        margin-bottom: 22px !important;
+        margin-bottom: 18px !important;
       }
       .hero-cta-buttons {
         display: flex !important;
         flex-direction: column !important;
         width: 100% !important;
-        gap: 10px !important;
-        margin: 20px auto 18px !important;
+        gap: 8px !important;
+        margin: 16px auto 14px !important;
       }
-      .btn-primary-hero,
-      .btn-action-hero {
+      .btn-primary-hero {
         width: 100% !important;
         max-width: 100% !important;
         justify-content: center !important;
         padding: 13px 18px !important;
         font-size: 0.94rem !important;
+        font-weight: 800 !important;
         border-radius: 8px !important;
       }
+      .btn-action-hero {
+        width: 100% !important;
+        max-width: 100% !important;
+        justify-content: center !important;
+        padding: 11px 16px !important;
+        font-size: 0.86rem !important;
+        border-radius: 8px !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        border: 1px solid rgba(255, 255, 255, 0.12) !important;
+      }
 
-      /* 4. Terminal Quickstart */
+      /* 5. Terminal Quickstart Bar */
       .hero-quickstart-bar {
         width: 100% !important;
-        padding: 10px 14px !important;
-        font-size: 0.74rem !important;
-        margin-bottom: 24px !important;
+        padding: 8px 12px !important;
+        font-size: 0.70rem !important;
+        margin-bottom: 18px !important;
+        word-break: break-all !important;
       }
 
-      /* 5. Display Side / AST Sandbox */
+      /* 6. Hero Interactive Terminal Gate (Compact, Zero Overlap) */
+      .hero-interactive-demo,
+      [style*="max-width: 780px; margin: 0 auto 30px"] {
+        padding: 12px 10px !important;
+        border-radius: 10px !important;
+        margin: 14px 0 20px !important;
+      }
       .hero-chip-btn {
         flex: 1 1 100% !important;
-        font-size: 0.72rem !important;
-        padding: 7px 10px !important;
+        font-size: 0.68rem !important;
+        padding: 6px 8px !important;
         text-align: center !important;
+        margin-bottom: 4px !important;
       }
       #heroTerminalOutput {
-        font-size: 0.72rem !important;
-        line-height: 1.5 !important;
-        padding: 12px !important;
-        max-height: 260px !important;
+        font-size: 0.68rem !important;
+        line-height: 1.4 !important;
+        padding: 10px !important;
+        max-height: 170px !important;
+        overflow-x: auto !important;
       }
       #heroTerminalFooter {
         flex-direction: column !important;
         align-items: stretch !important;
-        gap: 10px !important;
+        gap: 8px !important;
         text-align: center !important;
+        margin-top: 8px !important;
+        padding-top: 8px !important;
       }
       #heroTerminalFooter a {
         width: 100% !important;
         justify-content: center !important;
-        padding: 10px 16px !important;
-        font-size: 0.8rem !important;
+        padding: 9px 14px !important;
+        font-size: 0.78rem !important;
       }
 
-      /* 6. Enforce Single-Column Grid across ALL sections */
-      .traction-grid,
-      .stats-grid,
-      .sandbox-grid,
+      /* 7. Technical Stats Grid (Compact 2x2 Grid - Fits in Viewport) */
+      .stats-grid {
+        display: grid !important;
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px !important;
+        margin: 16px 0 !important;
+      }
+      .stat-card {
+        padding: 12px 8px !important;
+        border-radius: 8px !important;
+        text-align: center !important;
+      }
+      .stat-label {
+        font-size: 0.66rem !important;
+        letter-spacing: 0.02em !important;
+        margin-bottom: 3px !important;
+      }
+      .stat-val {
+        font-size: 1.25rem !important;
+        line-height: 1.15 !important;
+      }
+      .stat-foot {
+        font-size: 0.60rem !important;
+        margin-top: 3px !important;
+        line-height: 1.25 !important;
+      }
+
+      /* 8. Traction Cards (Reflowed Single Column) */
+      .traction-sec {
+        padding: 24px 0 !important;
+      }
+      .traction-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 10px !important;
+      }
+      .traction-card {
+        padding: 14px 12px !important;
+        border-radius: 8px !important;
+      }
+      .traction-stat-val {
+        font-size: 1.4rem !important;
+      }
+      .traction-stat-title {
+        font-size: 0.84rem !important;
+      }
+      .traction-item-desc {
+        font-size: 0.76rem !important;
+        line-height: 1.4 !important;
+      }
+
+      /* 9. Ecosystem & Partner Marquee Containment (Zero Overflow) */
+      .ecosystem-sec,
+      .marquee-container,
+      .hud-marquee-viewport {
+        width: 100% !important;
+        max-width: 100vw !important;
+        overflow: hidden !important;
+        box-sizing: border-box !important;
+      }
+      .partner-pill {
+        padding: 6px 12px !important;
+        font-size: 0.72rem !important;
+      }
+
+      /* 10. Frontier Agent Frameworks Grid (Clean Single Column) */
+      #frontier-repos {
+        padding: 28px 14px 18px !important;
+      }
+      #frontier-repos [style*="grid-template-columns: repeat"] {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
+      }
+      #frontier-repos a {
+        padding: 12px !important;
+        border-radius: 8px !important;
+      }
+
+      /* 11. Comparison Tables & Defensibility Matrix (Smooth Horizontal Touch-Scroll) */
+      .table-responsive-wrapper,
+      [style*="overflow-x:auto"],
+      [style*="overflow-x: auto"] {
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        border-radius: 8px !important;
+        margin: 12px 0 !important;
+      }
+      table {
+        border-collapse: collapse !important;
+      }
+      th, td {
+        padding: 8px 10px !important;
+        font-size: 0.70rem !important;
+        white-space: nowrap !important;
+      }
+
+      /* 12. THE SANDBOX & DISPLAY SIDE (#sandbox / #resultsBox / #activeAuditView) */
+      .sandbox-sec {
+        padding: 28px 0 !important;
+      }
+      .sandbox-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 14px !important;
+        width: 100% !important;
+      }
+      .panel-box {
+        padding: 14px 12px !important;
+        border-radius: 10px !important;
+        width: 100% !important;
+        height: auto !important;
+        min-height: 0 !important;
+        justify-content: flex-start !important;
+        box-sizing: border-box !important;
+      }
+      .panel-header {
+        flex-wrap: wrap !important;
+        gap: 6px !important;
+        margin-bottom: 10px !important;
+      }
+      .panel-title {
+        font-size: 0.82rem !important;
+      }
+      .btn-reset-payload {
+        font-size: 0.65rem !important;
+        padding: 3px 6px !important;
+      }
+      .scanner-mode-tabs {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 4px !important;
+        margin: 6px 0 8px !important;
+      }
+      .scanner-mode-tabs button {
+        flex: 1 1 auto !important;
+        font-size: 0.65rem !important;
+        padding: 5px 8px !important;
+        text-align: center !important;
+      }
+      .sandbox-presets-bar {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 4px !important;
+        margin: 6px 0 8px !important;
+      }
+      .sandbox-presets-bar button,
+      .btn-preset {
+        font-size: 0.62rem !important;
+        padding: 4px 6px !important;
+        border-radius: 4px !important;
+      }
+      #trajectoryInput,
+      #agentCodeInput,
+      #repoUrlInput {
+        font-size: 0.70rem !important;
+        min-height: 120px !important;
+        max-height: 160px !important;
+        padding: 8px !important;
+        border-radius: 6px !important;
+      }
+      .btn-run-audit,
+      #btnRunAudit {
+        width: 100% !important;
+        padding: 11px 14px !important;
+        font-size: 0.84rem !important;
+        font-weight: 800 !important;
+        margin-top: 8px !important;
+      }
+
+      /* === DISPLAY SIDE (Audit Scorecard & Findings Output Panel) === */
+      #resultsBox {
+        border: 1px solid rgba(16, 185, 129, 0.35) !important;
+        background: rgba(4, 7, 13, 0.95) !important;
+        padding: 14px 12px !important;
+        height: auto !important;
+        min-height: 0 !important;
+      }
+      #emptyState {
+        padding: 20px 10px !important;
+        text-align: center !important;
+      }
+      .empty-state-icon {
+        width: 32px !important;
+        height: 32px !important;
+        margin-bottom: 6px !important;
+      }
+      .metrics-summary-bar {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 6px !important;
+        padding: 8px 6px !important;
+        margin-bottom: 10px !important;
+        text-align: center !important;
+      }
+      .msb-label {
+        font-size: 0.58rem !important;
+        letter-spacing: 0.03em !important;
+        margin-bottom: 2px !important;
+      }
+      .msb-val {
+        font-size: 1.05rem !important;
+        font-weight: 900 !important;
+      }
+      .violations-container {
+        margin-top: 10px !important;
+        max-height: none !important;
+        overflow: visible !important;
+        overflow-y: visible !important;
+        height: auto !important;
+      }
+      .violations-title {
+        font-size: 0.68rem !important;
+        font-weight: 800 !important;
+        margin-bottom: 6px !important;
+      }
+      #violationsList {
+        max-height: none !important;
+        overflow-y: visible !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 6px !important;
+      }
+      .violation-card,
+      #violationsList > div {
+        padding: 10px 12px !important;
+        font-size: 0.72rem !important;
+        line-height: 1.45 !important;
+        border-radius: 6px !important;
+        margin-bottom: 6px !important;
+        box-sizing: border-box !important;
+      }
+
+      /* 13. Pricing Section (Breathable Cards) */
+      .pricing-sec {
+        padding: 30px 0 !important;
+      }
+      .pricing-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px !important;
+      }
+      .pricing-card {
+        padding: 16px 12px !important;
+        border-radius: 10px !important;
+      }
+      .pricing-amount {
+        font-size: 1.7rem !important;
+      }
+      .btn-buy-card {
+        width: 100% !important;
+        padding: 11px 14px !important;
+      }
+
+      /* 14. Extensions & MCP Tools Grids */
+      .extensions-sec,
+      .mcp-tools-sec,
+      .why-sec,
+      .defensibility-sec,
+      .funnel-sec,
+      .roi-sec {
+        padding: 26px 0 !important;
+      }
+      .ext-cards-grid,
+      .mcp-tools-grid,
       .defensibility-grid,
       .why-grid,
       .steps-container,
@@ -3721,23 +4019,29 @@
       [style*="grid-template-columns: 1fr 1fr"],
       [style*="grid-template-columns: 1.8fr"] {
         grid-template-columns: 1fr !important;
-        gap: 14px !important;
+        gap: 12px !important;
       }
-
-      /* 7. Card Padding & Spacing */
-      .stat-card,
-      .traction-card,
+      .ext-card,
+      .mcp-tool-card,
       .why-card,
       .funnel-card {
-        padding: 18px 14px !important;
-        border-radius: 10px !important;
+        padding: 14px 12px !important;
+        border-radius: 8px !important;
       }
-      .stat-val {
-        font-size: 1.45rem !important;
+
+      /* 15. Responsive Headings & Fluid Typography */
+      h2 {
+        font-size: clamp(1.35rem, 5.2vw, 1.75rem) !important;
+        line-height: 1.25 !important;
+        margin-bottom: 8px !important;
+      }
+      p {
+        font-size: 0.85rem !important;
+        line-height: 1.5 !important;
       }
     }
-
-</style>
+  
+  </style>
   </head>
 <body>
 
