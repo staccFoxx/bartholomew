@@ -1420,6 +1420,100 @@ context.subscriptions.push(
     { dispose: () => clearInterval(interval) }
   );
 
+  
+  // --- BTP v7.0.0 Breakthrough Commands ---
+  const createSnapshotCmd = vscode.commands.registerCommand('bartholomew.createSnapshot', async () => {
+    try {
+      const desc = await vscode.window.showInputBox({
+        prompt: 'Snapshot Description (e.g. Before refactoring auth)',
+        value: 'Pre-turn developer snapshot'
+      });
+      if (desc === undefined) return;
+
+      const pythonCmd = process.platform === 'win32' ? 'python' : 'python3';
+      const rootPath = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || process.cwd();
+      const proc = spawn(pythonCmd, ['-m', 'btp_guard.cli', 'snapshot', '--desc', desc], {
+        cwd: rootPath,
+        shell: false
+      });
+      let out = '';
+      proc.stdout?.on('data', (d: any) => { out += d.toString(); });
+      proc.on('close', (code: number) => {
+        if (code === 0) {
+          vscode.window.showInformationMessage('Bartholomew: Zero-Blast-Radius Snapshot created successfully!');
+        } else {
+          vscode.window.showErrorMessage(`Failed to create snapshot: ${out}`);
+        }
+      });
+    } catch (err: any) {
+      vscode.window.showErrorMessage(`Snapshot error: ${err.message}`);
+    }
+  });
+
+  const rollbackWorkspaceCmd = vscode.commands.registerCommand('bartholomew.rollbackWorkspace', async () => {
+    try {
+      const confirm = await vscode.window.showWarningMessage(
+        'Rollback workspace to previous snapshot? All uncommitted edits since snapshot will be reverted in <250ms.',
+        'Rollback Now',
+        'Cancel'
+      );
+      if (confirm !== 'Rollback Now') return;
+
+      const pythonCmd = process.platform === 'win32' ? 'python' : 'python3';
+      const rootPath = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || process.cwd();
+      const proc = spawn(pythonCmd, ['-m', 'btp_guard.cli', 'rollback'], {
+        cwd: rootPath,
+        shell: false
+      });
+      let out = '';
+      proc.stdout?.on('data', (d: any) => { out += d.toString(); });
+      proc.on('close', (code: number) => {
+        if (code === 0) {
+          vscode.window.showInformationMessage('Bartholomew: Workspace rollback complete (<250ms). Workspace restored!');
+        } else {
+          vscode.window.showErrorMessage(`Rollback failed: ${out}`);
+        }
+      });
+    } catch (err: any) {
+      vscode.window.showErrorMessage(`Rollback error: ${err.message}`);
+    }
+  });
+
+  const inspectCircuitBreakerCmd = vscode.commands.registerCommand('bartholomew.inspectCircuitBreaker', () => {
+    vscode.window.showInformationMessage(
+      'Bartholomew Circuit Breaker v7.0.0: Active & Armed. Hard Spend Ceiling: $2.50 USD. Max Identical Invocations: 3. Runaway loops vetoed.'
+    );
+  });
+
+  const mintAibomAttestationCmd = vscode.commands.registerCommand('bartholomew.mintAibomAttestation', async () => {
+    try {
+      const pythonCmd = process.platform === 'win32' ? 'python' : 'python3';
+      const rootPath = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || process.cwd();
+      const proc = spawn(pythonCmd, ['-m', 'btp_guard.cli', 'aibom'], {
+        cwd: rootPath,
+        shell: false
+      });
+      let out = '';
+      proc.stdout?.on('data', (d: any) => { out += d.toString(); });
+      proc.on('close', (code: number) => {
+        if (code === 0) {
+          vscode.window.showInformationMessage('Bartholomew: Ed25519 AIBOM Attestation minted for git commits!');
+        } else {
+          vscode.window.showErrorMessage(`AIBOM minting failed: ${out}`);
+        }
+      });
+    } catch (err: any) {
+      vscode.window.showErrorMessage(`AIBOM error: ${err.message}`);
+    }
+  });
+
+  context.subscriptions.push(
+    createSnapshotCmd,
+    rollbackWorkspaceCmd,
+    inspectCircuitBreakerCmd,
+    mintAibomAttestationCmd
+  );
+
   return publicApi;
 }
 

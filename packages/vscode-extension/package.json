@@ -2,7 +2,7 @@
   "name": "bartholomew-guard-vscode",
   "displayName": "Bartholomew Guard \u2014 AI Agent Firewall, Guardrails & Security for Cursor, Claude & Copilot",
   "description": "BTP v6.8.0 In-Process AST Guardrails, Real-Time Security Linter & CodeActions, Nonce Sentinel, and Cryptographic Merkle Seal Minting for Cursor, Claude Code, Windsurf, Copilot, and VS Code.",
-  "version": "6.8.0",
+  "version": "7.0.0",
   "publisher": "Bartholomew",
   "icon": "icon.png",
   "license": "Apache-2.0",
@@ -202,6 +202,30 @@
         "command": "bartholomew.mintLocalSeal",
         "title": "Mint Cryptographic Repository Seal (Ed25519)",
         "category": "Bartholomew"
+      },
+      {
+        "command": "bartholomew.createSnapshot",
+        "title": "Bartholomew: Create Zero-Blast-Radius Snapshot",
+        "category": "Bartholomew Guard",
+        "icon": "$(history)"
+      },
+      {
+        "command": "bartholomew.rollbackWorkspace",
+        "title": "Bartholomew: Rollback Workspace to Snapshot (1-Click Undo)",
+        "category": "Bartholomew Guard",
+        "icon": "$(discard)"
+      },
+      {
+        "command": "bartholomew.inspectCircuitBreaker",
+        "title": "Bartholomew: Inspect Runaway Loop & Spend Governor",
+        "category": "Bartholomew Guard",
+        "icon": "$(pulse)"
+      },
+      {
+        "command": "bartholomew.mintAibomAttestation",
+        "title": "Bartholomew: Mint Ed25519 AIBOM Git Commit Attestation",
+        "category": "Bartholomew Guard",
+        "icon": "$(verified)"
       }
     ],
     "viewsContainers": {
