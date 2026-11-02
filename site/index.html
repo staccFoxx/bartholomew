@@ -4349,6 +4349,11 @@
           <img src="/logo.png" alt="Bartholomew Shield Logo" class="hero-shield-img" width="96" height="96">
         </div>
 
+                <!-- Sleek Announcement Pill -->
+        <div style="display:inline-flex; align-items:center; gap:8px; background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.25); padding:5px 14px; border-radius:9999px; margin-bottom:20px; font-family:var(--font-mono, monospace); font-size:0.75rem;">
+          <span style="background:linear-gradient(135deg, #38bdf8, #818cf8); color:#030712; font-weight:800; padding:2px 7px; border-radius:9999px; font-size:0.68rem;">NEW v7.0</span>
+          <span style="color:#cbd5e1;">Zero-Blast-Radius Time-Machine &bull; Sub-Second Undo &bull; Runaway Circuit Breaker</span>
+        </div>
         <h1 class="hero-title">
           The Agentic Runtime Protection <br><span class="gradient-text">(ARP) Platform</span>
         </h1>
@@ -4442,22 +4447,66 @@
         </div>
       </div>
     
-      <!-- BTP v7.0.0 Breakthrough: Zero-Blast-Radius & Time-Machine -->
-      <div style="background: linear-gradient(135deg, rgba(56, 189, 248, 0.12) 0%, rgba(168, 85, 247, 0.12) 100%); border: 1px solid rgba(56, 189, 248, 0.35); border-radius: 14px; padding: 24px; margin-bottom: 32px; backdrop-filter: blur(12px);">
-        <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px; flex-wrap: wrap;">
-          <span style="background: rgba(56, 189, 248, 0.2); color: #38bdf8; border: 1px solid rgba(56, 189, 248, 0.4); padding: 4px 10px; border-radius: 9999px; font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700;">NEW IN v7.0.0</span>
-          <h3 style="font-size: 1.25rem; font-weight: 800; color: #f8fafc; margin: 0;">Zero-Blast-Radius Execution & Runaway Spend Circuit Breaker</h3>
+
+</section>
+    <!-- BTP v7.0.0 Breakthrough Section -->
+    <section style="padding: 56px 0 36px; border-top: 1px solid rgba(255,255,255,0.06); background: rgba(3, 7, 18, 0.4);">
+      <div class="container" style="max-width: 1100px; margin: 0 auto; padding: 0 20px;">
+        <div style="text-align: center; max-width: 680px; margin: 0 auto 36px;">
+          <span style="color: #38bdf8; font-family: var(--font-mono, monospace); font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; display: inline-block; margin-bottom: 8px;">Deterministic Architecture</span>
+          <h2 style="font-size: clamp(1.5rem, 3.5vw, 2.1rem); font-weight: 800; color: #f8fafc; margin-bottom: 10px; letter-spacing: -0.02em;">Zero-Blast-Radius Time-Machine</h2>
+          <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6;">Deterministic workspace safety for autonomous coding assistants. Revert unwanted mutations in milliseconds and kill runaway token loops before they cost you.</p>
         </div>
-        <p style="color: #94a3b8; font-size: 0.95rem; line-height: 1.6; margin-bottom: 16px;">
-          What other entities cannot do: deterministic sub-millisecond workspace snapshots with <strong>1-Click Micro-Rollback (<10ms)</strong>, intelligent <strong>Runaway Loop Interdiction</strong> (killing infinite error ping-pong and spend bleed before it costs you), and cryptographic <strong>Ed25519 AIBOM Git Commit Attestations</strong> for enterprise SOC 2 compliance.
-        </p>
-        <div style="display: flex; gap: 10px; flex-wrap: wrap;">
-          <code style="background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.1); padding: 6px 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #38bdf8;">btp snapshot --desc "Pre-refactor"</code>
-          <code style="background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.1); padding: 6px 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #10b981;">btp rollback</code>
-          <code style="background: rgba(0, 0, 0, 0.5); border: 1px solid rgba(255, 255, 255, 0.1); padding: 6px 12px; border-radius: 6px; font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; color: #a855f7;">btp aibom --model "claude-3-5-sonnet"</code>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 20px;">
+          <!-- Card 1: Time-Machine Rollback -->
+          <div style="background: rgba(13, 20, 36, 0.65); border: 1px solid rgba(56, 189, 248, 0.22); border-radius: 12px; padding: 22px; display: flex; flex-direction: column;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+              <span style="width: 32px; height: 32px; border-radius: 8px; background: rgba(56, 189, 248, 0.15); display: flex; align-items: center; justify-content: center; color: #38bdf8; font-weight: 800;">&cularr;</span>
+              <h3 style="font-size: 1.05rem; font-weight: 700; color: #f8fafc; margin: 0;">1-Click Micro-Rollback</h3>
+            </div>
+            <p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.5; margin-bottom: 18px; flex-grow: 1;">
+              Microsecond Copy-on-Write delta snapshots before multi-file agent edits. If an agent breaks tests or mutates dependencies, restore exact file state in &lt;250ms.
+            </p>
+            <div style="background: rgba(0, 0, 0, 0.45); border: 1px solid rgba(255, 255, 255, 0.08); padding: 8px 12px; border-radius: 6px; font-family: var(--font-mono, monospace); font-size: 0.78rem; color: #38bdf8; display: flex; justify-content: space-between; align-items: center;">
+              <code>btp rollback</code>
+              <span style="color: #64748b; font-size: 0.7rem;">&lt;250ms</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Runaway Circuit Breaker -->
+          <div style="background: rgba(13, 20, 36, 0.65); border: 1px solid rgba(16, 185, 129, 0.22); border-radius: 12px; padding: 22px; display: flex; flex-direction: column;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+              <span style="width: 32px; height: 32px; border-radius: 8px; background: rgba(16, 185, 129, 0.15); display: flex; align-items: center; justify-content: center; color: #10b981; font-weight: 800;">&empty;</span>
+              <h3 style="font-size: 1.05rem; font-weight: 700; color: #f8fafc; margin: 0;">Runaway Spend Breaker</h3>
+            </div>
+            <p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.5; margin-bottom: 18px; flex-grow: 1;">
+              Real-time trajectory loop interdiction. Vetoes repeated failing tool calls and halts runaway trajectories before burning through tokens with a $2.50 hard cap.
+            </p>
+            <div style="background: rgba(0, 0, 0, 0.45); border: 1px solid rgba(255, 255, 255, 0.08); padding: 8px 12px; border-radius: 6px; font-family: var(--font-mono, monospace); font-size: 0.78rem; color: #10b981; display: flex; justify-content: space-between; align-items: center;">
+              <code>btp circuit-breaker</code>
+              <span style="color: #64748b; font-size: 0.7rem;">$2.50 cap</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Cryptographic AIBOM -->
+          <div style="background: rgba(13, 20, 36, 0.65); border: 1px solid rgba(168, 85, 247, 0.22); border-radius: 12px; padding: 22px; display: flex; flex-direction: column;">
+            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 12px;">
+              <span style="width: 32px; height: 32px; border-radius: 8px; background: rgba(168, 85, 247, 0.15); display: flex; align-items: center; justify-content: center; color: #a855f7; font-weight: 800;">&check;</span>
+              <h3 style="font-size: 1.05rem; font-weight: 700; color: #f8fafc; margin: 0;">Ed25519 AIBOM Attestation</h3>
+            </div>
+            <p style="color: #94a3b8; font-size: 0.88rem; line-height: 1.5; margin-bottom: 18px; flex-grow: 1;">
+              Mints verifiable cryptographic git commit trailers certifying model provenance, zero in-memory leaked secrets, and passing AST security invariants for SOC 2 audits.
+            </p>
+            <div style="background: rgba(0, 0, 0, 0.45); border: 1px solid rgba(255, 255, 255, 0.08); padding: 8px 12px; border-radius: 6px; font-family: var(--font-mono, monospace); font-size: 0.78rem; color: #a855f7; display: flex; justify-content: space-between; align-items: center;">
+              <code>btp aibom</code>
+              <span style="color: #64748b; font-size: 0.7rem;">FIPS 186-5</span>
+            </div>
+          </div>
         </div>
       </div>
-</section>
+    </section>
+
 
 
     <!-- Core Seed Traction & Validation Block -->
