@@ -1569,7 +1569,6 @@ compliance:
       </div>
     </section>
 
-    <!-- PRICING_TIERS_RESERVED (Kept on back burner until response)
     <section id="pricing" class="container">
       <div class="section-header">
         <div class="section-tag">TRANSPARENT ENGAGEMENTS</div>
@@ -1577,11 +1576,20 @@ compliance:
         <p>Fixed, transparent flat-fee engagements with guaranteed SLAs and zero vendor lock-in.</p>
       </div>
 
-      <div class="tiers-grid">
+      
+      <!-- Multi-Currency Global Settlement Selector -->
+      <div style="display: flex; justify-content: center; align-items: center; gap: 8px; margin: 24px auto 32px; flex-wrap: wrap;">
+        <span style="font-family: var(--font-mono, monospace); font-size: 0.78rem; color: #94a3b8; font-weight: 700; margin-right: 4px;">SETTLEMENT CURRENCY:</span>
+        <button type="button" class="ent-curr-btn" onclick="setEntCurrency('USD')" style="background: rgba(16, 185, 129, 0.2); border: 1px solid #10b981; color: #34d399; font-family: var(--font-mono, monospace); font-size: 0.8rem; font-weight: 800; padding: 6px 14px; border-radius: 9999px; cursor: pointer; transition: all 0.2s;">🇺🇸 USD ($)</button>
+        <button type="button" class="ent-curr-btn" onclick="setEntCurrency('GBP')" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; font-family: var(--font-mono, monospace); font-size: 0.8rem; font-weight: 800; padding: 6px 14px; border-radius: 9999px; cursor: pointer; transition: all 0.2s;">🇬🇧 GBP (£)</button>
+        <button type="button" class="ent-curr-btn" onclick="setEntCurrency('EUR')" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; font-family: var(--font-mono, monospace); font-size: 0.8rem; font-weight: 800; padding: 6px 14px; border-radius: 9999px; cursor: pointer; transition: all 0.2s;">🇪🇺 EUR (€)</button>
+        <button type="button" class="ent-curr-btn" onclick="setEntCurrency('CAD')" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; font-family: var(--font-mono, monospace); font-size: 0.8rem; font-weight: 800; padding: 6px 14px; border-radius: 9999px; cursor: pointer; transition: all 0.2s;">🇨🇦 CAD ($)</button>
+      </div>
+<div class="tiers-grid">
         <div class="tier-card">
           <div class="tier-name">Startup Agent Audit</div>
           <div class="tier-desc">Ideal for fast-moving AI startups unblocking their first enterprise pilots.</div>
-          <div class="tier-price">$3,500 <span>USD flat</span></div>
+          <div id="entPriceStartup" class="tier-price">$3,500 <span>USD flat</span></div>
           <div class="tier-sla"><span class="badge-sla">SLA</span> 48-Hour Turnaround Guarantee</div>
           <ul class="tier-features">
             <li>Up to 3 Agent Workflows or MCP Tool Servers</li>
@@ -1601,7 +1609,7 @@ compliance:
           <div class="tier-badge">MOST POPULAR</div>
           <div class="tier-name">Enterprise Fleet Audit</div>
           <div class="tier-desc">Comprehensive certification for multi-agent swarms with strict compliance needs.</div>
-          <div class="tier-price">$7,500 <span>USD flat</span></div>
+          <div id="entPriceEnterprise" class="tier-price">$7,500 <span>USD flat</span></div>
           <div class="tier-sla"><span class="badge-sla">SLA</span> 72-Hour Full Verification SLA</div>
           <ul class="tier-features">
             <li>Up to 10 Agent Workflows + Custom Invariants</li>
@@ -1621,7 +1629,7 @@ compliance:
         <div class="tier-card">
           <div class="tier-name">Continuous Retainer &amp; OEM</div>
           <div class="tier-desc">Standing security partnership for hyper-growth platforms and foundation swarms.</div>
-          <div class="tier-price">$15,000 <span>USD / year</span></div>
+          <div id="entPriceSovereign" class="tier-price">$15,000 <span>USD / year</span></div>
           <div class="tier-sla"><span class="badge-sla">CI/CD</span> Continuous AST Compliance Gate</div>
           <ul class="tier-features">
             <li>Unlimited Workflows &amp; Multi-Tenant Swarms</li>
@@ -1637,7 +1645,6 @@ compliance:
         </div>
       </div>
     </section>
-    -->
 
 
     <!-- ========================================================
@@ -2234,5 +2241,39 @@ compliance:
     }
 
 </script>
+
+<script>
+const ENT_CURRENCY_DATA = {
+  USD: { p1: '$3,500', p2: '$7,500', p3: '$15,000', suf1: 'USD flat', suf2: 'USD flat', suf3: 'USD / year' },
+  GBP: { p1: '£2,750', p2: '£5,900', p3: '£11,800', suf1: 'GBP flat', suf2: 'GBP flat', suf3: 'GBP / year' },
+  EUR: { p1: '€3,200', p2: '€6,900', p3: '€13,800', suf1: 'EUR flat', suf2: 'EUR flat', suf3: 'EUR / year' },
+  CAD: { p1: '$4,800', p2: '$10,200', p3: '$20,500', suf1: 'CAD flat', suf2: 'CAD flat', suf3: 'CAD / year' }
+};
+
+function setEntCurrency(code) {
+  const d = ENT_CURRENCY_DATA[code] || ENT_CURRENCY_DATA.USD;
+  document.querySelectorAll('.ent-curr-btn').forEach(btn => {
+    if (btn.textContent.includes(code)) {
+      btn.style.background = 'rgba(16, 185, 129, 0.2)';
+      btn.style.borderColor = '#10b981';
+      btn.style.color = '#34d399';
+    } else {
+      btn.style.background = 'rgba(255, 255, 255, 0.05)';
+      btn.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+      btn.style.color = '#cbd5e1';
+    }
+  });
+
+  const p1 = document.getElementById('entPriceStartup');
+  if (p1) p1.innerHTML = `${d.p1} <span>${d.suf1}</span>`;
+
+  const p2 = document.getElementById('entPriceEnterprise');
+  if (p2) p2.innerHTML = `${d.p2} <span>${d.suf2}</span>`;
+
+  const p3 = document.getElementById('entPriceSovereign');
+  if (p3) p3.innerHTML = `${d.p3} <span>${d.suf3}</span>`;
+}
+</script>
+
 </body>
 </html>

@@ -5617,6 +5617,18 @@
             <span style="display:flex; align-items:center; gap:6px;"><span style="color:#38bdf8;">&#10003;</span> Apple Pay / Google Pay / Card</span>
             <span style="display:flex; align-items:center; gap:6px;"><span style="color:#eab308;">&#10003;</span> 30-Day Money-Back Guarantee</span>
           </div>
+          <!-- Real-World Global Currency Selector -->
+          <div style="display: flex; justify-content: center; align-items: center; gap: 8px; margin: 24px auto 16px; flex-wrap: wrap;">
+            <span style="font-family: var(--font-mono, monospace); font-size: 0.76rem; color: #94a3b8; font-weight: 700; margin-right: 4px;">CURRENCY:</span>
+            <button type="button" class="curr-btn active-curr" onclick="setCurrency('USD')" style="background: rgba(16, 185, 129, 0.2); border: 1px solid #10b981; color: #34d399; font-family: var(--font-mono, monospace); font-size: 0.78rem; font-weight: 800; padding: 5px 12px; border-radius: 9999px; cursor: pointer; transition: all 0.2s;">🇺🇸 USD ($)</button>
+            <button type="button" class="curr-btn" onclick="setCurrency('GBP')" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; font-family: var(--font-mono, monospace); font-size: 0.78rem; font-weight: 800; padding: 5px 12px; border-radius: 9999px; cursor: pointer; transition: all 0.2s;">🇬🇧 GBP (£)</button>
+            <button type="button" class="curr-btn" onclick="setCurrency('EUR')" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; font-family: var(--font-mono, monospace); font-size: 0.78rem; font-weight: 800; padding: 5px 12px; border-radius: 9999px; cursor: pointer; transition: all 0.2s;">🇪🇺 EUR (€)</button>
+            <button type="button" class="curr-btn" onclick="setCurrency('CAD')" style="background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.15); color: #cbd5e1; font-family: var(--font-mono, monospace); font-size: 0.78rem; font-weight: 800; padding: 5px 12px; border-radius: 9999px; cursor: pointer; transition: all 0.2s;">🇨🇦 CAD ($)</button>
+          </div>
+          <div id="currencyNotice" style="font-family: var(--font-mono, monospace); font-size: 0.72rem; color: #64748b; margin-bottom: 24px;">
+            Settling in real-world USD, GBP (£), EUR (€), and CAD ($) via Stripe Global Rails &bull; Zero FX conversion penalty
+          </div>
+
         </div>
 
         <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 24px; align-items: stretch;">
@@ -8047,5 +8059,45 @@
     });
 
   </script>
+
+<script>
+const CURRENCY_DATA = {
+  USD: { sym: '$', suffix: 'USD', p5: '$5', p10: '$10', p15: '$15', p249: '$249', note: 'Settling in real-world USD via Stripe Global Rails • Zero FX conversion penalty' },
+  GBP: { sym: '£', suffix: 'GBP', p5: '£4', p10: '£8', p15: '£12', p249: '£195', note: 'Settling natively in British Pounds (GBP) via UK BACS & Global Cards • Zero FX penalty' },
+  EUR: { sym: '€', suffix: 'EUR', p5: '€4.50', p10: '€9', p15: '€14', p249: '€230', note: 'Settling natively in Euros (EUR) via SEPA Direct & Cards • Zero FX penalty' },
+  CAD: { sym: '$', suffix: 'CAD', p5: '$7', p10: '$14', p15: '$20', p249: '$340', note: 'Settling natively in Canadian Dollars (CAD) via Interac & Cards • Zero FX penalty' }
+};
+
+function setCurrency(code) {
+  const d = CURRENCY_DATA[code] || CURRENCY_DATA.USD;
+  
+  // Update buttons
+  document.querySelectorAll('.curr-btn').forEach(btn => {
+    if (btn.textContent.includes(code)) {
+      btn.style.background = 'rgba(16, 185, 129, 0.2)';
+      btn.style.borderColor = '#10b981';
+      btn.style.color = '#34d399';
+    } else {
+      btn.style.background = 'rgba(255, 255, 255, 0.05)';
+      btn.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+      btn.style.color = '#cbd5e1';
+    }
+  });
+
+  // Update prices on cards
+  const el5 = document.getElementById('priceValMicro');
+  if (el5) el5.innerHTML = `${d.p5} <span style="font-size: 0.85rem; color: #94a3b8; font-weight: 500;">${d.suffix}</span>`;
+
+  const el10 = document.getElementById('priceValDev');
+  if (el10) el10.innerHTML = `${d.p10} <span style="font-size: 0.85rem; color: #94a3b8; font-weight: 500;">${d.suffix}</span>`;
+
+  const el15 = document.getElementById('priceValSwarm');
+  if (el15) el15.innerHTML = `${d.p15} <span style="font-size: 0.85rem; color: #94a3b8; font-weight: 500;">${d.suffix}</span>`;
+
+  const notice = document.getElementById('currencyNotice');
+  if (notice) notice.textContent = d.note;
+}
+</script>
+
 </body>
 </html>
