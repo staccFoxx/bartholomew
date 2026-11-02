@@ -73,7 +73,7 @@
       const workspaceId = 'ws_' + Math.random().toString(36).substring(2, 10);
       const authorityFingerprint = 'ed25519:sha256:' + Array.from(crypto.getRandomValues(new Uint8Array(16))).map(b => b.toString(16).padStart(2, '0')).join('');
 
-      const policyYaml = `# Bartholomew Protocol (BTP v6.6.7) Declarative Policy
+      const policyYaml = `# Bartholomew Protocol (BTP v7.0.0) Declarative Policy
 version: "6.6.7"
 workspace_id: "${workspaceId}"
 organization: "${org}"
@@ -2164,7 +2164,7 @@ compliance:
       const workspaceId = 'ws_' + Math.random().toString(36).substring(2, 10);
       const authorityFingerprint = 'ed25519:sha256:' + Array.from(crypto.getRandomValues(new Uint8Array(16))).map(b => b.toString(16).padStart(2, '0')).join('');
 
-      const policyYaml = `# Bartholomew Protocol (BTP v6.6.7) Declarative Policy
+      const policyYaml = `# Bartholomew Protocol (BTP v7.0.0) Declarative Policy
 version: "6.6.7"
 workspace_id: "${workspaceId}"
 organization: "${org}"

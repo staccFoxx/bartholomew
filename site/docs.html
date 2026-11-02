@@ -7,7 +7,7 @@
      crossorigin="anonymous"></script>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <title>Developer Documentation — Bartholomew Agentic Runtime Protection (BTP v6.6.7)</title>
+  <title>Developer Documentation — Bartholomew Agentic Runtime Protection (BTP v7.0.0)</title>
   <meta name="description" content="Technical documentation and developer integration guide for Bartholomew: microsecond-latency AST invariant gating, universal 1-line agent wrappers, and eBPF kernel process sandboxing." />
   <link rel="icon" type="image/png" href="/logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -564,7 +564,7 @@
     <a href="/" class="nav-brand">
       <img src="/logo.png" alt="Bartholomew Sentinel Logo" />
       <span>Bartholomew</span>
-      <span class="nav-tag">BTP v6.6.7</span>
+      <span class="nav-tag">BTP v7.0.0</span>
     </a>
     <ul class="nav-links">
       <li><a href="/docs.html" class="active">Docs</a></li>
@@ -794,7 +794,7 @@
             </thead>
             <tbody>
               <tr style="border-bottom:1px solid var(--border-subtle); background:rgba(16,185,129,0.04);">
-                <td style="padding:8px 12px; font-weight:700; color:var(--emerald);">Bartholomew (BTP v6.2)</td>
+                <td style="padding:8px 12px; font-weight:700; color:var(--emerald);">Bartholomew (BTP v7.0.0)</td>
                 <td style="padding:8px 12px; font-family:'JetBrains Mono',monospace; color:var(--emerald);">&lt; 20 &micro;s (compiled)</td>
                 <td style="padding:8px 12px;">Deterministic AST &amp; eBPF Invariants</td>
                 <td style="padding:8px 12px;"><span style="color:var(--emerald); font-weight:700;">&check; 100% Deterministic (Zero Drift)</span></td>
@@ -1190,7 +1190,7 @@ docker run -d \
   --cap-drop=ALL \
   --read-only \
   -p 8080:8080 \
-  bartholomew/guard:v6.2.1
+  bartholomew/guard:v7.0.0
 
 # Execute an untrusted agent payload inside the hermetic container:
 docker exec btp-sandbox btp-guard run -- "python agent_script.py"</code></pre>
@@ -1215,8 +1215,8 @@ docker exec btp-sandbox btp-guard run -- "python agent_script.py"</code></pre>
 code --install-extension Bartholomew.bartholomew-guard-vscode
 code --install-extension Bartholomew.bartholomew-keystone</pre>
             <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-              <a href="/releases/bartholomew-guard-vscode-6.8.0.vsix" download style="background:#38bdf8; color:#030712; font-family:var(--font-mono); font-size:0.75rem; font-weight:800; padding:7px 14px; border-radius:6px; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
-                Download VSIX Package (v6.8.0) &darr;
+              <a href="/releases/bartholomew-guard-vscode-7.0.0.vsix" download style="background:#38bdf8; color:#030712; font-family:var(--font-mono); font-size:0.75rem; font-weight:800; padding:7px 14px; border-radius:6px; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                Download VSIX Package (v7.0.0) &darr;
               </a>
               <span style="font-size:0.75rem; color:var(--text-muted); font-family:var(--font-mono);">Works offline in air-gapped clusters &amp; enterprise CVMs</span>
             </div>
@@ -1380,7 +1380,7 @@ btp-guard export-compliance --out soc2_dossier.json</pre>
           <pre><code><span style="color:#64748b;"># docker-compose.sidecar.yml</span>
 <span style="color:var(--gold);">services</span>:
   <span style="color:var(--emerald);">bartholomew-sidecar</span>:
-    <span style="color:#94a3b8;">image</span>: ghcr.io/staccfoxx/bartholomew-sidecar:v6.6.7
+    <span style="color:#94a3b8;">image</span>: ghcr.io/staccfoxx/bartholomew-sidecar:v7.0.0
     <span style="color:#94a3b8;">ports</span>:
       - <span style="color:#38bdf8;">"9090:9090"</span>
     <span style="color:#94a3b8;">environment</span>:
@@ -1408,7 +1408,7 @@ btp-guard export-compliance --out soc2_dossier.json</pre>
     <span style="color:#94a3b8;">spec</span>:
       <span style="color:#94a3b8;">containers</span>:
         - <span style="color:var(--emerald);">name</span>: bartholomew-proxy
-          <span style="color:#94a3b8;">image</span>: ghcr.io/staccfoxx/bartholomew-sidecar:v6.6.7
+          <span style="color:#94a3b8;">image</span>: ghcr.io/staccfoxx/bartholomew-sidecar:v7.0.0
           <span style="color:#94a3b8;">ports</span>:
             - <span style="color:#94a3b8;">containerPort</span>: 9090
           <span style="color:#94a3b8;">resources</span>:
@@ -1453,7 +1453,7 @@ docker run -d \
   -e BTP_SOVEREIGN_MODE=true \
   -e BTP_MAX_LATENCY_US=35 \
   -v $(pwd)/btp-config:/etc/btp \
-  ghcr.io/staccfoxx/bartholomew:v6.6.7
+  ghcr.io/staccfoxx/bartholomew:v7.0.0
 
 <span style="color:#64748b;"># 2. Test local in-process health endpoint</span>
 curl -s http://127.0.0.1:8080/health | jq .
@@ -1477,12 +1477,12 @@ helm install bartholomew-guard bartholomew/agent-guard \
 
         <div id="tab-selfhost-airgap" class="tab-pane" data-group="selfhost">
           <pre><code><span style="color:#64748b;"># Step 1: Export signed container image to air-gapped removable media</span>
-docker pull ghcr.io/staccfoxx/bartholomew:v6.6.7
-docker save ghcr.io/staccfoxx/bartholomew:v6.6.7 -o bartholomew-v6.6.7.tar
+docker pull ghcr.io/staccfoxx/bartholomew:v7.0.0
+docker save ghcr.io/staccfoxx/bartholomew:v7.0.0 -o bartholomew-v7.0.0.tar
 
 <span style="color:#64748b;"># Step 2: Load and run in zero-egress offline SCIF environment</span>
-docker load -i bartholomew-v6.6.7.tar
-docker run -d --net=none -p 8080:8080 -v /etc/btp:/etc/btp bartholomew:v6.6.7 --airgapped</code></pre>
+docker load -i bartholomew-v7.0.0.tar
+docker run -d --net=none -p 8080:8080 -v /etc/btp:/etc/btp bartholomew:v7.0.0 --airgapped</code></pre>
         </div>
       </section>
 

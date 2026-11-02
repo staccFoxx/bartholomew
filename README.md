@@ -9,10 +9,10 @@
 
 <!-- BTP Status Badges -->
 [![Downloads](https://img.shields.io/badge/Downloads-49%2C136%2B%20Verified-34d399?style=flat-square)](https://bartholomew.info)
-[![Open-VSX](https://img.shields.io/badge/Open--VSX-v6.6.7%20Suite-00e5a3?style=flat-square)](https://open-vsx.org/extension/Bartholomew/bartholomew-guard-vscode)
+[![Open-VSX](https://img.shields.io/badge/Open--VSX-v7.0.0%20Suite-00e5a3?style=flat-square)](https://open-vsx.org/extension/Bartholomew/bartholomew-guard-vscode)
 [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Space%20Playground-yellow?style=flat-square)](https://huggingface.co/spaces)
 [![PyPI](https://img.shields.io/pypi/v/btp-guard?logo=pypi&logoColor=white)](https://pypi.org/project/btp-guard/)
-[![npm](https://img.shields.io/badge/npm-btp--guard%20v6.6.7-cb3837?logo=npm&logoColor=white)](https://www.npmjs.com/package/btp-guard)
+[![npm](https://img.shields.io/badge/npm-btp--guard%20v7.0.0-cb3837?logo=npm&logoColor=white)](https://www.npmjs.com/package/btp-guard)
 [![Security Audit](https://img.shields.io/badge/Security%20Audit-100%2F100%20A%2B-brightgreen?style=flat-square)](https://github.com/staccFoxx/bartholomew/blob/main/docs/mcp_tool_registry_v6.json)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](https://github.com/staccFoxx/bartholomew/blob/main/LICENSE)
 [![Enterprise Advisory](https://img.shields.io/badge/Enterprise-Audit%20%26%20Pilots-10b981)](https://bartholomew.info/enterprise)

@@ -1,7 +1,7 @@
 # Bartholomew Agentic Runtime Protection (GitHub Action)
 
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-blue.svg)](LICENSE)
-[![PyPI](https://img.shields.io/badge/PyPI-v6.4.4-blue.svg)](https://pypi.org/project/btp-guard/)
+[![PyPI](https://img.shields.io/badge/PyPI-v7.0.0-blue.svg)](https://pypi.org/project/btp-guard/)
 [![CI/CD Status](https://img.shields.io/badge/CI%2FCD-Active-10b981.svg)](https://github.com/ivegotahunnitonit/bartholomew)
 
 Deterministic AST invariant verification, credential leak prevention, and cryptographic Ed25519 execution receipts for autonomous AI agent codebases before pull requests merge into production.

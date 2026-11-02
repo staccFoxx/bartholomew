@@ -3,7 +3,7 @@
   "registry_name": "Bartholomew Universal MCP Security Catalog",
   "version": "6.5.6",
   "total_tools": 40,
-  "protocol": "BTP v6.5.6 (Zero-Trust Agentic Runtime Protection)",
+  "protocol": "BTP v7.0.0 (Zero-Trust Agentic Runtime Protection)",
   "latency_guarantee": "< 35 \u00b5s In-Process AST Evaluation",
   "supported_schemas": [
     "Model Context Protocol (MCP) v1.0",

@@ -2,7 +2,7 @@
   <img src="https://acn-26670.web.app/assets/guard_logo.png" width="96" height="96" alt="Bartholomew Guard Logo" />
 </p>
 
-# **Bartholomew Guard (v6.6.7)**
+# **Bartholomew Guard (v7.0.0)**
 ### **In-Process AI Agent Firewall, Guardrails & Execution Security for Cursor, Claude Code, Windsurf & Copilot**
 
 [![Open-VSX Version](https://img.shields.io/open-vsx/v/Bartholomew/bartholomew-guard-vscode?style=for-the-badge&color=emerald)](https://open-vsx.org/extension/Bartholomew/bartholomew-guard-vscode)

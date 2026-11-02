@@ -1,4 +1,4 @@
-# **mcp-proxy-guard (v6.6.2)**
+# **mcp-proxy-guard (v7.0.0)**
 ### **Microsecond-Latency (<20µs) In-Process Security Proxy & Credential Scrubber for Model Context Protocol (MCP)**
 
 [![npm version](https://img.shields.io/npm/v/mcp-proxy-guard.svg?style=for-the-badge&color=emerald)](https://www.npmjs.com/package/mcp-proxy-guard)

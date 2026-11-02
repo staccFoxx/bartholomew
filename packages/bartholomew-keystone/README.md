@@ -3,7 +3,7 @@
 </p>
 
 # Bartholomew Keystone &bull; Capability Passkeys & Spend Governor
-### BTP v6.6.2 Zero-Trust Capability Tokens & Real-Time Micro-Spend Governor for Autonomous AI Agents
+### BTP v7.0.0 Zero-Trust Capability Tokens & Real-Time Micro-Spend Governor for Autonomous AI Agents
 
 [![Deterministic Gate](https://img.shields.io/badge/Deterministic%20Gate-%3C15%CE%BCs-fde047?style=flat-square)](https://github.com/ivegotahunnitonit/bartholomew)
 [![Passkey Security](https://img.shields.io/badge/Passkeys-Ed25519%20Signed-34d399?style=flat-square)](https://github.com/ivegotahunnitonit/bartholomew)

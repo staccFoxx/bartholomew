@@ -1,7 +1,7 @@
 # btp-guard
 
 > **Sub-Millisecond In-Process Execution Firewall & Deterministic AST Safety Gate for Autonomous Agents**  
-> *Bartholomew Trust Protocol (BTP v6.5.9) — Node.js & TypeScript (Zero External Dependencies)*
+> *Bartholomew Trust Protocol (BTP v7.0.0) — Node.js & TypeScript (Zero External Dependencies)*
 
 [![npm version](https://img.shields.io/npm/v/btp-guard?style=flat-square&color=38bdf8)](https://www.npmjs.com/package/btp-guard)
 [![License: Apache-2.0](https://img.shields.io/badge/License-Apache--2.0-emerald.svg?style=flat-square)](https://opensource.org/licenses/Apache-2.0)

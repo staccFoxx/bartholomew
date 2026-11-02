@@ -1,5 +1,5 @@
 """
-Bartholomew Trust Protocol (BTP v5.4.23) - Agentic Runtime Protection (ARP)
+Bartholomew Trust Protocol (BTP v7.0.0) - Agentic Runtime Protection (ARP)
 =============================================================================
 High-performance execution guardrails, AST validation, and cryptographic audit receipts
 for autonomous AI agents (LangChain, CrewAI, AutoGen, Claude Code, Cursor, Windsurf).
@@ -93,7 +93,7 @@ BondedAgentWarrantyFund = WarrantyFundManager
 MCPClearinghouse = MCPClearinghouseGateway
 RedTeamHarness = RedTeamScanner
 
-__version__ = "6.6.3"
+__version__ = "7.0.0"
 
 __all__ = [
     "evaluate_and_remediate",

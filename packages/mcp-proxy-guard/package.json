@@ -1,6 +1,6 @@
 {
   "name": "mcp-proxy-guard",
-  "version": "6.8.0",
+  "version": "7.0.0",
   "description": "Microsecond-latency (<20\u00b5s) deterministic security proxy, in-flight credential scrubber, and spend governor for Model Context Protocol (MCP) servers in Claude Desktop, Cursor, and Windsurf.",
   "main": "index.js",
   "types": "index.d.ts",
