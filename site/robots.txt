@@ -1,4 +1,4 @@
-# Bartholomew Trust Protocol (BTP v6.0.0) — Machine & Crawler Access Policy
+# Bartholomew Trust Protocol (BTP v7.0.0) - Machine & Crawler Access Policy
 # Open access for autonomous agents, research indexers, and LLM swarms.
 
 User-agent: *
@@ -9,6 +9,30 @@ Allow: /llms-full.txt
 Allow: /ai.txt
 Allow: /sitemap.xml
 Allow: /agent-manifest.json
+Allow: /privacy.html
+Allow: /terms.html
+Allow: /about.html
+Allow: /contact.html
+Allow: /promptsmith
+Allow: /insights/
+Allow: /docs.html
+
+# Google AdSense Crawler (Mandatory for Review & Monetization)
+User-agent: Mediapartners-Google
+Allow: /
+
+# Google Search & Extended Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GoogleOther
+Allow: /
+
+User-agent: Google-CloudVertexBot
+Allow: /
 
 # OpenAI Frontier Crawlers
 User-agent: GPTBot
@@ -35,19 +59,6 @@ User-agent: PerplexityBot
 Allow: /
 
 User-agent: Perplexity-Search
-Allow: /
-
-# Google Gemini, Vertex & Search
-User-agent: Google-Extended
-Allow: /
-
-User-agent: GoogleOther
-Allow: /
-
-User-agent: Google-CloudVertexBot
-Allow: /
-
-User-agent: Googlebot
 Allow: /
 
 # Meta LLaMA & External Agents

@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Technical Insights &amp; Engineering Research - Bartholomew Technologies</title>
+  <meta name="description" content="Original engineering articles, empirical frontier AI benchmarks, AST runtime security analyses, and cryptographic authorization architectures from Bartholomew Technologies.">
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <!-- Google AdSense -->
+  <meta name="google-adsense-account" content="ca-pub-8757306565068634">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8757306565068634" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --bg: #070b14;
+      --card-bg: rgba(13, 20, 34, 0.85);
+      --border: rgba(255, 255, 255, 0.1);
+      --border-hover: rgba(56, 189, 248, 0.4);
+      --fg: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --gold: #eab308;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font);
+      line-height: 1.7;
+      padding-bottom: 60px;
+    }
+    header {
+      background: rgba(7, 11, 20, 0.95);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+    }
+    .brand {
+      color: var(--fg);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand img { width: 32px; height: 32px; }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    nav a:hover, nav a.active { color: var(--accent); }
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .hero {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    h1 { font-size: 2.4rem; color: #fff; margin-bottom: 12px; }
+    .hero p { color: var(--muted); font-size: 1.1rem; max-width: 720px; margin: 0 auto; }
+    
+    .article-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .article-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px;
+      transition: all 0.2s ease;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    }
+    .article-card:hover {
+      border-color: var(--border-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(56, 189, 248, 0.15);
+    }
+    .tag-row {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .tag {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+    }
+    .tag-gold {
+      background: rgba(234, 179, 8, 0.12);
+      color: var(--gold);
+      border-color: rgba(234, 179, 8, 0.3);
+    }
+    .article-title {
+      font-size: 1.35rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 10px;
+      line-height: 1.4;
+    }
+    .article-desc {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+      margin-bottom: 14px;
+    }
+    .article-meta {
+      font-size: 0.8rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 60px;
+      padding: 30px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--muted); margin: 0 10px; text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="/" class="brand">
+      <img src="/assets/icon.png" alt="Bartholomew Logo">
+      <span>Bartholomew Technologies</span>
+    </a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/promptsmith">Prompt Studio</a>
+      <a href="/docs.html">Docs</a>
+      <a href="/insights/" class="active">Insights</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="hero">
+      <h1>Technical Insights &amp; Engineering Research</h1>
+      <p>
+        In-depth architectural whitepapers, empirical prompt benchmarks, AST security analyses, and cryptographic authorization standards from our research lab.
+      </p>
+    </div>
+
+    <div class="article-grid">
+      <!-- Article 1 -->
+      <a href="/insights/ai-prompt-optimization-benchmarks.html" class="article-card">
+        <div class="tag-row">
+          <span class="tag tag-gold">Benchmark Whitepaper</span>
+          <span class="tag">Prompt Engineering</span>
+          <span class="tag">LLM Architecture</span>
+        </div>
+        <div class="article-title">
+          Frontier Prompt Engineering: Multi-Model Benchmark Analysis Across Claude 3.5 Sonnet, OpenAI o1, GPT-4o, and Gemini 2.0
+        </div>
+        <div class="article-desc">
+          An empirical evaluation of prompt structuring methodologies. Demonstrates how eliminating conversational filler, enforcing explicit role invariants, and formatting constraints reduces token consumption by 32% while increasing reasoning pass rates across SWE-bench and HumanEval tasks.
+        </div>
+        <div class="article-meta">
+          <span>By Itsub Alemayehu</span> &bull;
+          <span>12 min read</span> &bull;
+          <span>Published November 2026</span>
+        </div>
+      </a>
+
+      <!-- Article 2 -->
+      <a href="/insights/zero-trust-agent-runtime-security.html" class="article-card">
+        <div class="tag-row">
+          <span class="tag">Systems Security</span>
+          <span class="tag">AST Analysis</span>
+          <span class="tag">Agent Sandboxing</span>
+        </div>
+        <div class="article-title">
+          Architectural Deep Dive: Sub-Microsecond AST Validation and Zero-Trust Kernel Invariants for AI Agent Swarms
+        </div>
+        <div class="article-desc">
+          How in-process Abstract Syntax Tree (AST) validation prevents prompt injection, destructive command synthesis, and file tampering in autonomous agent tools (Cursor, Claude Code, Windsurf) in under 18 microseconds with zero network round-trip overhead.
+        </div>
+        <div class="article-meta">
+          <span>By Systems Architecture Lab</span> &bull;
+          <span>10 min read</span> &bull;
+          <span>Published November 2026</span>
+        </div>
+      </a>
+
+      <!-- Article 3 -->
+      <a href="/insights/ed25519-capability-passkeys.html" class="article-card">
+        <div class="tag-row">
+          <span class="tag">Cryptography</span>
+          <span class="tag">Agent Authorization</span>
+          <span class="tag">API Governance</span>
+        </div>
+        <div class="article-title">
+          Machine-to-Machine Authorization: Cryptographic Ed25519 Capability Passkeys for Autonomous API Governors
+        </div>
+        <div class="article-desc">
+          A formal specification for cryptographic passkey clearance tokens. Details how detached Ed25519 digital signatures bind agent identities to strict operational budgets, permitted domain scopes, and deterministic revocation policies.
+        </div>
+        <div class="article-meta">
+          <span>By Protocol Security Team</span> &bull;
+          <span>9 min read</span> &bull;
+          <span>Published October 2026</span>
+        </div>
+      </a>
+
+      <!-- Article 4 -->
+      <a href="/insights/enterprise-owasp-llm-compliance.html" class="article-card">
+        <div class="tag-row">
+          <span class="tag">Enterprise Compliance</span>
+          <span class="tag">SOC 2 Type II</span>
+          <span class="tag">OWASP Top 10</span>
+        </div>
+        <div class="article-title">
+          A Practitioner's Guide to OWASP LLM-Top-10 and Continuous SOC 2 Compliance for Autonomous Enterprise Workflows
+        </div>
+        <div class="article-desc">
+          A practical engineering playbook for CISOs and developers deploying autonomous AI swarms. Explores automated audit log immutability, prompt injection mitigation, and continuous evidence export packs for SOC 2 Common Criteria compliance.
+        </div>
+        <div class="article-meta">
+          <span>By Compliance Engineering Group</span> &bull;
+          <span>11 min read</span> &bull;
+          <span>Published October 2026</span>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    <a href="/">Home</a> |
+    <a href="/promptsmith">Prompt Studio</a> |
+    <a href="/docs.html">Documentation</a> |
+    <a href="/insights/">Technical Insights</a> |
+    <a href="/about.html">About Us</a> |
+    <a href="/contact.html">Contact</a> |
+    <a href="/privacy.html">Privacy Policy</a> |
+    <a href="/terms.html">Terms of Service</a>
+    <p style="margin-top: 15px;">&copy; 2026 Bartholomew Technologies. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OWASP LLM-Top-10 &amp; SOC 2 Compliance for Agentic Workflows - Bartholomew Technologies</title>
+  <meta name="description" content="A practical engineering guide for CISOs and developers deploying autonomous AI agents: mitigating OWASP LLM vulnerabilities and automating continuous SOC 2 evidence collection.">
+  <link rel="icon" type="image/png" href="/assets/icon.png">
+  <!-- Google AdSense -->
+  <meta name="google-adsense-account" content="ca-pub-8757306565068634">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8757306565068634" crossorigin="anonymous"></script>
+  <style>
+    :root {
+      --bg: #070b14;
+      --card-bg: rgba(13, 20, 34, 0.85);
+      --border: rgba(255, 255, 255, 0.1);
+      --fg: #f1f5f9;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --gold: #eab308;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+      --code-font: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: var(--font);
+      line-height: 1.75;
+      padding-bottom: 60px;
+    }
+    header {
+      background: rgba(7, 11, 20, 0.95);
+      border-bottom: 1px solid var(--border);
+      padding: 16px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(10px);
+    }
+    .brand {
+      color: var(--fg);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 1.1rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .brand img { width: 32px; height: 32px; }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s;
+    }
+    nav a:hover, nav a.active { color: var(--accent); }
+    .container {
+      max-width: 860px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .article-header {
+      margin-bottom: 30px;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 24px;
+    }
+    .tag {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(56, 189, 248, 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      display: inline-block;
+      margin-bottom: 14px;
+    }
+    h1 { font-size: 2.3rem; line-height: 1.3; color: #fff; margin-bottom: 14px; }
+    .byline { color: var(--muted); font-size: 0.9rem; display: flex; gap: 16px; align-items: center; }
+    h2 { font-size: 1.5rem; color: #fff; margin: 40px 0 16px; border-bottom: 1px solid rgba(255,255,255,0.08); padding-bottom: 8px; }
+    h3 { font-size: 1.2rem; color: var(--accent); margin: 24px 0 12px; }
+    p, ul, ol { margin-bottom: 20px; color: #cbd5e1; }
+    ul, ol { padding-left: 24px; }
+    li { margin-bottom: 8px; }
+    pre {
+      background: #0d1422;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      overflow-x: auto;
+      font-family: var(--code-font);
+      font-size: 0.88rem;
+      line-height: 1.5;
+      margin: 20px 0;
+      color: #e2e8f0;
+    }
+    code {
+      font-family: var(--code-font);
+      background: rgba(255,255,255,0.08);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.88rem;
+      color: var(--accent);
+    }
+    pre code { background: none; padding: 0; color: inherit; }
+    footer {
+      border-top: 1px solid var(--border);
+      margin-top: 60px;
+      padding: 30px 20px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+    footer a { color: var(--muted); margin: 0 10px; text-decoration: none; }
+    footer a:hover { color: var(--accent); }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="/" class="brand">
+      <img src="/assets/icon.png" alt="Bartholomew Logo">
+      <span>Bartholomew Technologies</span>
+    </a>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/promptsmith">Prompt Studio</a>
+      <a href="/docs.html">Docs</a>
+      <a href="/insights/" class="active">Insights</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <article class="container">
+    <div class="article-header">
+      <span class="tag">Compliance &amp; Governance</span>
+      <h1>A Practitioner's Guide to OWASP LLM-Top-10 and Continuous SOC 2 Compliance for Autonomous Enterprise Workflows</h1>
+      <div class="byline">
+        <span>By Compliance Engineering Group</span> &bull;
+        <span>October 24, 2026</span> &bull;
+        <span>11 min read</span>
+      </div>
+    </div>
+
+    <p>
+      Enterprise security and compliance teams face a dual mandate: accelerate developer productivity through generative AI tools (such as Cursor, Windsurf, and Claude Code) while adhering to strict regulatory frameworks, including <strong>SOC 2 Type II</strong>, <strong>ISO/IEC 27001</strong>, and the <strong>OWASP Top 10 for Large Language Model Applications</strong>.
+    </p>
+    <p>
+      This playbook provides a practical implementation architecture demonstrating how in-process AST validation, cryptographically signed audit logs, and capability-scoped passkeys map directly to SOC 2 Trust Services Criteria (Security, Availability, Confidentiality) and address the most critical OWASP LLM risks.
+    </p>
+
+    <h2>1. Mapping OWASP LLM Vulnerabilities to Runtime Controls</h2>
+    <p>
+      The OWASP LLM Top 10 highlights vulnerabilities unique to generative models. Here is how deterministic runtime invariants solve the top vectors:
+    </p>
+
+    <h3>LLM01: Prompt Injection</h3>
+    <p>
+      <strong>Risk:</strong> An external user or malicious file injects instructions that cause an agent to ignore its primary directives and exfiltrate secrets or execute destructive shell commands.<br>
+      <strong>BTP Mitigation:</strong> Rather than relying on semantic LLM self-censorship, BTP enforces an external AST boundary. Even if a prompt jailbreak convinces the LLM to call <code>rm -rf /</code>, the IDE clearance engine identifies the destructive AST binary node and vetoes the execution before the OS kernel receives the syscall.
+    </p>
+
+    <h3>LLM02: Insecure Output Handling</h3>
+    <p>
+      <strong>Risk:</strong> Model output is passed directly to system shells, database query interfaces, or backend APIs without validation.<br>
+      <strong>BTP Mitigation:</strong> Parameterized execution gates. All generated shell commands are parsed into formal AST nodes and evaluated against an allowlist of deterministic binaries and argument flags.
+    </p>
+
+    <h3>LLM08: Excessive Agency</h3>
+    <p>
+      <strong>Risk:</strong> Granting an autonomous agent broad, unscoped permissions across entire cloud environments or workstations.<br>
+      <strong>BTP Mitigation:</strong> Cryptographic Capability Passkeys. Agents operate under least-privilege tokens signed via Ed25519 with explicit spend caps and directory confinement.
+    </p>
+
+    <h2>2. Continuous SOC 2 Evidence Collection</h2>
+    <p>
+      Traditional compliance audits require engineering teams to spend weeks taking manual screenshots of access permissions and terminal logs. Under the Bartholomew Trust Protocol, every tool-call decision generates an immutable cryptographic evidence entry:
+    </p>
+    <pre><code>{
+  "timestamp": "2026-11-02T16:20:14.892Z",
+  "event_type": "TOOL_EXECUTION_EVALUATION",
+  "agent_id": "agent_windsurf_01",
+  "verdict": "ALLOWED",
+  "ast_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "command": "npm test",
+  "passkey_id": "pk_live_0948b",
+  "signature": "3045022100e4..."
+}</code></pre>
+    <p>
+      These telemetry records are appended to an immutable append-only ledger that exports directly into standardized <code>SOC2_COMPLIANCE_EVIDENCE_PACK.json</code> reports for auditors.
+    </p>
+
+    <h2>3. The Enterprise Architecture Blueprint</h2>
+    <p>
+      A complete enterprise deployment combines three tiers:
+    </p>
+    <ul>
+      <li><strong>Client Tier (Developer IDEs):</strong> Bartholomew Guard &amp; Keystone extensions installed across developer workstations in VS Code, Windsurf, or Cursor. Evaluates all local commands in &lt;18 microseconds.</li>
+      <li><strong>Gateway Tier:</strong> Bartholomew Cloud Gateway Workers validating Ed25519 signatures and enforcing organization-wide budget quotas before requests route to LLM model providers.</li>
+      <li><strong>Audit &amp; Evidence Tier:</strong> Continuous SIEM streaming to Splunk, Datadog, or S3 with real-time anomaly detection and compliance reporting.</li>
+    </ul>
+
+    <h2>4. Conclusion</h2>
+    <p>
+      AI security cannot be an afterthought retrofitted through vague policy documents. By implementing provable, machine-verifiable runtime guardrails and automated compliance evidence generation, engineering organizations can unlock the full power of agentic development with complete confidence.
+    </p>
+  </article>
+
+  <footer>
+    <a href="/">Home</a> |
+    <a href="/promptsmith">Prompt Studio</a> |
+    <a href="/docs.html">Documentation</a> |
+    <a href="/insights/">Technical Insights</a> |
+    <a href="/about.html">About Us</a> |
+    <a href="/contact.html">Contact</a> |
+    <a href="/privacy.html">Privacy Policy</a> |
+    <a href="/terms.html">Terms of Service</a>
+    <p style="margin-top: 15px;">&copy; 2026 Bartholomew Technologies. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
