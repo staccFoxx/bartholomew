@@ -439,17 +439,26 @@
       <p style="font-size:0.82rem; color:var(--text-muted);">Keep this passkey secret. It bypasses all rate limits, unlocks Ed25519 Merkle receipts, and enables multi-agent swarm coordination.</p>
 
       <!-- PromptSmith 1-Click Activation Block -->
-      <div id="promptsmith-activation-box" style="display:none; margin-top:20px; padding:20px; background:rgba(56, 189, 248, 0.08); border:1px solid rgba(56, 189, 248, 0.35); border-radius:12px; text-align:center;">
-        <div style="display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:10px;">
-          <h3 style="margin:0; color:#38bdf8; font-size:1.15rem;">🎩 PromptSmith AI &mdash; Instant 1-Click IDE Activation</h3>
+      <div id="promptsmith-activation-box" style="display:none; margin-top:20px; padding:24px; background:rgba(56, 189, 248, 0.08); border:1px solid rgba(56, 189, 248, 0.35); border-radius:14px; text-align:center;">
+        <div style="display:flex; align-items:center; justify-content:center; gap:10px; margin-bottom:8px;">
+          <h3 style="margin:0; color:#38bdf8; font-size:1.2rem; font-weight:800;">PromptSmith Pro Passkey Activated</h3>
         </div>
-        <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:16px;">Your $0.99 Lifetime Pro Passkey is ready. Click below to activate automatically in your active editor without copy-pasting:</p>
+        <p style="color:var(--text-muted); font-size:0.88rem; margin-bottom:16px;">Your unmetered Pro license is provisioned. Click below for instant 1-click activation in your active IDE:</p>
+        
+        <div style="background:rgba(0,0,0,0.5); border:1px solid rgba(56,189,248,0.3); border-radius:8px; padding:12px; margin-bottom:16px; display:inline-flex; align-items:center; gap:12px;">
+          <span style="font-family:var(--font-mono); font-size:1.05rem; font-weight:800; color:#38bdf8;" id="psmith-passkey-val">PSMITH-PRO-PROVISIONING</span>
+          <button onclick="copyPasskey()" style="background:rgba(56,189,248,0.2); border:1px solid rgba(56,189,248,0.4); color:#fff; padding:6px 14px; border-radius:6px; cursor:pointer; font-size:0.8rem; font-weight:700;">Copy Key</button>
+        </div>
+
         <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-          <a id="btn-activate-vscode" href="#" style="background:#10b981; color:#042f1a; font-weight:800; padding:12px 22px; border-radius:8px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 12px rgba(16,185,129,0.3);">
-            ⚡ 1-Click Activate in VS Code
+          <a id="btn-activate-cursor" href="#" style="background:#38bdf8; color:#070b14; font-weight:800; padding:12px 20px; border-radius:8px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 14px rgba(56,189,248,0.35);">
+            Activate in Cursor
           </a>
-          <a id="btn-activate-cursor" href="#" style="background:#38bdf8; color:#070b14; font-weight:800; padding:12px 22px; border-radius:8px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 12px rgba(56,189,248,0.3);">
-            ⚡ 1-Click Activate in Cursor
+          <a id="btn-activate-windsurf" href="#" style="background:#0ea5e9; color:#fff; font-weight:800; padding:12px 20px; border-radius:8px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 14px rgba(14,165,233,0.35);">
+            Activate in Windsurf
+          </a>
+          <a id="btn-activate-vscode" href="#" style="background:#10b981; color:#042f1a; font-weight:800; padding:12px 20px; border-radius:8px; text-decoration:none; display:inline-flex; align-items:center; gap:8px; box-shadow:0 4px 14px rgba(16,185,129,0.35);">
+            Activate in VS Code
           </a>
         </div>
       </div>
@@ -584,14 +593,23 @@ print("Allowed:", verdict["allowed"])</div>
       window.activePasskey = passkey;
 
       if (urlParams.get('product') === 'promptsmith' || (typeof data !== 'undefined' && data && data.product === 'promptsmith')) {
+        if (!passkey.startsWith('PSMITH-PRO-')) {
+          passkey = 'PSMITH-PRO-' + passkey.replace(/[^a-zA-Z0-9]/g, '').substring(0, 12).toUpperCase();
+        }
+        document.getElementById('passkey-display').textContent = passkey;
+        window.activePasskey = passkey;
+        const psVal = document.getElementById('psmith-passkey-val');
+        if (psVal) psVal.textContent = passkey;
         const pBox = document.getElementById('promptsmith-activation-box');
         if (pBox) pBox.style.display = 'block';
         const vBtn = document.getElementById('btn-activate-vscode');
         if (vBtn) vBtn.href = `vscode://bartholomew.promptsmith-ai/activate?key=${encodeURIComponent(passkey)}`;
         const cBtn = document.getElementById('btn-activate-cursor');
         if (cBtn) cBtn.href = `cursor://bartholomew.promptsmith-ai/activate?key=${encodeURIComponent(passkey)}`;
+        const wBtn = document.getElementById('btn-activate-windsurf');
+        if (wBtn) wBtn.href = `windsurf://bartholomew.promptsmith-ai/activate?key=${encodeURIComponent(passkey)}`;
         const tBadge = document.getElementById('tier-badge');
-        if (tBadge) tBadge.textContent = 'PROMPTSMITH • LIFETIME PRO';
+        if (tBadge) tBadge.textContent = 'PROMPTSMITH • PRO PASSKEY';
       }
     }
 

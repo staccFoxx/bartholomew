@@ -57,6 +57,10 @@
         "destination": "/checkout/promptsmith.html"
       },
       {
+        "source": "/tools/:tool",
+        "destination": "/tools/:tool.html"
+      },
+      {
         "source": "/preview/**",
         "destination": "/preview/index.html"
       }

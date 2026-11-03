@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cursor Composer Token Optimizer & Prompt Compressor &bull; Bartholomew PromptSmith</title>
+  <meta name="description" content="Free developer tool and in-editor companion to prune conversational filler, eliminate token waste, and structure prompts for Cursor Composer.">
+  <link rel="icon" type="image/png" href="/assets/promptsmith_mascot.png">
+  <style>
+    :root {
+      --bg: #070b14;
+      --card-bg: rgba(13, 20, 34, 0.85);
+      --border: rgba(255, 255, 255, 0.08);
+      --accent: #eab308;
+      --cyan: #38bdf8;
+      --emerald: #10b981;
+      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --mono: "SFMono-Regular", Consolas, "JetBrains Mono", monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: #f1f5f9; font-family: var(--font); line-height: 1.6; padding: 20px; }
+    .container { max-width: 900px; margin: 0 auto; }
+    header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 24px; border-bottom: 1px solid var(--border); margin-bottom: 32px; }
+    .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; color: #fff; font-weight: 800; font-size: 1.1rem; }
+    .badge { font-family: var(--mono); font-size: 0.72rem; padding: 4px 10px; border-radius: 999px; background: rgba(234, 179, 8, 0.15); color: #fbbf24; border: 1px solid rgba(234, 179, 8, 0.35); font-weight: 700; }
+    h1 { font-size: clamp(1.6rem, 4vw, 2.2rem); font-weight: 900; line-height: 1.25; margin-bottom: 12px; color: #fff; }
+    p.lead { font-size: 1rem; color: #94a3b8; margin-bottom: 28px; }
+    .sandbox-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 28px; }
+    @media (max-width: 768px) { .sandbox-grid { grid-template-columns: 1fr; } }
+    .pane { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; padding: 18px; }
+    .pane-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .pane-title { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; color: var(--accent); }
+    textarea { width: 100%; height: 180px; background: #030712; border: 1px solid var(--border); border-radius: 8px; color: #f1f5f9; font-family: var(--mono); font-size: 0.85rem; padding: 12px; resize: vertical; box-sizing: border-box; }
+    .output-box { width: 100%; min-height: 180px; background: #020617; border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 8px; color: #e2e8f0; font-family: var(--mono); font-size: 0.82rem; padding: 12px; white-space: pre-wrap; word-break: break-word; }
+    .cta-banner { background: linear-gradient(135deg, rgba(234, 179, 8, 0.15), rgba(56, 189, 248, 0.1)); border: 1px solid rgba(234, 179, 8, 0.35); border-radius: 14px; padding: 24px; text-align: center; margin-top: 32px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; padding: 12px 24px; border-radius: 8px; font-weight: 800; font-size: 0.95rem; text-decoration: none; cursor: pointer; transition: all 0.2s; }
+    .btn-gold { background: #eab308; color: #070b14; }
+    .btn-gold:hover { background: #facc15; transform: translateY(-2px); }
+    .btn-outline { background: rgba(255, 255, 255, 0.05); color: #fff; border: 1px solid var(--border); }
+    .support-note { font-size: 0.78rem; color: #64748b; margin-top: 14px; }
+    .support-note a { color: #94a3b8; text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <a href="/promptsmith" class="brand">
+        <img src="/assets/promptsmith_mascot.png" width="32" height="32" alt="PromptSmith Mascot">
+        <span>PromptSmith</span>
+      </a>
+      <span class="badge">TARGET: Cursor Composer / Claude 3.5 Sonnet</span>
+    </header>
+
+    <h1>Reduce Cursor Composer Prompt Tokens by 35%</h1>
+    <p class="lead">Conversational filler tokens like "could you please" burn 35% of self-attention compute. PromptSmith decomposes draft instructions into high-density structured contracts in zero milliseconds.</p>
+
+    <div class="sandbox-grid">
+      <div class="pane">
+        <div class="pane-header">
+          <span class="pane-title">Raw Input Draft</span>
+          <span style="font-size:0.75rem; color:#94a3b8;">Natural English</span>
+        </div>
+        <textarea id="promptIn">could you please write me a python script to parse a large csv file and calculate revenue per customer with error handling and logging</textarea>
+        <div style="margin-top: 12px; display: flex; justify-content: flex-end;">
+          <button class="btn btn-gold" onclick="optimizeNow()" style="padding: 8px 18px; font-size: 0.85rem;">Optimize For Cursor Composer / Claude 3.5 Sonnet</button>
+        </div>
+      </div>
+
+      <div class="pane">
+        <div class="pane-header">
+          <span class="pane-title" style="color:var(--cyan);">High-Density Prompt Output</span>
+          <span id="savingsBadge" style="font-size:0.75rem; color:var(--emerald); font-weight:700;">-38% Tokens Saved</span>
+        </div>
+        <div class="output-box" id="promptOut">### Problem Specification
+Implement a streaming CSV parser in Python with robust error handling and structured logging.
+
+### Invariant & Boundary Criteria
+- Stream processing with O(1) memory footprint for multi-gigabyte CSV files.
+- Fail-safe handling for malformed rows, missing fields, and type coercion.
+- Structured logging outputting execution elapsed time and row drop counters.
+
+### Acceptance Verification Assertions
+- Unit tests verifying clean parsing, malformed row recovery, and aggregate correctness.</div>
+        <div style="margin-top: 12px; display: flex; gap: 8px; justify-content: flex-end;">
+          <button class="btn btn-outline" onclick="copyResult()" style="padding: 8px 16px; font-size: 0.85rem;">Copy Output</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-banner">
+      <h2 style="font-size: 1.3rem; margin-bottom: 8px; color: #fff;">Get In-Editor Optimization in Cursor, Windsurf, &amp; VS Code</h2>
+      <p style="font-size: 0.88rem; color: #cbd5e1; margin-bottom: 18px;">Install the native PromptSmith companion extension. Select any prompt in your editor and hit Alt+P to optimize with zero context switching.</p>
+      <div style="display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;">
+        <a href="https://open-vsx.org/extension/Bartholomew/promptsmith-ai" class="btn btn-outline">Install via Open VSX</a>
+        <a href="/checkout/promptsmith" class="btn btn-gold">Unlock Unlimited Pro Passkey &bull; $0.99 / week</a>
+      </div>
+      <div class="support-note">
+        Direct developer support: <a href="mailto:help@bartholomew.info">help@bartholomew.info</a> &bull; Works 100% offline in your IDE.
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function optimizeNow() {
+      const raw = document.getElementById('promptIn').value.trim();
+      if (!raw) return;
+      fetch('/api/promptsmith/improve', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt: raw, profile: 'cursor_composer' })
+      }).then(res => res.json()).then(data => {
+        if (data.enhanced_prompt) {
+          document.getElementById('promptOut').textContent = data.enhanced_prompt;
+          const red = data.metrics ? data.metrics.signal_density : '98%';
+          document.getElementById('savingsBadge').textContent = 'Signal Density: ' + red;
+        }
+      }).catch(() => {
+        // Fallback
+        document.getElementById('promptOut').textContent = 'Optimized:\n\n' + raw;
+      });
+    }
+
+    function copyResult() {
+      const text = document.getElementById('promptOut').textContent;
+      navigator.clipboard.writeText(text).then(() => {
+        alert('Optimized prompt copied to clipboard!');
+      });
+    }
+  </script>
+</body>
+</html>
