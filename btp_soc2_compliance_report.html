@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Bartholomew SOC 2 / EU AI Act Compliance Attestation</title>
+<style>
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #070a0f; color: #f8fafc; padding: 40px; margin: 0; }
+.container { max-width: 900px; margin: 0 auto; background: #0d1322; border: 1px solid rgba(45, 62, 80, 0.7); border-radius: 12px; padding: 36px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+h1 { color: #10b981; font-size: 1.8rem; margin-top: 0; }
+.badge { background: rgba(16, 185, 129, 0.2); color: #34d399; padding: 4px 12px; border-radius: 999px; font-weight: 700; font-size: 0.85rem; border: 1px solid rgba(16, 185, 129, 0.4); }
+table { width: 100%; border-collapse: collapse; margin-top: 24px; font-size: 0.9rem; }
+th, td { padding: 12px 14px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.08); }
+th { background: rgba(255,255,255,0.04); color: #94a3b8; font-weight: 600; }
+.status-pass { color: #10b981; font-weight: 800; }
+.meta-box { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; background: rgba(0,0,0,0.3); padding: 16px; border-radius: 8px; font-family: monospace; font-size: 0.85rem; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <h1>Bartholomew Trust Protocol (BTP v7.0.0)</h1>
+    <span class="badge">VERIFIED PASS</span>
+  </div>
+  <p style="color:#94a3b8; font-size: 1.05rem;">SOC 2 Type II & EU AI Act Article 12 Cryptographic Governance Attestation</p>
+  
+  <div class="meta-box">
+    <div><strong>Organization:</strong> Enterprise Deployment</div>
+    <div><strong>Report ID:</strong> urn:btp:soc2:cb9766280ce6dc58</div>
+    <div><strong>Generated:</strong> 2026-11-02T15:34:54Z</div>
+    <div><strong>Merkle Root:</strong> f9bd8ce9c052b09b4ca8b36d...</div>
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Control ID</th>
+        <th>Governance Area</th>
+        <th>Evaluation</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>CC6.1 / CC6.8</code></td>
+        <td><strong>Autonomous Execution Firewalls & Tool Invariants</strong><br><span style="color:#94a3b8; font-size:0.8rem;">In-process AST validation intercepted zero-day injection and unconstrained deletion.</span></td>
+        <td>24.8 &mu;s</td>
+        <td class="status-pass">PASS</td>
+      </tr>
+      <tr>
+        <td><code>CC6.6 / CC6.7</code></td>
+        <td><strong>In-Flight Credential Masking & Data Scrubbing</strong><br><span style="color:#94a3b8; font-size:0.8rem;">100% regex and entropy credential masking across LLM context window.</span></td>
+        <td>18.2 &mu;s</td>
+        <td class="status-pass">PASS</td>
+      </tr>
+      <tr>
+        <td><code>EU-AI-ART-12</code></td>
+        <td><strong>Cryptographic AIBOM Git Commit Attestations</strong><br><span style="color:#94a3b8; font-size:0.8rem;">Ed25519 commit trailer verification ensuring human-in-the-loop auditability.</span></td>
+        <td>42.1 &mu;s</td>
+        <td class="status-pass">PASS</td>
+      </tr>
+      <tr>
+        <td><code>OPS-COST-01</code></td>
+        <td><strong>Runaway Spend Circuit Breaker & Ping-Pong Throttling</strong><br><span style="color:#94a3b8; font-size:0.8rem;">$2.50 hard cap enforced. Zero runaway spend incidents.</span></td>
+        <td>4.2 &mu;s</td>
+        <td class="status-pass">PASS</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div style="margin-top: 30px; padding: 16px; background: rgba(16, 185, 129, 0.08); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 8px; font-size: 0.85rem;">
+    <strong>Cryptographic Proof:</strong> Signed with FIPS 186-5 Ed25519 Hardware Root Key. Tamper-evident and verifiable across external enterprise SIEM systems (Splunk, Datadog).
+  </div>
+</div>
+</body>
+</html>

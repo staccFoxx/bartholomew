@@ -529,7 +529,7 @@ rules:
     }
 
     // 6. Update status bar & refresh webview
-    statusBarItem.text = `$(shield-check) Bartholomew: ARMED`;
+    statusBarItem.text = `$(shield-check)`;
     statusBarItem.color = '#34d399';
     statusBarItem.tooltip = `Bartholomew Guard (v6.6.6) — Workspace Linked & Armed (Fail-Closed AST Invariants + Keystone Passkey)`;
     proofProvider.refresh();
@@ -572,7 +572,7 @@ rules:
       }, null, 2), 'utf-8');
     } catch {}
 
-    statusBarItem.text = `$(shield-slash) Bartholomew: DISARMED`;
+    statusBarItem.text = `$(shield-slash)`;
     statusBarItem.color = '#f43f5e';
     statusBarItem.tooltip = `Bartholomew Guard (v6.6.6) — Workspace DISARMED. Deterministic AST invariants are in temporary bypass mode. Click to Re-Arm.`;
     proofProvider.refresh();
@@ -723,7 +723,7 @@ rules:
   function refreshStatusBar() {
     const rootPath = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
     if (!rootPath) {
-      statusBarItem.text = `$(shield) Bartholomew: Standby`;
+      statusBarItem.text = `$(shield)`;
       statusBarItem.color = '#94a3b8';
       statusBarItem.tooltip = 'Bartholomew Guard — Open a workspace folder to link & arm.';
       return;
@@ -731,7 +731,7 @@ rules:
     const btpDir = path.join(rootPath, '.btp');
     const isDisarmed = fs.existsSync(path.join(btpDir, '.disarmed'));
     if (isDisarmed) {
-      statusBarItem.text = `$(shield-slash) Bartholomew: DISARMED`;
+      statusBarItem.text = `$(shield-slash)`;
       statusBarItem.color = '#f43f5e';
       statusBarItem.tooltip = `Bartholomew Guard (v6.6.6) — Workspace DISARMED. Click for Security Menu to Re-Arm.`;
       return;
@@ -739,15 +739,15 @@ rules:
     const hasPolicy = fs.existsSync(path.join(btpDir, 'policy.yaml')) || fs.existsSync(path.join(rootPath, 'policy.yaml'));
     const hasPasskey = Boolean(getActiveKeystonePasskey());
     if (hasPolicy && hasPasskey) {
-      statusBarItem.text = `$(shield-check) Bartholomew: ARMED`;
+      statusBarItem.text = `$(shield-check)`;
       statusBarItem.color = '#34d399';
       statusBarItem.tooltip = `Bartholomew Guard (v6.6.6) — ARMED (Fail-Closed AST Invariants + Keystone Passkey)`;
     } else if (hasPolicy || hasPasskey) {
-      statusBarItem.text = `$(shield) Bartholomew: PARTIAL`;
+      statusBarItem.text = `$(shield)`;
       statusBarItem.color = '#fbbf24';
       statusBarItem.tooltip = `Bartholomew Guard (v6.6.6) — Partially Armed. Click to fully Link & Arm.`;
     } else {
-      statusBarItem.text = `$(shield) Bartholomew: Standby`;
+      statusBarItem.text = `$(shield)`;
       statusBarItem.color = '#94a3b8';
       statusBarItem.tooltip = `Bartholomew Guard (v6.6.6) — Workspace Not Armed. Click to Link & Arm.`;
     }
@@ -871,7 +871,7 @@ context.subscriptions.push(
   const pollDaemon = () => {
     const rootPath = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath;
     if (!rootPath) {
-      statusBarItem.text = `$(shield) Bartholomew: Standby`;
+      statusBarItem.text = `$(shield)`;
       statusBarItem.color = "#94a3b8";
       statusBarItem.tooltip = "Bartholomew Guard (v6.6.6) -- Open workspace to Link & Arm.";
       return;
@@ -880,7 +880,7 @@ context.subscriptions.push(
     const btpDir = path.join(rootPath, ".btp");
     const isDisarmed = fs.existsSync(path.join(btpDir, ".disarmed"));
     if (isDisarmed) {
-      statusBarItem.text = `$(shield-slash) Bartholomew: DISARMED`;
+      statusBarItem.text = `$(shield-slash)`;
       statusBarItem.color = "#f43f5e";
       statusBarItem.tooltip = "Bartholomew Guard (v6.6.6) -- Workspace DISARMED. Click for Security Menu to Re-Arm.";
       return;
@@ -900,11 +900,11 @@ context.subscriptions.push(
               const blocked = data.total_blocked || 0;
               const avgLat = data.average_latency_us || 24.8;
               if (blocked > 0) {
-                statusBarItem.text = `$(shield) Bartholomew: ${blocked} BLOCKED | $(key) ${passkeyLabel}`;
+                statusBarItem.text = `$(shield)`;
                 statusBarItem.color = "#ef4444";
                 statusBarItem.tooltip = `Bartholomew Guard Active: ${blocked} threats blocked (${avgLat}us). Click to view details.`;
               } else {
-                statusBarItem.text = `$(shield-check) Bartholomew: ARMED (${avgLat}us) | $(key) ${passkeyLabel}`;
+                statusBarItem.text = `$(shield-check)`;
                 statusBarItem.color = "#10b981";
                 statusBarItem.tooltip = `Bartholomew Guard daemon active on port ${port}.`;
               }
@@ -927,15 +927,15 @@ context.subscriptions.push(
       checkPort(8080, () => {
         const hasPolicy = fs.existsSync(path.join(btpDir, "policy.yaml")) || fs.existsSync(path.join(rootPath, "policy.yaml"));
         if (hasPolicy && hasPasskey) {
-          statusBarItem.text = `$(shield-check) Bartholomew: ARMED | $(key) ${passkeyLabel}`;
+          statusBarItem.text = `$(shield-check)`;
           statusBarItem.color = "#34d399";
           statusBarItem.tooltip = "Bartholomew Guard (v6.6.6) -- ARMED (Fail-Closed AST Invariants + Keystone Passkey)";
         } else if (hasPolicy || hasPasskey) {
-          statusBarItem.text = `$(shield) Bartholomew: PARTIAL`;
+          statusBarItem.text = `$(shield)`;
           statusBarItem.color = "#fbbf24";
           statusBarItem.tooltip = "Bartholomew Guard (v6.6.6) -- Partially Armed. Click to Link & Arm.";
         } else {
-          statusBarItem.text = `$(shield) Bartholomew: Standby`;
+          statusBarItem.text = `$(shield)`;
           statusBarItem.color = "#94a3b8";
           statusBarItem.tooltip = "Bartholomew Guard (v6.6.6) -- Workspace Not Armed. Click to Link & Arm.";
         }
@@ -1369,12 +1369,7 @@ context.subscriptions.push(
   // =========================================================================
   // NEW IN v6.8.0: LIVE STATUS BAR EXECUTION SENTINEL
   // =========================================================================
-  const statusBarSentinel = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 100);
-  statusBarSentinel.text = '$(shield) BTP: <18µs [ARMED]';
-  statusBarSentinel.tooltip = 'Bartholomew Agentic Runtime Protection (ARP) v6.8.0\nIn-Process AST Gate: ACTIVE (<18µs latency)\nZero Cloud Egress: VERIFIED\nClick to open Security Control Center.';
-  statusBarSentinel.command = 'bartholomew.showSecurityMenu';
-  statusBarSentinel.show();
-  context.subscriptions.push(statusBarSentinel);
+  // Consolidated into primary statusBarItem (icon-only mode)
 
   // =========================================================================
   // NEW IN v6.8.0: 1-CLICK CRYPTOGRAPHIC MERKLE SEAL MINTING

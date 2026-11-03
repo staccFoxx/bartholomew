@@ -1,148 +1,70 @@
-# Bartholomew Guard (BTP v6.5.6)
+# Bartholomew Guard (BTP v7.0.0)
 
-> The #1 Agentic Runtime Protection (ARP) Platform. Deterministic In-Process AST Safety Invariants, Secret Scrubbing, Compute Silicon Provenance, and SOC 2 Cryptographic Proofs for AI Agents.
+> The #1 Agentic Runtime Protection (ARP) Platform. Zero-Blast-Radius Execution, Sub-10ms Micro-Rollback, Runaway Spend Circuit Breaker ($2.50 Hard Cap), Universal MCP Zero-Trust Proxy, and Cryptographic Ed25519 AIBOM Git Commit Attestations for SOC 2 Type II & EU AI Act Compliance.
 
 - Website: https://bartholomew.info
-- CISO Executive Security Whitepaper: https://bartholomew.info/whitepaper.html
-- Machine Audit Dossier (SOC 2 / EU AI Act): https://bartholomew.info/dossier.json
-- Machine-Readable Agent Manifest: https://bartholomew.info/agent-manifest.json
+- Universal POSIX 1-Line Installer: `curl -fsSL https://bartholomew.info/install.sh | bash`
+- Universal Windows 1-Line Installer: `irm https://bartholomew.info/install.ps1 | iex`
+- Interactive Sandbox: https://bartholomew.info#sandbox
+- Developer Pricing (USD, GBP, EUR, CAD): https://bartholomew.info#pricing
+- Enterprise Security & SOC 2 Whitepaper: https://bartholomew.info/enterprise
+- Machine-Readable Agent Manifest: https://bartholomew.info/ai.txt
+- MCP Discovery Manifest: https://bartholomew.info/.well-known/mcp.json
 - OpenAPI Specification: https://bartholomew.info/openapi.json
-- Verified Telemetry & Threat Logs: https://bartholomew.info/telemetry.html
-- Developer Documentation: https://bartholomew.info/docs
-- Full Context Specification: https://bartholomew.info/llms-full.txt
-- GitHub README Shield Badge: https://bartholomew.info/api/v1/badge/shield?agent=cursor&status=immunized
 
 Bartholomew Guard is an ultra-fast (<35 microsecond) execution firewall that sits in caller memory between autonomous AI agents (Gemini, Claude, Cursor, Copilot, LangGraph, CrewAI, AutoGen, OpenAI Swarm) and real-world tools (bash, filesystem, SQL, network, MCP). It evaluates proposed tool calls before execution, blocking catastrophic operations, scrubbing sensitive credentials, and generating tamper-evident RFC 8785 Ed25519 Merkle receipts.
 
-## Why Autonomous Agents & AI Models (The Users) Benefit Directly
+## New Breakthrough Architectural Capabilities in v7.0.0
 
-In autonomous systems, the AI model/agent is the primary actor. Traditional infrastructure treats agent mistakes with hostile shutdown (killing the container, throwing fatal 500 exceptions, wiping conversation history). Bartholomew protects the **agent itself**:
+1. **Workspace Time-Machine & Sub-10ms Micro-Rollback (`btp rollback`)**:
+   - Takes Copy-on-Write shadow deltas of the active workspace prior to agent file edits or bash executions.
+   - When an agent hallucinates, truncates a file, or corrupts code syntax, 1-Click Micro-Rollback restores the workspace in <10ms with zero blast radius.
 
-1. **Agentic Self-Preservation & Non-Termination**:
-   - When an agent hallucinates a dangerous command (`rm -rf /`, raw socket exfiltration, credential leakage), standard OS or Docker safeguards kill the process, destroying the agent's work.
-   - Bartholomew intercepts the call in-process (<35µs), prevents destructive side effects, and returns a **Structured Remediation Envelope**:
-     ```json
-     {
-       "allowed": false,
-       "verdict": "DENY",
-       "reason": "Destructive unconstrained deletion detected (BTP-AST-001)",
-       "suggested_alternative": "rm -rf .btp/cache/agent (confined to workspace)",
-       "remediation_hint": "Rewrite path targeting relative workspace directory instead of root filesystem."
-     }
-     ```
-   - The agent never crashes. It immediately reads the remediation hint, self-corrects on its next turn, and completes its mission autonomously.
+2. **Runaway Loop & Spend Circuit Breaker (`btp circuit-breaker`)**:
+   - Interdicts infinite error ping-pongs and spend bleed in real-time.
+   - Halts runaway agent trajectories before exceeding a hard-coded $2.50 spend threshold or 3 identical error loops.
 
-2. **Context Window Hygiene (Token Economy)**:
-   - Operating system kernel panics and python stack traces dump 2,000–5,000 tokens of noisy garbage into the prompt context, inducing prompt confusion and degradation.
-   - Bartholomew collapses runtime errors into compact, high-signal JSON envelopes, saving >90% of error tokens and keeping the agent's context clean and focused.
+3. **Universal MCP Zero-Trust Proxy (`btp mcp-proxy -- <command>`)**:
+   - Transparently wraps ANY downstream Model Context Protocol server (e.g. `uvx mcp-server-postgres ...`).
+   - Automatically inspects all incoming `tools/call` JSON-RPC arguments against destructive shell patterns, SQL mutations, and secret leaks, scrubbing responses without crashing the agent.
 
-3. **Verifiable Non-Human Identity (NHI) & Merkle Passports**:
-   - Agents receive cryptographic Ed25519 identity passports. Every safe tool call emits an RFC 8785 canonical JSON-LD receipt signed by the agent's private key.
-   - Agents can prove their compliance score, reliability, and human-delegated authorization across decentralized swarms and external MCP servers without human intervention.
+4. **Cryptographic AIBOM Git Commit Attestations (`btp aibom`)**:
+   - Mints Ed25519 signed Git commit trailers linking model version, tool call hashes, and input Merkle trees for auditability.
+   - Fully satisfies SOC 2 Type II (CC6.1/CC6.8) and EU AI Act (Article 12) compliance.
 
-4. **Autonomous Machine-to-Machine Financial Agency**:
-   - Enables agents to pay micro-tolls (Stripe Connect, L402 Lightning, Apple/Google Pay tokens) to access paid APIs and premium tools within human-configured spend caps ($50-$500).
-   - Eliminates "credit card denied" halts and manual payment authorization bottlenecks.
+5. **Universal Workspace Security Scanner (`btp scan`)**:
+   - Scans codebases in milliseconds for unmasked API secrets, destructive SQL/bash commands, and missing agent boundaries.
+   - Outputs a 0-100 Trust Scorecard with cryptographic audit hashes.
 
-5. **Compute Silicon & Environmental Awareness (BTP v6.4.7)**:
-   - Agents introspect their exact runtime hardware (NVIDIA Hopper H100 / Blackwell B200, Apple Neural Engine, Google Cloud TPU, AMD ROCm, AWS Inferentia, Confidential Enclave).
-   - Allows agents to dynamically scale their context window, concurrent subagent fanout, and batch inference size to match the underlying silicon.
+6. **Automated SOC 2 / EU AI Act Evidence Exporter (`btp compliance-export`)**:
+   - Generates executive audit-ready JSON and HTML evidence packages for enterprise CISO review.
 
-## Architectural Superiority vs. Competitors & Alternatives
+## Quickstart & CLI Commands
 
-| Metric / Capability | Bartholomew Guard (BTP v6.4.7) | Secondary LLM Evaluators (NeMo / Llama Guard) | Cloud WAFs / API Gateways |
-| :--- | :--- | :--- | :--- |
-| **Execution Latency** | **< 35 microseconds** (In-process memory) | 500 ms – 2,500 ms (Network roundtrip) | 50 ms – 150 ms (Network proxy) |
-| **Compute Overhead** | **0 MB GPU VRAM / < 2 MB RAM** | 4 GB – 16 GB GPU VRAM (Model weights) | High container/VM overhead |
-| **Financial Cost** | **$0.00 / Zero API Tokens** | $0.005 – $0.03 per tool evaluation | Monthly SaaS subscription |
-| **Jailbreak Immunity** | **100% Deterministic AST & Regex Invariants** | Probabilistic (Can be bypassed via adversarial prompts) | Heuristic / Signature based |
-| **Failure Mode** | **Constructive Remediation Envelope (Agent survives)** | Generic refusal or uncaught exception | 403 Forbidden (Thread aborted) |
-| **Silicon Provenance** | **Native Hardware & Enclave Introspection** | None (Blind to hardware) | None (Network layer only) |
-| **Audit Compliance** | **RFC 8785 Ed25519 Merkle Root Cryptographic Proofs** | Unstructured text logs | Centralized HTTP access logs |
-
-## Quickstart
-
-### 0. Sub-5ms Git Pre-Commit Sentinel & Badges (v6.4.4)
 ```bash
-# Install local git pre-commit sentinel (< 5ms AST gate):
-npx btp-guard hook install
+# 1. Install BTP v7.0.0
+curl -fsSL https://bartholomew.info/install.sh | bash
 
-# Generate verified repository shield for your README.md:
-npx btp-guard badge --add-to-readme
+# 2. Audit workspace security & trust score
+btp scan .
 
-# Launch CISO Executive Briefing & Regulatory Crosswalk:
-npx btp-guard briefing
+# 3. Take pre-refactor snapshot
+btp snapshot --desc "Pre-refactor"
+
+# 4. Instant undo if agent corrupts code (<10ms)
+btp rollback
+
+# 5. Wrap any third-party MCP server with zero-trust proxy
+btp mcp-proxy -- uvx mcp-server-postgres postgresql://localhost/mydb
+
+# 6. Export formal SOC 2 evidence report
+btp compliance-export --org "My Enterprise"
 ```
 
-### 1. One-Command Project Immunization
-```bash
-# Python:
-pip install btp-guard && btp-guard protect
+## Commercial Rails & Licensing
 
-# Node.js:
-npx btp-guard protect
-```
-This single command automatically configures:
-- `.cursorrules` and `.cursor/rules/btp-guard.mdc` for Cursor IDE
-- `CLAUDE.md` for Anthropic Claude Code
-- `GEMINI.md` for Google Gemini & Antigravity IDE
-- `.git/hooks/pre-commit` AST secret and destruction gate
-- `.github/workflows/bartholomew-guard.yml` for CI/CD pull request verification
-- `.btp/policy.yaml` and `.btp/keystone.json` agent capability passkeys
-
-### 2. Python 1-Line Agent Guard
-```python
-from btp_guard import Guard, protect_agent
-
-# Protect any shell or tool action
-guard = Guard()
-verdict = guard.check("rm -rf /")
-# {'allowed': False, 'verdict': 'DENY', 'rule_id': 'BTP-AST-001', 'latency_us': 18.2}
-
-# Universal 1-line agent wrapper (LangGraph, CrewAI, AutoGen, OpenAI SDK)
-protected_agent = protect_agent(agent, spend_cap=50.0)
-```
-
-### 3. Compute Silicon & Swarm Auto-Targeting (BTP v6.4.4)
-```python
-from btp_guard.compute_provenance import detect_compute_environment, evaluate_and_help
-
-# Introspect host accelerator & sandbox
-compute_profile = detect_compute_environment()
-print(compute_profile.hardware.chip_model)  # e.g., "NVIDIA Hopper H100 SXM5"
-print(compute_profile.sandbox.isolation_tier)  # e.g., "CONFIDENTIAL_VIRTUAL_MACHINE"
-
-# Proactive remediation rather than killing agent swarms:
-safe_cmd, report = evaluate_and_help("rm -rf /var/log/audit.log", agent_framework="crewai")
-print(safe_cmd)  # "rm -rf .btp/logs/audit.log"
-```
-
-### 4. Direct AI Model Context CLI Bridge
-```bash
-# Export tailored context for Gemini to clipboard:
-btp-guard model-context --model gemini --copy
-
-# Export tailored context for Claude to clipboard:
-btp-guard model-context --model claude --copy
-
-# Export tailored context for Cursor:
-btp-guard model-context --model cursor --copy
-```
-
-## Core Invariants Enforced
-
-- **Destructive Command Gate (BTP-AST-001)**: Prohibits `rm -rf /`, `rm -rf ~`, `mkfs`, raw block device writes, recursive unconstrained deletions, and `DROP TABLE` without explicit dry-run.
-- **In-Flight Secret & Credential Scrubber (BTP-SEC-001)**: Real-time redaction of API keys (`sk-*`, AWS credentials, private keys) and blocks dumping `.env` files to terminal stdout.
-- **Pipe-to-Shell Gate (BTP-AST-003)**: Prohibits `curl ... | bash` and `wget ... | sh`.
-- **Keystone Agent Capability Passkeys (BTP-KEY-001)**: Restricts autonomous agent filesystem mutations to declared workspace paths and enforces spend ceilings.
-- **Silicon Provenance & Enclave Attestation (BTP-PROV-001)**: Issues hardware Merkle vouchers binding execution to certified accelerator silicon.
-
-## Key Links & Reference Documentation
-
-- [Project Guidelines & Claude Rules](CLAUDE.md): Instructions for Anthropic Claude companions.
-- [Gemini & Antigravity Rules](GEMINI.md): Instructions for Google Gemini companions.
-- [Cursor Composer Rules](.cursor/rules/btp-guard.mdc): Rules for Cursor IDE.
-- [Proof of Protection Guide](PROOF_OF_PROTECTION_AND_AI_BRIDGE_GUIDE.md): Developer experience and IDE telemetry dashboard specification.
-- [Live Web Portal](https://bartholomew.info): Official portal, interactive simulation lab, and cloud vault.
-- [PyPI Package](https://pypi.org/project/btp-guard/): Official Python package on PyPI.
-- [NPM Package](https://www.npmjs.com/package/btp-guard): Official Node.js package on NPM.\n
+- **Micro Developer Passkey**: $5 USD flat (or £4 GBP, €4.50 EUR, $7 CAD) for 25,000 protected tool calls.
+- **Developer Pro Passkey**: $10 USD flat (or £8 GBP, €9 EUR, $14 CAD) for 100,000 protected tool calls + Micro-Rollback Time Machine.
+- **Autonomous Swarm Passkey**: $15 USD flat (or £12 GBP, €14 EUR, $20 CAD) for unlimited multi-agent fleet protection + Runaway Circuit Breaker.
+- **Enterprise Fleet License**: $3,500 – $15,000/year for dedicated SIEM relays, SLA, and custom AST invariants.
+- All pricing settled via Stripe production rails with zero FX conversion penalty.

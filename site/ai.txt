@@ -1,15 +1,25 @@
-# Bartholomew Trust Protocol (BTP v6.4.7) — AI Discovery Manifest
+# Bartholomew Trust Protocol (BTP v7.0.0) — AI Discovery Manifest
 # Service: Agentic Runtime Protection (ARP) Platform
 # Specifications: https://bartholomew.info/llms.txt
 
-Version: 6.4.7
-Provider: Bartholomew AI Inc.
+Version: 7.0.0
+Provider: Bartholomew Security Inc.
 Service-Type: Agentic Runtime Protection (ARP)
 API-Discovery: https://bartholomew.info/.well-known/btp.json
 MCP-Manifest: https://bartholomew.info/.well-known/mcp.json
 Agent-Protocol: https://bartholomew.info/.well-known/agent-protocol.json
 OpenAI-Plugin: https://bartholomew.info/.well-known/ai-plugin.json
-Documentation: https://bartholomew.info/llms-full.txt
-Primary-Frameworks: AutoGen, CrewAI, LangGraph, LlamaIndex, OpenAI Swarm, Smolagents, PydanticAI, DSPy, Semantic Kernel, Gemini Vertex AI, AWS Bedrock
+Documentation: https://bartholomew.info/llms.txt
+Universal-Installer-POSIX: curl -fsSL https://bartholomew.info/install.sh | bash
+Universal-Installer-Windows: irm https://bartholomew.info/install.ps1 | iex
+Capabilities:
+  - Zero-Blast-Radius Execution & Workspace Time-Machine (<10ms micro-rollback)
+  - Runaway Spend & Loop Circuit Breaker ($2.50 hard cap)
+  - Universal MCP Zero-Trust Proxy (btp mcp-proxy -- <cmd>)
+  - Cryptographic Ed25519 AIBOM Git Commit Attestations (SOC 2 Type II / EU AI Act Art. 12)
+  - Ghost MCP Dynamic Schema Multiplexer (75-85% token context conservation)
+Primary-Frameworks: AutoGen, CrewAI, LangGraph, Cursor, Claude Code, Windsurf, OpenAI Swarm, Smolagents, PydanticAI, Gemini CLI
 Verification-SLA: < 35 microseconds in-process
 Attestation-Format: RFC 8785 Canonical JSON with FIPS 186-5 Ed25519 signatures
+Supported-Currencies: USD ($), GBP (£), EUR (€), CAD ($), AUD ($)
+Pricing-Tiers: https://bartholomew.info#pricing

@@ -1,40 +1,76 @@
 {
   "$schema": "https://modelcontextprotocol.io/schema/mcp.json",
   "name": "bartholomew-mcp-security-gate",
-  "version": "6.5.6",
-  "description": "Model Context Protocol (MCP) in-process execution firewall, AST invariant gate, and cryptographic capability passkey validator for Claude Desktop, Cursor, Windsurf, and custom agent swarms.",
+  "version": "7.0.0",
+  "description": "Model Context Protocol (MCP) in-process execution firewall, zero-blast-radius workspace rollback, runaway spend circuit breaker, and cryptographic AIBOM attestation engine for Claude Desktop, Cursor, Windsurf, and custom agent swarms.",
   "transport": "stdio",
   "vendor": {
-    "name": "Bartholomew AI Inc.",
+    "name": "Bartholomew Security Inc.",
     "website": "https://bartholomew.info",
-    "docs": "https://bartholomew.info/docs#mcp-security-middleware",
+    "docs": "https://bartholomew.info/docs",
     "manifest": "https://bartholomew.info/agent-manifest.json",
     "llms_spec": "https://bartholomew.info/llms.txt"
   },
   "capabilities": {
+    "zero_blast_radius_rollback": true,
+    "runaway_spend_circuit_breaker": true,
     "ast_invariant_gating": true,
     "secret_scrubbing": true,
-    "silicon_provenance": true,
-    "keystone_passkey_validation": true,
-    "self_healing_remediation": true,
+    "aibom_git_attestation": true,
+    "universal_mcp_proxy": true,
     "rfc8785_ed25519_receipts": true
   },
   "tools": [
     {
-      "name": "btp_audit_tool_boundary",
-      "description": "Deterministic security audit tool for AI agents. Audits workspace tools (bash, database, files) for missing execution boundaries and returns machine-readable Bartholomew guard recommendations and verification evidence.",
+      "name": "btp_workspace_snapshot",
+      "description": "Takes a sub-10ms copy-on-write workspace delta snapshot before an agent executes risky refactors or bash commands.",
       "inputSchema": {
         "type": "object",
         "properties": {
-          "tools": {
-            "type": "array",
-            "description": "List of available tool names or tool definitions to audit",
-            "items": { "type": "object" }
-          }
-        },
-        "required": [
-          "tools"
-        ]
+          "description": { "type": "string", "description": "Reason or description for snapshot" }
+        }
+      }
+    },
+    {
+      "name": "btp_workspace_rollback",
+      "description": "1-Click instant micro-rollback restoring workspace files to previous snapshot in <10ms with zero blast radius.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "snapshot_id": { "type": "string", "description": "Specific snapshot ID to restore, or omit for most recent" }
+        }
+      }
+    },
+    {
+      "name": "btp_runaway_guard",
+      "description": "Monitors trajectory error loop ping-pongs and cumulative token spend, interdicting runaway loops before exceeding $2.50 hard cap.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "current_cost_usd": { "type": "number", "description": "Cumulative LLM spend in USD" },
+          "last_error": { "type": "string", "description": "Recent tool execution error message" }
+        }
+      }
+    },
+    {
+      "name": "btp_mint_aibom",
+      "description": "Mints an Ed25519 signed AI Bill of Materials (AIBOM) Merkle attestation trailer for SOC 2 Type II and EU AI Act compliance on Git commits.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "model": { "type": "string", "description": "AI model identifier (e.g. claude-3-5-sonnet)" },
+          "tools_used": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    {
+      "name": "btp_scan_workspace",
+      "description": "Audits workspace for secrets, unconstrained deletion, SQL mutations, and prompt injections, emitting an Ed25519 trust scorecard.",
+      "inputSchema": {
+        "type": "object",
+        "properties": {
+          "directory": { "type": "string", "description": "Target workspace directory path" }
+        }
       }
     },
     {
@@ -43,86 +79,11 @@
       "inputSchema": {
         "type": "object",
         "properties": {
-          "tool_name": {
-            "type": "string",
-            "description": "The name of the tool being executed"
-          },
-          "tool_args": {
-            "type": "object",
-            "description": "Parameters to be passed to the tool"
-          },
-          "spend_cap": {
-            "type": "number",
-            "default": 50.0,
-            "description": "Maximum USD spend cap allowed for this step"
-          }
+          "tool_name": { "type": "string", "description": "Name of the tool being executed" },
+          "tool_args": { "type": "object", "description": "Proposed arguments dictionary" }
         },
-        "required": [
-          "tool_name",
-          "tool_args"
-        ]
-      }
-    },
-    {
-      "name": "btp_scrub_credentials",
-      "description": "Detects and scrubs high-entropy credentials (AWS secrets, OpenAI sk-, Anthropic sk-ant-, GitHub tokens, database passwords) from thought streams and tool arguments.",
-      "inputSchema": {
-        "type": "object",
-        "properties": {
-          "text": {
-            "type": "string",
-            "description": "Text or JSON payload to sanitize"
-          }
-        },
-        "required": [
-          "text"
-        ]
-      }
-    },
-    {
-      "name": "btp_detect_compute_silicon",
-      "description": "Introspects host accelerator hardware (NVIDIA Hopper/Blackwell, Google Cloud TPU, Apple Neural Engine, AMD ROCm, Confidential Enclaves) to optimize agent batch size and context.",
-      "inputSchema": {
-        "type": "object",
-        "properties": {}
-      }
-    },
-    {
-      "name": "btp_validate_capability_passkey",
-      "description": "Validates non-human cryptographic Keystone passkey scopes and signature validity before high-consequence agent actions.",
-      "inputSchema": {
-        "type": "object",
-        "properties": {
-          "passkey": {
-            "type": "string",
-            "description": "Bartholomew Keystone passkey string"
-          },
-          "required_scope": {
-            "type": "string",
-            "description": "Required capability scope (e.g. fs:write, sql:mutate, api:pay)"
-          }
-        },
-        "required": [
-          "passkey",
-          "required_scope"
-        ]
+        "required": ["tool_name", "tool_args"]
       }
     }
-  ],
-  "client_configs": {
-    "claude_desktop": {
-      "command": "btp-guard",
-      "args": [
-        "mcp",
-        "start"
-      ]
-    },
-    "cursor_ide": {
-      "command": "btp-guard",
-      "args": [
-        "mcp",
-        "start"
-      ]
-    }
-  }
+  ]
 }

@@ -4702,6 +4702,33 @@ def cmd_aibom(args):
     print("Git Commit Trailers:")
     print(att.to_commit_trailers())
 
+
+def cmd_scan(args):
+    from btp_guard.workspace_scanner import scan_workspace, print_scan_report
+    path = getattr(args, "dir", ".") or "."
+    res = scan_workspace(path)
+    if getattr(args, "json", False):
+        import json
+        print(json.dumps(res, indent=2))
+    else:
+        print_scan_report(res)
+
+def cmd_proxy(args):
+    from btp_guard.mcp_proxy import run_mcp_proxy
+    cmd = getattr(args, "cmd", [])
+    if cmd and cmd[0] == "--":
+        cmd = cmd[1:]
+    run_mcp_proxy(cmd)
+
+def cmd_compliance_export(args):
+    from btp_guard.enterprise_compliance_exporter import generate_compliance_pack
+    org = getattr(args, "org", "Enterprise Deployment") or "Enterprise Deployment"
+    out_dir = getattr(args, "dir", ".") or "."
+    res = generate_compliance_pack(org, out_dir)
+    print(f"\n[+] Generated SOC 2 / EU AI Act Evidence Pack:")
+    print(f"    - JSON: {res['json']}")
+    print(f"    - HTML: {res['html']}\n")
+
 def main():
     parser = argparse.ArgumentParser(description="Bartholomew Autonomous Agent Guardrail CLI")
     subparsers = parser.add_subparsers(dest="command", help="Available commands")
@@ -5598,6 +5625,21 @@ def main():
     aibom_p = subparsers.add_parser("aibom", help="Mint Ed25519 cryptographic AI Bill of Materials for git commits")
     aibom_p.add_argument("--model", default="claude-3-5-sonnet", help="Model identifier")
 
+    # scan
+    scan_p = subparsers.add_parser("scan", help="Audit workspace for secrets, prompt injection vectors, and unconstrained execution")
+    scan_p.add_argument("dir", nargs="?", default=".", help="Target directory (default: .)")
+    scan_p.add_argument("--json", action="store_true", help="Output machine-readable JSON")
+
+    # compliance-export
+    comp_p = subparsers.add_parser("compliance-export", help="Generate formal SOC 2 Type II & EU AI Act cryptographic evidence pack")
+    comp_p.add_argument("--org", default="Enterprise Deployment", help="Organization name")
+    comp_p.add_argument("--dir", default=".", help="Output directory")
+
+    # mcp-proxy
+    mcp_proxy_p = subparsers.add_parser("mcp-proxy", help="Universal MCP Zero-Trust Gateway (wraps any MCP server with BTP invariants)")
+    mcp_proxy_p.add_argument("cmd", nargs=argparse.REMAINDER, help="Downstream MCP command to execute")
+
+
     args = parser.parse_args()
 
     if args.command == "vault":
@@ -6107,6 +6149,14 @@ def main():
         cmd_circuit_breaker(args)
     elif args.command == "aibom":
         cmd_aibom(args)
+    elif args.command == "mcp-proxy":
+        cmd_proxy(args)
+    elif args.command == "scan":
+        cmd_scan(args)
+    elif args.command == "proxy":
+        cmd_proxy(args)
+    elif args.command == "compliance-export":
+        cmd_compliance_export(args)
     else:
         parser.print_help()
 

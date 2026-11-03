@@ -45,7 +45,7 @@ export function activate(context: ExtensionContext) {
   // 1. Status Bar Item
   const statusBarItem = vscode.window.createStatusBarItem(vscode.StatusBarAlignment.Right, 105);
   statusBarItem.command = 'keystone.openDashboard';
-  statusBarItem.text = `$(key) KEYSTONE: STANDBY`;
+  statusBarItem.text = `$(key)`;
   statusBarItem.tooltip = `Bartholomew Keystone -- No Active Passkey | Click to Issue Capability Passkey`;
   statusBarItem.color = '#94a3b8';
   context.subscriptions.push(statusBarItem);
@@ -60,21 +60,21 @@ export function activate(context: ExtensionContext) {
       const isValid = engine.verifyPasskey(pk);
 
       if (isExpired) {
-        statusBarItem.text = `$(alert) KEYSTONE: ${pk.agent_id} EXPIRED`;
+        statusBarItem.text = `$(alert)`;
         statusBarItem.tooltip = `Bartholomew Keystone -- Passkey Expired (${pk.agent_id}) | Click to Renew Capability Passkey`;
         statusBarItem.color = '#f59e0b';
       } else if (isValid) {
         const spendLimit = pk.scopes?.budget?.max_spend_usd !== undefined ? `$${pk.scopes.budget.max_spend_usd.toFixed(2)}` : '$25.00';
-        statusBarItem.text = `$(key) Keystone: ${pk.agent_id} (${spendLimit} Cap)`;
+        statusBarItem.text = `$(key)`;
         statusBarItem.tooltip = `Bartholomew Keystone -- Active Passkey (${pk.agent_id}) with ${spendLimit} Spend Cap | Click to open Dashboard`;
         statusBarItem.color = '#10b981';
       } else {
-        statusBarItem.text = `$(shield) KEYSTONE: ${pk.agent_id} UNVERIFIED`;
+        statusBarItem.text = `$(shield)`;
         statusBarItem.tooltip = `Bartholomew Keystone -- Passkey Signature Mismatch | Click to Re-issue`;
         statusBarItem.color = '#ef4444';
       }
     } else {
-      statusBarItem.text = `$(key) KEYSTONE: STANDBY`;
+      statusBarItem.text = `$(key)`;
       statusBarItem.tooltip = `Bartholomew Keystone -- No Active Passkey | Click to Issue Capability Passkey`;
       statusBarItem.color = '#94a3b8';
     }
@@ -254,7 +254,7 @@ export function activate(context: ExtensionContext) {
       }
     });
 
-    statusBarItem.text = `$(key) KEYSTONE: ${agentId} ARMED`;
+    statusBarItem.text = `$(key)`;
   });
 
   // 3. Command: Inspect Active Agent Clearance
@@ -268,7 +268,7 @@ export function activate(context: ExtensionContext) {
     if (fs.existsSync(p)) {
       fs.unlinkSync(p);
       vscode.window.showInformationMessage('Keystone Passkey revoked. Agent privileges stripped.');
-      statusBarItem.text = `$(key) KEYSTONE: STANDBY`;
+      statusBarItem.text = `$(key)`;
     }
   });
 

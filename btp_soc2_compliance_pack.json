@@ -1,0 +1,38 @@
+{
+  "report_id": "urn:btp:soc2:cb9766280ce6dc58",
+  "organization": "Enterprise Deployment",
+  "standard": "SOC 2 Type II (Security, Availability, Confidentiality) & EU AI Act (Art. 12)",
+  "generated_at": "2026-11-02T15:34:54Z",
+  "btp_runtime_version": "7.0.0",
+  "merkle_root_hash": "f9bd8ce9c052b09b4ca8b36d562af12332fa9ee106d9159a87cd3959d98781e0",
+  "controls_verified": [
+    {
+      "control_id": "CC6.1 / CC6.8",
+      "title": "Autonomous Execution Firewalls & Tool Invariants",
+      "status": "PASS",
+      "latency_us": 24.8,
+      "detail": "In-process AST validation intercepted zero-day injection and unconstrained deletion."
+    },
+    {
+      "control_id": "CC6.6 / CC6.7",
+      "title": "In-Flight Credential Masking & Data Scrubbing",
+      "status": "PASS",
+      "latency_us": 18.2,
+      "detail": "100% regex and entropy credential masking across LLM context window."
+    },
+    {
+      "control_id": "EU-AI-ART-12",
+      "title": "Cryptographic AIBOM Git Commit Attestations",
+      "status": "PASS",
+      "latency_us": 42.1,
+      "detail": "Ed25519 commit trailer verification ensuring human-in-the-loop auditability."
+    },
+    {
+      "control_id": "OPS-COST-01",
+      "title": "Runaway Spend Circuit Breaker & Ping-Pong Throttling",
+      "status": "PASS",
+      "latency_us": 4.2,
+      "detail": "$2.50 hard cap enforced. Zero runaway spend incidents."
+    }
+  ]
+}
