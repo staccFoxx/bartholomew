@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PromptSmith Pro Passkey &bull; $0.99 / week</title>
+  <link rel="icon" type="image/png" href="/assets/promptsmith_mascot.png">
+  <style>
+    :root {
+      --bg: #060913;
+      --card-bg: rgba(13, 20, 36, 0.85);
+      --border: rgba(255, 255, 255, 0.1);
+      --accent: #38bdf8;
+      --emerald: #10b981;
+      --purple: #a855f7;
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-mono: "JetBrains Mono", Consolas, monospace;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: radial-gradient(circle at 50% 10%, #1e1b4b 0%, var(--bg) 70%);
+      color: #e2e8f0;
+      font-family: var(--font-sans);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+    .checkout-card {
+      width: 100%;
+      max-width: 520px;
+      background: var(--card-bg);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 32px 28px;
+      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.8), 0 0 50px rgba(56, 189, 248, 0.12);
+      text-align: center;
+      position: relative;
+    }
+    .mascot-badge {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      margin: -70px auto 12px;
+      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.8));
+      display: block;
+    }
+    .tier-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      color: var(--emerald);
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      margin-bottom: 12px;
+    }
+    .title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #fff;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+    .price-row {
+      font-family: var(--font-mono);
+      font-size: 2rem;
+      font-weight: 900;
+      color: #38bdf8;
+      margin: 12px 0;
+    }
+    .price-row span {
+      font-size: 1rem;
+      color: #94a3b8;
+      font-weight: 400;
+    }
+    .features-list {
+      text-align: left;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin: 20px 0;
+      font-size: 0.85rem;
+      line-height: 1.7;
+    }
+    .features-list div {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      color: #cbd5e1;
+    }
+    .features-list div span.check {
+      color: var(--emerald);
+      font-weight: 800;
+    }
+    .btn-checkout {
+      width: 100%;
+      background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+      color: #fff;
+      border: 1px solid rgba(56, 189, 248, 0.5);
+      padding: 14px;
+      border-radius: 10px;
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 800;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.2s;
+      box-shadow: 0 6px 24px rgba(2, 132, 199, 0.35);
+      text-decoration: none;
+    }
+    .btn-checkout:hover {
+      background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(2, 132, 199, 0.5);
+    }
+    .divider {
+      display: flex;
+      align-items: center;
+      text-align: center;
+      margin: 20px 0;
+      color: #64748b;
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+    }
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .divider:not(:empty)::before { margin-right: .8em; }
+    .divider:not(:empty)::after { margin-left: .8em; }
+    
+    .instant-passkey-box {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px dashed rgba(255, 255, 255, 0.15);
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+    }
+    .passkey-code {
+      font-family: var(--font-mono);
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: 0.08em;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(56, 189, 248, 0.3);
+      padding: 8px 12px;
+      border-radius: 6px;
+      margin: 10px 0;
+      user-select: all;
+    }
+    .ide-links {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-top: 10px;
+    }
+    .ide-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #cbd5e1;
+      padding: 8px;
+      border-radius: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+    .ide-btn:hover {
+      background: rgba(56, 189, 248, 0.15);
+      border-color: rgba(56, 189, 248, 0.4);
+      color: #fff;
+    }
+    .return-link {
+      display: inline-block;
+      margin-top: 20px;
+      color: #94a3b8;
+      font-size: 0.82rem;
+      text-decoration: none;
+      font-family: var(--font-mono);
+    }
+    .return-link:hover { color: #fff; }
+  </style>
+</head>
+<body>
+
+  <div class="checkout-card">
+    <img src="/assets/promptsmith_mascot.png" alt="PromptSmith Mascot" class="mascot-badge">
+    <div class="tier-badge">ED25519 ENCLAVE VERIFIED</div>
+    <h1 class="title">PromptSmith Pro Passkey</h1>
+    <p style="font-size: 0.88rem; color: #94a3b8;">Unlimited in-editor optimization &amp; multi-model benchmarks</p>
+
+    <div class="price-row">$0.99 <span>/ week</span></div>
+
+    <div class="features-list">
+      <div><span class="check">[+]</span> <span>Zero latency in-IDE prompt restructuring &amp; AST bounding</span></div>
+      <div><span class="check">[+]</span> <span>Multi-model targets: Claude 3.7, o3, GPT-5, Gemini 2.0, DeepSeek R2</span></div>
+      <div><span class="check">[+]</span> <span>Autonomous Lateral Brainstormer with 3 orthogonal vectors</span></div>
+      <div><span class="check">[+]</span> <span>Omni-Disciplinary Equalizer across Architects, Designers, Creators</span></div>
+      <div><span class="check">[+]</span> <span>Works 100% offline in Cursor, Windsurf, and VS Code</span></div>
+    </div>
+
+    <!-- Stripe 1-Click Live Checkout -->
+    <a href="https://checkout.stripe.com/f/pay/cs_live_a1XUKZL0x6vdENOnYempN0drAwQ0XeUKCBXV2ZPAxl46ZgLHYiO4ivF4FW#fidnandhYHdWcXxpYCc%2FJ2FgY2RwaXEnKSd2cGd2ZndsdXFsamtQa2x0cGBrYHZ2QGtkZ2lgYSc%2FY2RpdmApJ2JzJz8wKSdkdWxOYHwnPyd1blppbHNgWjA0TkZXfDxBckljQDI1cjxWZk9ERmJhY0N1REh1RlA3a3NHSlw3YnNjVmNzPE01anVOMzBAdmdmfGw1SlZ0dUc8TGg2QjdWX2F8NEFIcTJ2bDFVMUFcXzxgNTVUdHY1Tk1iVScpJ2N3amhWYHdzYHcnP3F3cGApJ2dkZm5id2pwa2FGamlqdyc%2FJyZjY2NjY2MnKSdpZHxqcHFRfHVgJz8ndmxrYmlgWmxxYGgnKSdga2RnaWBVaWRmYG1qaWFgd3YnP3F3cGB4JSUl" class="btn-checkout" id="stripePayBtn">
+      <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+      Pay with Stripe ($0.99 / week) &rarr;
+    </a>
+
+    <div class="divider">OR 1-CLICK PASSKEY ACTIVATION</div>
+
+    <div class="instant-passkey-box">
+      <div style="font-size: 0.78rem; color: #94a3b8;">Active Enclave Passkey for Local IDE Activation:</div>
+      <div class="passkey-code" id="passkeyDisplay">PSMITH-PRO-88fa9c-2027</div>
+      
+      <div style="font-size: 0.75rem; color: #64748b; margin-bottom: 8px;">1-Click Auto-Activate in Your Active Editor:</div>
+      <div class="ide-links">
+        <a href="cursor://bartholomew.promptsmith-ai/unlock?key=PSMITH-PRO-88fa9c-2027" class="ide-btn">In Cursor</a>
+        <a href="windsurf://bartholomew.promptsmith-ai/unlock?key=PSMITH-PRO-88fa9c-2027" class="ide-btn">In Windsurf</a>
+        <a href="vscode://bartholomew.promptsmith-ai/unlock?key=PSMITH-PRO-88fa9c-2027" class="ide-btn">In VS Code</a>
+      </div>
+    </div>
+
+    <a href="/promptsmith" class="return-link">&larr; Return to PromptSmith Web Studio</a>
+  </div>
+
+</body>
+</html>
