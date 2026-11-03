@@ -16,6 +16,8 @@ Allow: /contact.html
 Allow: /promptsmith
 Allow: /insights/
 Allow: /docs.html
+Allow: /tools/
+Allow: /checkout/
 
 # Google AdSense Crawler (Mandatory for Review & Monetization)
 User-agent: Mediapartners-Google
