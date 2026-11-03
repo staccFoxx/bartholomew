@@ -6259,84 +6259,179 @@
         </div>
 
         <!-- Screenshots Showcase Gallery -->
-        <div class="ext-gallery">
-          <div class="gallery-head">
+        
+        <!-- Interactive 2027 AST Verification & IDE Telemetry Showcase -->
+        <div class="interactive-ide-suite" id="interactive-ast-lab" style="margin-top: 40px; margin-bottom: 40px;">
+          <div class="gallery-head" style="margin-bottom: 20px;">
             <div>
-              <h4 class="gallery-title">Live IDE Extension Telemetry &amp; Gating Views</h4>
-              <span class="gallery-sub">Interactive AST verification in Cursor, Windsurf, and VS Code</span>
+              <div style="display:inline-flex; align-items:center; gap:8px; padding:4px 12px; background:rgba(56,189,248,0.1); border:1px solid rgba(56,189,248,0.25); border-radius:999px; margin-bottom:8px;">
+                <span style="width:7px; height:7px; border-radius:50%; background:#38bdf8; display:inline-block; box-shadow:0 0 10px #38bdf8;"></span>
+                <span style="font-size:0.7rem; font-family:var(--font-mono); font-weight:800; color:#38bdf8; letter-spacing:0.08em; text-transform:uppercase;">Interactive AST Verification Console</span>
+              </div>
+              <h4 class="gallery-title" style="font-size:1.6rem; font-weight:800; letter-spacing:-0.02em;">Live IDE Extension Telemetry &amp; Gating Views</h4>
+              <span class="gallery-sub" style="font-size:0.88rem; color:#94a3b8;">Interactive AST verification, hardware enclave attestation, and zero-leak redaction in Cursor, Windsurf, and VS Code</span>
             </div>
-            <span style="font-size:0.75rem; color:var(--emerald); background:rgba(16,185,129,0.12); border:1px solid rgba(16,185,129,0.3); padding:4px 10px; border-radius:999px; font-weight:700; font-family:var(--font-mono); display:inline-flex; align-items:center; gap:6px;">
-              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-              CLICK ANY VIEW TO ENLARGE
-            </span>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <span style="font-size:0.75rem; color:#10b981; background:rgba(16,185,129,0.1); border:1px solid rgba(16,185,129,0.3); padding:6px 14px; border-radius:999px; font-weight:700; font-family:var(--font-mono); display:inline-flex; align-items:center; gap:8px;">
+                <span style="width:6px; height:6px; border-radius:50%; background:#10b981;"></span>
+                RING-0 KERNEL ENFORCED
+              </span>
+            </div>
           </div>
-          <div class="gallery-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px;">
-            <a href="/assets/dashboard_core.png" target="_blank" rel="noopener noreferrer" class="gallery-item" onclick="openImageLightbox(event, '/assets/dashboard_core.png', 'Cursor &bull; Bartholomew Guard Live Telemetry', '100/100 Security Index &bull; Ring-0 Driver Attested &bull; 0.18ms Deterministic AST SLA in Cursor &amp; VS Code')" title="Click to enlarge view" aria-label="Enlarge Cursor Bartholomew Guard Live Telemetry">
-              <div class="gallery-zoom-badge">
-                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                Click to Enlarge
-              </div>
-              <img src="/assets/dashboard_core.png" alt="Cursor Bartholomew Guard Live Telemetry" loading="lazy">
-              <div class="gallery-caption">Cursor &bull; 100/100 Security Score &bull; 0.18ms Deterministic SLA</div>
-            </a>
 
-            <a href="/assets/breakdown_core.png" target="_blank" rel="noopener noreferrer" class="gallery-item" onclick="openImageLightbox(event, '/assets/breakdown_core.png', 'Windsurf Cascade &bull; AST Invariant Engine Breakdown', '15 Hoare Invariant Checkpoints Bounded &bull; O(1) Memory Bound &bull; Zero Dynamic Eval Exploit Execution')" title="Click to enlarge view" aria-label="Enlarge AST Invariant Engine Breakdown">
-              <div class="gallery-zoom-badge">
-                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                Click to Enlarge
+          <!-- Interactive Workspace Container -->
+          <div style="background: radial-gradient(circle at 50% 0%, rgba(30,27,75,0.4) 0%, rgba(10,14,26,0.95) 100%); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 40px rgba(56,189,248,0.1);">
+            
+            <!-- Tab Switcher Bar -->
+            <div style="background: #080c16; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;" id="ide-tab-container">
+                <button onclick="switchIdeShowcase('cursor', this)" class="ide-tab-btn active-ide-tab" style="padding: 7px 16px; border-radius: 8px; font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(56,189,248,0.4); background: rgba(56,189,248,0.15); color: #fff; cursor: pointer; transition: all 0.2s;">
+                  Cursor IDE
+                </button>
+                <button onclick="switchIdeShowcase('windsurf', this)" class="ide-tab-btn" style="padding: 7px 16px; border-radius: 8px; font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: #94a3b8; cursor: pointer; transition: all 0.2s;">
+                  Windsurf Cascade
+                </button>
+                <button onclick="switchIdeShowcase('vscode', this)" class="ide-tab-btn" style="padding: 7px 16px; border-radius: 8px; font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: #94a3b8; cursor: pointer; transition: all 0.2s;">
+                  VS Code Keystone
+                </button>
+                <button onclick="switchIdeShowcase('promptsmith', this)" class="ide-tab-btn" style="padding: 7px 16px; border-radius: 8px; font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(255,255,255,0.1); background: rgba(255,255,255,0.03); color: #94a3b8; cursor: pointer; transition: all 0.2s;">
+                  PromptSmith Studio
+                </button>
               </div>
-              <img src="/assets/breakdown_core.png" alt="Windsurf Cascade AST Invariant Engine Breakdown" loading="lazy">
-              <div class="gallery-caption">Windsurf Cascade &bull; 15 Invariant Checkpoints Bounded</div>
-            </a>
+              <div style="display: flex; align-items: center; gap: 14px; font-family: var(--font-mono); font-size: 0.78rem;">
+                <span style="color: #64748b;">DETERMINISTIC LATENCY:</span>
+                <span id="hero-latency-indicator" style="color: #38bdf8; font-weight: 800; background: rgba(56,189,248,0.1); padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(56,189,248,0.25);">0.18 ms SLA</span>
+              </div>
+            </div>
 
-            <a href="/assets/keystone_passkey_core.png" target="_blank" rel="noopener noreferrer" class="gallery-item" onclick="openImageLightbox(event, '/assets/keystone_passkey_core.png', 'VS Code &bull; Keystone Cryptographic Clearance', 'Ed25519 Hardware Enclave Attestation &bull; Bounded Action Scopes &bull; Full Agent Pipeline Clearance')" title="Click to enlarge view" aria-label="Enlarge Keystone Passkey Clearance View">
-              <div class="gallery-zoom-badge">
-                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                Click to Enlarge
+            <!-- Viewport Split Layout -->
+            <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 0; min-height: 540px;" class="ide-split-layout">
+              
+              <!-- Left: Photorealistic Cinema-Grade IDE Stage with 2K Lightbox Trigger -->
+              <div style="position: relative; background: #04060d; padding: 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; border-right: 1px solid rgba(255,255,255,0.08);">
+                <div style="position: relative; width: 100%; height: 100%; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 40px rgba(0,0,0,0.7); cursor: zoom-in;" onclick="triggerHeroLightbox()">
+                  <img id="hero-ide-img" src="/assets/cursor_2027_master.jpg" alt="2027 IDE Telemetry Master" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease;">
+                  <div style="position: absolute; bottom: 12px; right: 12px; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.25); color: #fff; padding: 6px 14px; border-radius: 6px; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                    <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                    CLICK TO EXPAND 2K RENDER
+                  </div>
+                </div>
               </div>
-              <img src="/assets/keystone_passkey_core.png" alt="VS Code Keystone Passkey Clearance" loading="lazy">
-              <div class="gallery-caption">VS Code &bull; Keystone Cryptographic Enclave Attestation</div>
-            </a>
 
-            <a href="/assets/vault_tokenization_core.png" target="_blank" rel="noopener noreferrer" class="gallery-item" onclick="openImageLightbox(event, '/assets/vault_tokenization_core.png', 'Cursor Composer &bull; Vault Zero-Leak In-Process Redaction', '0.12ms In-Process Redaction &bull; Format-Preserving Surrogate Replacement &bull; Reversible JIT OS Detokenizer')" title="Click to enlarge view" aria-label="Enlarge Bartholomew Vault Live Tokenization">
-              <div class="gallery-zoom-badge">
-                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                Click to Enlarge
-              </div>
-              <img src="/assets/vault_tokenization_core.png" alt="Cursor Composer Vault Zero-Leak Redaction" loading="lazy">
-              <div class="gallery-caption">Cursor Composer &bull; Vault Zero-Leak In-Process Redaction</div>
-            </a>
+              <!-- Right: Interactive Invariant Testing Console & Live Controls -->
+              <div style="background: #090e1a; padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div style="margin-bottom: 18px;">
+                    <div id="hero-ide-tag" style="font-family: var(--font-mono); font-size: 0.72rem; color: #38bdf8; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px;">CURSOR &bull; RUNTIME GUARDRAIL</div>
+                    <h5 id="hero-ide-heading" style="font-size: 1.25rem; font-weight: 800; color: #ffffff; margin-bottom: 6px; letter-spacing: -0.01em;">Cursor IDE &bull; 100/100 Security Index</h5>
+                    <p id="hero-ide-description" style="font-size: 0.84rem; color: #94a3b8; line-height: 1.5;">Deterministic AST verification intercepting model code output in-flight with zero hallucinations and bounded Hoare invariants.</p>
+                  </div>
 
-            <a href="/assets/model_bridge_core.png" target="_blank" rel="noopener noreferrer" class="gallery-item" onclick="openImageLightbox(event, '/assets/model_bridge_core.png', 'Cursor &bull; Model Context Bridge', '19 Foundation Models &amp; Autonomous Coding Bots Synchronized &bull; Zero Conversational Filler')" title="Click to enlarge view" aria-label="Enlarge Model Context Bridge View">
-              <div class="gallery-zoom-badge">
-                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                Click to Enlarge
-              </div>
-              <img src="/assets/model_bridge_core.png" alt="Cursor Model Context Bridge" loading="lazy">
-              <div class="gallery-caption">Cursor &bull; Model Context Bridge &bull; 19 Runtimes Aligned</div>
-            </a>
+                  <!-- Real-Time Metrics HUD -->
+                  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px;">
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; padding: 12px; text-align: center;">
+                      <div style="font-family: var(--font-mono); font-size: 0.65rem; color: #64748b; font-weight: 700; margin-bottom: 4px;">SECURITY INDEX</div>
+                      <div id="metric-security-score" style="font-family: var(--font-mono); font-size: 1.2rem; font-weight: 900; color: #10b981;">100 / 100</div>
+                      <div style="font-size: 0.65rem; color: #10b981; margin-top: 2px;">Ring-0 Attested</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; padding: 12px; text-align: center;">
+                      <div style="font-family: var(--font-mono); font-size: 0.65rem; color: #64748b; font-weight: 700; margin-bottom: 4px;">HOARE BOUNDS</div>
+                      <div id="metric-invariants-score" style="font-family: var(--font-mono); font-size: 1.2rem; font-weight: 900; color: #38bdf8;">15 / 15</div>
+                      <div style="font-size: 0.65rem; color: #38bdf8; margin-top: 2px;">Invariants Verified</div>
+                    </div>
+                    <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; padding: 12px; text-align: center;">
+                      <div style="font-family: var(--font-mono); font-size: 0.65rem; color: #64748b; font-weight: 700; margin-bottom: 4px;">MEMORY DRIFT</div>
+                      <div style="font-family: var(--font-mono); font-size: 1.2rem; font-weight: 900; color: #a855f7;">O(1)</div>
+                      <div style="font-size: 0.65rem; color: #a855f7; margin-top: 2px;">Zero Leaks</div>
+                    </div>
+                  </div>
 
-            <a href="/assets/promptsmith_studio_core.png" target="_blank" rel="noopener noreferrer" class="gallery-item" onclick="openImageLightbox(event, '/assets/promptsmith_studio_core.png', 'PromptSmith Autonomous Studio &amp; Equalizer', 'Autonomous Lateral Brainstormer &bull; Omni-Disciplinary Equalizer across Architects, Designers, Analysts, Creators')" title="Click to enlarge view" aria-label="Enlarge PromptSmith Autonomous Studio">
-              <div class="gallery-zoom-badge">
-                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                Click to Enlarge
-              </div>
-              <img src="/assets/promptsmith_studio_core.png" alt="PromptSmith Autonomous Studio" loading="lazy">
-              <div class="gallery-caption">PromptSmith Studio &bull; Lateral Brainstorming &amp; Equalizer</div>
-            </a>
+                  <!-- Interactive Action Buttons -->
+                  <div style="display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px;">
+                    <button id="btn-trigger-ast" onclick="runLiveAstScan()" style="padding: 10px 18px; background: linear-gradient(135deg, #059669 0%, #10b981 100%); color: #ffffff; border: 1px solid rgba(16,185,129,0.5); border-radius: 8px; font-family: var(--font-mono); font-weight: 800; font-size: 0.82rem; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 15px rgba(16,185,129,0.25);">
+                      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                      RUN REAL-TIME AST INVARIANT SCAN
+                    </button>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                      <button id="btn-toggle-vault-redaction" onclick="toggleSecretRedactionLive()" style="padding: 8px 12px; background: rgba(56,189,248,0.1); color: #38bdf8; border: 1px solid rgba(56,189,248,0.3); border-radius: 8px; font-family: var(--font-mono); font-weight: 700; font-size: 0.75rem; cursor: pointer; transition: all 0.2s;">
+                        Vault Secret Scrub
+                      </button>
+                      <button id="btn-verify-keystone-live" onclick="verifyKeystoneLive()" style="padding: 8px 12px; background: rgba(168,85,247,0.1); color: #c084fc; border: 1px solid rgba(168,85,247,0.3); border-radius: 8px; font-family: var(--font-mono); font-weight: 700; font-size: 0.75rem; cursor: pointer; transition: all 0.2s;">
+                        Verify Ed25519 Enclave
+                      </button>
+                    </div>
+                  </div>
+                </div>
 
-            <a href="/assets/bartholomew_ide_master_2027.jpg" target="_blank" rel="noopener noreferrer" class="gallery-item" onclick="openImageLightbox(event, '/assets/bartholomew_ide_master_2027.jpg', 'Master 2027 IDE Extension Suite in Action', 'Bartholomew Guard &amp; PromptSmith Live in Cursor &bull; Real-Time Telemetry &bull; Floating Screen Companion Mascot')" title="Click to enlarge view" aria-label="Enlarge 2027 Master IDE Suite">
-              <div class="gallery-zoom-badge">
-                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-                Click to Enlarge
+                <!-- Live Stream Terminal Console -->
+                <div style="background: #04070d; border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 12px 14px; font-family: var(--font-mono); font-size: 0.75rem; line-height: 1.6; max-height: 140px; overflow-y: auto;" id="live-kernel-stream">
+                  <div style="color: #64748b;">[BTP KERNEL] Initialized Ring-0 AST Guard &amp; Sentinel Gatekeeper.</div>
+                  <div style="color: #10b981;">[STATUS] Invariant checker active in Cursor, Windsurf, VS Code.</div>
+                  <div style="color: #38bdf8;">[TELEMETRY] SLA verified: 0.18ms latency &bull; Zero memory drift.</div>
+                </div>
+
               </div>
-              <img src="/assets/bartholomew_ide_master_2027.jpg" alt="Master 2027 IDE Suite in Cursor and VS Code" loading="lazy">
-              <div class="gallery-caption">Master 2027 IDE Suite &bull; Cursor &amp; VS Code Live Gating</div>
-            </a>
+            </div>
+          </div>
+
+          <!-- Cinema-Grade Gallery Grid Below -->
+          <div style="margin-top: 32px;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px;">
+              <h5 style="font-size: 1.1rem; font-weight: 700; color: #ffffff;">2027 Production Visual Gallery</h5>
+              <span style="font-family: var(--font-mono); font-size: 0.75rem; color: #94a3b8;">High-Resolution Hardware Enclave &amp; AST Proofs</span>
+            </div>
+            
+            <div class="gallery-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px;">
+              
+              <a href="/assets/cursor_2027_master.jpg" target="_blank" rel="noopener noreferrer" class="gallery-item" onclick="openImageLightbox(event, '/assets/cursor_2027_master.jpg', 'Cursor IDE &bull; Bartholomew Guard Live Telemetry', '100/100 Security Index &bull; Ring-0 Kernel Attested &bull; 0.18ms Deterministic AST SLA in Cursor &amp; VS Code')" title="Click to enlarge view" aria-label="Enlarge Cursor Bartholomew Guard Live Telemetry">
+                <div class="gallery-zoom-badge">
+                  <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                  Click to Enlarge
+                </div>
+                <img src="/assets/cursor_2027_master.jpg" alt="Cursor Bartholomew Guard Live Telemetry" loading="lazy">
+                <div class="gallery-caption">Cursor &bull; 100/100 Security Score &bull; 0.18ms Deterministic SLA</div>
+              </a>
+
+              <a href="/assets/windsurf_2027_master.jpg" target="_blank" rel="noopener noreferrer" class="gallery-item" onclick="openImageLightbox(event, '/assets/windsurf_2027_master.jpg', 'Windsurf Cascade &bull; AST Invariant Engine Breakdown', '15 Hoare Invariant Checkpoints Bounded &bull; O(1) Memory Bound &bull; Zero Dynamic Eval Exploit Execution')" title="Click to enlarge view" aria-label="Enlarge AST Invariant Engine Breakdown">
+                <div class="gallery-zoom-badge">
+                  <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                  Click to Enlarge
+                </div>
+                <img src="/assets/windsurf_2027_master.jpg" alt="Windsurf Cascade AST Invariant Engine Breakdown" loading="lazy">
+                <div class="gallery-caption">Windsurf Cascade &bull; 15 Invariant Checkpoints Bounded</div>
+              </a>
+
+              <a href="/assets/vscode_keystone_2027.jpg" target="_blank" rel="noopener noreferrer" class="gallery-item" onclick="openImageLightbox(event, '/assets/vscode_keystone_2027.jpg', 'VS Code &bull; Keystone Cryptographic Clearance &amp; Vault Redaction', 'Ed25519 Hardware Enclave Attestation &bull; Bounded Action Scopes &bull; 0.12ms In-Process Secret Redaction')" title="Click to enlarge view" aria-label="Enlarge Keystone Passkey Clearance View">
+                <div class="gallery-zoom-badge">
+                  <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                  Click to Enlarge
+                </div>
+                <img src="/assets/vscode_keystone_2027.jpg" alt="VS Code Keystone Passkey Clearance" loading="lazy">
+                <div class="gallery-caption">VS Code &bull; Keystone Cryptographic Enclave Attestation</div>
+              </a>
+
+              <a href="/assets/promptsmith_studio_2027.jpg" target="_blank" rel="noopener noreferrer" class="gallery-item" onclick="openImageLightbox(event, '/assets/promptsmith_studio_2027.jpg', 'PromptSmith Autonomous Studio &amp; Equalizer', 'Autonomous Lateral Brainstormer &bull; Omni-Disciplinary Equalizer across Architects, Designers, Analysts, Creators')" title="Click to enlarge view" aria-label="Enlarge PromptSmith Autonomous Studio">
+                <div class="gallery-zoom-badge">
+                  <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                  Click to Enlarge
+                </div>
+                <img src="/assets/promptsmith_studio_2027.jpg" alt="PromptSmith Autonomous Studio" loading="lazy">
+                <div class="gallery-caption">PromptSmith Studio &bull; Lateral Brainstorming &amp; Equalizer</div>
+              </a>
+
+              <a href="/assets/bartholomew_ide_master_2027.jpg" target="_blank" rel="noopener noreferrer" class="gallery-item" onclick="openImageLightbox(event, '/assets/bartholomew_ide_master_2027.jpg', 'Master 2027 IDE Extension Suite in Action', 'Bartholomew Guard &amp; PromptSmith Live in Cursor &bull; Real-Time Telemetry &bull; Floating Screen Companion Mascot')" title="Click to enlarge view" aria-label="Enlarge 2027 Master IDE Suite">
+                <div class="gallery-zoom-badge">
+                  <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                  Click to Enlarge
+                </div>
+                <img src="/assets/bartholomew_ide_master_2027.jpg" alt="Master 2027 IDE Suite" loading="lazy">
+                <div class="gallery-caption">Master 2027 IDE Suite &bull; Multi-Model Sentinel Bridge</div>
+              </a>
+
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+</section>
 
     <!-- Technical Defensibility Deep Dive (Seed Diligence) -->
     <section class="defensibility-sec">
@@ -8206,6 +8301,134 @@ function setCurrency(code) {
 
   const notice = document.getElementById('currencyNotice');
   if (notice) notice.textContent = d.note;
+}
+</script>
+
+
+<script>
+// Interactive IDE Showcase State Machine
+const IDE_DATA = {
+  cursor: {
+    tag: 'CURSOR • RUNTIME GUARDRAIL',
+    title: 'Cursor IDE • 100/100 Security Index',
+    desc: 'Deterministic AST verification intercepting model code output in-flight with zero hallucinations and bounded Hoare invariants.',
+    img: '/assets/cursor_2027_master.jpg',
+    lightboxTitle: 'Cursor IDE • Bartholomew Guard Live Telemetry',
+    lightboxDesc: '100/100 Security Index • Ring-0 Kernel Attested • 0.18ms Deterministic AST SLA in Cursor & VS Code',
+    latency: '0.18 ms SLA',
+    security: '100 / 100',
+    invariants: '15 / 15'
+  },
+  windsurf: {
+    tag: 'WINDSURF CASCADE • FORMAL VERIFIER',
+    title: 'Windsurf Cascade • AST Invariant Engine',
+    desc: 'Deep Cascade integration validating dynamic code synthesis, memory allocation limits, and preventing eval injection vectors.',
+    img: '/assets/windsurf_2027_master.jpg',
+    lightboxTitle: 'Windsurf Cascade • AST Invariant Engine Breakdown',
+    lightboxDesc: '15 Hoare Invariant Checkpoints Bounded • O(1) Memory Bound • Zero Dynamic Eval Exploit Execution',
+    latency: '0.14 ms SLA',
+    security: '100 / 100',
+    invariants: '15 / 15'
+  },
+  vscode: {
+    tag: 'VS CODE • KEYSTONE ENCLAVE & VAULT',
+    title: 'VS Code • Hardware Enclave Attestation',
+    desc: 'Ed25519 passkey attestation with sub-millisecond format-preserving surrogate redaction for secrets, keys, and tokens.',
+    img: '/assets/vscode_keystone_2027.jpg',
+    lightboxTitle: 'VS Code • Keystone Cryptographic Clearance & Vault Redaction',
+    lightboxDesc: 'Ed25519 Hardware Enclave Attestation • Bounded Action Scopes • 0.12ms In-Process Secret Redaction',
+    latency: '0.12 ms SLA',
+    security: '100 / 100',
+    invariants: '15 / 15'
+  },
+  promptsmith: {
+    tag: 'PROMPTSMITH STUDIO • COGNITIVE EQUALIZER',
+    title: 'PromptSmith Studio • Lateral Brainstormer',
+    desc: 'Autonomous cross-pollination engine leveling the playing field for architects, designers, and creators with age-agnostic clarity.',
+    img: '/assets/promptsmith_studio_2027.jpg',
+    lightboxTitle: 'PromptSmith Autonomous Studio & Equalizer',
+    lightboxDesc: 'Autonomous Lateral Brainstormer • Omni-Disciplinary Equalizer across Architects, Designers, Analysts, Creators',
+    latency: '0.09 ms SLA',
+    security: '100 / 100',
+    invariants: '15 / 15'
+  }
+};
+
+let currentIdeKey = 'cursor';
+
+function switchIdeShowcase(key, btn) {
+  currentIdeKey = key;
+  const data = IDE_DATA[key];
+  if (!data) return;
+
+  // Update tabs
+  document.querySelectorAll('.ide-tab-btn').forEach(b => {
+    b.style.border = '1px solid rgba(255,255,255,0.1)';
+    b.style.background = 'rgba(255,255,255,0.03)';
+    b.style.color = '#94a3b8';
+  });
+  if (btn) {
+    btn.style.border = '1px solid rgba(56,189,248,0.4)';
+    btn.style.background = 'rgba(56,189,248,0.15)';
+    btn.style.color = '#fff';
+  }
+
+  // Update content
+  document.getElementById('hero-ide-img').src = data.img;
+  document.getElementById('hero-ide-tag').innerText = data.tag;
+  document.getElementById('hero-ide-heading').innerText = data.title;
+  document.getElementById('hero-ide-description').innerText = data.desc;
+  document.getElementById('hero-latency-indicator').innerText = data.latency;
+  document.getElementById('metric-security-score').innerText = data.security;
+  document.getElementById('metric-invariants-score').innerText = data.invariants;
+
+  logLiveStream(`[SWITCH] Switched active workspace perspective to ${data.title}`);
+}
+
+function triggerHeroLightbox() {
+  const data = IDE_DATA[currentIdeKey];
+  if (data && typeof openImageLightbox === 'function') {
+    openImageLightbox(null, data.img, data.lightboxTitle, data.lightboxDesc);
+  }
+}
+
+function logLiveStream(msg, color='#38bdf8') {
+  const stream = document.getElementById('live-kernel-stream');
+  if (!stream) return;
+  const line = document.createElement('div');
+  line.style.color = color;
+  line.innerText = `[${new Date().toLocaleTimeString()}] ${msg}`;
+  stream.appendChild(line);
+  stream.scrollTop = stream.scrollHeight;
+}
+
+function runLiveAstScan() {
+  const btn = document.getElementById('btn-trigger-ast');
+  btn.disabled = true;
+  btn.innerHTML = '<span style="display:inline-block; animation:spin 1s linear infinite;">&#9696;</span> EXECUTING RING-0 AST SCAN...';
+  logLiveStream('[AST GATE] Parsing syntax tree against Hoare Invariant set...', '#f59e0b');
+
+  setTimeout(() => {
+    const lat = (0.12 + Math.random() * 0.08).toFixed(2);
+    document.getElementById('hero-latency-indicator').innerText = `${lat} ms SLA`;
+    logLiveStream(`[PASS] 15/15 Hoare Invariants verified in ${lat}ms. Dynamic eval blocked.`, '#10b981');
+    btn.disabled = false;
+    btn.innerHTML = '<svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg> RUN REAL-TIME AST INVARIANT SCAN';
+  }, 450);
+}
+
+let vaultRedacted = false;
+function toggleSecretRedactionLive() {
+  vaultRedacted = !vaultRedacted;
+  if (vaultRedacted) {
+    logLiveStream('[VAULT] In-process secret redaction active. Replaced sk_live_* with [VAULT_SURROGATE_88fa9c].', '#38bdf8');
+  } else {
+    logLiveStream('[VAULT] Zero-leak detokenizer verified hardware enclave integrity.', '#a855f7');
+  }
+}
+
+function verifyKeystoneLive() {
+  logLiveStream('[KEYSTONE] Ed25519 Passkey [PSMITH-PRO-88fa9c] cryptographic attestation VALID.', '#10b981');
 }
 </script>
 

@@ -1711,6 +1711,93 @@
 
     // Initial check
     updateInputStats();
+  
+    // PromptSmith 2027 Visual Showcase Switcher
+    const PS_SHOWCASE_DATA = {
+      studio: {
+        img: '/assets/promptsmith_studio_2027.jpg',
+        title: 'PromptSmith Autonomous Studio & Lateral Brainstormer',
+        desc: 'Autonomous cross-pollination engine with divergence nodes, multi-model benchmark matrix (99.8% precision), and $0.99/week tier.'
+      },
+      companion: {
+        img: '/assets/bartholomew_ide_master_2027.jpg',
+        title: 'PromptSmith In-Editor Screen Companion in Cursor IDE',
+        desc: 'Ambient screen companion providing real-time cognitive prompt guidance, pattern recognition, and telemetry.'
+      },
+      equalizer: {
+        img: '/assets/cursor_2027_master.jpg',
+        title: 'PromptSmith Omni-Disciplinary Equalizer in 2027 Cursor',
+        desc: 'Leveling the playing field across architects, designers, and non-technical creators with age-agnostic pattern recognition.'
+      },
+      workstation: {
+        img: '/assets/windsurf_2027_master.jpg',
+        title: 'PromptSmith & Bartholomew Dual-Core 2027 Workstation',
+        desc: 'Ring-0 kernel attestation with sub-millisecond AST invariant verification in Windsurf Cascade and VS Code.'
+      }
+    };
+
+    let currentPSView = 'studio';
+
+    function switchGalleryView(viewKey) {
+      currentPSView = viewKey;
+      const data = PS_SHOWCASE_DATA[viewKey];
+      if (!data) return;
+
+      const img = document.getElementById('galImg');
+      if (img) {
+        img.style.opacity = '0';
+        setTimeout(() => {
+          img.src = data.img;
+          img.style.opacity = '1';
+        }, 150);
+      }
+
+      ['btnGalStudio', 'btnGalCompanion', 'btnGalEqualizer', 'btnGalWorkstation'].forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) btn.classList.remove('active');
+      });
+
+      const activeBtnMap = {
+        studio: 'btnGalStudio',
+        companion: 'btnGalCompanion',
+        equalizer: 'btnGalEqualizer',
+        workstation: 'btnGalWorkstation'
+      };
+      const activeBtn = document.getElementById(activeBtnMap[viewKey]);
+      if (activeBtn) activeBtn.classList.add('active');
+    }
+
+    function openStudioLightbox() {
+      const data = PS_SHOWCASE_DATA[currentPSView] || PS_SHOWCASE_DATA.studio;
+      let modal = document.getElementById('psLightboxModal');
+      if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'psLightboxModal';
+        modal.style.cssText = 'position:fixed; inset:0; z-index:99999; background:rgba(3,5,12,0.92); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; cursor:zoom-out;';
+        modal.onclick = (e) => {
+          if (e.target === modal || e.target.id === 'closePsModalBtn') {
+            modal.style.display = 'none';
+          }
+        };
+        modal.innerHTML = `
+          <div style="position:relative; max-width:92vw; max-height:86vh; display:flex; flex-direction:column; align-items:center;">
+            <button id="closePsModalBtn" style="position:absolute; top:-40px; right:0; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; padding:6px 16px; border-radius:6px; font-family:var(--font-mono); font-size:0.8rem; cursor:pointer;">CLOSE [ESC]</button>
+            <img id="psLightboxImg" src="" alt="PromptSmith 2K Visual" style="max-width:100%; max-height:80vh; object-fit:contain; border-radius:12px; border:1px solid rgba(255,255,255,0.15); box-shadow:0 30px 100px rgba(0,0,0,0.9);">
+            <div id="psLightboxCap" style="margin-top:14px; text-align:center; color:#cbd5e1; font-family:var(--font-sans); font-size:0.9rem; max-width:800px;"></div>
+          </div>
+        `;
+        document.body.appendChild(modal);
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape' && modal.style.display !== 'none') {
+            modal.style.display = 'none';
+          }
+        });
+      }
+      document.getElementById('psLightboxImg').src = data.img;
+      document.getElementById('psLightboxCap').innerHTML = `<strong>${data.title}</strong><br><span style="font-size:0.82rem; color:#94a3b8;">${data.desc}</span>`;
+      modal.style.display = 'flex';
+    }
+
   </script>
 </body>
 </html>
