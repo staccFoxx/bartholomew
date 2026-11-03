@@ -2,7 +2,7 @@
   "name": "bartholomew-guard-vscode",
   "displayName": "Bartholomew Guard \u2014 AI Agent Firewall, Guardrails & Security for Cursor, Claude & Copilot",
   "description": "BTP v7.0.0 In-Process AST Guardrails, Real-Time Security Linter & CodeActions, Nonce Sentinel, and Cryptographic Merkle Seal Minting for Cursor, Claude Code, Windsurf, Copilot, and VS Code.",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "publisher": "Bartholomew",
   "icon": "icon.png",
   "license": "Apache-2.0",
