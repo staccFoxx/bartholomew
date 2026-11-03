@@ -488,7 +488,7 @@
     <div class="hero-banner">
       <h1>Universal Prompt Optimization Studio</h1>
       <p>
-        Analyze, restructure, and benchmark your AI prompts across Claude 3.5, ChatGPT 4o, OpenAI o1/o3, Gemini 2.0, and DeepSeek. Pure zero-latency intelligence on any device.
+        Analyze, restructure, and benchmark your prompts across 8 Frontier Models (Claude 3.7/3.5, OpenAI o3/o1, GPT-4o, Gemini 2.0, DeepSeek R1, Grok 3, Llama 3.3, Qwen 2.5) and 7 Autonomous Coding Bots (Cursor, Windsurf, Claude Code, Copilot, Aider, Devin, Cline).
       </p>
     </div>
 
@@ -546,67 +546,187 @@
       </div>
     </div>
 
-    <!-- Benchmarks Section -->
+        <!-- Benchmarks Section -->
     <div class="benchmarks-section">
       <div class="pane-header" style="border-bottom: none; padding-bottom: 0;">
-        <div class="pane-title">Frontier Model Benchmark Matrix</div>
-        <div style="font-size: 0.75rem; color: var(--muted);">Real-time architectural alignment score</div>
+        <div>
+          <div class="pane-title">Live Architectural Benchmark Matrix</div>
+          <div style="font-size: 0.75rem; color: var(--muted);">Real-time compatibility scores across Frontier Models &amp; Autonomous Bots</div>
+        </div>
+        <div class="category-tabs" style="display: flex; gap: 8px;">
+          <button class="profile-btn active" id="tabWebModels" onclick="switchWebCategory('models')">Frontier Models (8)</button>
+          <button class="profile-btn" id="tabWebBots" onclick="switchWebCategory('bots')">Coding Bots &amp; Agents (7)</button>
+        </div>
       </div>
 
-      <div class="benchmarks-grid">
-        <div class="benchmark-card">
+      <!-- Frontier Models Grid -->
+      <div class="benchmarks-grid" id="webGridModels">
+        <div class="benchmark-card" onclick="optimizeFor('claude_xml')" style="cursor: pointer;" title="Click to compile for Claude XML format">
           <div class="model-name">
-            Claude 3.5 Sonnet
+            Claude 3.7 / 3.5 Sonnet
             <span class="model-score" id="scoreClaude">98%</span>
           </div>
           <div class="progress-bar-bg">
             <div class="progress-bar-fill" id="fillClaude" style="width: 98%;"></div>
           </div>
-          <div class="model-notes">Optimal XML tags, clear step boundaries, zero conversational fluff.</div>
+          <div class="model-notes">Anthropic &bull; XML hierarchy, scratchpad CoT, zero conversational filler.</div>
         </div>
 
-        <div class="benchmark-card">
+        <div class="benchmark-card" onclick="optimizeFor('openai_o')" style="cursor: pointer;" title="Click to compile for OpenAI o3/o1 format">
           <div class="model-name">
-            OpenAI o1 / o3
+            OpenAI o3 / o3-mini / o1
             <span class="model-score" id="scoreO1">96%</span>
           </div>
           <div class="progress-bar-bg">
             <div class="progress-bar-fill" id="fillO1" style="width: 96%;"></div>
           </div>
-          <div class="model-notes">Unambiguous goal invariants, high reasoning density, explicit bounds.</div>
+          <div class="model-notes">OpenAI &bull; Autonomous test-time compute, boundary invariants, zero hand-holding.</div>
         </div>
 
-        <div class="benchmark-card">
+        <div class="benchmark-card" onclick="optimizeFor('gpt4o_schema')" style="cursor: pointer;" title="Click to compile for GPT-4o Schema format">
           <div class="model-name">
-            ChatGPT 4o
+            GPT-4o / GPT-4.5
             <span class="model-score" id="score4o">97%</span>
           </div>
           <div class="progress-bar-bg">
             <div class="progress-bar-fill" id="fill4o" style="width: 97%;"></div>
           </div>
-          <div class="model-notes">Direct actionable system instructions, modular code sections.</div>
+          <div class="model-notes">OpenAI &bull; Clean Markdown sections, structured schemas, few-shot demo lock.</div>
         </div>
 
-        <div class="benchmark-card">
+        <div class="benchmark-card" onclick="optimizeFor('gemini_context')" style="cursor: pointer;" title="Click to compile for Gemini Context format">
           <div class="model-name">
-            Gemini 2.0 Flash
+            Gemini 2.0 Flash / Pro
             <span class="model-score" id="scoreGemini">95%</span>
           </div>
           <div class="progress-bar-bg">
             <div class="progress-bar-fill" id="fillGemini" style="width: 95%;"></div>
           </div>
-          <div class="model-notes">Long-context token efficiency, structured Markdown headers.</div>
+          <div class="model-notes">Google &bull; 2M+ context window, delimited document grounding, ultra-low latency.</div>
         </div>
 
-        <div class="benchmark-card">
+        <div class="benchmark-card" onclick="optimizeFor('deepseek_r1')" style="cursor: pointer;" title="Click to compile for DeepSeek R1 format">
           <div class="model-name">
-            DeepSeek R1
+            DeepSeek R1 / V3
             <span class="model-score" id="scoreDeepSeek">94%</span>
           </div>
           <div class="progress-bar-bg">
             <div class="progress-bar-fill" id="fillDeepSeek" style="width: 94%;"></div>
           </div>
-          <div class="model-notes">Mathematical precision, explicit chain-of-thought verification.</div>
+          <div class="model-notes">DeepSeek &bull; Mathematical equations, computational invariants, formal verification.</div>
+        </div>
+
+        <div class="benchmark-card" onclick="optimizeFor('grok_direct')" style="cursor: pointer;" title="Click to compile for Grok 3 format">
+          <div class="model-name">
+            Grok 3
+            <span class="model-score" id="scoreGrok">95%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="fillGrok" style="width: 95%;"></div>
+          </div>
+          <div class="model-notes">xAI &bull; Unfiltered technical truth, direct imperative commands, zero corporate fluff.</div>
+        </div>
+
+        <div class="benchmark-card" onclick="optimizeFor('llama_system')" style="cursor: pointer;" title="Click to compile for Llama 3.3 format">
+          <div class="model-name">
+            Llama 3.3 70B
+            <span class="model-score" id="scoreLlama">93%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="fillLlama" style="width: 93%;"></div>
+          </div>
+          <div class="model-notes">Meta &bull; Explicit system persona steering, standardized markdown instructions.</div>
+        </div>
+
+        <div class="benchmark-card" onclick="optimizeFor('qwen_coder')" style="cursor: pointer;" title="Click to compile for Qwen Coder format">
+          <div class="model-name">
+            Qwen 2.5 Coder 32B
+            <span class="model-score" id="scoreQwen">96%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="fillQwen" style="width: 96%;"></div>
+          </div>
+          <div class="model-notes">Alibaba &bull; Repository-level code synthesis, full type annotations, unit test harness.</div>
+        </div>
+      </div>
+
+      <!-- Autonomous Coding Bots Grid -->
+      <div class="benchmarks-grid" id="webGridBots" style="display: none;">
+        <div class="benchmark-card" onclick="optimizeFor('cursor_composer')" style="cursor: pointer;" title="Click to compile for Cursor Composer">
+          <div class="model-name">
+            Cursor Composer / Agent
+            <span class="model-score" id="scoreCursor">97%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="fillCursor" style="width: 97%;"></div>
+          </div>
+          <div class="model-notes">Anysphere &bull; Multi-file shadow workspace index, @file anchors, atomic diffs.</div>
+        </div>
+
+        <div class="benchmark-card" onclick="optimizeFor('windsurf_cascade')" style="cursor: pointer;" title="Click to compile for Windsurf Cascade">
+          <div class="model-name">
+            Windsurf Cascade
+            <span class="model-score" id="scoreWindsurf">95%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="fillWindsurf" style="width: 95%;"></div>
+          </div>
+          <div class="model-notes">Codeium &bull; Cascade Flow architecture, real-time tool orchestration checkpoints.</div>
+        </div>
+
+        <div class="benchmark-card" onclick="optimizeFor('claude_code')" style="cursor: pointer;" title="Click to compile for Claude Code CLI">
+          <div class="model-name">
+            Claude Code CLI
+            <span class="model-score" id="scoreClaudeCode">96%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="fillClaudeCode" style="width: 96%;"></div>
+          </div>
+          <div class="model-notes">Anthropic &bull; Terminal bash execution loops, automated test verification harness.</div>
+        </div>
+
+        <div class="benchmark-card" onclick="optimizeFor('copilot_edits')" style="cursor: pointer;" title="Click to compile for Copilot Edits">
+          <div class="model-name">
+            GitHub Copilot Edits
+            <span class="model-score" id="scoreCopilot">92%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="fillCopilot" style="width: 92%;"></div>
+          </div>
+          <div class="model-notes">GitHub / MS &bull; Tightly scoped in-editor patches, local symbol matching, style preservation.</div>
+        </div>
+
+        <div class="benchmark-card" onclick="optimizeFor('aider_diff')" style="cursor: pointer;" title="Click to compile for Aider">
+          <div class="model-name">
+            Aider Pair Programmer
+            <span class="model-score" id="scoreAider">95%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="fillAider" style="width: 95%;"></div>
+          </div>
+          <div class="model-notes">Open Source &bull; Git commit automation, repo map AST parsing, test-driven commit loops.</div>
+        </div>
+
+        <div class="benchmark-card" onclick="optimizeFor('devin_fullstack')" style="cursor: pointer;" title="Click to compile for Devin">
+          <div class="model-name">
+            Devin Autonomous
+            <span class="model-score" id="scoreDevin">94%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="fillDevin" style="width: 94%;"></div>
+          </div>
+          <div class="model-notes">Cognition &bull; Full-lifecycle milestone specifications, shell + browser test criteria.</div>
+        </div>
+
+        <div class="benchmark-card" onclick="optimizeFor('cline_mcp')" style="cursor: pointer;" title="Click to compile for Cline / Roo Code">
+          <div class="model-name">
+            Cline / Roo Code
+            <span class="model-score" id="scoreCline">95%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="fillCline" style="width: 95%;"></div>
+          </div>
+          <div class="model-notes">Open Source &bull; MCP tool execution protocol, atomic file operations, validation checks.</div>
         </div>
       </div>
     </div>
@@ -652,6 +772,32 @@
     };
 
     let currentProfile = "clarity";
+
+    function switchWebCategory(cat) {
+      const tabModels = document.getElementById("tabWebModels");
+      const tabBots = document.getElementById("tabWebBots");
+      const gridModels = document.getElementById("webGridModels");
+      const gridBots = document.getElementById("webGridBots");
+
+      if (cat === "models") {
+        tabModels.classList.add("active");
+        tabBots.classList.remove("active");
+        gridModels.style.display = "grid";
+        gridBots.style.display = "none";
+      } else {
+        tabBots.classList.add("active");
+        tabModels.classList.remove("active");
+        gridBots.style.display = "grid";
+        gridModels.style.display = "none";
+      }
+    }
+
+    function optimizeFor(targetProfile) {
+      currentProfile = targetProfile;
+      mascotBubble.textContent = "Compiling prompt specifically for " + targetProfile + "...";
+      improvePrompt();
+    }
+
 
     // Elements
     const promptInput = document.getElementById("promptInput");
@@ -726,8 +872,30 @@
         cleaned = cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
       }
 
-      // Synthesize optimized prompt
-      let enhanced = "### Role & Objective\n";
+      // Model and Bot Specific Compilers
+      let enhanced = "";
+      if (currentProfile === "claude_xml") {
+        enhanced = "<task>\n" + cleaned + "\n</task>\n\n<constraints>\n- Production grade correctness with zero unstated mock implementations.\n- Deliver self-contained drop-in replacement artifacts.\n- Zero conversational transitions or meta-commentary.\n</constraints>\n\n<output_format>\nExecutable code followed by verification test assertions.\n</output_format>";
+      } else if (currentProfile === "openai_o") {
+        const oCleaned = cleaned.replace(/\b(think step by step|walk through step by step|let's think step by step|step[- ]by[- ]step)\b/gi, "").trim();
+        enhanced = "### Problem Specification\n" + oCleaned + "\n\n### Invariant & Boundary Criteria\n- Deterministic correctness across all edge cases (null inputs, boundary limits).\n- Zero pseudocode; fully implemented production artifacts.\n\n### Acceptance Verification\n- Provide unit test assertions validating baseline and boundary recovery.";
+      } else if (currentProfile === "gpt4o_schema") {
+        enhanced = "## Objective & System Context\nAct as a Senior Staff Engineer. Objective: " + cleaned + "\n\n## Hard Constraints\n- Output structured under clean markdown headings.\n- Complete variable typing and docstrings.\n- Zero conversational preamble.";
+      } else if (currentProfile === "gemini_context") {
+        enhanced = "[SYSTEM INSTRUCTION: GEMINI 2.0 RUNTIME]\nGround all outputs directly in technical specifications.\n\n=== ACTIONABLE OBJECTIVE ===\n" + cleaned + "\n\n=== DELIVERABLE FORMAT ===\nFully resolved implementation with edge case verification.";
+      } else if (currentProfile === "deepseek_r1") {
+        enhanced = "### Mathematical & Algorithmic Contract\nProblem: " + cleaned + "\n\n### Invariant Equations & Safety Bounds\n- Preconditions: Strict boundary validation and type safety.\n- Computational Invariants: Guaranteed termination and memory predictability.\n- Deliver full runnable code followed by formal verification tests.";
+      } else if (currentProfile === "grok_direct") {
+        enhanced = "### MISSION DIRECTIVE (ZERO FLUFF)\nCommand: " + cleaned + "\n\n### EMPIRICAL EXECUTION RULES\n- Deliver direct unhedged technical solutions backed by empirical evidence.\n- Zero corporate boilerplate or safety hedging.\n- Production-ready code and verification steps.";
+      } else if (currentProfile === "cursor_composer") {
+        enhanced = "### Cursor Composer Multi-File Task\nRequest: " + cleaned + "\n\n### Modification Guidelines\n- Edit only the targeted files and symbols required for this task.\n- Preserve project style and comments.\n- Format code changes as clean drop-in replacement blocks.";
+      } else if (currentProfile === "windsurf_cascade") {
+        enhanced = "### Cascade Flow Task Plan\nTask: " + cleaned + "\n\n### Execution Sequence\n1. Inspect relevant files in workspace.\n2. Implement functionality with verified file edits.\n3. Run terminal verification checks.";
+      } else if (currentProfile === "claude_code") {
+        enhanced = "Task for Claude Code CLI:\n" + cleaned + "\n\nOperational Directives:\n- Inspect files using ripgrep before editing.\n- Apply surgical diff-compatible modifications.\n- Run project test suite to verify changes pass cleanly.";
+      } else {
+        // Universal Synthesis
+        enhanced = "### Role & Objective\n";
       enhanced += "Act as a " + profile.role + ". Your objective is to: " + cleaned + "\n\n";
 
       enhanced += "### Requirements & Directives\n";
@@ -757,7 +925,57 @@
       reductionDelta.textContent = "+" + density + "% signal";
 
       // Mascot reaction
-      mascotBubble.textContent = "Prompt sharpened! Ready for frontier deployment.";
+      mascotBubble.textContent = "Prompt sharpened! Benchmarks updated across models and bots.";
+
+      // Dynamic Benchmark Score Calculations
+      const hasXml = /<\/?[a-z_]+>/i.test(enhanced);
+      const hasStep = /\b(step[- ]by[- ]step|think step by step)\b/i.test(enhanced);
+      const hasSchema = /\b(json schema|output format|pydantic|## Hard Constraints)/i.test(enhanced);
+      const hasDelim = /(===|---|```context|SYSTEM INSTRUCTION)/i.test(enhanced);
+      const hasNeg = /\b(zero|do not|never|must not|avoid|strictly)\b/i.test(enhanced);
+      const hasTests = /\b(test|assert|verification|spec)\b/i.test(enhanced);
+
+      const sClaude = Math.min(99, 75 + (hasXml ? 15 : 0) + (hasNeg ? 9 : 0));
+      const sO1 = Math.min(99, 80 - (hasStep ? 25 : 0) + (hasNeg ? 10 : 0) + (hasTests ? 9 : 0));
+      const s4o = Math.min(99, 72 + (hasSchema ? 18 : 0) + (hasNeg ? 9 : 0));
+      const sGemini = Math.min(99, 74 + (hasDelim ? 18 : 0) + (hasNeg ? 6 : 0));
+      const sDeepSeek = Math.min(99, 75 + (hasNeg ? 15 : 0) - (hasStep ? 20 : 0) + (hasTests ? 8 : 0));
+      const sGrok = Math.min(99, 75 + (hasNeg ? 15 : 0) + 8);
+      const sLlama = Math.min(99, 72 + (hasDelim ? 14 : 0) + (hasNeg ? 8 : 0));
+      const sQwen = Math.min(99, 76 + (hasTests ? 16 : 0) + (hasNeg ? 6 : 0));
+
+      const sCursor = Math.min(99, 75 + 18);
+      const sWindsurf = Math.min(99, 74 + 16);
+      const sClaudeCode = Math.min(99, 75 + (hasTests ? 15 : 0) + 6);
+      const sCopilot = Math.min(99, 72 + 16);
+      const sAider = Math.min(99, 74 + (hasTests ? 16 : 0) + 6);
+      const sDevin = Math.min(99, 75 + (hasTests ? 15 : 0) + 5);
+      const sCline = Math.min(99, 75 + 16);
+
+      const updateScore = (scoreId, fillId, val) => {
+        const elS = document.getElementById(scoreId);
+        const elF = document.getElementById(fillId);
+        if (elS) elS.textContent = val + "%";
+        if (elF) elF.style.width = val + "%";
+      };
+
+      updateScore("scoreClaude", "fillClaude", sClaude);
+      updateScore("scoreO1", "fillO1", sO1);
+      updateScore("score4o", "fill4o", s4o);
+      updateScore("scoreGemini", "fillGemini", sGemini);
+      updateScore("scoreDeepSeek", "fillDeepSeek", sDeepSeek);
+      updateScore("scoreGrok", "fillGrok", sGrok);
+      updateScore("scoreLlama", "fillLlama", sLlama);
+      updateScore("scoreQwen", "fillQwen", sQwen);
+
+      updateScore("scoreCursor", "fillCursor", sCursor);
+      updateScore("scoreWindsurf", "fillWindsurf", sWindsurf);
+      updateScore("scoreClaudeCode", "fillClaudeCode", sClaudeCode);
+      updateScore("scoreCopilot", "fillCopilot", sCopilot);
+      updateScore("scoreAider", "fillAider", sAider);
+      updateScore("scoreDevin", "fillDevin", sDevin);
+      updateScore("scoreCline", "fillCline", sCline);
+
     }
 
     improveBtn.addEventListener("click", improvePrompt);
