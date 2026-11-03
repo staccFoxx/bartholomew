@@ -598,7 +598,46 @@
       </div>
     </div>
 
-        <!-- Benchmarks Section -->
+        
+    <!-- Autonomous Lateral Brainstormer & Orthogonal Pathfinding Engine -->
+    <div class="cognitive-card" style="background: var(--card-bg); border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 12px; padding: 16px 20px; display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 0.85rem; font-weight: 700; color: #fff;">Autonomous Lateral Brainstormer &amp; Orthogonal Pathfinding Engine</span>
+          <span id="webBrainstormBadge" style="font-size: 0.72rem; font-weight: 700; color: #c084fc; background: rgba(168, 85, 247, 0.15); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(168, 85, 247, 0.3);">Thinking Outside the Box</span>
+        </div>
+        <div style="display: flex; gap: 12px; font-size: 0.75rem; color: var(--muted); flex-wrap: wrap;">
+          <span>Consensus Traps: <b id="webTrapsBadge" style="color: #f87171;">Blocked &amp; Embargoed</b></span>
+          <span>Scientific Fusion: <b id="webFusionBadge" style="color: #c084fc;">Cellular &bull; Mycelial &bull; Quantum</b></span>
+        </div>
+      </div>
+      <div id="webBrainstormSummary" style="font-size: 0.78rem; color: #cbd5e1; font-style: italic;">
+        Brainstormer active: Automatically identifies orthodox AI consensus traps (Redis/CRUD/monoliths) and engineers 3 divergent orthogonal paths that outperform standard LLMs.
+      </div>
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 4px;">
+        <div onclick="applyWebVector('inversion')" style="border: 1px solid rgba(168, 85, 247, 0.3); background: rgba(168, 85, 247, 0.05); border-radius: 8px; padding: 10px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='#c084fc'" onmouseout="this.style.borderColor='rgba(168, 85, 247, 0.3)'">
+          <div style="font-size: 0.82rem; font-weight: 700; color: #e9d5ff;">Vector A: Asymmetric Inversion</div>
+          <div style="font-size: 0.73rem; color: var(--muted); margin-top: 2px;">Inverts the core constraint (Jacobi/Munger). Eliminates the bottlenecked layer entirely.</div>
+        </div>
+        <div onclick="applyWebVector('bisociation')" style="border: 1px solid rgba(168, 85, 247, 0.3); background: rgba(168, 85, 247, 0.05); border-radius: 8px; padding: 10px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='#c084fc'" onmouseout="this.style.borderColor='rgba(168, 85, 247, 0.3)'">
+          <div style="font-size: 0.82rem; font-weight: 700; color: #e9d5ff;">Vector B: Cross-Domain Bisociation</div>
+          <div style="font-size: 0.73rem; color: var(--muted); margin-top: 2px;">Collides problem with Immunology (apoptosis), Mycelial networks, or Quantum mechanics.</div>
+        </div>
+        <div onclick="applyWebVector('transcendence')" style="border: 1px solid rgba(168, 85, 247, 0.3); background: rgba(168, 85, 247, 0.05); border-radius: 8px; padding: 10px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='#c084fc'" onmouseout="this.style.borderColor='rgba(168, 85, 247, 0.3)'">
+          <div style="font-size: 0.82rem; font-weight: 700; color: #e9d5ff;">Vector C: Paradigm Transcendence</div>
+          <div style="font-size: 0.73rem; color: var(--muted); margin-top: 2px;">Zero-state execution, mathematical proof-carrying invariants, zero runtime coordination.</div>
+        </div>
+      </div>
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 4px; padding-top: 8px; border-top: 1px solid rgba(168, 85, 247, 0.2);">
+        <span style="font-size: 0.75rem; color: var(--muted);">Click any vector above or compile the master blueprint:</span>
+        <button class="profile-btn active" onclick="compileMasterBrainstorm()" style="background: linear-gradient(135deg, #9333ea, #6366f1); border-color: #a855f7; font-weight: 700;">
+          Synthesize Master Orthogonal Blueprint
+        </button>
+      </div>
+    </div>
+
+
+    <!-- Benchmarks Section -->
     <div class="benchmarks-section">
       <div class="pane-header" style="border-bottom: none; padding-bottom: 0;">
         <div>
@@ -828,6 +867,89 @@
     let webAudienceOverride = null;
 
     let webDisciplineOverride = null;
+
+    
+    function synthesizeLateralBrainstorm(prompt) {
+      const lower = prompt.toLowerCase();
+      let traps = [];
+      if (/\b(cache|fast|latency|speed|performance)\b/i.test(lower)) {
+        traps.push("Generic Redis / Memcached in-memory caching layer");
+      }
+      if (/\b(scale|scaling|traffic|load)\b/i.test(lower)) {
+        traps.push("Standard horizontal Kubernetes microservices behind Nginx");
+      }
+      if (/\b(database|store|data|storage|persist)\b/i.test(lower)) {
+        traps.push("Standard monolithic PostgreSQL CRUD with ORM schema migrations");
+      }
+      if (/\b(ui|dashboard|frontend|interface)\b/i.test(lower)) {
+        traps.push("Cookie-cutter React + Tailwind + Redux admin dashboard with standard cards");
+      }
+      if (/\b(ai|llm|agent|bot|rag)\b/i.test(lower)) {
+        traps.push("Generic naive vector similarity search (RAG) with ChromaDB");
+      }
+      if (traps.length === 0) {
+        traps.push("Standard monolithic CRUD web service with relational tables");
+      }
+
+      return {
+        traps: traps,
+        master: "### PROMPTSMITH AUTONOMOUS LATERAL BRAINSTORMING BLUEPRINT\n" +
+          "**Objective**: Shatter conventional consensus thinking and engineer an unprecedented orthogonal path.\n\n" +
+          "#### Consensus Traps Strictly Forbidden\n" +
+          "Standard AI models instinctively propose:\n" +
+          traps.map((t, idx) => `  ${idx + 1}. [FORBIDDEN] ${t}`).join("\n") +
+          "\n*Rule: Do not propose, reference, or iterate upon any of the forbidden consensus tropes above.*\n\n" +
+          "#### Lateral Vector A: The Inverted Constraint (Jacobi/Munger)\n" +
+          "- Invert the core constraint: eliminate the layer that experiences the bottleneck rather than optimizing it.\n" +
+          "- Provocative Operator: PO - What if the system functions flawlessly when the primary server is completely offline?\n\n" +
+          "#### Lateral Vector B: Bisociative Cross-Domain Fusion\n" +
+          "- Cross-pollinate with Cellular Immunology (self-terminating apoptosis for toxic state elimination) and Mycelial gradient flow.\n" +
+          "- Nodes shed load through natural conductance gradients with zero central coordination table.\n\n" +
+          "#### Lateral Vector C: Paradigm Transcendence (Moonshot)\n" +
+          "- Replace runtime orchestration with compile-time mathematical proofs or zero-state edge execution.\n" +
+          "- The operation executes with 0ms coordination latency because results are bounded before request dispatch.\n\n" +
+          "#### Synthesis Mandate\n" +
+          "1. Present the 3 orthogonal options in an executive comparison matrix (Trade-offs, Novelty Index 1-100, Scalability Ceiling).\n" +
+          "2. Deep-dive into the single most breakthrough path with concrete runnable architecture and zero placeholders.\n" +
+          "3. Prove mathematically why this solution out-thinks standard AI outputs by an order of magnitude.\n\n" +
+          "### Target Problem Specification\n" + prompt
+      };
+    }
+
+    function compileMasterBrainstorm() {
+      const raw = promptInput.value.trim();
+      if (!raw) {
+        mascotBubble.textContent = "Please enter an idea or challenge to brainstorm outside the box!";
+        return;
+      }
+      const synth = synthesizeLateralBrainstorm(raw);
+      promptOutput.textContent = synth.master;
+      mascotBubble.textContent = "Autonomous Lateral Brainstorm active! Consensus traps embargoed; 3 orthogonal breakthrough paths compiled.";
+    }
+
+    function applyWebVector(vectorId) {
+      const raw = promptInput.value.trim();
+      if (!raw) {
+        mascotBubble.textContent = "Please enter an idea or challenge first!";
+        return;
+      }
+      const synth = synthesizeLateralBrainstorm(raw);
+      let heading = "";
+      let details = "";
+      if (vectorId === "inversion") {
+        heading = "VECTOR A: ASYMMETRIC INVERSION (JACOBI / MUNGER)";
+        details = "Strictly forbid: " + synth.traps.join(" OR ") + "\n\nInvert the problem space: remove the bottlenecked component entirely and replace with compile-time deterministic derived state.";
+      } else if (vectorId === "bisociation") {
+        heading = "VECTOR B: CROSS-DOMAIN BISOCIATION (IMMUNOLOGY & MYCELIUM)";
+        details = "Collides challenge with Cellular Immunology (programmed apoptosis) and Mycelial gradient flow. Eliminates centralized state bottlenecks through biological self-organization.";
+      } else {
+        heading = "VECTOR C: PARADIGM TRANSCENDENCE (THE MOONSHOT)";
+        details = "Zero-state edge execution, mathematical proof-carrying invariants, and zero coordination latency. Renders conventional web architecture obsolete.";
+      }
+
+      promptOutput.textContent = `### PROMPTSMITH ORTHOGONAL PATH: ${heading}\n\n${details}\n\n### Target Specification\n${raw}\n\n### Verification Directive\nDeliver full production implementation proving that the consensus trap has been eliminated.`;
+      mascotBubble.textContent = `Applied ${heading}! Thinking completely outside the box.`;
+    }
 
     function detectDiscipline(text) {
       const lower = text.toLowerCase();
