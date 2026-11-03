@@ -2207,7 +2207,7 @@ function runBenchmark(subargs = []) {
   console.log(`\n  ${BOLD}SPEEDUP FACTOR:${RESET} Bartholomew is ${BOLD}${GREEN}${Math.round(280000 / Math.max(1, parseFloat(p50Us))).toLocaleString()}x faster${RESET} than cloud API guardrails.`);
   console.log(`  * Cryptographic Merkle Seal  : 0x${merkleRoot.slice(0, 32)}...`);
   console.log('='.repeat(72) + '\n');
-  console.log(`  ${DIM}[*] Back open-source agent runtime security:${RESET} https://buy.stripe.com/3cI6oHbNz3LQ4U84He9R605\n`);
+  console.log(`  ${DIM}[*] Visit Bartholomew Security:${RESET} https://bartholomew.info\n`);
 }
 
 function runAuditExport(subargs = []) {
@@ -2946,7 +2946,7 @@ function runTopupCli(subargs = []) {
   } else if (amt === '15') {
     url = 'https://buy.stripe.com/cNi3cv6tf6Y2cmAgpW9R608';
   } else {
-    url = 'https://buy.stripe.com/3cI6oHbNz3LQ4U84He9R605';
+    url = 'https://bartholomew.info';
   }
 
   console.log(`======================================================================`);

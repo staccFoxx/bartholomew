@@ -38,7 +38,6 @@
   "engines": {
     "node": ">=18.0.0"
   },
-  "funding": "https://buy.stripe.com/3cI6oHbNz3LQ4U84He9R605",
   "scripts": {
     "test": "node test.js && node test_microsoft_middleware.js && node test_genai_llamaindex_middleware.js"
   },
