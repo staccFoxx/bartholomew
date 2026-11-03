@@ -4,21 +4,21 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "btp-guard"
-version = "6.8.0"
+version = "7.0.0"
 authors = [
   { name="Bartholomew Security Contributors", email="security@bartholomew.info" },
 ]
-description = "BTP v6.6.3 Universal Cryptographic Trust Guard & In-Process Gateway (Gemini 3.8, Claude 3.7, AutoGen, Semantic Kernel, LangGraph, Claude Code)"
+description = "BTP v7.0.0 Universal Cryptographic Trust Guard & In-Process AST Gateway (Claude Code, Cursor, Windsurf, AutoGen, Semantic Kernel, LangGraph)"
 readme = "README.md"
 requires-python = ">=3.10"
-license = { text = "MIT" }
+license = { text = "Apache-2.0" }
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: Apache Software License",
     "Operating System :: OS Independent",
     "Topic :: Security",
     "Topic :: Scientific/Engineering :: Artificial Intelligence"
@@ -29,7 +29,7 @@ dependencies = [
 
 [project.urls]
 Homepage = "https://bartholomew.info"
-Documentation = "https://github.com/bartholomew-ai/bartholomew/tree/main/docs"
-Repository = "https://github.com/bartholomew-ai/bartholomew"
-Changelog = "https://github.com/bartholomew-ai/bartholomew/tree/main/docs/release-notes-v2.4.0.md"
-Tracker = "https://github.com/bartholomew-ai/bartholomew/issues"
+Documentation = "https://bartholomew.info/docs.html"
+Repository = "https://github.com/staccFoxx/bartholomew"
+Changelog = "https://bartholomew.info/whitepaper.html"
+Tracker = "https://github.com/staccFoxx/bartholomew/issues"

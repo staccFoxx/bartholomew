@@ -67,11 +67,11 @@
   "homepage": "https://bartholomew.info",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bartholomew-security/bartholomew.git",
+    "url": "git+https://github.com/staccFoxx/bartholomew.git",
     "directory": "packages/npm_package"
   },
   "bugs": {
-    "url": "https://github.com/bartholomew-security/bartholomew/issues"
+    "url": "https://github.com/staccFoxx/bartholomew/issues"
   },
   "files": [
     "index.js",
