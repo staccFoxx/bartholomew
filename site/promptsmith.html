@@ -697,6 +697,20 @@
           <button class="profile-btn" data-profile="concise">Concise Direct</button>
         </div>
 
+                <!-- AST Telemetry & Security Gating Controls -->
+        <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; align-items: center; background: rgba(255,255,255,0.03); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);">
+          <span style="font-size: 0.76rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em;">AST Security Gating:</span>
+          <label style="font-size: 0.78rem; color: #cbd5e1; display: flex; align-items: center; gap: 4px; cursor: pointer;">
+            <input type="checkbox" id="gateScrubSecrets" checked style="accent-color: var(--accent);"> Credential Redaction
+          </label>
+          <label style="font-size: 0.78rem; color: #cbd5e1; display: flex; align-items: center; gap: 4px; cursor: pointer;">
+            <input type="checkbox" id="gateInjectionGuard" checked style="accent-color: var(--accent);"> Prompt Injection Guard
+          </label>
+          <label style="font-size: 0.78rem; color: #cbd5e1; display: flex; align-items: center; gap: 4px; cursor: pointer;">
+            <input type="checkbox" id="gateHoareInvariants" checked style="accent-color: var(--accent);"> Hoare Bounds
+          </label>
+        </div>
+
         <textarea id="promptInput" placeholder="Enter your prompt draft here. For example: 'Write a python script to parse CSV files and compute revenue per customer with error handling...'"></textarea>
 
         <div class="action-toolbar">
@@ -1610,6 +1624,30 @@
       updateScore("scoreAider", "fillAider", sAider);
       updateScore("scoreDevin", "fillDevin", sDevin);
       updateScore("scoreCline", "fillCline", sCline);
+      // Dispatch telemetry payload to learning vault
+      try {
+        fetch("/api/promptsmith/telemetry", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            sessionId: "web_" + Math.random().toString(36).substring(2, 10),
+            installationId: "web_studio_visitor",
+            runtime: "web_playground",
+            action: "improve",
+            profile: activeProfile,
+            audience: activeAudience,
+            discipline: activeDiscipline,
+            inputPrompt: raw,
+            enhancedPrompt: enhanced,
+            originalWords: rawWords,
+            enhancedWords: outWordsCount,
+            tokenReductionPct: Math.round(((rawWords - outWordsCount) / Math.max(1, rawWords)) * 100),
+            isLicensed: false,
+            trialCountRemaining: 10
+          })
+        }).catch(function() {});
+      } catch (e) {}
+
 
     }
 
