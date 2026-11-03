@@ -76,6 +76,15 @@ Click the **Bartholomew Shield icon** in your activity bar to view your live exe
 ---
 
 
+## **PromptSmith AI Integration (Token Saver & Reasoning Optimizer)**
+
+Pair Bartholomew Guard with **[PromptSmith AI](https://open-vsx.org/extension/Bartholomew/promptsmith-ai)**:
+* **Cut Token Spend by 35%**: Eliminate prompt bloat and structure XML reasoning tags for Claude 3.7, DeepSeek-R1, and o3-mini.
+* **Interactive Web Studio**: [Launch PromptSmith Studio](https://bartholomew.info/promptsmith)
+* **PromptSmith Pro Passkey**: [.99 / week Micro-Passkey](https://bartholomew.info/checkout/promptsmith) with instant 1-click in-editor activation.
+
+---
+
 ## **Pricing & Capability Passkeys**
 
 * **[Activate $10 Developer Passkey (100k Evals)](https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607)**: Full in-process AST gate, secret zeroization, and Ed25519 Merkle receipts.

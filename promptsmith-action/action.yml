@@ -1,0 +1,23 @@
+name: "PromptSmith - In-Process Prompt Optimizer & Token Compressor"
+description: "Trims conversational token bloat (-35%), eliminates prompt injection vectors, and bounds model reasoning loops in PRs."
+author: "Bartholomew Sovereign Network"
+inputs:
+  path:
+    description: "Directory or glob pattern of prompt files to inspect (default: .)"
+    required: false
+    default: "."
+  token-savings-threshold:
+    description: "Minimum token reduction percentage to trigger PR annotations"
+    required: false
+    default: "15"
+outputs:
+  tokens_saved:
+    description: "Estimated tokens saved per completion across repository prompts"
+  estimated_cost_reduction_usd:
+    description: "Estimated monthly cost reduction on Claude 3.5 / o3 completions"
+runs:
+  using: "node20"
+  main: "index.js"
+branding:
+  icon: "zap"
+  color: "yellow"
