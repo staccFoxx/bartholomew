@@ -546,7 +546,34 @@
       </div>
     </div>
 
-        <!-- Benchmarks Section -->
+            <!-- Adaptive Cognitive Learning & Pattern Analytics -->
+    <div class="cognitive-card" style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 16px 20px; display: flex; flex-direction: column; gap: 10px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 0.85rem; font-weight: 700; color: #fff;">Cognitive Pattern &amp; Age-Agnostic Learning Engine</span>
+          <span id="webAudienceBadge" style="font-size: 0.72rem; font-weight: 700; color: var(--accent); background: var(--accent-dim); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(234, 179, 8, 0.3);">Practitioner / Professional</span>
+        </div>
+        <div style="display: flex; gap: 12px; font-size: 0.75rem; color: var(--muted); flex-wrap: wrap;">
+          <span>Readability: <b id="webGrade" style="color: #fff;">Grade 8</b></span>
+          <span>Reading Ease: <b id="webEase" style="color: #fff;">72%</b></span>
+          <span>Bloom's Intent: <b id="webBlooms" style="color: #fff;">Apply</b></span>
+          <span>Vocabulary TTR: <b id="webTTR" style="color: #fff;">68%</b></span>
+        </div>
+      </div>
+      <div id="webScaffoldingSummary" style="font-size: 0.78rem; color: #cbd5e1; font-style: italic;">
+        Zone of Proximal Development (ZPD) scaffolding active: balances technical precision with clear operational guidance.
+      </div>
+      <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+        <span style="font-size: 0.75rem; color: var(--muted); font-weight: 600;">Audience Calibrator:</span>
+        <button class="profile-btn active" id="audBtnAuto" onclick="setWebAudience('auto')">Auto-Detect</button>
+        <button class="profile-btn" id="audBtnExplorer" onclick="setWebAudience('explorer')">Explorer (All Ages &amp; Beginners / ELI5)</button>
+        <button class="profile-btn" id="audBtnPractitioner" onclick="setWebAudience('practitioner')">Practitioner (Developers)</button>
+        <button class="profile-btn" id="audBtnArchitect" onclick="setWebAudience('architect')">Staff Architect (Formal Contracts)</button>
+        <button class="profile-btn" id="audBtnExecutive" onclick="setWebAudience('executive')">Executive (ROI &amp; Strategy)</button>
+      </div>
+    </div>
+
+    <!-- Benchmarks Section -->
     <div class="benchmarks-section">
       <div class="pane-header" style="border-bottom: none; padding-bottom: 0;">
         <div>
@@ -773,6 +800,85 @@
 
     let currentProfile = "clarity";
 
+    let webAudienceOverride = null;
+
+    function countSyllables(word) {
+      word = word.toLowerCase().replace(/[^a-z]/g, "");
+      if (!word || word.length <= 3) return 1;
+      const clean = word.replace(/(?:[^laeiouy]|ed|es|e)$/, "").replace(/^y/, "");
+      const matches = clean.match(/[aeiouy]{1,2}/g);
+      return matches ? Math.max(1, matches.length) : 1;
+    }
+
+    function analyzeCognitive(text) {
+      const words = text.trim().split(/\s+/).filter(Boolean);
+      const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+      const wCount = Math.max(1, words.length);
+      const sCount = Math.max(1, sentences.length);
+
+      const unique = new Set(words.map(w => w.toLowerCase()));
+      const ttr = Math.round((unique.size / wCount) * 100);
+
+      let syllables = 0;
+      for (const w of words) syllables += countSyllables(w);
+
+      const avgWpS = wCount / sCount;
+      const avgSpW = syllables / wCount;
+      const ease = Math.round(Math.max(0, Math.min(100, 206.835 - (1.015 * avgWpS) - (84.6 * avgSpW))));
+      const grade = Math.max(1, Math.round((0.39 * avgWpS) + (11.8 * avgSpW) - 15.59));
+
+      // Uncertainty & Youth Markers
+      const hasHesitation = /\b(not sure|i don't know|beginner|confused|help me understand|eli5|explain like i'm|simple words|newbie)\b/i.test(text);
+      const hasYouth = /\b(for school|in class|homework|kids|game|minecraft|roblox|scratch|i am \d+ years old)\b/i.test(text);
+      const hasArchitect = /\b(asymptotic|idempotent|concurrency|lock-free|zero-copy|p99|wal|mvcc|invariants|consensus|byzantine)\b/i.test(text);
+      const hasExec = /\b(roi|capex|opex|cost benefit|timeline|roadmap|deliverable|kpi|executive summary)\b/i.test(text);
+
+      let audience = "practitioner";
+      let label = "Practitioner (Professional)";
+      let summary = "Balanced standard technical scaffolding.";
+
+      if (hasYouth || hasHesitation || grade <= 5 || ease >= 85) {
+        audience = "explorer";
+        label = "Explorer / Youth (All Ages & Beginners)";
+        summary = "Zone of Proximal Development (ZPD) scaffolding active: deconstructs concepts into real-world metaphors with zero gatekeeping.";
+      } else if (hasExec) {
+        audience = "executive";
+        label = "Executive / Strategic (Outcomes & ROI)";
+        summary = "Executive Strategic Framing active: highlights ROI, feasibility, and architecture trade-offs.";
+      } else if (hasArchitect || (grade >= 13 && ttr >= 75)) {
+        audience = "architect";
+        label = "Staff Architect / Specialist";
+        summary = "Cognitive Load Optimization (Sweller) active: maximum token density, invariant equations, and formal test assertions.";
+      }
+
+      let blooms = "Apply";
+      if (/\b(what is|define|list|where is)\b/i.test(text)) blooms = "Remember";
+      else if (/\b(explain|why|how does|summarize)\b/i.test(text)) blooms = "Understand";
+      else if (/\b(build|write|create|implement|code)\b/i.test(text)) blooms = "Create";
+      else if (/\b(compare|contrast|bench|audit|evaluate)\b/i.test(text)) blooms = "Evaluate";
+      else if (/\b(debug|diagnose|root cause|isolate)\b/i.test(text)) blooms = "Analyze";
+
+      return { audience, label, summary, grade, ease, ttr, blooms };
+    }
+
+    function setWebAudience(aud) {
+      webAudienceOverride = (aud === "auto") ? null : aud;
+      const btns = ["audBtnAuto", "audBtnExplorer", "audBtnPractitioner", "audBtnArchitect", "audBtnExecutive"];
+      btns.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove("active");
+      });
+      const activeId = aud === "auto" ? "audBtnAuto" : "audBtn" + aud.charAt(0).toUpperCase() + aud.slice(1);
+      const activeEl = document.getElementById(activeId);
+      if (activeEl) activeEl.classList.add("active");
+
+      mascotBubble.textContent = "Audience scaffolding calibrated to: " + (webAudienceOverride || "Auto-Detect") + "!";
+      if (promptInput.value.trim()) {
+        improvePrompt();
+      }
+    }
+
+
     function switchWebCategory(cat) {
       const tabModels = document.getElementById("tabWebModels");
       const tabBots = document.getElementById("tabWebBots");
@@ -925,7 +1031,38 @@
       reductionDelta.textContent = "+" + density + "% signal";
 
       // Mascot reaction
-      mascotBubble.textContent = "Prompt sharpened! Benchmarks updated across models and bots.";
+      
+      // Cognitive Analysis & Audience Scaffolding
+      const cog = analyzeCognitive(raw);
+      const activeAudience = webAudienceOverride || cog.audience;
+
+      document.getElementById("webGrade").textContent = "Grade " + cog.grade;
+      document.getElementById("webEase").textContent = cog.ease + "%";
+      document.getElementById("webBlooms").textContent = cog.blooms;
+      document.getElementById("webTTR").textContent = cog.ttr + "%";
+      document.getElementById("webAudienceBadge").textContent = (webAudienceOverride ? "[Manual] " : "") + (activeAudience === "explorer" ? "Explorer / Youth (All Ages)" : activeAudience === "architect" ? "Staff Architect" : activeAudience === "executive" ? "Executive" : "Practitioner");
+      document.getElementById("webScaffoldingSummary").textContent = cog.summary;
+
+      // Scaffolding Directives Injection
+      let scaffoldingDirective = "";
+      if (activeAudience === "explorer") {
+        scaffoldingDirective = "\n\n### Audience Scaffolding: Young Student & Beginner Friendly (All Ages)\n- Anchor key concepts in an intuitive real-world analogy before presenting any code or technical answers.\n- Break down the solution into bite-sized, friendly, numbered checkpoints with clear explanations.\n- Define any technical jargon simply in plain English; ensure zero patronizing tone or gatekeeping.\n- Code blocks must be completely runnable, fully commented, and free of hidden assumptions.";
+        mascotBubble.textContent = "I've added friendly real-world analogies and simple step-by-step guidance so anyone can understand!";
+      } else if (activeAudience === "architect") {
+        scaffoldingDirective = "\n\n### Audience Scaffolding: Staff Systems Architect & Formal Verification\n- Maximize token-to-signal density; omit all conversational preamble, transitions, and pleasantries.\n- State formal computational invariants, memory safety constraints, and asymptotic complexity (Time/Space).\n- Deliver self-contained production artifacts with automated unit/integration test assertions.";
+        mascotBubble.textContent = "Maximum token density and formal contracts applied for staff-level systems engineering.";
+      } else if (activeAudience === "executive") {
+        scaffoldingDirective = "\n\n### Audience Scaffolding: Executive Strategic Decision-Maker\n- Provide an Executive Summary highlighting business ROI, feasibility, and architecture trade-offs.\n- Structure technical comparisons in clear Markdown trade-off tables.\n- Outline risk mitigation strategies, resource requirements, and next immediate milestone.";
+        mascotBubble.textContent = "Structured for executive decision clarity: clear deliverables, trade-offs, and ROI.";
+      } else {
+        mascotBubble.textContent = "Prompt sharpened! Benchmarks and professional scaffolding updated.";
+      }
+
+      if (scaffoldingDirective && !enhanced.includes("### Audience Scaffolding")) {
+        enhanced += scaffoldingDirective;
+        promptOutput.textContent = enhanced;
+      }
+
 
       // Dynamic Benchmark Score Calculations
       const hasXml = /<\/?[a-z_]+>/i.test(enhanced);
