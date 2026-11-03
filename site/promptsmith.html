@@ -573,7 +573,32 @@
       </div>
     </div>
 
-    <!-- Benchmarks Section -->
+
+    <!-- Omni-Disciplinary Equalizer & Cross-Pollination Engine -->
+    <div class="cognitive-card" style="background: var(--card-bg); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 12px; padding: 16px 20px; display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 0.85rem; font-weight: 700; color: #fff;">Omni-Disciplinary Equalizer &amp; Cross-Pollination Engine</span>
+          <span id="webDisciplineBadge" style="font-size: 0.72rem; font-weight: 700; color: #60a5fa; background: rgba(59, 130, 246, 0.15); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(59, 130, 246, 0.3);">Universal / Auto-Detected</span>
+        </div>
+        <div style="display: flex; gap: 12px; font-size: 0.75rem; color: var(--muted); flex-wrap: wrap;">
+          <span>Injected Invariants: <b id="webCrossPollBadge" style="color: #60a5fa;">State Machines &bull; Production Contracts</b></span>
+        </div>
+      </div>
+      <div id="webEqualizerSummary" style="font-size: 0.78rem; color: #cbd5e1; font-style: italic;">
+        Equalizer active: automatically levels the playing field across Architects, Designers, Analysts, and Everyday Creators.
+      </div>
+      <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+        <span style="font-size: 0.75rem; color: var(--muted); font-weight: 600;">Disciplinary Lens:</span>
+        <button class="profile-btn active" id="discBtnAuto" onclick="setWebDiscipline('auto')">Auto-Equalize</button>
+        <button class="profile-btn" id="discBtnArchitect" onclick="setWebDiscipline('architect')">Systems Architect</button>
+        <button class="profile-btn" id="discBtnDesigner" onclick="setWebDiscipline('designer')">Product / UI/UX Designer</button>
+        <button class="profile-btn" id="discBtnAnalyst" onclick="setWebDiscipline('analyst')">Data &amp; Intelligence Analyst</button>
+        <button class="profile-btn" id="discBtnCreator" onclick="setWebDiscipline('creator')">Everyday Creator / Beginner</button>
+      </div>
+    </div>
+
+        <!-- Benchmarks Section -->
     <div class="benchmarks-section">
       <div class="pane-header" style="border-bottom: none; padding-bottom: 0;">
         <div>
@@ -801,6 +826,46 @@
     let currentProfile = "clarity";
 
     let webAudienceOverride = null;
+
+    let webDisciplineOverride = null;
+
+    function detectDiscipline(text) {
+      const lower = text.toLowerCase();
+      const designerMarkers = ["ui", "ux", "css", "layout", "figma", "tailwind", "color", "typography", "button", "animation", "responsive", "modal", "accessibility", "wcag", "wireframe", "component", "canvas", "svg", "glow", "glassmorphism", "navbar", "dropdown", "theme", "dark mode"];
+      const architectMarkers = ["concurrency", "distributed", "database", "postgres", "redis", "kafka", "asymptotic", "cache", "microservice", "idempotent", "p99", "throughput", "schema", "wal", "lock-free", "raft", "sharding", "acid", "mvcc", "mutex", "grpc", "zero-copy"];
+      const analystMarkers = ["sql", "query", "aggregation", "etl", "dataset", "dataframe", "pandas", "metric", "retention", "cohort", "kpi", "regression", "p-value", "significance", "variance", "chart", "scatter", "histogram", "time series", "pipeline", "warehouse", "snowflake", "bigquery"];
+      const creatorMarkers = ["i want to make", "how do i", "can you help me", "simple app", "idea for", "website that", "no coding", "for fun", "beginner", "easy", "for my friend", "game like", "bot that", "i don't understand", "explain", "help me build"];
+
+      let dScore = 0, aScore = 0, anScore = 0, cScore = 0;
+      designerMarkers.forEach(m => { if (new RegExp("\\b" + m + "\\b", "i").test(lower)) dScore++; });
+      architectMarkers.forEach(m => { if (new RegExp("\\b" + m + "\\b", "i").test(lower)) aScore++; });
+      analystMarkers.forEach(m => { if (new RegExp("\\b" + m + "\\b", "i").test(lower)) anScore++; });
+      creatorMarkers.forEach(m => { if (lower.includes(m)) cScore += 2; });
+
+      if (dScore >= 2 && dScore > aScore && dScore > anScore) return "designer";
+      if (anScore >= 2 && anScore > aScore && anScore > dScore) return "analyst";
+      if (aScore >= 2 && aScore >= dScore && aScore >= anScore) return "architect";
+      if (cScore >= 2 || (dScore === 0 && aScore === 0 && anScore === 0 && lower.split(/\s+/).length < 25)) return "creator";
+      return "universal";
+    }
+
+    function setWebDiscipline(disc) {
+      webDisciplineOverride = (disc === "auto") ? null : disc;
+      const btns = ["discBtnAuto", "discBtnArchitect", "discBtnDesigner", "discBtnAnalyst", "discBtnCreator"];
+      btns.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.remove("active");
+      });
+      const activeId = disc === "auto" ? "discBtnAuto" : "discBtn" + disc.charAt(0).toUpperCase() + disc.slice(1);
+      const activeEl = document.getElementById(activeId);
+      if (activeEl) activeEl.classList.add("active");
+
+      mascotBubble.textContent = "Omni-Disciplinary Equalizer calibrated to: " + (webDisciplineOverride ? (webDisciplineOverride.toUpperCase() + " Lens") : "Auto-Equalize") + "!";
+      if (promptInput.value.trim()) {
+        improvePrompt();
+      }
+    }
+
 
     function countSyllables(word) {
       word = word.toLowerCase().replace(/[^a-z]/g, "");
@@ -1058,7 +1123,65 @@
         mascotBubble.textContent = "Prompt sharpened! Benchmarks and professional scaffolding updated.";
       }
 
-      if (scaffoldingDirective && !enhanced.includes("### Audience Scaffolding")) {
+
+      // Omni-Disciplinary Equalizer Logic
+      const detectedDisc = detectDiscipline(raw);
+      const activeDiscipline = webDisciplineOverride || detectedDisc;
+
+      const badgeEl = document.getElementById("webDisciplineBadge");
+      const crossEl = document.getElementById("webCrossPollBadge");
+      const summEl = document.getElementById("webEqualizerSummary");
+
+      let disciplineDirective = "";
+      if (activeDiscipline === "designer") {
+        if (badgeEl) badgeEl.textContent = (webDisciplineOverride ? "[Manual] " : "") + "UI/UX Designer Lens";
+        if (crossEl) crossEl.textContent = "Production Architecture + Strict Prop Schemas";
+        if (summEl) summEl.textContent = "Cross-Pollination: Injecting production engineering, TypeScript prop contracts, and state machines into UI/UX spec.";
+        disciplineDirective = "\n\n### Omni-Disciplinary Equalizer: UI/UX Designer -> Production Engineering Cross-Pollination\n" +
+          "- Formalize UI states into an explicit State Machine (idle, loading, active, disabled, error).\n" +
+          "- Mandate strict TypeScript interfaces for all component props, event handlers, and data payloads.\n" +
+          "- Implement defensive boundaries: robust fallback UI, accessible ARIA attributes, and WCAG 2.2 AAA keyboard navigation.\n" +
+          "- Define strict layout constraints (CSS Grid/Flexbox) preventing layout shifts (CLS < 0.05).";
+      } else if (activeDiscipline === "architect") {
+        if (badgeEl) badgeEl.textContent = (webDisciplineOverride ? "[Manual] " : "") + "Systems Architect Lens";
+        if (crossEl) crossEl.textContent = "Developer Ergonomics + Visual Flow Diagrams";
+        if (summEl) summEl.textContent = "Cross-Pollination: Injecting developer empathy, intuitive error diagnostics, and flowcharts into system spec.";
+        disciplineDirective = "\n\n### Omni-Disciplinary Equalizer: Systems Architect -> Design Empathy Cross-Pollination\n" +
+          "- Provide intuitive Developer Experience (DX): ergonomic APIs, zero-config defaults, and sensible error codes with remediation hints.\n" +
+          "- Generate a visual Mermaid diagram or ASCII state flowchart mapping component interactions.\n" +
+          "- Ensure observability: structured logs, health-check endpoints, and self-documenting method signatures.";
+      } else if (activeDiscipline === "analyst") {
+        if (badgeEl) badgeEl.textContent = (webDisciplineOverride ? "[Manual] " : "") + "Data Analyst Lens";
+        if (crossEl) crossEl.textContent = "Statistical Rigor + Data Visualization Contracts";
+        if (summEl) summEl.textContent = "Cross-Pollination: Injecting statistical confidence, query optimizations, and chart data contracts.";
+        disciplineDirective = "\n\n### Omni-Disciplinary Equalizer: Data Analyst -> Statistical Rigor & Visualization Cross-Pollination\n" +
+          "- Require statistical validation: confidence intervals, sample size verification, and anomaly detection thresholds.\n" +
+          "- Define clean tabular data contracts and charting specifications (Vega-Lite / Chart.js schema compatibility).\n" +
+          "- Optimize all queries for production: explicit partitioning, indexing recommendations, and explain plan cost analysis.\n" +
+          "- Include a plain-English executive summary interpreting statistical findings for non-technical stakeholders.";
+      } else if (activeDiscipline === "creator") {
+        if (badgeEl) badgeEl.textContent = (webDisciplineOverride ? "[Manual] " : "") + "Everyday Creator Lens";
+        if (crossEl) crossEl.textContent = "Staff Architect Parity + Plain-Language Translation";
+        if (summEl) summEl.textContent = "Cross-Pollination: Leveling playing field by translating everyday ideas into enterprise-grade specifications.";
+        disciplineDirective = "\n\n### Omni-Disciplinary Equalizer: Everyday Creator -> Elite Architecture Translation\n" +
+          "- Translate everyday concepts into enterprise-grade technical architecture with zero gatekeeping or jargon barriers.\n" +
+          "- Build full end-to-end functionality with zero missing steps, placeholders, or unexplained prerequisites.\n" +
+          "- Include a 'How it Works' section explaining core mechanisms using intuitive everyday analogies.\n" +
+          "- Provide bulletproof error handling so the application cannot crash on unexpected user inputs.";
+      } else {
+        if (badgeEl) badgeEl.textContent = (webDisciplineOverride ? "[Manual] " : "") + "Universal Equalizer";
+        if (crossEl) crossEl.textContent = "Balanced Multi-Disciplinary Invariants";
+        if (summEl) summEl.textContent = "Equalizer active: automatically leveling the playing field across all disciplines.";
+        disciplineDirective = "\n\n### Omni-Disciplinary Equalizer: Universal Cross-Pollination\n" +
+          "- Level the playing field across design ergonomics, system architecture, data integrity, and intuitive accessibility.";
+      }
+
+      if (disciplineDirective && !enhanced.includes("### Omni-Disciplinary Equalizer")) {
+        enhanced += disciplineDirective;
+        promptOutput.textContent = enhanced;
+      }
+
+            if (scaffoldingDirective && !enhanced.includes("### Audience Scaffolding")) {
         enhanced += scaffoldingDirective;
         promptOutput.textContent = enhanced;
       }
