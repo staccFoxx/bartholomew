@@ -4105,6 +4105,161 @@
       }
     }
 
+  
+    /* Mobile-first enhancements for AST Verification Console & IDE Showcase */
+    @media (max-width: 900px) {
+      .ide-split-layout {
+        display: flex !important;
+        flex-direction: column !important;
+        min-height: auto !important;
+      }
+      .ide-stage-col {
+        border-right: none !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+        padding: 14px !important;
+      }
+      .ide-img-frame {
+        width: 100% !important;
+        height: auto !important;
+        aspect-ratio: 16 / 10 !important;
+        max-height: 280px !important;
+      }
+      .ide-img-frame img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .interactive-ide-suite {
+        margin-top: 24px !important;
+        margin-bottom: 28px !important;
+      }
+      .interactive-ide-suite .gallery-head {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
+        margin-bottom: 16px !important;
+      }
+      .interactive-ide-suite .gallery-title {
+        font-size: 1.28rem !important;
+        line-height: 1.25 !important;
+        margin-bottom: 6px !important;
+      }
+      .interactive-ide-suite .gallery-sub {
+        font-size: 0.8rem !important;
+        line-height: 1.45 !important;
+      }
+      .ide-tab-bar {
+        padding: 10px 12px !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 10px !important;
+      }
+      #ide-tab-container.ide-tab-scroll-row {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 6px !important;
+        width: 100% !important;
+      }
+      .ide-tab-btn {
+        padding: 8px 6px !important;
+        font-size: 0.72rem !important;
+        text-align: center !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .ide-latency-wrap {
+        width: 100% !important;
+        display: flex !important;
+        justify-content: space-between !important;
+        align-items: center !important;
+        font-size: 0.72rem !important;
+        padding-top: 8px !important;
+        border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+      }
+      .ide-stage-col {
+        padding: 10px !important;
+      }
+      .ide-img-frame {
+        max-height: 220px !important;
+        aspect-ratio: 16 / 10 !important;
+      }
+      .ide-expand-badge {
+        padding: 4px 8px !important;
+        font-size: 0.65rem !important;
+        bottom: 8px !important;
+        right: 8px !important;
+      }
+      .ide-console-col {
+        padding: 16px 14px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 14px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      #hero-ide-tag {
+        font-size: 0.68rem !important;
+        margin-bottom: 4px !important;
+      }
+      #hero-ide-heading {
+        font-size: 1.15rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 6px !important;
+      }
+      #hero-ide-description {
+        font-size: 0.8rem !important;
+        line-height: 1.45 !important;
+        margin-bottom: 14px !important;
+      }
+      .ide-metrics-hud {
+        display: grid !important;
+        grid-template-columns: repeat(3, 1fr) !important;
+        gap: 6px !important;
+        margin-bottom: 14px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .ide-metrics-hud > div {
+        padding: 8px 4px !important;
+        box-sizing: border-box !important;
+      }
+      .ide-metrics-hud div[style*="font-size: 0.65rem"] {
+        font-size: 0.58rem !important;
+      }
+      #metric-security-score,
+      #metric-invariants-score,
+      .ide-metrics-hud div[style*="font-size: 1.2rem"] {
+        font-size: 1.02rem !important;
+      }
+      #btn-trigger-ast {
+        padding: 10px 12px !important;
+        font-size: 0.74rem !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .ide-subaction-grid {
+        gap: 6px !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      .ide-subaction-grid button {
+        padding: 8px 4px !important;
+        font-size: 0.68rem !important;
+        text-align: center !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
+      }
+      #live-kernel-stream {
+        max-height: 110px !important;
+        padding: 10px 12px !important;
+        font-size: 0.7rem !important;
+        line-height: 1.45 !important;
+      }
+    }
+
   </style>
   </head>
 <body>
@@ -6344,11 +6499,11 @@
           </div>
 
           <!-- Interactive Workspace Container -->
-          <div style="background: radial-gradient(circle at 50% 0%, rgba(30,27,75,0.4) 0%, rgba(10,14,26,0.95) 100%); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 40px rgba(56,189,248,0.1);">
+          <div class="interactive-workspace-card" style="background: radial-gradient(circle at 50% 0%, rgba(30,27,75,0.4) 0%, rgba(10,14,26,0.95) 100%); border: 1px solid rgba(255, 255, 255, 0.12); border-radius: 16px; overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,0.8), 0 0 40px rgba(56,189,248,0.1);">
             
             <!-- Tab Switcher Bar -->
-            <div style="background: #080c16; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
-              <div style="display: flex; gap: 8px; flex-wrap: wrap;" id="ide-tab-container">
+            <div class="ide-tab-bar" style="background: #080c16; border-bottom: 1px solid rgba(255,255,255,0.08); padding: 12px 20px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;" id="ide-tab-container" class="ide-tab-scroll-row">
                 <button onclick="switchIdeShowcase('cursor', this)" class="ide-tab-btn active-ide-tab" style="padding: 7px 16px; border-radius: 8px; font-family: var(--font-mono); font-size: 0.8rem; font-weight: 700; border: 1px solid rgba(56,189,248,0.4); background: rgba(56,189,248,0.15); color: #fff; cursor: pointer; transition: all 0.2s;">
                   Cursor IDE
                 </button>
@@ -6362,7 +6517,7 @@
                   PromptSmith Studio
                 </button>
               </div>
-              <div style="display: flex; align-items: center; gap: 14px; font-family: var(--font-mono); font-size: 0.78rem;">
+              <div class="ide-latency-wrap" style="display: flex; align-items: center; gap: 14px; font-family: var(--font-mono); font-size: 0.78rem;">
                 <span style="color: #64748b;">DETERMINISTIC LATENCY:</span>
                 <span id="hero-latency-indicator" style="color: #38bdf8; font-weight: 800; background: rgba(56,189,248,0.1); padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(56,189,248,0.25);">0.18 ms SLA</span>
               </div>
@@ -6372,10 +6527,10 @@
             <div style="display: grid; grid-template-columns: 1.4fr 1fr; gap: 0; min-height: 540px;" class="ide-split-layout">
               
               <!-- Left: Photorealistic Cinema-Grade IDE Stage with 2K Lightbox Trigger -->
-              <div style="position: relative; background: #04060d; padding: 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; border-right: 1px solid rgba(255,255,255,0.08);">
-                <div style="position: relative; width: 100%; height: 100%; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 40px rgba(0,0,0,0.7); cursor: zoom-in;" onclick="triggerHeroLightbox()">
+              <div class="ide-stage-col" style="position: relative; background: #04060d; padding: 18px; display: flex; flex-direction: column; justify-content: center; align-items: center; border-right: 1px solid rgba(255,255,255,0.08);">
+                <div class="ide-img-frame" style="position: relative; width: 100%; height: 100%; border-radius: 10px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1); box-shadow: 0 10px 40px rgba(0,0,0,0.7); cursor: zoom-in;" onclick="triggerHeroLightbox()">
                   <img id="hero-ide-img" src="/assets/cursor_2027_master.jpg" alt="2027 IDE Telemetry Master" style="width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.3s ease;">
-                  <div style="position: absolute; bottom: 12px; right: 12px; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.25); color: #fff; padding: 6px 14px; border-radius: 6px; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+                  <div class="ide-expand-badge" style="position: absolute; bottom: 12px; right: 12px; background: rgba(0,0,0,0.8); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255,255,255,0.25); color: #fff; padding: 6px 14px; border-radius: 6px; font-family: var(--font-mono); font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; gap: 8px;">
                     <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
                     CLICK TO EXPAND 2K RENDER
                   </div>
@@ -6383,7 +6538,7 @@
               </div>
 
               <!-- Right: Interactive Invariant Testing Console & Live Controls -->
-              <div style="background: #090e1a; padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
+              <div class="ide-console-col" style="background: #090e1a; padding: 24px; display: flex; flex-direction: column; justify-content: space-between;">
                 <div>
                   <div style="margin-bottom: 18px;">
                     <div id="hero-ide-tag" style="font-family: var(--font-mono); font-size: 0.72rem; color: #38bdf8; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase; margin-bottom: 4px;">CURSOR &bull; RUNTIME GUARDRAIL</div>
@@ -6392,7 +6547,7 @@
                   </div>
 
                   <!-- Real-Time Metrics HUD -->
-                  <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px;">
+                  <div class="ide-metrics-hud" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-bottom: 20px;">
                     <div style="background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.07); border-radius: 8px; padding: 12px; text-align: center;">
                       <div style="font-family: var(--font-mono); font-size: 0.65rem; color: #64748b; font-weight: 700; margin-bottom: 4px;">SECURITY INDEX</div>
                       <div id="metric-security-score" style="font-family: var(--font-mono); font-size: 1.2rem; font-weight: 900; color: #10b981;">100 / 100</div>
@@ -6416,7 +6571,7 @@
                       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
                       RUN REAL-TIME AST INVARIANT SCAN
                     </button>
-                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                    <div class="ide-subaction-grid" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
                       <button id="btn-toggle-vault-redaction" onclick="toggleSecretRedactionLive()" style="padding: 8px 12px; background: rgba(56,189,248,0.1); color: #38bdf8; border: 1px solid rgba(56,189,248,0.3); border-radius: 8px; font-family: var(--font-mono); font-weight: 700; font-size: 0.75rem; cursor: pointer; transition: all 0.2s;">
                         Vault Secret Scrub
                       </button>
