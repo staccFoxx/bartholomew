@@ -647,6 +647,7 @@
         <div class="category-tabs" style="display: flex; gap: 8px;">
           <button class="profile-btn active" id="tabWebModels" onclick="switchWebCategory('models')">Frontier Models (8)</button>
           <button class="profile-btn" id="tabWebBots" onclick="switchWebCategory('bots')">Coding Bots &amp; Agents (7)</button>
+          <button class="profile-btn" id="tabWebFuture" onclick="switchWebCategory('future')">Next-Gen &amp; Future AI (4)</button>
         </div>
       </div>
 
@@ -820,6 +821,54 @@
           <div class="model-notes">Open Source &bull; MCP tool execution protocol, atomic file operations, validation checks.</div>
         </div>
       </div>
+
+      <!-- Next-Gen & Future AI Grid -->
+      <div class="benchmarks-grid" id="webGridFuture" style="display: none;">
+        <div class="benchmark-card" onclick="optimizeFor('future_deep_reasoner')" style="cursor: pointer;" title="Click to compile for Next-Gen Deep Reasoners">
+          <div class="model-name">
+            Next-Gen Deep Reasoner (o3+ / Claude 4 / Gemini 3)
+            <span class="model-score" id="scoreFutureReason">98%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="fillFutureReason" style="width: 98%; background: linear-gradient(90deg, #ec4899, #f43f5e);"></div>
+          </div>
+          <div class="model-notes">Frontier AGIs &bull; Test-time search tree pruning, definitive termination thresholds, anti-loop bounds.</div>
+        </div>
+
+        <div class="benchmark-card" onclick="optimizeFor('future_agent_swarm')" style="cursor: pointer;" title="Click to compile for Autonomous Swarms">
+          <div class="model-name">
+            Autonomous Agent Swarm (Multi-Agent AGI)
+            <span class="model-score" id="scoreFutureSwarm">97%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="fillFutureSwarm" style="width: 97%; background: linear-gradient(90deg, #8b5cf6, #a855f7);"></div>
+          </div>
+          <div class="model-notes">Autonomous Swarms &bull; Byzantine boundary defense, deadlock-free typed handoffs, DAG execution.</div>
+        </div>
+
+        <div class="benchmark-card" onclick="optimizeFor('future_formal_verifier')" style="cursor: pointer;" title="Click to compile for Neuro-Symbolic Solvers">
+          <div class="model-name">
+            Neuro-Symbolic Verifier (Lean 4 / Z3 SAT AI)
+            <span class="model-score" id="scoreFutureVerify">99%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="fillFutureVerify" style="width: 99%; background: linear-gradient(90deg, #10b981, #14b8a6);"></div>
+          </div>
+          <div class="model-notes">Formal Solvers &bull; Hoare triple contracts (Pre/Inv/Post), provably correct mathematical determinism.</div>
+        </div>
+
+        <div class="benchmark-card" onclick="optimizeFor('future_infinite_context')" style="cursor: pointer;" title="Click to compile for Infinite Context Streamers">
+          <div class="model-name">
+            Infinite-Context Engine (10M+ Streamer)
+            <span class="model-score" id="scoreFutureInfinite">98%</span>
+          </div>
+          <div class="progress-bar-bg">
+            <div class="progress-bar-fill" id="fillFutureInfinite" style="width: 98%; background: linear-gradient(90deg, #06b6d4, #0ea5e9);"></div>
+          </div>
+          <div class="model-notes">Streaming AGIs &bull; Zero premise drift, immutable goal anchors, multi-million token retention.</div>
+        </div>
+      </div>
+
     </div>
   </main>
 
@@ -1069,19 +1118,32 @@
     function switchWebCategory(cat) {
       const tabModels = document.getElementById("tabWebModels");
       const tabBots = document.getElementById("tabWebBots");
+      const tabFuture = document.getElementById("tabWebFuture");
       const gridModels = document.getElementById("webGridModels");
       const gridBots = document.getElementById("webGridBots");
+      const gridFuture = document.getElementById("webGridFuture");
 
       if (cat === "models") {
         tabModels.classList.add("active");
         tabBots.classList.remove("active");
+        if (tabFuture) tabFuture.classList.remove("active");
         gridModels.style.display = "grid";
         gridBots.style.display = "none";
-      } else {
+        if (gridFuture) gridFuture.style.display = "none";
+      } else if (cat === "bots") {
         tabBots.classList.add("active");
         tabModels.classList.remove("active");
+        if (tabFuture) tabFuture.classList.remove("active");
         gridBots.style.display = "grid";
         gridModels.style.display = "none";
+        if (gridFuture) gridFuture.style.display = "none";
+      } else {
+        if (tabFuture) tabFuture.classList.add("active");
+        tabModels.classList.remove("active");
+        tabBots.classList.remove("active");
+        if (gridFuture) gridFuture.style.display = "grid";
+        gridModels.style.display = "none";
+        gridBots.style.display = "none";
       }
     }
 
@@ -1343,6 +1405,11 @@
 
       updateScore("scoreClaude", "fillClaude", sClaude);
       updateScore("scoreO1", "fillO1", sO1);
+      updateScore("scoreFutureReason", "fillFutureReason", Math.min(99, 78 + (hasTests ? 12 : 0) + (hasNeg ? 8 : 0)));
+      updateScore("scoreFutureSwarm", "fillFutureSwarm", Math.min(99, 75 + (hasSchema ? 15 : 0) + 8));
+      updateScore("scoreFutureVerify", "fillFutureVerify", Math.min(99, 76 + (hasTests ? 18 : 0) + 5));
+      updateScore("scoreFutureInfinite", "fillFutureInfinite", Math.min(99, 77 + (hasDelim ? 16 : 0) + 6));
+
       updateScore("score4o", "fill4o", s4o);
       updateScore("scoreGemini", "fillGemini", sGemini);
       updateScore("scoreDeepSeek", "fillDeepSeek", sDeepSeek);
