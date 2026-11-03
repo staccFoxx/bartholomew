@@ -1,0 +1,131 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 600" width="1000" height="600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#070b14"/>
+      <stop offset="100%" stop-color="#0d1424"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#facc15"/>
+      <stop offset="100%" stop-color="#eab308"/>
+    </linearGradient>
+    <linearGradient id="cardGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#111827"/>
+      <stop offset="100%" stop-color="#0b0f19"/>
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="600" fill="url(#bg)"/>
+
+  <!-- Window Frame -->
+  <rect x="20" y="20" width="960" height="560" rx="12" fill="#0f172a" stroke="rgba(255,255,255,0.1)" stroke-width="1" filter="url(#shadow)"/>
+
+  <!-- Window Titlebar -->
+  <rect x="20" y="20" width="960" height="42" rx="12" fill="#090d16"/>
+  <rect x="20" y="50" width="960" height="12" fill="#090d16"/>
+  <circle cx="44" cy="41" r="6" fill="#ef4444"/>
+  <circle cx="64" cy="41" r="6" fill="#f59e0b"/>
+  <circle cx="84" cy="41" r="6" fill="#10b981"/>
+  <text x="500" y="46" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" text-anchor="middle" font-weight="600">PromptSmith AI Studio &bull; VS Code &amp; Cursor Companion</text>
+
+  <!-- Left Pane: Raw Draft -->
+  <rect x="40" y="80" width="430" height="340" rx="8" fill="url(#cardGrad)" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+  <rect x="40" y="80" width="430" height="38" rx="8" fill="rgba(255,255,255,0.03)"/>
+  <text x="58" y="104" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="700">RAW DRAFT (BEFORE)</text>
+  <text x="450" y="104" fill="#ef4444" font-family="monospace" font-size="11" text-anchor="end">184 tokens &bull; Fluff detected</text>
+
+  <text x="58" y="145" fill="#e2e8f0" font-family="monospace" font-size="12" opacity="0.8">
+    <tspan x="58" dy="0">"Hey, could you please write me a python</tspan>
+    <tspan x="58" dy="22">script that basically connects to PostgreSQL,</tspan>
+    <tspan x="58" dy="22">fetches transactions, and makes sure it doesn't</tspan>
+    <tspan x="58" dy="22">crash when the database is down? Also try to</tspan>
+    <tspan x="58" dy="22">keep it clean and don't use weird libraries."</tspan>
+  </text>
+
+  <!-- Warning callout inside left pane -->
+  <rect x="58" y="270" width="394" height="60" rx="6" fill="rgba(239, 68, 68, 0.1)" stroke="rgba(239, 68, 68, 0.25)" stroke-width="1"/>
+  <text x="74" y="294" fill="#fca5a5" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="600">Issues: Conversational preamble, subjective error bounds,</text>
+  <text x="74" y="314" fill="#fca5a5" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11">unspecified connection pooling, high attention entropy.</text>
+
+  <!-- Middle Action / Shortcut Pill -->
+  <g transform="translate(477, 220)">
+    <circle cx="23" cy="23" r="22" fill="#eab308" filter="url(#shadow)"/>
+    <text x="23" y="29" fill="#070b14" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="14" font-weight="900" text-anchor="middle">&rarr;</text>
+    <rect x="-8" y="55" width="62" height="22" rx="4" fill="#1e293b" stroke="#eab308" stroke-width="1"/>
+    <text x="23" y="70" fill="#eab308" font-family="monospace" font-size="10" font-weight="700" text-anchor="middle">Alt + P</text>
+  </g>
+
+  <!-- Right Pane: Structured PromptSmith Output -->
+  <rect x="530" y="80" width="430" height="340" rx="8" fill="url(#cardGrad)" stroke="rgba(234, 179, 8, 0.3)" stroke-width="1"/>
+  <rect x="530" y="80" width="430" height="38" rx="8" fill="rgba(234, 179, 8, 0.08)"/>
+  <text x="548" y="104" fill="#eab308" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="700">OPTIMIZED PROMPT (AFTER)</text>
+  <text x="940" y="104" fill="#10b981" font-family="monospace" font-size="11" text-anchor="end">121 tokens &bull; -34.2% token waste</text>
+
+  <text x="548" y="140" fill="#38bdf8" font-family="monospace" font-size="11" font-weight="700">### Role &amp; Objective</text>
+  <text x="548" y="158" fill="#e2e8f0" font-family="monospace" font-size="11">Act as a Senior Database Engineer. Implement a production</text>
+  <text x="548" y="174" fill="#e2e8f0" font-family="monospace" font-size="11">PostgreSQL query module in Python using psycopg2.</text>
+
+  <text x="548" y="202" fill="#38bdf8" font-family="monospace" font-size="11" font-weight="700">### Requirements &amp; Directives</text>
+  <text x="548" y="220" fill="#cbd5e1" font-family="monospace" font-size="11">&bull; Use psycopg2.pool.ThreadedConnectionPool context manager.</text>
+  <text x="548" y="238" fill="#cbd5e1" font-family="monospace" font-size="11">&bull; Handle OperationalError with exponential backoff (max 3 retries).</text>
+  <text x="548" y="256" fill="#cbd5e1" font-family="monospace" font-size="11">&bull; Strict type hints, zero pseudocode, atomic rollback on failure.</text>
+
+  <text x="548" y="284" fill="#38bdf8" font-family="monospace" font-size="11" font-weight="700">### Output Specification</text>
+  <text x="548" y="302" fill="#cbd5e1" font-family="monospace" font-size="11">Deliver runnable Python module with unit tests and docstrings.</text>
+
+  <!-- Success metric pill -->
+  <rect x="548" y="326" width="394" height="34" rx="6" fill="rgba(16, 185, 129, 0.1)" stroke="rgba(16, 185, 129, 0.3)" stroke-width="1"/>
+  <text x="745" y="348" fill="#34d399" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="700" text-anchor="middle">+98.4% Instruction Fidelity &bull; Instant 1-Click Copy</text>
+
+  <!-- Bottom: Multi-Model Benchmark Scoreboard -->
+  <rect x="40" y="440" width="920" height="120" rx="8" fill="#090d16" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+  <text x="58" y="464" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="11" font-weight="700" text-transform="uppercase" letter-spacing="1">FRONTIER MODEL ALIGNMENT MATRIX</text>
+
+  <!-- Model 1: Claude -->
+  <g transform="translate(60, 480)">
+    <text x="0" y="14" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="700">Claude 3.5 Sonnet</text>
+    <text x="140" y="14" fill="#10b981" font-family="monospace" font-size="12" font-weight="800">98%</text>
+    <rect x="0" y="24" width="160" height="5" rx="2" fill="rgba(255,255,255,0.1)"/>
+    <rect x="0" y="24" width="156" height="5" rx="2" fill="#10b981"/>
+    <text x="0" y="44" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10">XML Tags &amp; Boundary Precision</text>
+  </g>
+
+  <!-- Model 2: OpenAI o1 -->
+  <g transform="translate(245, 480)">
+    <text x="0" y="14" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="700">OpenAI o1 / o3</text>
+    <text x="140" y="14" fill="#10b981" font-family="monospace" font-size="12" font-weight="800">96%</text>
+    <rect x="0" y="24" width="160" height="5" rx="2" fill="rgba(255,255,255,0.1)"/>
+    <rect x="0" y="24" width="153" height="5" rx="2" fill="#10b981"/>
+    <text x="0" y="44" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10">-41% Hidden Reasoning Tokens</text>
+  </g>
+
+  <!-- Model 3: GPT-4o -->
+  <g transform="translate(430, 480)">
+    <text x="0" y="14" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="700">ChatGPT 4o</text>
+    <text x="140" y="14" fill="#10b981" font-family="monospace" font-size="12" font-weight="800">97%</text>
+    <rect x="0" y="24" width="160" height="5" rx="2" fill="rgba(255,255,255,0.1)"/>
+    <rect x="0" y="24" width="155" height="5" rx="2" fill="#10b981"/>
+    <text x="0" y="44" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10">Modular Markdown Partitioning</text>
+  </g>
+
+  <!-- Model 4: Gemini 2.0 -->
+  <g transform="translate(615, 480)">
+    <text x="0" y="14" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="700">Gemini 2.0 Flash</text>
+    <text x="140" y="14" fill="#10b981" font-family="monospace" font-size="12" font-weight="800">95%</text>
+    <rect x="0" y="24" width="160" height="5" rx="2" fill="rgba(255,255,255,0.1)"/>
+    <rect x="0" y="24" width="152" height="5" rx="2" fill="#10b981"/>
+    <text x="0" y="44" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10">High-Density Context Packing</text>
+  </g>
+
+  <!-- Model 5: DeepSeek R1 -->
+  <g transform="translate(800, 480)">
+    <text x="0" y="14" fill="#fff" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="12" font-weight="700">DeepSeek R1</text>
+    <text x="140" y="14" fill="#10b981" font-family="monospace" font-size="12" font-weight="800">94%</text>
+    <rect x="0" y="24" width="160" height="5" rx="2" fill="rgba(255,255,255,0.1)"/>
+    <rect x="0" y="24" width="150" height="5" rx="2" fill="#10b981"/>
+    <text x="0" y="44" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, Segoe UI, sans-serif" font-size="10">Deterministic Logic Verification</text>
+  </g>
+</svg>
