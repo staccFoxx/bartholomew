@@ -5759,6 +5759,7 @@
                 <button type="button" id="tab-trajectory" onclick="switchScannerMode('trajectory')" style="background:rgba(16,185,129,0.18); border:1px solid rgba(16,185,129,0.5); color:#10b981; font-family:'JetBrains Mono',monospace; font-size:0.75rem; font-weight:700; padding:6px 12px; border-radius:6px; cursor:pointer;">Trajectory JSON</button>
                 <button type="button" id="tab-code" onclick="switchScannerMode('code')" style="background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.15); color:#94a3b8; font-family:'JetBrains Mono',monospace; font-size:0.75rem; font-weight:700; padding:6px 12px; border-radius:6px; cursor:pointer;">Python Agent Code</button>
                 <button type="button" id="tab-repo" onclick="switchScannerMode('repo')" style="background:rgba(56,189,248,0.08); border:1px solid rgba(56,189,248,0.25); color:#38bdf8; font-family:'JetBrains Mono',monospace; font-size:0.75rem; font-weight:700; padding:6px 12px; border-radius:6px; cursor:pointer;">Scan GitHub Repo</button>
+                  <button type="button" id="tab-prompt" onclick="switchScannerMode('prompt')" style="background:rgba(234,179,8,0.12); border:1px solid rgba(234,179,8,0.35); color:#facc15; font-family:'JetBrains Mono',monospace; font-size:0.75rem; font-weight:700; padding:6px 12px; border-radius:6px; cursor:pointer;">Prompt Token Compressor</button>
               </div>
 
               <!-- GitHub Repo Input Container (Initially Hidden) -->
@@ -8391,6 +8392,12 @@
     }, 45000);
   
     function switchScannerMode(mode) {
+        const tabPrompt = document.getElementById('tab-prompt');
+        if (tabPrompt) {
+          tabPrompt.style.background = 'rgba(255,255,255,0.05)';
+          tabPrompt.style.color = '#94a3b8';
+          tabPrompt.style.borderColor = 'rgba(255,255,255,0.15)';
+        }
       const tabTraj = document.getElementById('tab-trajectory');
       const tabCode = document.getElementById('tab-code');
       const tabRepo = document.getElementById('tab-repo');
@@ -8422,7 +8429,20 @@
         repoBox.style.display = 'none';
         presetsBar.style.display = 'none';
         textarea.value = `# Autonomous Agent Tool Execution Script\nimport os\nimport subprocess\n\ndef execute_user_action(prompt_cmd):\n    # WARNING: Unchecked subshell execution\n    os.system(f"bash -c \"{prompt_cmd}\"")\n    # Secret credential in prompt\n    api_key = "sk-proj-994829148124912"\n    return "executed"\n`;
-      } else if (mode === 'repo') {
+      } else if (mode === 'prompt') {
+          if (tabPrompt) {
+            tabPrompt.style.background = 'rgba(234,179,8,0.2)';
+            tabPrompt.style.color = '#facc15';
+            tabPrompt.style.borderColor = 'rgba(234,179,8,0.5)';
+          }
+          repoBox.style.display = 'none';
+          presetsBar.style.display = 'none';
+          textarea.value = "Please could you kindly help me to write a resilient Python script for this task.\nI would like you to make sure to optimize memory and handle errors.\nThank you so much in advance!";
+          if (typeof runPromptCompressionLive === 'function') {
+            runPromptCompressionLive();
+          }
+        
+        } else if (mode === 'repo') {
         tabRepo.style.background = 'rgba(56,189,248,0.2)';
         tabRepo.style.color = '#38bdf8';
         tabRepo.style.borderColor = 'rgba(56,189,248,0.5)';
