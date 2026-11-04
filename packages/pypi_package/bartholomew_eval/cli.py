@@ -54,6 +54,17 @@ def main(args: Optional[List[str]] = None) -> int:
         return 0
 
     command = args[0].lower()
+    if command in ("proxy", "tollbooth", "reverse-proxy"):
+        from .tollbooth import run_tollbooth_server
+        port = 8080
+        for i, a in enumerate(args):
+            if a in ("--port", "-p") and i + 1 < len(args):
+                try:
+                    port = int(args[i + 1])
+                except ValueError:
+                    pass
+        run_tollbooth_server(port)
+        return 0
     # protect / arm
     if command in ("protect", "arm", "immunize"):
         import os

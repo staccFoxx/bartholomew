@@ -4,11 +4,11 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "btp-guard"
-version = "7.0.0"
+version = "7.0.2"
 authors = [
-  { name="Bartholomew Security Contributors", email="security@bartholomew.info" },
+  { name="Bartholomew Security Contributors", email="help@bartholomew.info" },
 ]
-description = "BTP v7.0.0 Universal Cryptographic Trust Guard & In-Process AST Gateway (Claude Code, Cursor, Windsurf, AutoGen, Semantic Kernel, LangGraph)"
+description = "BTP v7.0.2 Universal Cryptographic Trust Guard, Prompt Token Tollbooth & In-Process AST Gateway (Cursor, Claude Code, Windsurf, AutoGen, LangGraph)"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "Apache-2.0" }
@@ -26,6 +26,11 @@ classifiers = [
 dependencies = [
     "cryptography>=41.0.0"
 ]
+
+[project.scripts]
+btp-guard = "bartholomew_eval.cli:main"
+btp-tollbooth = "bartholomew_eval.tollbooth:run_tollbooth_server"
+bartholomew = "bartholomew_eval.cli:main"
 
 [project.urls]
 Homepage = "https://bartholomew.info"
