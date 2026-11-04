@@ -3724,6 +3724,16 @@ switch (command) {
   case 'check':
     runCheck(args[1]);
     break;
+  case 'proxy':
+  case 'tollbooth':
+  case 'reverse-proxy': {
+    const { startTollboothProxy } = await import('./tollbooth_server.js');
+    const portArgIdx = args.findIndex(a => a === '--port' || a === '-p');
+    const port = (portArgIdx !== -1 && args[portArgIdx + 1]) ? parseInt(args[portArgIdx + 1], 10) : 8080;
+    startTollboothProxy(port);
+    break;
+  }
+
   case 'help':
   case '--help':
   case '-h':
