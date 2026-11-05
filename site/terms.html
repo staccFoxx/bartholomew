@@ -1,235 +1,637 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Terms of Service - Bartholomew</title>
-  <meta name="description" content="Terms of Service for Bartholomew, the Bartholomew Trust Protocol, PromptSmith AI, and bartholomew.info developer utilities.">
-  <link rel="icon" type="image/png" href="/logo.png">
   <!-- Google AdSense -->
   <meta name="google-adsense-account" content="ca-pub-8757306565068634">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8757306565068634" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>Terms of Service &bull; Bartholomew</title>
+  <meta name="description" content="Terms of Service for Bartholomew, the Bartholomew Trust Protocol (BTP), PromptSmith AI, and bartholomew.info developer utilities.">
+
+  <link rel="icon" type="image/png" href="/logo.png">
+  <link rel="apple-touch-icon" href="/logo.png">
+  <link rel="canonical" href="https://bartholomew.info/terms">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --bg: #070b14;
-      --card-bg: rgba(13, 20, 34, 0.85);
-      --border: rgba(255, 255, 255, 0.1);
-      --fg: #f1f5f9;
-      --muted: #94a3b8;
-      --accent: #38bdf8;
-      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+      --bg-dark: #070a0f;
+      --bg-card: rgba(13, 19, 34, 0.82);
+      --bg-card-hover: rgba(18, 26, 46, 0.9);
+      --bg-elevated: #0d1322;
+      --bg-editor: #04070d;
+      --border-subtle: rgba(45, 62, 80, 0.7);
+      --border-focus: rgba(56, 189, 248, 0.55);
+
+      --gold: #eab308;
+      --gold-light: #fde047;
+      --emerald: #10b981;
+      --emerald-light: #34d399;
+      --cyan: #06b6d4;
+      --cyan-light: #38bdf8;
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-full: 9999px;
+
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
     body {
-      background: var(--bg);
-      color: var(--fg);
-      font-family: var(--font);
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
       line-height: 1.7;
-      padding-bottom: 60px;
-    }
-    header {
-      background: rgba(7, 11, 20, 0.95);
-      border-bottom: 1px solid var(--border);
-      padding: 16px 24px;
+      overflow-x: hidden;
+      width: 100%;
+      min-height: 100vh;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
+      flex-direction: column;
+      background-image:
+        radial-gradient(circle at 50% -10%, rgba(6, 182, 212, 0.12) 0%, rgba(16, 185, 129, 0.08) 35%, transparent 65%),
+        radial-gradient(circle at 85% 30%, rgba(234, 179, 8, 0.05), transparent 40%),
+        radial-gradient(circle at 15% 70%, rgba(56, 189, 248, 0.04), transparent 45%);
+    }
+
+    ::selection {
+      background: rgba(56, 189, 248, 0.35);
+      color: #7dd3fc;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Top Navigation */
+    header.navbar {
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(7, 10, 15, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       position: sticky;
       top: 0;
-      z-index: 50;
-      backdrop-filter: blur(10px);
+      z-index: 100;
+      width: 100%;
     }
-    .brand {
-      color: var(--fg);
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 68px;
+    }
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
       text-decoration: none;
+    }
+
+    .brand-logo-img {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(6, 182, 212, 0.45);
+      display: block;
+    }
+
+    .brand-title {
+      font-weight: 900;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    .badge-protocol {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
       font-weight: 700;
-      font-size: 1.1rem;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      background: rgba(6, 182, 212, 0.12);
+      color: var(--cyan-light);
+      border: 1px solid rgba(6, 182, 212, 0.35);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .nav-link {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #fff;
+    }
+
+    .btn-nav-passkey {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+      color: #030712;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 0.78rem;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.3);
+      white-space: nowrap;
+    }
+
+    .btn-nav-passkey:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 22px rgba(16, 185, 129, 0.5);
+    }
+
+    /* Terms Main Content */
+    .terms-main {
+      flex: 1;
+      padding: 48px 0 64px;
+    }
+
+    .terms-hero {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 36px;
+    }
+
+    .terms-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cyan-light);
+      background: rgba(6, 182, 212, 0.12);
+      border: 1px solid rgba(6, 182, 212, 0.4);
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+      margin-bottom: 14px;
+    }
+
+    .terms-title {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .terms-title .accent-gradient {
+      background: linear-gradient(135deg, #38bdf8 0%, #10b981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .terms-meta {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .terms-meta-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--text-dim);
+    }
+
+    /* Terms Document Card */
+    .terms-card {
+      max-width: 860px;
+      margin: 0 auto;
+      background: var(--bg-card);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 42px 48px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+      position: relative;
+    }
+
+    .card-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid rgba(45, 62, 80, 0.6);
+      padding-bottom: 16px;
+      margin-bottom: 28px;
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .terminal-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #10b981; }
+
+    .card-status-badge {
+      font-family: var(--font-mono);
+      font-size: 0.70rem;
+      font-weight: 700;
+      color: var(--cyan-light);
+      background: rgba(6, 182, 212, 0.12);
+      border: 1px solid rgba(6, 182, 212, 0.35);
+      padding: 3px 10px;
+      border-radius: 4px;
+      letter-spacing: 0.04em;
+    }
+
+    .terms-intro {
+      font-size: 1rem;
+      color: #cbd5e1;
+      margin-bottom: 28px;
+      line-height: 1.8;
+      border-bottom: 1px solid rgba(45, 62, 80, 0.5);
+      padding-bottom: 24px;
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: #fff;
+      margin: 36px 0 14px;
       display: flex;
       align-items: center;
       gap: 10px;
+      border-bottom: 1px solid rgba(45, 62, 80, 0.45);
+      padding-bottom: 8px;
     }
-    .brand img { width: 32px; height: 32px; }
-    nav a {
-      color: var(--muted);
-      text-decoration: none;
-      margin-left: 20px;
-      font-size: 0.9rem;
-      font-weight: 500;
-      transition: color 0.15s;
-    }
-    nav a:hover, nav a.active { color: var(--accent); }
-    .container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-    .card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 40px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.4);
-    }
-    h1 { font-size: 2.2rem; margin-bottom: 12px; color: #fff; }
-    .meta { color: var(--muted); font-size: 0.85rem; margin-bottom: 30px; border-bottom: 1px solid var(--border); padding-bottom: 16px; }
-    h2 { font-size: 1.35rem; margin: 32px 0 12px; color: var(--accent); border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 6px; }
-    p, ul { margin-bottom: 16px; color: #cbd5e1; }
-    ul { padding-left: 24px; }
-    li { margin-bottom: 8px; }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    footer {
-      border-top: 1px solid var(--border);
-      margin-top: 60px;
-      padding: 30px 20px;
-      text-align: center;
-      color: var(--muted);
+
+    .section-num {
+      font-family: var(--font-mono);
       font-size: 0.85rem;
+      font-weight: 800;
+      color: var(--cyan-light);
+      background: rgba(6, 182, 212, 0.12);
+      border: 1px solid rgba(6, 182, 212, 0.35);
+      padding: 2px 8px;
+      border-radius: 4px;
     }
-    footer a { color: var(--muted); margin: 0 10px; }
-    footer a:hover { color: var(--accent); }
-  
-    /* Universal Mobile & Multi-Device Responsiveness */
+
+    p, ul {
+      margin-bottom: 16px;
+      color: #cbd5e1;
+      font-size: 0.94rem;
+      line-height: 1.75;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    li strong {
+      color: #fff;
+    }
+
+    a.inline-link {
+      color: var(--cyan-light);
+      text-decoration: underline;
+      transition: var(--transition);
+    }
+
+    a.inline-link:hover {
+      color: #fff;
+    }
+
+    /* Footer */
+    footer.site-footer {
+      border-top: 1px solid var(--border-subtle);
+      background: #04070d;
+      padding: 48px 0 32px;
+      margin-top: auto;
+      width: 100%;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col-title {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .footer-copy {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 24px;
+      text-align: center;
+      font-size: 0.82rem;
+      color: #64748b;
+      font-family: var(--font-mono);
+    }
+
+    /* Responsive */
+    @media (max-width: 860px) {
+      .terms-card {
+        padding: 30px 24px;
+      }
+    }
+
     @media (max-width: 768px) {
-      header {
-        padding: 12px 16px !important;
-        flex-direction: column !important;
-        align-items: flex-start !important;
-        gap: 10px !important;
-      }
-      nav {
-        display: flex !important;
-        flex-wrap: wrap !important;
-        gap: 8px !important;
-        margin-left: 0 !important;
-      }
-      nav a {
-        margin-left: 0 !important;
-        font-size: 0.85rem !important;
-      }
       .container {
-        margin: 20px auto !important;
-        padding: 0 12px !important;
+        padding: 0 16px;
       }
-      .card {
-        padding: 20px 16px !important;
-        border-radius: 8px !important;
+      .nav-links {
+        display: none;
       }
-      h1 {
-        font-size: clamp(1.5rem, 6vw, 1.9rem) !important;
+      .terms-main {
+        padding: 30px 0 45px;
       }
-      h2 {
-        font-size: 1.15rem !important;
-      }
-      p, ul {
-        font-size: 0.9rem !important;
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
       }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <a href="/" class="brand">
-      <img src="/logo.png" alt="Bartholomew Shield Logo" width="32" height="32" style="border-radius:6px;">
-      <span>Bartholomew</span>
-    </a>
-    <nav>
-      <a href="/">Home</a>
-      <a href="/promptsmith">Prompt Studio</a>
-      <a href="/docs.html">Docs</a>
-      <a href="/insights/">Insights</a>
-      <a href="/about.html">About</a>
-      <a href="/contact.html">Contact</a>
-    </nav>
+  <!-- Top Navigation -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="/" class="brand-wrap">
+        <img src="/logo.png" alt="Bartholomew Shield Logo" class="brand-logo-img">
+        <span class="brand-title">Bartholomew</span>
+        <span class="badge-protocol">BTP v7.0.0</span>
+      </a>
+
+      <nav class="nav-links">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/promptsmith" class="nav-link">Prompt Studio</a>
+        <a href="/docs.html" class="nav-link">Docs</a>
+        <a href="/insights/" class="nav-link">Insights</a>
+        <a href="/about.html" class="nav-link">About</a>
+        <a href="/contact.html" class="nav-link">Contact</a>
+      </nav>
+
+      <div>
+        <a href="https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607" target="_blank" rel="noopener noreferrer" class="btn-nav-passkey">
+          <span>Get Passkey ($10)</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
   </header>
 
-  <div class="container">
-    <div class="card">
-      <h1>Terms of Service</h1>
-      <div class="meta">Effective Date: November 2, 2026 | Last Updated: November 2, 2026</div>
+  <!-- Main Content -->
+  <main class="terms-main">
+    <div class="container">
 
-      <p>
-        Welcome to Bartholomew. These Terms of Service (&quot;Terms&quot;) constitute a legally binding agreement between you and Bartholomew (&quot;Bartholomew&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) governing your access to and use of <strong>bartholomew.info</strong>, the Bartholomew Trust Protocol (BTP), PromptSmith AI, our extensions, documentation, APIs, and online developer utilities.
-      </p>
+      <!-- Hero Header -->
+      <div class="terms-hero">
+        <div class="terms-pill">LEGAL &bull; BTP GOVERNANCE</div>
+        <h1 class="terms-title">
+          Terms of <span class="accent-gradient">Service</span>
+        </h1>
+        <div class="terms-meta">
+          <span>Effective Date: November 2, 2026</span>
+          <span class="terms-meta-dot"></span>
+          <span>Last Updated: November 2, 2026</span>
+          <span class="terms-meta-dot"></span>
+          <span style="color: var(--cyan-light);">BTP Cryptographic Terms</span>
+        </div>
+      </div>
 
-      <h2>1. Acceptance of Terms</h2>
-      <p>
-        By accessing or using our websites, extensions, or API services, you agree to be bound by these Terms and our Privacy Policy. If you do not agree to these Terms, you must immediately discontinue using our services.
-      </p>
+      <!-- Terms Card -->
+      <div class="terms-card">
+        <div class="card-topbar">
+          <div class="terminal-dots">
+            <span class="terminal-dot dot-red"></span>
+            <span class="terminal-dot dot-yellow"></span>
+            <span class="terminal-dot dot-green"></span>
+          </div>
+          <span class="card-status-badge">CRYPTOGRAPHIC CONTRACT</span>
+        </div>
 
-      <h2>2. Description of Services &amp; Developer Tools</h2>
-      <p>
-        Bartholomew provides developer infrastructure, AI safety tooling, and prompt optimization software, including:
-      </p>
-      <ul>
-        <li><strong>PromptSmith AI:</strong> An interactive prompt engineering studio and editor extension that refines, structures, and benchmarks prompts across frontier AI models.</li>
-        <li><strong>Bartholomew Keystone &amp; Guard:</strong> Zero-trust runtime protection extensions enforcing in-process AST invariants, budget spend caps, and cryptographic Ed25519 passkeys.</li>
-        <li><strong>Developer Documentation &amp; Insights:</strong> Educational research, architectural papers, and benchmark analytics provided for informational and technical implementation purposes.</li>
-      </ul>
+        <p class="terms-intro">
+          Welcome to Bartholomew. These Terms of Service (&quot;Terms&quot;) constitute a legally binding agreement between you and Bartholomew (&quot;Bartholomew&quot;, &quot;we&quot;, &quot;us&quot;, or &quot;our&quot;) governing your access to and use of <strong>bartholomew.info</strong>, the Bartholomew Trust Protocol (BTP), PromptSmith AI, our extensions, documentation, APIs, and online developer utilities.
+        </p>
 
-      <h2>3. Acceptable Use Policy</h2>
-      <p>You agree not to use Bartholomew services to:</p>
-      <ul>
-        <li>Generate, propagate, or execute malicious software, automated exploit attacks, unauthorized network penetration, or denial-of-service attempts.</li>
-        <li>Circumvent or tamper with cryptographic passkeys, access controls, or rate limits.</li>
-        <li>Infringe upon the intellectual property rights, copyrights, or trade secrets of Bartholomew or any third party.</li>
-        <li>Scrape, harvest, or disrupt the operation of bartholomew.info in violation of our robots.txt directives.</li>
-      </ul>
+        <!-- Section 1 -->
+        <h2 class="section-title">
+          <span class="section-num">01</span>
+          <span>Acceptance of Terms</span>
+        </h2>
+        <p>
+          By accessing or using our websites, extensions, or API services, you agree to be bound by these Terms and our <a href="/privacy.html" class="inline-link">Privacy Policy</a>. If you do not agree to these Terms, you must immediately discontinue using our services.
+        </p>
 
-      <h2>4. Passkey Licenses &amp; Billing Terms</h2>
-      <p>
-        Certain premium tools, such as the PromptSmith AI Lifetime Pro Passkey ($0.99) and Enterprise BTP Passkeys, are offered for purchase via Stripe. All fees are clearly stated at checkout. Passkeys are delivered electronically upon confirmation of payment. Due to the immediate delivery of digital cryptographic keys, all passkey sales are final, except as required by applicable consumer protection laws. If you encounter any technical difficulty activating your passkey, our support team will replace or resolve your key promptly.
-      </p>
+        <!-- Section 2 -->
+        <h2 class="section-title">
+          <span class="section-num">02</span>
+          <span>Description of Services &amp; Developer Tools</span>
+        </h2>
+        <p>
+          Bartholomew provides developer infrastructure, AI safety tooling, and prompt optimization software, including:
+        </p>
+        <ul>
+          <li><strong>PromptSmith AI:</strong> An interactive prompt engineering studio and editor extension that refines, structures, and benchmarks prompts across frontier AI models.</li>
+          <li><strong>Bartholomew Keystone &amp; Guard:</strong> Zero-trust runtime protection extensions enforcing in-process AST invariants, budget spend caps, and cryptographic Ed25519 passkeys.</li>
+          <li><strong>Developer Documentation &amp; Insights:</strong> Educational research, architectural papers, and benchmark analytics provided for informational and technical implementation purposes.</li>
+        </ul>
 
-      <h2>5. Intellectual Property Rights</h2>
-      <p>
-        The Bartholomew Trust Protocol specifications, logo marks, original software source code, documentation, and technical articles published on bartholomew.info are the proprietary property of Bartholomew or are licensed under the Apache 2.0 license as specified in respective open source repositories.
-      </p>
+        <!-- Section 3 -->
+        <h2 class="section-title">
+          <span class="section-num">03</span>
+          <span>Acceptable Use Policy</span>
+        </h2>
+        <p>You agree not to use Bartholomew services to:</p>
+        <ul>
+          <li>Generate, propagate, or execute malicious software, automated exploit attacks, unauthorized network penetration, or denial-of-service attempts.</li>
+          <li>Circumvent or tamper with cryptographic passkeys, access controls, or rate limits.</li>
+          <li>Infringe upon the intellectual property rights, copyrights, or trade secrets of Bartholomew or any third party.</li>
+          <li>Scrape, harvest, or disrupt the operation of bartholomew.info in violation of our robots.txt directives.</li>
+        </ul>
 
-      <h2>6. Disclaimer of Warranties</h2>
-      <p>
-        Our services, extensions, and website utilities are provided on an &quot;AS IS&quot; and &quot;AS AVAILABLE&quot; basis without warranties of any kind, whether express or implied. While we strive for absolute accuracy and zero-defect execution, Bartholomew does not warrant that AI model outputs or prompt rewrites will guarantee specific generative results from third-party model providers (Anthropic, OpenAI, Google, etc.).
-      </p>
+        <!-- Section 4 -->
+        <h2 class="section-title">
+          <span class="section-num">04</span>
+          <span>Passkey Licenses &amp; Billing Terms</span>
+        </h2>
+        <p>
+          Certain premium tools, such as the PromptSmith AI Developer Pro passkeys ($0.99/wk or $9/mo) and Enterprise BTP Passkeys, are offered for purchase via Stripe. All fees are clearly stated at checkout. Passkeys are delivered electronically upon confirmation of payment. Due to the immediate delivery of digital cryptographic keys, all passkey sales are final, except as required by applicable consumer protection laws. If you encounter any technical difficulty activating your passkey, our support team will replace or resolve your key promptly.
+        </p>
 
-      <h2>7. Limitation of Liability</h2>
-      <p>
-        To the maximum extent permitted by applicable law, Bartholomew and its officers, directors, employees, and agents shall not be liable for any indirect, incidental, punitive, or consequential damages resulting from your use of or inability to use our tools or services.
-      </p>
+        <!-- Section 5 -->
+        <h2 class="section-title">
+          <span class="section-num">05</span>
+          <span>Intellectual Property Rights</span>
+        </h2>
+        <p>
+          The Bartholomew Trust Protocol specifications, logo marks, original software source code, documentation, and technical articles published on bartholomew.info are the proprietary property of Bartholomew or are licensed under the Apache 2.0 license as specified in respective open source repositories.
+        </p>
 
-      <h2>8. Governing Law &amp; Jurisdiction</h2>
-      <p>
-        These Terms shall be governed by and construed in accordance with the laws of the Province of Alberta and the federal laws of Canada applicable therein, without regard to conflict of law principles.
-      </p>
+        <!-- Section 6 -->
+        <h2 class="section-title">
+          <span class="section-num">06</span>
+          <span>Disclaimer of Warranties</span>
+        </h2>
+        <p>
+          Our services, extensions, and website utilities are provided on an &quot;AS IS&quot; and &quot;AS AVAILABLE&quot; basis without warranties of any kind, whether express or implied. While we strive for absolute accuracy and zero-defect execution, Bartholomew does not warrant that AI model outputs or prompt rewrites will guarantee specific generative results from third-party model providers (Anthropic, OpenAI, Google, etc.).
+        </p>
 
-      <h2>9. Modifications to Terms</h2>
-      <p>
-        We reserve the right to modify these Terms at any time. Changes will be posted to this page with an updated &quot;Last Updated&quot; date. Continued use of our website or services after such updates constitutes your acceptance of the revised Terms.
-      </p>
+        <!-- Section 7 -->
+        <h2 class="section-title">
+          <span class="section-num">07</span>
+          <span>Limitation of Liability</span>
+        </h2>
+        <p>
+          To the maximum extent permitted by applicable law, Bartholomew and its officers, directors, employees, and agents shall not be liable for any indirect, incidental, punitive, or consequential damages resulting from your use of or inability to use our tools or services.
+        </p>
 
-      <h2>10. Contact Us</h2>
-      <p>
-        For questions or legal notices regarding these Terms, contact us at:
-      </p>
-      <p>
-        <strong>Bartholomew</strong><br>
-        Legal &amp; Contracts Department<br>
-        Email: <a href="mailto:help@bartholomew.info">help@bartholomew.info</a><br>
-        Website: <a href="https://bartholomew.info">https://bartholomew.info</a>
-      </p>
+        <!-- Section 8 -->
+        <h2 class="section-title">
+          <span class="section-num">08</span>
+          <span>Governing Law &amp; Jurisdiction</span>
+        </h2>
+        <p>
+          These Terms shall be governed by and construed in accordance with applicable laws, without regard to conflict of law principles.
+        </p>
+
+        <!-- Section 9 -->
+        <h2 class="section-title">
+          <span class="section-num">09</span>
+          <span>Modifications to Terms</span>
+        </h2>
+        <p>
+          We reserve the right to modify these Terms at any time. Changes will be posted to this page with an updated &quot;Last Updated&quot; date. Continued use of our website or services after such updates constitutes your acceptance of the revised Terms.
+        </p>
+
+      </div>
+
     </div>
-  </div>
+  </main>
 
-  <footer>
-    <a href="/">Home</a> |
-    <a href="/promptsmith">Prompt Studio</a> |
-    <a href="/docs.html">Documentation</a> |
-    <a href="/insights/">Technical Insights</a> |
-    <a href="/about.html">About Us</a> |
-    <a href="/contact.html">Contact</a> |
-    <a href="/privacy.html">Privacy Policy</a> |
-    <a href="/terms.html">Terms of Service</a>
-    <p style="margin-top: 15px;">&copy; 2026 Bartholomew. All rights reserved.</p>
+  <!-- Standard Bartholomew Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+            <img src="/logo.png" alt="Bartholomew Shield Logo" width="28" height="28" style="border-radius:6px;">
+            <span style="font-weight:900; font-size:1.1rem; color:#fff;">Bartholomew</span>
+          </div>
+          <p style="font-size:0.86rem; color:#94a3b8; max-width:400px; line-height:1.6;">
+            Sub-millisecond AST safety gating, zero prompt leakage, and deterministic runtime guardrails for autonomous agent execution.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">[COMPANY &amp; TRUST]</div>
+          <ul class="footer-links">
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li><a href="/.well-known/security.txt">Security Advisory</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">[PRODUCTS &amp; TOOLS]</div>
+          <ul class="footer-links">
+            <li><a href="/promptsmith">Prompt Studio</a></li>
+            <li><a href="/grok">Grok Tollbooth</a></li>
+            <li><a href="/optimize">Rule Compactor</a></li>
+            <li><a href="/fintech">Fintech &amp; Banking</a></li>
+            <li><a href="/insights/">Technical Insights</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-copy">
+        &copy; 2026 Bartholomew. All rights reserved. Registered Autonomous Agent Runtime Protection.
+      </div>
+    </div>
   </footer>
 
 </body>
