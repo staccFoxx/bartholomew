@@ -1,317 +1,1110 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Google AdSense -->
+  <meta name="google-adsense-account" content="ca-pub-8757306565068634">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8757306565068634" crossorigin="anonymous"></script>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bartholomew &bull; Developer Pro &amp; Agent Team Pricing</title>
-  <link rel="icon" type="image/png" href="/assets/promptsmith_mascot.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>PromptSmith Pro &amp; Team Gate Checkout &bull; Bartholomew</title>
+  <meta name="description" content="Sub-35µs deterministic AI prompt token compression, persistent context eviction, and developer passkey activation for Cursor, Windsurf, Claude Code, and VS Code.">
+
+  <link rel="icon" type="image/png" href="/logo.png">
+  <link rel="apple-touch-icon" href="/logo.png">
+  <link rel="canonical" href="https://bartholomew.info/checkout/promptsmith">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <style>
     :root {
-      --bg: #060913;
-      --card-bg: rgba(13, 20, 36, 0.88);
-      --border: rgba(255, 255, 255, 0.1);
-      --accent: #38bdf8;
+      --bg-dark: #070a0f;
+      --bg-card: rgba(13, 19, 34, 0.78);
+      --bg-card-hover: rgba(18, 26, 46, 0.88);
+      --bg-elevated: #0d1322;
+      --bg-editor: #04070d;
+      --border-subtle: rgba(45, 62, 80, 0.7);
+      --border-focus: rgba(56, 189, 248, 0.55);
+
+      --gold: #eab308;
+      --gold-light: #fde047;
       --emerald: #10b981;
-      --purple: #a855f7;
-      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-      --font-mono: "JetBrains Mono", Consolas, monospace;
+      --emerald-light: #34d399;
+      --cyan: #06b6d4;
+      --cyan-light: #38bdf8;
+
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+      --radius-full: 9999px;
+
+      --font-mono: 'JetBrains Mono', Consolas, monospace;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
     }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
     body {
-      background: radial-gradient(circle at 50% 10%, #1e1b4b 0%, var(--bg) 70%);
-      color: #e2e8f0;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
       font-family: var(--font-sans);
+      line-height: 1.6;
+      overflow-x: hidden;
+      width: 100%;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      background-image:
+        radial-gradient(circle at 50% -10%, rgba(6, 182, 212, 0.12) 0%, rgba(16, 185, 129, 0.08) 35%, transparent 65%),
+        radial-gradient(circle at 85% 30%, rgba(234, 179, 8, 0.05), transparent 40%),
+        radial-gradient(circle at 15% 70%, rgba(56, 189, 248, 0.04), transparent 45%);
+    }
+
+    ::selection {
+      background: rgba(56, 189, 248, 0.35);
+      color: #7dd3fc;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Top Navigation */
+    header.navbar {
+      border-bottom: 1px solid var(--border-subtle);
+      background: rgba(7, 10, 15, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      width: 100%;
+    }
+
+    .nav-inner {
+      display: flex;
       align-items: center;
-      justify-content: center;
-      padding: 32px 16px;
+      justify-content: space-between;
+      height: 68px;
     }
-    .header-box {
-      text-align: center;
-      margin-bottom: 28px;
-      max-width: 600px;
+
+    .brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
     }
-    .mascot-badge {
-      width: 72px;
-      height: 72px;
-      object-fit: contain;
-      margin: 0 auto 12px;
-      filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.8));
+
+    .brand-logo-img {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      box-shadow: 0 0 12px rgba(6, 182, 212, 0.45);
       display: block;
     }
-    .tier-badge {
+
+    .brand-title {
+      font-weight: 900;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      color: #fff;
+    }
+
+    .badge-protocol {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: var(--radius-full);
+      background: rgba(6, 182, 212, 0.12);
+      color: var(--cyan-light);
+      border: 1px solid rgba(6, 182, 212, 0.35);
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+    }
+
+    .nav-link {
+      font-size: 0.86rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #fff;
+    }
+
+    .btn-nav-passkey {
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      padding: 4px 14px;
-      border-radius: 999px;
+      background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+      color: #030712;
+      font-family: var(--font-mono);
+      font-weight: 800;
+      font-size: 0.78rem;
+      padding: 8px 14px;
+      border-radius: var(--radius-sm);
+      transition: var(--transition);
+      box-shadow: 0 0 16px rgba(16, 185, 129, 0.3);
+      white-space: nowrap;
+    }
+
+    .btn-nav-passkey:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 0 22px rgba(16, 185, 129, 0.5);
+    }
+
+    /* Checkout Page Content */
+    .checkout-main {
+      flex: 1;
+      padding: 40px 0 60px;
+    }
+
+    .breadcrumb-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: rgba(13, 19, 34, 0.6);
+      border: 1px solid var(--border-subtle);
+      padding: 6px 14px;
+      border-radius: var(--radius-full);
+      transition: var(--transition);
+    }
+
+    .btn-back:hover {
+      color: #fff;
+      border-color: var(--cyan);
+      background: rgba(6, 182, 212, 0.1);
+    }
+
+    .breadcrumb-provenance {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-mono);
+      font-size: 0.70rem;
+      color: var(--emerald-light);
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.04em;
+    }
+
+    .provenance-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--emerald);
+      box-shadow: 0 0 8px var(--emerald);
+    }
+
+    /* Hero Headline */
+    .checkout-hero {
+      text-align: center;
+      max-width: 840px;
+      margin: 0 auto 42px;
+    }
+
+    .checkout-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       font-family: var(--font-mono);
       font-size: 0.72rem;
-      font-weight: 700;
-      color: var(--emerald);
-      background: rgba(16, 185, 129, 0.12);
-      border: 1px solid rgba(16, 185, 129, 0.35);
-      margin-bottom: 12px;
-    }
-    .header-title {
-      font-size: 1.8rem;
       font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--cyan-light);
+      background: rgba(6, 182, 212, 0.12);
+      border: 1px solid rgba(6, 182, 212, 0.4);
+      padding: 4px 14px;
+      border-radius: var(--radius-full);
+      margin-bottom: 16px;
+    }
+
+    .checkout-title {
+      font-size: clamp(1.8rem, 4vw, 2.7rem);
+      font-weight: 900;
+      letter-spacing: -0.03em;
       color: #fff;
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
+      line-height: 1.15;
+      margin-bottom: 14px;
     }
-    .header-subtitle {
-      font-size: 0.92rem;
-      color: #94a3b8;
-      line-height: 1.5;
+
+    .checkout-title .accent-gradient {
+      background: linear-gradient(135deg, #38bdf8 0%, #10b981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
-    .plans-container {
+
+    .checkout-subtitle {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    /* 3-Plan Cards Grid */
+    .plans-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      width: 100%;
-      max-width: 900px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+      margin-bottom: 36px;
     }
-    @media (max-width: 768px) {
-      .plans-container { grid-template-columns: 1fr; }
-    }
+
     .plan-card {
-      background: var(--card-bg);
-      backdrop-filter: blur(24px);
-      -webkit-backdrop-filter: blur(24px);
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      padding: 32px 28px;
-      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.8);
+      background: var(--bg-card);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 30px 24px;
+      box-shadow: 0 16px 45px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.05);
       display: flex;
       flex-direction: column;
       position: relative;
+      transition: var(--transition);
     }
+
+    .plan-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(56, 189, 248, 0.4);
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 35px rgba(6, 182, 212, 0.15);
+    }
+
     .plan-card.featured {
-      border-color: rgba(56, 189, 248, 0.5);
-      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.8), 0 0 50px rgba(56, 189, 248, 0.12);
+      background: rgba(13, 22, 40, 0.88);
+      border-color: rgba(56, 189, 248, 0.55);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7), 0 0 45px rgba(56, 189, 248, 0.18);
     }
+
     .plan-pill {
       position: absolute;
       top: -12px;
-      right: 24px;
-      background: linear-gradient(135deg, #0284c7, #38bdf8);
-      color: #fff;
+      right: 20px;
+      background: linear-gradient(135deg, #0284c7 0%, #38bdf8 100%);
+      color: #030712;
       font-family: var(--font-mono);
-      font-size: 0.68rem;
-      font-weight: 800;
-      padding: 4px 10px;
-      border-radius: 999px;
-      letter-spacing: 0.05em;
+      font-size: 0.65rem;
+      font-weight: 900;
+      padding: 4px 12px;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.06em;
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.4);
     }
+
+    .plan-card.featured .plan-pill {
+      background: linear-gradient(135deg, #10b981 0%, #38bdf8 100%);
+      color: #030712;
+    }
+
+    .plan-header {
+      margin-bottom: 16px;
+    }
+
     .plan-name {
-      font-size: 1.3rem;
+      font-size: 1.25rem;
       font-weight: 800;
       color: #fff;
       margin-bottom: 6px;
     }
+
     .plan-desc {
       font-size: 0.82rem;
-      color: #94a3b8;
-      min-height: 38px;
+      color: var(--text-muted);
+      line-height: 1.5;
+      min-height: 48px;
     }
-    .price-row {
+
+    .price-block {
+      margin: 12px 0 18px;
+      padding: 14px 0;
+      border-top: 1px solid rgba(45, 62, 80, 0.5);
+      border-bottom: 1px solid rgba(45, 62, 80, 0.5);
+    }
+
+    .price-val {
       font-family: var(--font-mono);
-      font-size: 2.4rem;
+      font-size: 2.2rem;
       font-weight: 900;
-      color: #38bdf8;
-      margin: 18px 0 14px;
+      color: #fff;
+      line-height: 1;
     }
-    .price-row span {
-      font-size: 0.95rem;
-      color: #94a3b8;
-      font-weight: 400;
+
+    .price-period {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-left: 4px;
     }
+
+    .price-sub {
+      font-size: 0.75rem;
+      color: var(--cyan-light);
+      font-family: var(--font-mono);
+      margin-top: 6px;
+    }
+
     .features-list {
-      text-align: left;
-      background: rgba(0, 0, 0, 0.35);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 10px;
-      padding: 16px;
+      list-style: none;
       margin-bottom: 24px;
-      font-size: 0.84rem;
-      line-height: 1.8;
       flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
-    .features-list div {
+
+    .feature-item {
       display: flex;
       align-items: flex-start;
       gap: 10px;
+      font-size: 0.82rem;
       color: #cbd5e1;
+      line-height: 1.45;
     }
-    .features-list div span.check {
-      color: var(--emerald);
+
+    .feat-check {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
       font-weight: 800;
+      color: var(--emerald-light);
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 4px;
+      padding: 1px 5px;
+      flex-shrink: 0;
+      margin-top: 1px;
     }
+
     .btn-checkout {
       width: 100%;
       background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
       color: #fff;
       border: 1px solid rgba(56, 189, 248, 0.5);
-      padding: 14px;
-      border-radius: 10px;
+      padding: 13px 18px;
+      border-radius: var(--radius-sm);
       font-family: var(--font-mono);
-      font-size: 0.92rem;
+      font-size: 0.86rem;
       font-weight: 800;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      transition: all 0.2s;
-      box-shadow: 0 6px 24px rgba(2, 132, 199, 0.35);
+      gap: 8px;
+      transition: var(--transition);
+      box-shadow: 0 4px 18px rgba(2, 132, 199, 0.35);
       text-decoration: none;
       margin-top: auto;
     }
+
     .btn-checkout:hover {
       background: linear-gradient(135deg, #0369a1 0%, #0284c7 100%);
       transform: translateY(-2px);
-      box-shadow: 0 10px 30px rgba(2, 132, 199, 0.5);
+      box-shadow: 0 8px 24px rgba(2, 132, 199, 0.55);
+      border-color: #38bdf8;
     }
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.06);
+
+    .btn-checkout.featured-btn {
+      background: linear-gradient(135deg, #10b981 0%, #06b6d4 100%);
+      color: #030712;
+      border-color: rgba(56, 189, 248, 0.6);
+      box-shadow: 0 4px 20px rgba(16, 185, 129, 0.4);
+    }
+
+    .btn-checkout.featured-btn:hover {
+      background: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
+      box-shadow: 0 8px 28px rgba(16, 185, 129, 0.6);
+    }
+
+    .btn-checkout.secondary-btn {
+      background: rgba(255, 255, 255, 0.05);
       border-color: rgba(255, 255, 255, 0.15);
+      color: #f1f5f9;
       box-shadow: none;
     }
-    .btn-secondary:hover {
-      background: rgba(255, 255, 255, 0.12);
-      border-color: rgba(255, 255, 255, 0.3);
+
+    .btn-checkout.secondary-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--cyan);
+      color: #fff;
     }
-    .footer-box {
-      margin-top: 32px;
-      text-align: center;
-      max-width: 600px;
+
+    /* Auto-Activation Workstation Card */
+    .activation-card {
+      background: rgba(13, 19, 34, 0.85);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 24px 28px;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5);
+      margin-bottom: 32px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
     }
-    .instant-passkey-box {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px dashed rgba(255, 255, 255, 0.15);
-      border-radius: 12px;
-      padding: 16px;
-      margin-top: 16px;
+
+    .activation-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      border-bottom: 1px solid rgba(45, 62, 80, 0.6);
+      padding-bottom: 14px;
+      margin-bottom: 18px;
+      flex-wrap: wrap;
     }
-    .passkey-code {
+
+    .activation-title-group {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .terminal-dots {
+      display: flex;
+      gap: 6px;
+    }
+
+    .terminal-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dot-red { background: #ef4444; }
+    .dot-yellow { background: #f59e0b; }
+    .dot-green { background: #10b981; }
+
+    .activation-title {
       font-family: var(--font-mono);
-      font-size: 1rem;
+      font-size: 0.82rem;
       font-weight: 800;
       color: #38bdf8;
       letter-spacing: 0.06em;
-      background: rgba(0, 0, 0, 0.5);
-      border: 1px solid rgba(56, 189, 248, 0.3);
-      padding: 8px 12px;
-      border-radius: 6px;
-      margin: 10px 0;
+      text-transform: uppercase;
+    }
+
+    .activation-badge {
+      font-family: var(--font-mono);
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--emerald-light);
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      padding: 3px 10px;
+      border-radius: 4px;
+    }
+
+    .activation-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 20px;
+      align-items: center;
+    }
+
+    .passkey-display-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .passkey-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .passkey-box {
+      display: flex;
+      align-items: center;
+      background: var(--bg-editor);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      border-radius: var(--radius-sm);
+      padding: 10px 14px;
+      box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.6);
+    }
+
+    .passkey-code {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #38bdf8;
+      letter-spacing: 0.08em;
+      flex: 1;
       user-select: all;
     }
-    .ide-links {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      gap: 8px;
-      margin-top: 10px;
-    }
-    .ide-btn {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      color: #cbd5e1;
-      padding: 8px;
-      border-radius: 6px;
+
+    .btn-copy-passkey {
+      background: rgba(56, 189, 248, 0.12);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      color: #38bdf8;
       font-family: var(--font-mono);
       font-size: 0.72rem;
       font-weight: 700;
-      text-decoration: none;
+      padding: 6px 12px;
+      border-radius: 4px;
       cursor: pointer;
-      transition: all 0.15s;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
-    .ide-btn:hover {
-      background: rgba(56, 189, 248, 0.15);
-      border-color: rgba(56, 189, 248, 0.4);
+
+    .btn-copy-passkey:hover {
+      background: rgba(56, 189, 248, 0.25);
       color: #fff;
     }
-    .return-link {
-      display: inline-block;
-      margin-top: 20px;
-      color: #94a3b8;
-      font-size: 0.82rem;
-      text-decoration: none;
+
+    .ide-pills-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .ide-pills-label {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      color: var(--text-dim);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+
+    .ide-pills-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .btn-ide-link {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: #cbd5e1;
+      padding: 9px 8px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-align: center;
+      transition: var(--transition);
+      display: block;
+    }
+
+    .btn-ide-link:hover {
+      background: rgba(56, 189, 248, 0.12);
+      border-color: rgba(56, 189, 248, 0.5);
+      color: #fff;
+      transform: translateY(-1px);
+    }
+
+    /* Trust & Security Strip */
+    .trust-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .trust-card {
+      background: rgba(13, 19, 34, 0.5);
+      border: 1px solid rgba(45, 62, 80, 0.5);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      text-align: center;
+    }
+
+    .trust-val {
+      font-family: var(--font-mono);
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #38bdf8;
+      margin-bottom: 4px;
+    }
+
+    .trust-desc {
+      font-size: 0.74rem;
+      color: var(--text-dim);
+      line-height: 1.4;
+    }
+
+    /* Support Pill */
+    .support-bar {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 0.78rem;
+      color: var(--text-dim);
       font-family: var(--font-mono);
     }
-    .return-link:hover { color: #fff; }
+
+    .support-bar a {
+      color: var(--cyan-light);
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    footer.site-footer {
+      border-top: 1px solid var(--border-subtle);
+      background: #04070d;
+      padding: 48px 0 32px;
+      margin-top: auto;
+      width: 100%;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-col-title {
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: 0.05em;
+      margin-bottom: 16px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .footer-links a:hover {
+      color: #fff;
+    }
+
+    .footer-copy {
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      padding-top: 24px;
+      text-align: center;
+      font-size: 0.82rem;
+      color: #64748b;
+      font-family: var(--font-mono);
+    }
+
+    /* Responsive Breakdown */
+    @media (max-width: 980px) {
+      .plans-grid {
+        grid-template-columns: 1fr;
+        max-width: 540px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .plan-desc {
+        min-height: auto;
+      }
+      .activation-grid {
+        grid-template-columns: 1fr;
+      }
+      .trust-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .container {
+        padding: 0 16px;
+      }
+      .nav-links {
+        display: none;
+      }
+      .trust-strip {
+        grid-template-columns: 1fr;
+      }
+      .ide-pills-row {
+        grid-template-columns: 1fr;
+      }
+      .checkout-main {
+        padding: 24px 0 40px;
+      }
+    }
   </style>
 </head>
 <body>
 
-  <div class="header-box">
-    <img src="/assets/promptsmith_mascot.png" alt="PromptSmith Mascot" class="mascot-badge">
-    <div class="tier-badge">ED25519 CRYPTOGRAPHIC PROVENANCE</div>
-    <h1 class="header-title">Bartholomew &amp; PromptSmith</h1>
-    <p class="header-subtitle">Deterministic sub-millisecond AI prompt token compression, persistent context scrubbing, and autonomous agent trajectory eviction.</p>
-  </div>
-
-  <div class="plans-container">
-    
-    <!-- Tier 1: Developer Pro -->
-    <div class="plan-card featured">
-      <div class="plan-pill">MOST POPULAR</div>
-      <div class="plan-name">Developer Pro</div>
-      <div class="plan-desc">For Cursor, Windsurf, Claude Code, and VS Code engineers.</div>
-      <div class="price-row">$9 <span>/ month</span></div>
-
-      <div class="features-list">
-        <div><span class="check">[+]</span> <span>Unlimited in-IDE prompt restructuring &amp; AST compression</span></div>
-        <div><span class="check">[+]</span> <span>Multi-model benchmarks: Claude 3.7, o3, GPT-5, Gemini 2.0</span></div>
-        <div><span class="check">[+]</span> <span>Persistent Context Scrubber (<code>.cursorrules</code> &amp; <code>CLAUDE.md</code>)</span></div>
-        <div><span class="check">[+]</span> <span>Lateral Brainstormer with 3 orthogonal reasoning vectors</span></div>
-        <div><span class="check">[+]</span> <span>Works 100% offline in Cursor, Windsurf, and VS Code</span></div>
-      </div>
-
-      <a href="https://buy.stripe.com/6oUfZhcRDcim5Yc3Da9R60a" class="btn-checkout" id="proPayBtn">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
-        Subscribe Pro ($9 / mo) &rarr;
+  <!-- Top Navigation -->
+  <header class="navbar">
+    <div class="container nav-inner">
+      <a href="/" class="brand-wrap">
+        <img src="/logo.png" alt="Bartholomew Shield Logo" class="brand-logo-img">
+        <span class="brand-title">Bartholomew</span>
+        <span class="badge-protocol">BTP v7.0.0</span>
       </a>
-    </div>
 
-    <!-- Tier 2: Agent Team Gate -->
-    <div class="plan-card">
-      <div class="plan-name">Agent Team Gate</div>
-      <div class="plan-desc">For multi-agent production pipelines and development teams.</div>
-      <div class="price-row">$49 <span>/ month</span></div>
+      <nav class="nav-links">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/promptsmith" class="nav-link">Prompt Studio</a>
+        <a href="/docs.html" class="nav-link">Docs</a>
+        <a href="/insights/" class="nav-link">Insights</a>
+        <a href="/about.html" class="nav-link">About</a>
+        <a href="/contact.html" class="nav-link">Contact</a>
+      </nav>
 
-      <div class="features-list">
-        <div><span class="check">[+]</span> <span>Autonomous Trajectory Context Eviction (ATCE)</span></div>
-        <div><span class="check">[+]</span> <span>Cuts multi-turn agent token bills by 50% to 75% in-flight</span></div>
-        <div><span class="check">[+]</span> <span>Drop-in Reverse Proxy Tollbooth (<code>btp-guard proxy</code>)</span></div>
-        <div><span class="check">[+]</span> <span>CI/CD Token Waste Gatekeeper (GitHub Actions SARIF 2.1)</span></div>
-        <div><span class="check">[+]</span> <span>Signed Ed25519 SOC 2 / ISO 27001 Cryptographic Receipts</span></div>
-      </div>
-
-      <a href="https://buy.stripe.com/aFa3cveZLdmq4U80qY9R60b" class="btn-checkout btn-secondary" id="teamPayBtn">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-        Activate Team Gate ($49 / mo) &rarr;
-      </a>
-    </div>
-
-  </div>
-
-  <div class="footer-box">
-    <div class="instant-passkey-box">
-      <div style="font-size: 0.78rem; color: #94a3b8;">Local IDE 1-Click Auto-Activation:</div>
-      <div class="passkey-code" id="passkeyDisplay">PSMITH-PRO-88fa9c-2027</div>
-      <div class="ide-links">
-        <a href="cursor://bartholomew.promptsmith-ai/activate?key=PSMITH-PRO-88fa9c-2027" class="ide-btn">In Cursor</a>
-        <a href="windsurf://bartholomew.promptsmith-ai/activate?key=PSMITH-PRO-88fa9c-2027" class="ide-btn">In Windsurf</a>
-        <a href="vscode://bartholomew.promptsmith-ai/activate?key=PSMITH-PRO-88fa9c-2027" class="ide-btn">In VS Code</a>
+      <div>
+        <a href="https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607" target="_blank" rel="noopener noreferrer" class="btn-nav-passkey">
+          <span>Get Passkey ($10)</span>
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        </a>
       </div>
     </div>
+  </header>
 
-    <a href="/promptsmith" class="return-link">&larr; Return to PromptSmith Web Studio</a>
-    <div style="margin-top: 8px; font-size: 0.75rem; color: #64748b;">Support: help@bartholomew.info</div>
-  </div>
+  <!-- Checkout Main -->
+  <main class="checkout-main">
+    <div class="container">
+
+      <!-- Breadcrumb & Provenance Tag -->
+      <div class="breadcrumb-row">
+        <a href="/promptsmith" class="btn-back">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+          <span>Return to Prompt Studio</span>
+        </a>
+
+        <div class="breadcrumb-provenance">
+          <span class="provenance-dot"></span>
+          <span>ED25519 CRYPTOGRAPHIC CLEARANCE &bull; &lt;35µs AST VERIFICATION</span>
+        </div>
+      </div>
+
+      <!-- Hero Header -->
+      <div class="checkout-hero">
+        <div class="checkout-pill">BTP RUNTIME OPTIMIZATION &bull; PROMPTSMITH</div>
+        <h1 class="checkout-title">
+          Developer Pro &amp; <span class="accent-gradient">Agent Team Gate</span>
+        </h1>
+        <p class="checkout-subtitle">
+          Deterministic sub-millisecond AI prompt token compression, persistent context eviction (.cursorrules, CLAUDE.md), and autonomous agent trajectory pruning across Cursor, Windsurf, Claude Code, and VS Code.
+        </p>
+      </div>
+
+      <!-- Pricing Plans Grid -->
+      <div class="plans-grid">
+
+        <!-- Tier 1: Developer Pro -->
+        <div class="plan-card featured">
+          <div class="plan-pill">MOST POPULAR</div>
+          <div class="plan-header">
+            <h2 class="plan-name">Developer Pro</h2>
+            <p class="plan-desc">For Cursor, Windsurf, Claude Code, and VS Code engineers looking to cut token costs and maximize reasoning depth.</p>
+          </div>
+
+          <div class="price-block">
+            <div class="price-val">$9 <span class="price-period">/ month</span></div>
+            <div class="price-sub">Equivalent to $0.99 / week &bull; Cancel anytime</div>
+          </div>
+
+          <ul class="features-list">
+            <li class="feature-item">
+              <span class="feat-check">[+]</span>
+              <span>Unlimited in-IDE prompt restructuring &amp; AST compression</span>
+            </li>
+            <li class="feature-item">
+              <span class="feat-check">[+]</span>
+              <span>19 Frontier reasoning models: Claude 3.7, o3, GPT-5, Gemini 2.0</span>
+            </li>
+            <li class="feature-item">
+              <span class="feat-check">[+]</span>
+              <span>Persistent Context Scrubber (<code>.cursorrules</code> &amp; <code>CLAUDE.md</code>)</span>
+            </li>
+            <li class="feature-item">
+              <span class="feat-check">[+]</span>
+              <span>Lateral Brainstormer with 3 orthogonal reasoning vectors</span>
+            </li>
+            <li class="feature-item">
+              <span class="feat-check">[+]</span>
+              <span>100% offline edge execution in Cursor, Windsurf, and VS Code</span>
+            </li>
+            <li class="feature-item">
+              <span class="feat-check">[+]</span>
+              <span>Automatic cryptographic passkey sync across workstations</span>
+            </li>
+          </ul>
+
+          <a href="https://buy.stripe.com/6oUfZhcRDcim5Yc3Da9R60a" target="_blank" rel="noopener noreferrer" class="btn-checkout featured-btn" id="proPayBtn">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2" ry="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+            Subscribe Pro ($9 / mo) &rarr;
+          </a>
+        </div>
+
+        <!-- Tier 2: Agent Team Gate -->
+        <div class="plan-card">
+          <div class="plan-pill" style="background: linear-gradient(135deg, #0284c7, #06b6d4);">SWARM FLEET</div>
+          <div class="plan-header">
+            <h2 class="plan-name">Agent Team Gate</h2>
+            <p class="plan-desc">For autonomous multi-agent production pipelines, autonomous squads, and engineering teams.</p>
+          </div>
+
+          <div class="price-block">
+            <div class="price-val">$49 <span class="price-period">/ month</span></div>
+            <div class="price-sub">Team-wide access &bull; Unlimited agent instances</div>
+          </div>
+
+          <ul class="features-list">
+            <li class="feature-item">
+              <span class="feat-check">[+]</span>
+              <span>Autonomous Trajectory Context Eviction (ATCE)</span>
+            </li>
+            <li class="feature-item">
+              <span class="feat-check">[+]</span>
+              <span>Cuts multi-turn agent token expenditures by 50% to 75% in-flight</span>
+            </li>
+            <li class="feature-item">
+              <span class="feat-check">[+]</span>
+              <span>Drop-in Reverse Proxy Tollbooth (<code>btp-guard proxy</code>)</span>
+            </li>
+            <li class="feature-item">
+              <span class="feat-check">[+]</span>
+              <span>CI/CD Token Waste Gatekeeper (GitHub Actions SARIF 2.1)</span>
+            </li>
+            <li class="feature-item">
+              <span class="feat-check">[+]</span>
+              <span>Signed Ed25519 SOC 2 / ISO 27001 Cryptographic Receipts</span>
+            </li>
+            <li class="feature-item">
+              <span class="feat-check">[+]</span>
+              <span>Unlimited developer seats &amp; team-wide passkey management</span>
+            </li>
+          </ul>
+
+          <a href="https://buy.stripe.com/aFa3cveZLdmq4U80qY9R60b" target="_blank" rel="noopener noreferrer" class="btn-checkout" id="teamPayBtn">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            Activate Team Gate ($49 / mo) &rarr;
+          </a>
+        </div>
+
+        <!-- Tier 3: Instant Passkey (One-Time Pack) -->
+        <div class="plan-card">
+          <div class="plan-pill" style="background: linear-gradient(135deg, #eab308, #f59e0b);">PERPETUAL</div>
+          <div class="plan-header">
+            <h2 class="plan-name">Instant Passkey</h2>
+            <p class="plan-desc">Perpetual developer license passkey for individual developers who prefer a single payment.</p>
+          </div>
+
+          <div class="price-block">
+            <div class="price-val">$10 <span class="price-period">one-time</span></div>
+            <div class="price-sub">No recurring subscriptions &bull; Lifetime clearance</div>
+          </div>
+
+          <ul class="features-list">
+            <li class="feature-item">
+              <span class="feat-check">[+]</span>
+              <span>Lifetime Developer Passkey clearance token</span>
+            </li>
+            <li class="feature-item">
+              <span class="feat-check">[+]</span>
+              <span>1-Click activation for Cursor, Windsurf, and VS Code</span>
+            </li>
+            <li class="feature-item">
+              <span class="feat-check">[+]</span>
+              <span>Local in-memory prompt optimization &amp; AST gating</span>
+            </li>
+            <li class="feature-item">
+              <span class="feat-check">[+]</span>
+              <span>Merkle-signed capability clearance token</span>
+            </li>
+            <li class="feature-item">
+              <span class="feat-check">[+]</span>
+              <span>Permanent Non-Human Identity (NHI) clearance</span>
+            </li>
+            <li class="feature-item">
+              <span class="feat-check">[+]</span>
+              <span>Zero telemetry logging &bull; Complete privacy</span>
+            </li>
+          </ul>
+
+          <a href="https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607" target="_blank" rel="noopener noreferrer" class="btn-checkout secondary-btn" id="passkeyPayBtn">
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            Get $10 Instant Passkey &rarr;
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Auto-Activation Workstation -->
+      <div class="activation-card">
+        <div class="activation-header">
+          <div class="activation-title-group">
+            <div class="terminal-dots">
+              <span class="terminal-dot dot-red"></span>
+              <span class="terminal-dot dot-yellow"></span>
+              <span class="terminal-dot dot-green"></span>
+            </div>
+            <span class="activation-title">Local IDE 1-Click Auto-Activation Passkey</span>
+          </div>
+          <span class="activation-badge">BTP PROTOCOL READY</span>
+        </div>
+
+        <div class="activation-grid">
+          <div class="passkey-display-wrap">
+            <span class="passkey-label">CRYPTOGRAPHIC PASSKEY TOKEN:</span>
+            <div class="passkey-box">
+              <span class="passkey-code" id="passkeyDisplay">PSMITH-PRO-88fa9c-2027</span>
+              <button class="btn-copy-passkey" onclick="copyPasskey()" id="btnCopyPasskey">
+                <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                <span id="copyBtnText">Copy Token</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="ide-pills-wrap">
+            <span class="ide-pills-label">DIRECT 1-CLICK IDE LAUNCH:</span>
+            <div class="ide-pills-row">
+              <a href="cursor://bartholomew.promptsmith-ai/activate?key=PSMITH-PRO-88fa9c-2027" class="btn-ide-link">In Cursor</a>
+              <a href="windsurf://bartholomew.promptsmith-ai/activate?key=PSMITH-PRO-88fa9c-2027" class="btn-ide-link">In Windsurf</a>
+              <a href="vscode://bartholomew.promptsmith-ai/activate?key=PSMITH-PRO-88fa9c-2027" class="btn-ide-link">In VS Code</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Trust Strip -->
+      <div class="trust-strip">
+        <div class="trust-card">
+          <div class="trust-val">&lt;35µs AST Latency</div>
+          <div class="trust-desc">Deterministic in-process evaluation with zero remote cloud overhead.</div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-val">100% Zero Retention</div>
+          <div class="trust-desc">Client-side execution ensuring private keys and source code never leave your machine.</div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-val">Ed25519 Signatures</div>
+          <div class="trust-desc">Cryptographically signed Merkle receipts verifiable in SOC 2 / ISO 27001 audits.</div>
+        </div>
+        <div class="trust-card">
+          <div class="trust-val">Direct Concierge Support</div>
+          <div class="trust-desc">24/7 technical assistance directly from protocol engineers.</div>
+        </div>
+      </div>
+
+      <!-- Support bar -->
+      <div class="support-bar">
+        Need custom procurement, volume seat pricing, or offline enclaves? Contact: <a href="mailto:help@bartholomew.info">help@bartholomew.info</a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Standard Bartholomew Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div style="display:flex; align-items:center; gap:10px; margin-bottom:12px;">
+            <img src="/logo.png" alt="Bartholomew Shield Logo" width="28" height="28" style="border-radius:6px;">
+            <span style="font-weight:900; font-size:1.1rem; color:#fff;">Bartholomew</span>
+          </div>
+          <p style="font-size:0.86rem; color:#94a3b8; max-width:400px; line-height:1.6;">
+            Sub-millisecond AST safety gating, zero prompt leakage, and deterministic runtime guardrails for autonomous agent execution.
+          </p>
+        </div>
+
+        <div>
+          <div class="footer-col-title">[COMPANY &amp; TRUST]</div>
+          <ul class="footer-links">
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/privacy.html">Privacy Policy</a></li>
+            <li><a href="/terms.html">Terms of Service</a></li>
+            <li><a href="/.well-known/security.txt">Security Advisory</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <div class="footer-col-title">[PRODUCTS &amp; TOOLS]</div>
+          <ul class="footer-links">
+            <li><a href="/promptsmith">Prompt Studio</a></li>
+            <li><a href="/grok">Grok Tollbooth</a></li>
+            <li><a href="/optimize">Rule Compactor</a></li>
+            <li><a href="/fintech">Fintech &amp; Banking</a></li>
+            <li><a href="/insights/">Technical Insights</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-copy">
+        &copy; 2026 Bartholomew. All rights reserved. Registered Autonomous Agent Runtime Protection.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    function copyPasskey() {
+      const code = document.getElementById('passkeyDisplay').innerText;
+      const textSpan = document.getElementById('copyBtnText');
+      
+      navigator.clipboard.writeText(code).then(() => {
+        textSpan.innerText = 'Copied!';
+        setTimeout(() => {
+          textSpan.innerText = 'Copy Token';
+        }, 2200);
+      }).catch(() => {
+        textSpan.innerText = 'Copied!';
+        setTimeout(() => {
+          textSpan.innerText = 'Copy Token';
+        }, 2200);
+      });
+    }
+  </script>
 
 </body>
 </html>
