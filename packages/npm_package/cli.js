@@ -3733,6 +3733,56 @@ switch (command) {
     startTollboothProxy(port);
     break;
   }
+  case 'optimize-rules':
+  case 'rules':
+  case 'scrub-rules': {
+    const { optimizeRepoRules } = await import('./rules_optimizer.js');
+    console.log(`\n======================================================================`);
+    console.log(`  BARTHOLOMEW PERSISTENT CONTEXT SCRUBBER (v1.0)`);
+    console.log(`  Compressing .cursorrules, CLAUDE.md, .windsurfrules`);
+    console.log(`======================================================================\n`);
+    const targetDir = args[1] && !args[1].startsWith('-') ? args[1] : '.';
+    const res = optimizeRepoRules(targetDir);
+    if (res.status === 'NO_RULES_FOUND') {
+      console.log(`[*] No .cursorrules, CLAUDE.md, or .windsurfrules found in "${targetDir}".`);
+    } else {
+      console.log(`[+] Scanned and compressed persistent AI context files:`);
+      for (const [f, details] of Object.entries(res.files_optimized)) {
+        console.log(`   - ${f}: ${details.original_tokens} -> ${details.optimized_tokens} tokens (-${details.savings_pct}%) [Backup: ${details.backup}]`);
+      }
+      console.log(`\n======================================================================`);
+      console.log(`  NET SAVINGS: ${res.total_tokens_saved_per_turn} tokens saved per turn`);
+      console.log(`  PROJECTED MONTHLY SAVINGS: ~${res.monthly_saved_100_turns_day.toLocaleString()} tokens/mo (at 100 turns/day)`);
+      console.log(`  Continuous Background Invariant Sync: https://bartholomew.info/checkout/promptsmith ($0.99/wk)`);
+      console.log(`======================================================================\n`);
+    }
+    break;
+  }
+  case 'optimize-rules':
+  case 'rules':
+  case 'scrub-rules': {
+    const { optimizeRepoRules } = await import('./rules_optimizer.js');
+    console.log(`\n======================================================================`);
+    console.log(`  BARTHOLOMEW PERSISTENT CONTEXT SCRUBBER (v1.0)`);
+    console.log(`  Compressing .cursorrules, CLAUDE.md, .windsurfrules`);
+    console.log(`======================================================================\n`);
+    const targetDir = args[1] && !args[1].startsWith('-') ? args[1] : '.';
+    const res = optimizeRepoRules(targetDir);
+    if (res.status === 'NO_RULES_FOUND') {
+      console.log(`[*] No .cursorrules, CLAUDE.md, or .windsurfrules found in "${targetDir}".`);
+    } else {
+      console.log(`[+] Scanned and compressed persistent AI context files:`);
+      for (const [f, details] of Object.entries(res.files_optimized)) {
+        console.log(`   - ${f}: ${details.original_tokens} -> ${details.optimized_tokens} tokens (-${details.savings_pct}%) [Backup: ${details.backup}]`);
+      }
+      console.log(`\n======================================================================`);
+      console.log(`  NET SAVINGS: ${res.total_tokens_saved_per_turn} tokens saved per turn`);
+      console.log(`  PROJECTED MONTHLY SAVINGS: ~${res.monthly_saved_100_turns_day.toLocaleString()} tokens/mo (at 100 turns/day)`);
+      console.log(`  Continuous Background Invariant Sync: https://bartholomew.info/checkout/promptsmith ($0.99/wk)`);
+      console.log(`======================================================================\n`);
+    }
+    break;
+  }
 
   case 'help':
   case '--help':

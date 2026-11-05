@@ -50,6 +50,38 @@ export function compressPromptText(text) {
   return textClean;
 }
 
+
+function evictStaleTrajectoryContext(messages, keepRecentToolTurns = 2) {
+  if (!messages || messages.length <= 4) return { compacted: messages, evictedTokens: 0 };
+
+  const toolIndices = [];
+  for (let i = 0; i < messages.length; i++) {
+    const m = messages[i];
+    if (m.role === 'tool' || m.role === 'function' || (m.role === 'user' && typeof m.content === 'string' && m.content.includes('```') && (m.content.includes('stdout') || m.content.includes('output')))) {
+      toolIndices.push(i);
+    }
+  }
+
+  const protectedIndices = new Set(toolIndices.slice(-keepRecentToolTurns));
+  let evictedTokens = 0;
+  const compacted = [];
+
+  for (let i = 0; i < messages.length; i++) {
+    const m = messages[i];
+    const content = m.content;
+    if (toolIndices.includes(i) && !protectedIndices.has(i) && typeof content === 'string' && content.length > 150) {
+      const origToks = Math.floor(content.length / 4);
+      const summary = `[BTP Dynamic Context Eviction: Stale tool log from Turn ${i + 1} archived to prevent quadratic token waste (${origToks} tokens evicted).]`;
+      evictedTokens += Math.max(0, origToks - Math.floor(summary.length / 4));
+      compacted.push({ role: m.role, content: summary });
+    } else {
+      compacted.push(m);
+    }
+  }
+
+  return { compacted, evictedTokens };
+}
+
 export function startTollboothProxy(port = 8080) {
   const server = http.createServer((req, res) => {
     const parsedUrl = new URL(req.url, `http://127.0.0.1:${port}`);
@@ -133,13 +165,17 @@ export function startTollboothProxy(port = 8080) {
           return;
         }
 
-        const messages = body.messages || [];
+        const rawMessages = body.messages || [];
         const model = body.model || 'gpt-4o';
 
-        const origChars = messages.reduce((acc, m) => acc + (typeof m.content === 'string' ? m.content.length : 0), 0);
+        const origChars = rawMessages.reduce((acc, m) => acc + (typeof m.content === 'string' ? m.content.length : 0), 0);
         const tokensOrig = Math.max(1, Math.floor(origChars / 4));
 
-        const compressedMessages = messages.map(m => {
+        // 1. Autonomous Trajectory Context Eviction for Multi-Turn Agent Loops
+        const { compacted: evictedMessages, evictedTokens: trajectoryEvicted } = evictStaleTrajectoryContext(rawMessages);
+
+        // 2. In-Flight Prompt AST Compression
+        const compressedMessages = evictedMessages.map(m => {
           if (typeof m.content === 'string') {
             return { role: m.role || 'user', content: compressPromptText(m.content) };
           }

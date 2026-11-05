@@ -53,6 +53,38 @@ def compress_prompt_text(text: str) -> str:
     return text_clean
 
 
+
+def evict_stale_trajectory_context(messages, keep_recent_tool_turns=2):
+    """
+    Autonomous Trajectory Context Eviction (ATCE).
+    Evicts stale intermediate tool logs from multi-turn agent trajectories
+    to eliminate quadratic context explosion while preserving reasoning continuity.
+    """
+    if not messages or len(messages) <= 4:
+        return messages, 0
+
+    tool_indices = [
+        i for i, m in enumerate(messages)
+        if m.get("role") in ("tool", "function") or (m.get("role") == "user" and "```" in m.get("content", "") and ("stdout" in m.get("content", "") or "output" in m.get("content", "")))
+    ]
+
+    protected = set(tool_indices[-keep_recent_tool_turns:]) if len(tool_indices) > keep_recent_tool_turns else set(tool_indices)
+    evicted_tokens = 0
+    compacted = []
+
+    for i, m in enumerate(messages):
+        content = m.get("content", "")
+        if i in tool_indices and i not in protected and isinstance(content, str) and len(content) > 150:
+            orig_toks = len(content) // 4
+            summary = f"[BTP Dynamic Context Eviction: Stale tool log from Turn {i+1} archived to prevent quadratic token waste ({orig_toks} tokens evicted).]"
+            evicted_tokens += max(0, orig_toks - (len(summary) // 4))
+            compacted.append({"role": m.get("role"), "content": summary})
+        else:
+            compacted.append(m)
+
+    return compacted, evicted_tokens
+
+
 class TollboothHandler(BaseHTTPRequestHandler):
     def _send_cors(self):
         self.send_header("Access-Control-Allow-Origin", "*")
@@ -139,14 +171,18 @@ class TollboothHandler(BaseHTTPRequestHandler):
             self.wfile.write(b'{"error": "Invalid JSON"}')
             return
 
-        messages = body.get("messages", [])
+        raw_messages = body.get("messages", [])
         model = body.get("model", "gpt-4o")
 
-        orig_chars = sum(len(m.get("content", "")) for m in messages if isinstance(m.get("content"), str))
+        orig_chars = sum(len(m.get("content", "")) for m in raw_messages if isinstance(m.get("content"), str))
         tokens_orig = max(1, orig_chars // 4)
 
+        # 1. Autonomous Trajectory Context Eviction for Multi-Turn Agent Loops
+        evicted_messages, trajectory_tokens_evicted = evict_stale_trajectory_context(raw_messages)
+
+        # 2. In-Flight Prompt AST Compression
         compressed_messages = []
-        for m in messages:
+        for m in evicted_messages:
             c = m.get("content", "")
             if isinstance(c, str):
                 compressed_messages.append({"role": m.get("role", "user"), "content": compress_prompt_text(c)})

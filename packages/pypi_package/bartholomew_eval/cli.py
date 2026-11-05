@@ -65,6 +65,31 @@ def main(args: Optional[List[str]] = None) -> int:
                     pass
         run_tollbooth_server(port)
         return 0
+    if command in ("optimize-rules", "rules", "scrub-rules"):
+        from .rules_optimizer import optimize_repo_rules
+        target_dir = args[1] if len(args) > 1 and not args[1].startswith("-") else "."
+        print()
+        print("=" * 70)
+        print(" BARTHOLOMEW PERSISTENT CONTEXT SCRUBBER (v1.0)")
+        print(" Compressing .cursorrules, CLAUDE.md, .windsurfrules")
+        print("=" * 70)
+        print()
+        res = optimize_repo_rules(target_dir)
+        if res.get("status") == "NO_RULES_FOUND":
+            print(f"[*] No persistent rule files found in '{target_dir}'.")
+        else:
+            print("[+] Scanned and compressed persistent AI context files:")
+            for f, details in res.get("files_optimized", {}).items():
+                print(f"   - {f}: {details['original_tokens']} -> {details['optimized_tokens']} tokens (-{details['savings_pct']}%) [Backup: {details['backup']}]")
+            print()
+            print("=" * 70)
+            print(f" NET SAVINGS: {res['total_tokens_saved_per_turn']} tokens saved per turn")
+            print(f" PROJECTED MONTHLY SAVINGS: ~{res['monthly_saved_100_turns_day']:,} tokens/mo (at 100 turns/day)")
+            print(" Continuous Background Invariant Sync: https://bartholomew.info/checkout/promptsmith ($0.99/wk)")
+            print("=" * 70)
+            print()
+        return 0
+
     # protect / arm
     if command in ("protect", "arm", "immunize"):
         import os

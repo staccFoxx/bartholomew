@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Bartholomew Keystone Guard - GitHub Actions Entrypoint (BTP v6.4.3)
+Bartholomew Keystone Guard - GitHub Actions Entrypoint (BTP v7.0.3)
 Sub-35µs deterministic AST invariant verification, credential leak prevention,
 and RFC 8785 Canonical JSON execution receipts for enterprise CI/CD gates.
 """
@@ -41,6 +41,21 @@ def scan_file(file_path: Path):
     except Exception:
         return violations
 
+    # Scan for Prompt Token Inflation in Persistent Context & Prompts
+    if file_path.name in (".cursorrules", "CLAUDE.md", ".windsurfrules", "copilot-instructions.md"):
+        fluff_count = len(re.findall(r'(?i)\b(please|kindly|always make sure to|ensure that you|as an ai language model)\b', content))
+        if fluff_count >= 3:
+            raw_toks = len(content) // 4
+            est_waste = int(raw_toks * 0.3)
+            violations.append({
+                "type": "PROMPT_TOKEN_WASTE",
+                "file": str(file_path),
+                "line": 1,
+                "description": f"Persistent AI Context Bloat: {fluff_count} redundant conversational fluff patterns detected (~{est_waste} wasted tokens/turn). Run 'npx btp-guard optimize-rules' to compress.",
+                "snippet": f"File contains {fluff_count} conversational fluff directives in persistent context"
+            })
+    return violations
+
     lines = content.splitlines()
     for line_idx, line in enumerate(lines, start=1):
         for pattern, desc in AST_FORBIDDEN_PATTERNS:
@@ -62,6 +77,19 @@ def scan_file(file_path: Path):
                     "description": desc,
                     "snippet": "[REDACTED_SECRET_OCCURRENCE]"
                 })
+    # Scan for Prompt Token Inflation in Persistent Context & Prompts
+    if file_path.name in (".cursorrules", "CLAUDE.md", ".windsurfrules", "copilot-instructions.md"):
+        fluff_count = len(re.findall(r'(?i)\b(please|kindly|always make sure to|ensure that you|as an ai language model)\b', content))
+        if fluff_count >= 3:
+            raw_toks = len(content) // 4
+            est_waste = int(raw_toks * 0.3)
+            violations.append({
+                "type": "PROMPT_TOKEN_WASTE",
+                "file": str(file_path),
+                "line": 1,
+                "description": f"Persistent AI Context Bloat: {fluff_count} redundant conversational fluff patterns detected (~{est_waste} wasted tokens/turn). Run 'npx btp-guard optimize-rules' to compress.",
+                "snippet": f"File contains {fluff_count} conversational fluff directives in persistent context"
+            })
     return violations
 
 def benchmark_latency(rounds=500):
@@ -83,7 +111,7 @@ def build_sarif(violations, target_dir):
                 "tool": {
                     "driver": {
                         "name": "Bartholomew Keystone Guard",
-                        "version": "6.4.3",
+                        "version": "7.0.3",
                         "informationUri": "https://bartholomew.info",
                         "rules": [
                             {
@@ -93,10 +121,22 @@ def build_sarif(violations, target_dir):
                                 "defaultConfiguration": {"level": "error"}
                             },
                             {
+                                "id": "BTP003",
+                                "name": "PromptTokenWasteGate",
+                                "shortDescription": {"text": "Autonomous agent prompt redundancy & token cost inflation"},
+                                "defaultConfiguration": {"level": "warning"}
+                            },
+                            {
                                 "id": "BTP002",
                                 "name": "CredentialExposureGate",
                                 "shortDescription": {"text": "Exposed high-entropy API key or private token"},
                                 "defaultConfiguration": {"level": "error"}
+                            },
+                            {
+                                "id": "BTP003",
+                                "name": "PromptTokenWasteGate",
+                                "shortDescription": {"text": "Autonomous agent prompt redundancy & token cost inflation"},
+                                "defaultConfiguration": {"level": "warning"}
                             }
                         ]
                     }
@@ -157,7 +197,7 @@ def write_step_summary(status: str, violations: list, latency_us: float, receipt
         lines.append("")
     else:
         lines.append("> [!NOTE]")
-        lines.append("> All inspected agent actions and code commits strictly conform to BTP v6.4.3 Keystone invariants.")
+        lines.append("> All inspected agent actions and code commits strictly conform to BTP v7.0.3 Keystone invariants.")
         lines.append("")
 
     with open(summary_path, "a", encoding="utf-8") as f:
@@ -170,7 +210,7 @@ def main():
     export_dossier = (sys.argv[4] if len(sys.argv) > 4 else "false").lower() == "true"
 
     print("=" * 65)
-    print(" BARTHOLOMEW AGENTIC RUNTIME PROTECTION (BTP v6.4.3)")
+    print(" BARTHOLOMEW AGENTIC RUNTIME PROTECTION (BTP v7.0.3)")
     print(f" Target Path       : {os.path.abspath(target_path)}")
     print(f" Fail on Violation : {fail_on_violation}")
     print("=" * 65)
@@ -199,7 +239,7 @@ def main():
 
     status = "SOC2_PASSED" if not violations else "INVARIANT_VIOLATION"
     receipt_data = {
-        "protocol": "BTP/6.4.3",
+        "protocol": "BTP/7.0.3",
         "files_checked": files_checked,
         "violations": len(violations),
         "status": status,
