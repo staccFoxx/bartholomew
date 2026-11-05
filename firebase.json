@@ -33,6 +33,18 @@
         "destination": "/enterprise.html"
       },
       {
+        "source": "/fintech",
+        "destination": "/fintech.html"
+      },
+      {
+        "source": "/grok",
+        "destination": "/grok.html"
+      },
+      {
+        "source": "/optimize",
+        "destination": "/optimize.html"
+      },
+      {
         "source": "/careers",
         "destination": "/careers.html"
       },
