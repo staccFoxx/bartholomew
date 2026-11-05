@@ -625,6 +625,60 @@
     }
 
     footer a { color: var(--accent); text-decoration: none; }
+  
+    /* Universal Mobile & Multi-Device Responsiveness */
+    @media (max-width: 768px) {
+      header {
+        padding: 10px 14px !important;
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+      }
+      .brand-title {
+        font-size: 1rem !important;
+      }
+      .nav-actions {
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+        width: 100% !important;
+        justify-content: flex-start !important;
+      }
+      .extension-banner {
+        padding: 8px 14px !important;
+        font-size: 0.78rem !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 6px !important;
+      }
+      main {
+        padding: 0 10px !important;
+        margin: 14px auto !important;
+      }
+      .deck-panel {
+        padding: 16px 12px !important;
+      }
+      .deck-textarea {
+        height: 180px !important;
+        font-size: 0.82rem !important;
+      }
+      .action-row {
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+      }
+      .btn-action {
+        flex: 1 1 100% !important;
+        justify-content: center !important;
+      }
+      #mascotCompanion {
+        bottom: 12px !important;
+        right: 12px !important;
+        transform: scale(0.8) !important;
+        transform-origin: bottom right !important;
+      }
+      .speech-bubble {
+        max-width: 170px !important;
+        font-size: 0.72rem !important;
+      }
+    }
   </style>
 </head>
 <body>

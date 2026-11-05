@@ -53,6 +53,68 @@
     .stat-label { font-size: 0.8rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; }
     footer { border-top: 1px solid var(--card-border); margin-top: 70px; padding: 30px 20px; text-align: center; color: var(--muted); font-size: 0.85rem; }
     footer a { color: var(--accent); text-decoration: none; }
+  
+    /* Universal Mobile & Multi-Device Responsiveness */
+    @media (max-width: 768px) {
+      header {
+        padding: 14px 16px !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
+      }
+      nav {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 10px !important;
+        margin-left: 0 !important;
+      }
+      nav a {
+        margin-left: 0 !important;
+        font-size: 0.85rem !important;
+      }
+      .container {
+        margin-top: 24px !important;
+        padding: 0 16px !important;
+      }
+      h1 {
+        font-size: clamp(1.6rem, 6.5vw, 2.1rem) !important;
+        letter-spacing: -0.5px !important;
+      }
+      .lead {
+        font-size: 1rem !important;
+        margin-bottom: 24px !important;
+      }
+      .stats-row {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+      }
+      .grid {
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+      }
+      .card {
+        padding: 18px 14px !important;
+      }
+      .console-box {
+        padding: 16px 12px !important;
+      }
+      pre {
+        font-size: 0.78rem !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+      }
+      .btn, .btn-outline {
+        display: block !important;
+        width: 100% !important;
+        margin: 6px 0 !important;
+        text-align: center !important;
+      }
+    }
+    @media (max-width: 420px) {
+      .stats-row {
+        grid-template-columns: 1fr !important;
+      }
+    }
   </style>
 </head>
 <body>

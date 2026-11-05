@@ -232,6 +232,49 @@
       color: var(--text-dim);
       font-size: 0.8rem;
     }
+  
+    /* Universal Mobile & Multi-Device Responsiveness */
+    @media (max-width: 768px) {
+      .container {
+        padding: 20px 14px 40px 14px !important;
+      }
+      header {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 10px !important;
+        padding-bottom: 16px !important;
+        margin-bottom: 24px !important;
+      }
+      .nav-links {
+        flex-wrap: wrap !important;
+        gap: 8px !important;
+      }
+      .hero-card {
+        padding: 22px 16px !important;
+      }
+      h1 {
+        font-size: clamp(1.5rem, 6vw, 1.9rem) !important;
+      }
+      .hero-desc {
+        font-size: 0.92rem !important;
+      }
+      .cta-row {
+        flex-direction: column !important;
+        width: 100% !important;
+      }
+      .btn-download, .btn-passkey {
+        width: 100% !important;
+        justify-content: center !important;
+        text-align: center !important;
+      }
+      .spec-grid {
+        grid-template-columns: 1fr !important;
+      }
+      .code-box {
+        font-size: 0.78rem !important;
+        overflow-x: auto !important;
+      }
+    }
   </style>
 </head>
 <body>
