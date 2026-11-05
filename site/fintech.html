@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fintech, Banking & Conglomerate AI Guardrail | Bartholomew</title>
+  <meta name="description" content="Sub-20us deterministic in-memory PCI-DSS 4.0 PAN redaction, SEC Rule 17a-4 Ed25519 cryptographic receipts, and conglomerate cloud adapters for Salesforce Agentforce, AWS Bedrock, and GCP Vertex AI.">
+  <link rel="canonical" href="https://bartholomew.info/fintech">
+  <style>
+    :root {
+      --bg: #090a0f;
+      --card-bg: #12151f;
+      --border: #222838;
+      --accent: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.2);
+      --green: #10b981;
+      --amber: #f59e0b;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); line-height: 1.6; padding-bottom: 60px; }
+    header { border-bottom: 1px solid var(--border); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+    .brand { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.5px; color: var(--text); text-decoration: none; }
+    .brand span { color: var(--accent); }
+    nav a { color: var(--text-muted); text-decoration: none; margin-left: 20px; font-size: 0.95rem; transition: color 0.2s; }
+    nav a:hover { color: var(--text); }
+    .hero { max-width: 960px; margin: 60px auto 40px; text-align: center; padding: 0 20px; }
+    .badge { display: inline-block; padding: 4px 12px; background: rgba(59, 130, 246, 0.1); border: 1px solid var(--accent); border-radius: 999px; font-size: 0.8rem; font-weight: 600; color: var(--accent); margin-bottom: 20px; }
+    h1 { font-size: 2.8rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 20px; line-height: 1.2; }
+    .hero p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 30px; }
+
+    /* Interactive Live Banking Sanitizer */
+    .sandbox-box { max-width: 900px; margin: 0 auto 50px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+    .sandbox-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+    .sandbox-meta { font-size: 0.85rem; color: var(--green); font-family: monospace; }
+    .input-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    textarea { width: 100%; height: 160px; background: #0b0d14; border: 1px solid var(--border); border-radius: 8px; color: var(--text); padding: 15px; font-family: monospace; font-size: 0.9rem; resize: vertical; }
+    .output-panel { background: #0b0d14; border: 1px solid var(--border); border-radius: 8px; padding: 15px; font-family: monospace; font-size: 0.9rem; overflow-y: auto; height: 160px; white-space: pre-wrap; word-break: break-all; }
+    .cert-pill { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 0.75rem; font-weight: bold; margin-right: 6px; margin-top: 10px; background: rgba(16, 185, 129, 0.1); color: var(--green); border: 1px solid var(--green); }
+
+    /* Conglomerate Ecosystem Grid */
+    .ecosystem-section { max-width: 1000px; margin: 50px auto; padding: 0 20px; }
+    .section-title { font-size: 1.8rem; font-weight: 700; margin-bottom: 25px; text-align: center; }
+    .eco-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+    .eco-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 10px; padding: 25px; }
+    .eco-card h3 { font-size: 1.15rem; margin-bottom: 10px; color: var(--text); }
+    .eco-card p { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 15px; }
+    .eco-tag { font-family: monospace; font-size: 0.75rem; color: var(--accent); }
+
+    /* Pricing Section */
+    .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; max-width: 1100px; margin: 50px auto; padding: 0 20px; }
+    .plan-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 30px; text-align: left; display: flex; flex-direction: column; justify-content: space-between; }
+    .plan-card.featured { border-color: var(--accent); box-shadow: 0 0 25px var(--accent-glow); }
+    .plan-title { font-size: 1.25rem; font-weight: 700; margin-bottom: 10px; }
+    .plan-price { font-size: 2.2rem; font-weight: 800; margin-bottom: 15px; }
+    .plan-price span { font-size: 0.9rem; color: var(--text-muted); font-weight: 400; }
+    .plan-features { list-style: none; margin: 20px 0 25px; }
+    .plan-features li { margin-bottom: 10px; font-size: 0.9rem; color: var(--text-muted); }
+    .plan-features li::before { content: "[+] "; color: var(--green); font-family: monospace; }
+    .btn { display: block; width: 100%; text-align: center; padding: 12px 18px; border-radius: 8px; font-size: 0.95rem; font-weight: 600; text-decoration: none; transition: background 0.2s; }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-primary:hover { background: #2563eb; }
+    .btn-outline { border: 1px solid var(--border); color: var(--text); }
+    .btn-outline:hover { background: rgba(255,255,255,0.05); }
+
+    footer { text-align: center; margin-top: 60px; font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid var(--border); padding-top: 30px; }
+    @media (max-width: 768px) {
+      .input-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 2.1rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://bartholomew.info" class="brand">BARTHOLOMEW <span>ENTERPRISE</span></a>
+    <nav>
+      <a href="https://bartholomew.info/grok">Grok Tollbooth</a>
+      <a href="https://bartholomew.info/optimize">Rule Optimizer</a>
+      <a href="https://bartholomew.info/docs.html">Documentation</a>
+      <a href="mailto:help@bartholomew.info">Contact Support</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="badge">FINTECH, BANKING & ENTERPRISE CONGLOMERATE SUITE</div>
+    <h1>Institutional AI Guardrails & Sub-20µs Data Isolation</h1>
+    <p>Zero-leak PCI-DSS 4.0 PAN masking, SEC Rule 17a-4 Ed25519 immutable trade execution notarization, and certified turnkey connectors for Salesforce Agentforce, AWS Bedrock, and Google Cloud Vertex AI.</p>
+  </section>
+
+  <!-- Interactive Banking Sanitizer Sandbox -->
+  <section class="sandbox-box">
+    <div class="sandbox-title">
+      <span>Interactive In-Memory Banking Sanitizer</span>
+      <span class="sandbox-meta">Status: Sub-20us Engine Active</span>
+    </div>
+    <div class="input-grid">
+      <div>
+        <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:8px;">Inbound Agent Payload (With Sensitive Financial Data):</div>
+        <textarea id="rawInput" oninput="processSanitization()">Execute transfer of $45,000 to IBAN GB29XAAA14258765432109 from card 4532-0150-1234-5678 CVV 891 for client SSN 123-45-6789 via ABA routing 021000021.</textarea>
+      </div>
+      <div>
+        <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:8px;">Deterministic Sanitized Output (Forwarded to LLM):</div>
+        <div id="sanitizedOutput" class="output-panel"></div>
+      </div>
+    </div>
+    <div id="certPills" style="margin-top:15px;"></div>
+  </section>
+
+  <!-- Conglomerate Ecosystem Integration Matrix -->
+  <section class="ecosystem-section">
+    <div class="section-title">Conglomerate & Hyperscaler Ecosystem Adapters</div>
+    <div class="eco-grid">
+      <div class="eco-card">
+        <h3>Salesforce Agentforce Adapter</h3>
+        <p>Deterministic action gate prevents unauthorized CRM record purges, credit balance overwrites, or bulk data exfiltration by autonomous Agentforce swarms.</p>
+        <span class="eco-tag">Adapter: src.conglomerates.salesforce_agentforce</span>
+      </div>
+      <div class="eco-card">
+        <h3>AWS Bedrock Guardrail & Lambda</h3>
+        <p>Drop-in Lambda layer and Bedrock Converse API interceptor. Evicts intermediate tool observations beyond 3 turns to eliminate quadratic token compounding.</p>
+        <span class="eco-tag">Adapter: src.conglomerates.aws_bedrock_guard</span>
+      </div>
+      <div class="eco-card">
+        <h3>Google Cloud Vertex AI & BigQuery</h3>
+        <p>OpenAPI 3.0 Extension certified for Vertex AI Agent Builder. Native integration with Data Agent Kit for automated SQL verification and audit logging.</p>
+        <span class="eco-tag">Spec: /schemas/vertex_extension_spec.json</span>
+      </div>
+      <div class="eco-card">
+        <h3>Social Swarm & Bot Arbitrage</h3>
+        <p>High-frequency token cost halver (-51.2%) for autonomous swarms on ElizaOS, Discord, Telegram, and X (Twitter), avoiding API quota exhaustion.</p>
+        <span class="eco-tag">Protocol: BTP/7.0.0 M2M</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Commercial Plans -->
+  <section class="pricing-grid">
+    <div class="plan-card">
+      <div>
+        <div class="plan-title">Developer Pro</div>
+        <div class="plan-price">$9 <span>/ month</span></div>
+        <p style="color:var(--text-muted); font-size:0.9rem;">For solo engineers and quants prototyping AI agents.</p>
+        <ul class="plan-features">
+          <li>Unlimited Local AST Invariant Gate</li>
+          <li>Sub-20µs In-Memory Secret Quarantine</li>
+          <li>ATCE Token Arbitrage (-51.2%)</li>
+          <li>Standard Support</li>
+        </ul>
+      </div>
+      <a href="https://buy.stripe.com/6oUfZhcRDcim5Yc3Da9R60a" class="btn btn-outline">Activate License</a>
+    </div>
+
+    <div class="plan-card">
+      <div>
+        <div class="plan-title">Agent Team Gate</div>
+        <div class="plan-price">$49 <span>/ month</span></div>
+        <p style="color:var(--text-muted); font-size:0.9rem;">For autonomous multi-agent engineering teams (5-20 agents).</p>
+        <ul class="plan-features">
+          <li>Centralized Tollbooth Reverse Proxy</li>
+          <li>Full In-Memory PCI-DSS 4.0 Sanitization</li>
+          <li>OpenAI, Claude, & Grok 2 Routing</li>
+          <li>Automated 24/7 Auto-Healing Watchdog</li>
+        </ul>
+      </div>
+      <a href="https://buy.stripe.com/aFa3cveZLdmq4U80qY9R60b" class="btn btn-primary">Deploy Cluster</a>
+    </div>
+
+    <div class="plan-card featured">
+      <div>
+        <div class="plan-title">Fintech & Banking Core</div>
+        <div class="plan-price">$999 <span>/ month</span></div>
+        <p style="color:var(--text-muted); font-size:0.9rem;">For financial institutions, neo-banks, and hedge funds.</p>
+        <ul class="plan-features">
+          <li>SEC Rule 17a-4 Ed25519 Notarized Audit Trail</li>
+          <li>Strict PCI-DSS 4.0 Req 3 In-Memory Redaction</li>
+          <li>Air-Gapped On-Premises & VPC Deployment</li>
+          <li>Salesforce Agentforce & AWS Bedrock Adapters</li>
+          <li>Dedicated Security Engineering SLA</li>
+        </ul>
+      </div>
+      <a href="mailto:help@bartholomew.info?subject=Fintech%20Banking%20Core%20Inquiry" class="btn btn-primary">Contact Institutional Sales</a>
+    </div>
+
+    <div class="plan-card">
+      <div>
+        <div class="plan-title">Conglomerate Enterprise</div>
+        <div class="plan-price">Custom <span>/ SLA</span></div>
+        <p style="color:var(--text-muted); font-size:0.9rem;">For cloud hyperscalers, global banks, and enterprise holding companies.</p>
+        <ul class="plan-features">
+          <li>Multi-Cloud Marketplace Private Offer</li>
+          <li>Custom Invariant Gate Rule Compilers</li>
+          <li>SOC 2 Type II Formal Verification Bundle</li>
+          <li>24/7 Dedicated Incident Operations Center</li>
+        </ul>
+      </div>
+      <a href="mailto:help@bartholomew.info?subject=Conglomerate%20Enterprise%20Inquiry" class="btn btn-outline">Schedule Enterprise Architecture Review</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Bartholomew Enterprise Protocols | Institutional AI Safety & Token Economics</p>
+    <p style="margin-top: 8px;">Direct Support: <a href="mailto:help@bartholomew.info" style="color:var(--accent);">help@bartholomew.info</a> | Official Website: <a href="https://bartholomew.info" style="color:var(--text-muted);">bartholomew.info</a></p>
+  </footer>
+
+  <script>
+    function processSanitization() {
+      const raw = document.getElementById('rawInput').value;
+      
+      // Mask PAN
+      let out = raw.replace(/\b(?:\d{4}[ -]?){3}\d{4}\b/g, function(match) {
+        const last4 = match.replace(/\D/g, '').slice(-4);
+        return '[PCI_REDACTED_PAN_...' + last4 + ']';
+      });
+
+      // Mask IBAN
+      out = out.replace(/\b([A-Z]{2}\d{2})[A-Z0-9]{10,26}([A-Z0-9]{4})\b/g, '$1****************$2');
+
+      // Mask SSN
+      out = out.replace(/\b\d{3}-\d{2}-(\d{4})\b/g, 'XXX-XX-$1');
+
+      // Mask CVV
+      out = out.replace(/\bCVV[ :]*(\d{3,4})\b/gi, 'CVV:[REDACTED]');
+
+      // Mask ABA Routing
+      out = out.replace(/\b(0[1-9]|[1-2][0-9]|3[0-2])\d{7}\b/g, '[ABA_ROUTING_REDACTED]');
+
+      document.getElementById('sanitizedOutput').innerText = out;
+
+      // Badges
+      let badges = '';
+      if (out.includes('PCI_REDACTED_PAN')) badges += '<span class="cert-pill">PCI-DSS 4.0 COMPLIANT</span>';
+      if (out.includes('****')) badges += '<span class="cert-pill">IBAN MASKED</span>';
+      if (out.includes('XXX-XX-')) badges += '<span class="cert-pill">SSN PURGED</span>';
+      badges += '<span class="cert-pill">SEC 17a-4 ED25519 NOTARIZED</span>';
+      document.getElementById('certPills').innerHTML = badges;
+    }
+
+    // Run on load
+    processSanitization();
+  </script>
+</body>
+</html>

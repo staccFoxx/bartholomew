@@ -1,0 +1,71 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Bartholomew Guardrail & Token Optimization Extension for Vertex AI",
+    "description": "Deterministic safety gate and quadratic context token eviction for Google Cloud Vertex AI agents.",
+    "version": "7.0.0",
+    "contact": {
+      "name": "Bartholomew Enterprise Support",
+      "email": "help@bartholomew.info",
+      "url": "https://bartholomew.info/docs.html"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://proxy.bartholomew.info/v1/vertex",
+      "description": "Production Cloudflare-fronted Bartholomew Gateway"
+    }
+  ],
+  "paths": {
+    "/sanitize": {
+      "post": {
+        "summary": "Sanitize Agent Payload & Enforce PCI/FIM Invariants",
+        "operationId": "sanitizeAgentPayload",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "prompt": {
+                    "type": "string"
+                  },
+                  "agent_id": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "prompt"
+                ]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Payload sanitized and invariant certified",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "sanitized_prompt": {
+                      "type": "string"
+                    },
+                    "tokens_evicted": {
+                      "type": "integer"
+                    },
+                    "ed25519_receipt": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
