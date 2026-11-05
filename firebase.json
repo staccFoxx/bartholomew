@@ -33,6 +33,10 @@
         "destination": "/enterprise.html"
       },
       {
+        "source": "/payguard",
+        "destination": "/payguard.html"
+      },
+      {
         "source": "/fintech",
         "destination": "/fintech.html"
       },
