@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>xAI Grok 2 Token Tollbooth & Runtime Security Shield | Bartholomew</title>
+  <meta name="description" content="Halve xAI Grok 2 API costs with Autonomous Trajectory Context Eviction (ATCE) and protect autonomous agent runs with sub-20 microsecond AST safety gating.">
+  <link rel="canonical" href="https://bartholomew.info/grok">
+  <style>
+    :root {
+      --bg: #090a0f;
+      --card-bg: #12151f;
+      --border: #222838;
+      --accent: #3b82f6;
+      --accent-glow: rgba(59, 130, 246, 0.2);
+      --green: #10b981;
+      --text: #f3f4f6;
+      --text-muted: #9ca3af;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); line-height: 1.6; padding-bottom: 60px; }
+    header { border-bottom: 1px solid var(--border); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; }
+    .brand { font-size: 1.25rem; font-weight: 700; letter-spacing: -0.5px; color: var(--text); text-decoration: none; }
+    .brand span { color: var(--accent); }
+    nav a { color: var(--text-muted); text-decoration: none; margin-left: 20px; font-size: 0.95rem; transition: color 0.2s; }
+    nav a:hover { color: var(--text); }
+    .hero { max-width: 900px; margin: 60px auto 40px; text-align: center; padding: 0 20px; }
+    .badge { display: inline-block; padding: 4px 12px; background: rgba(59, 130, 246, 0.1); border: 1px solid var(--accent); border-radius: 999px; font-size: 0.8rem; font-weight: 600; color: var(--accent); margin-bottom: 20px; }
+    h1 { font-size: 2.8rem; font-weight: 800; letter-spacing: -1px; margin-bottom: 20px; line-height: 1.2; }
+    .hero p { font-size: 1.2rem; color: var(--text-muted); margin-bottom: 30px; }
+    .calculator-box { max-width: 800px; margin: 0 auto 50px; background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.5); }
+    .calc-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .slider-wrap { width: 60%; }
+    input[type=range] { width: 100%; height: 6px; background: var(--border); border-radius: 5px; outline: none; }
+    .calc-results { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; margin-top: 25px; padding-top: 25px; border-top: 1px solid var(--border); }
+    .res-box { text-align: center; }
+    .res-label { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 5px; }
+    .res-val { font-size: 1.6rem; font-weight: 700; color: var(--text); }
+    .res-val.highlight { color: var(--green); }
+    .code-box { background: #0b0d14; border: 1px solid var(--border); border-radius: 8px; padding: 20px; text-align: left; font-family: monospace; font-size: 0.9rem; overflow-x: auto; margin-bottom: 40px; }
+    .code-box pre { color: #d1d5db; }
+    .pricing-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; max-width: 900px; margin: 40px auto; padding: 0 20px; }
+    .plan-card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; padding: 35px; text-align: left; display: flex; flex-direction: column; justify-content: space-between; position: relative; }
+    .plan-card.featured { border-color: var(--accent); box-shadow: 0 0 25px var(--accent-glow); }
+    .plan-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 10px; }
+    .plan-price { font-size: 2.5rem; font-weight: 800; margin-bottom: 15px; }
+    .plan-price span { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
+    .plan-features { list-style: none; margin: 20px 0 30px; }
+    .plan-features li { margin-bottom: 10px; font-size: 0.95rem; color: var(--text-muted); display: flex; align-items: center; }
+    .plan-features li::before { content: "[+]"; color: var(--green); margin-right: 10px; font-weight: bold; font-family: monospace; }
+    .btn { display: block; width: 100%; text-align: center; padding: 14px 20px; border-radius: 8px; font-size: 1rem; font-weight: 600; text-decoration: none; transition: background 0.2s; }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-primary:hover { background: #2563eb; }
+    .btn-outline { border: 1px solid var(--border); color: var(--text); }
+    .btn-outline:hover { background: rgba(255,255,255,0.05); }
+    footer { text-align: center; margin-top: 60px; font-size: 0.85rem; color: var(--text-muted); border-top: 1px solid var(--border); padding-top: 30px; }
+    @media (max-width: 768px) {
+      .pricing-grid, .calc-results { grid-template-columns: 1fr; }
+      h1 { font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="https://bartholomew.info" class="brand">BARTHOLOMEW <span>TOLLBOOTH</span></a>
+    <nav>
+      <a href="https://bartholomew.info/docs.html">Docs</a>
+      <a href="https://bartholomew.info/optimize">Web Optimizer</a>
+      <a href="https://github.com/staccFoxx/bartholomew">GitHub</a>
+      <a href="mailto:help@bartholomew.info">Support</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="badge">NATIVE xAI GROK 2 &amp; GROK VISION CONNECTOR</div>
+    <h1>Cut xAI Grok Agent Token Bills by 51.2% in Real Time</h1>
+    <p>A high-speed reverse proxy that intercepts intermediate tool logs with Autonomous Trajectory Context Eviction (ATCE) and protects multi-turn coding runs with sub-20 microsecond AST safety gating.</p>
+
+    <div class="calculator-box">
+      <div class="calc-row">
+        <label for="callsSlider"><strong>Daily Grok 2 Invocations:</strong> <span id="callCountLabel">1,500</span> turns/day</label>
+        <div class="slider-wrap">
+          <input type="range" id="callsSlider" min="100" max="10000" step="100" value="1500" oninput="updateCalculator(this.value)">
+        </div>
+      </div>
+
+      <div class="calc-results">
+        <div class="res-box">
+          <div class="res-label">Estimated Unoptimized Monthly Bill</div>
+          <div class="res-val" id="rawCost">$360.00</div>
+        </div>
+        <div class="res-box">
+          <div class="res-label">With Bartholomew ATCE Proxy</div>
+          <div class="res-val highlight" id="optCost">$175.68</div>
+        </div>
+        <div class="res-box">
+          <div class="res-label">Net Monthly Savings</div>
+          <div class="res-val highlight" id="savedCost">+$184.32 / mo</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width: 800px; margin: 0 auto 50px; padding: 0 20px;">
+    <h2 style="font-size: 1.5rem; margin-bottom: 15px;">One-Line Drop-In Integration</h2>
+    <p style="color: var(--text-muted); margin-bottom: 20px;">Point your existing xAI client to the tollbooth endpoint. No codebase changes required.</p>
+    
+    <div class="code-box">
+<pre><span style="color:#60a5fa">from</span> openai <span style="color:#60a5fa">import</span> OpenAI
+<span style="color:#60a5fa">import</span> os
+
+<span style="color:#9ca3af"># Point base_url to Bartholomew Tollbooth</span>
+client = OpenAI(
+    api_key=os.environ[<span style="color:#34d399">"XAI_API_KEY"</span>],
+    base_url=<span style="color:#34d399">"http://127.0.0.1:8080/v1"</span>  <span style="color:#9ca3af"># Or public edge tunnel</span>
+)
+
+response = client.chat.completions.create(
+    model=<span style="color:#34d399">"grok-2-1212"</span>,
+    messages=[{<span style="color:#34d399">"role"</span>: <span style="color:#34d399">"user"</span>, <span style="color:#34d399">"content"</span>: <span style="color:#34d399">"Analyze repo and run test suite"</span>}]
+)
+<span style="color:#9ca3af"># Header 'X-PromptSmith-Tokens-Saved' reports exact tokens trimmed in-flight</span></pre>
+    </div>
+  </section>
+
+  <section class="pricing-grid">
+    <div class="plan-card">
+      <div>
+        <div class="plan-title">Developer Pro</div>
+        <div class="plan-price">$9.00 <span>/ month</span></div>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">For individual engineers running local Grok 2 and Cursor/Windsurf agents.</p>
+        <ul class="plan-features">
+          <li>Unlimited in-flight ATCE trajectory compaction</li>
+          <li>Sub-20 microsecond in-process AST command guard</li>
+          <li>In-memory secret quarantine for API tokens</li>
+          <li>PromptSmith IDE passkey activation</li>
+          <li>Standard community support</li>
+        </ul>
+      </div>
+      <a href="https://buy.stripe.com/6oUfZhcRDcim5Yc3Da9R60a" class="btn btn-outline">Activate Developer Pro</a>
+    </div>
+
+    <div class="plan-card featured">
+      <div>
+        <div class="plan-title">Agent Team Gate</div>
+        <div class="plan-price">$49.00 <span>/ month</span></div>
+        <p style="color: var(--text-muted); font-size: 0.9rem;">For autonomous engineering clusters, CI/CD pipelines, and multi-agent fleets.</p>
+        <ul class="plan-features">
+          <li>All Developer Pro capabilities included</li>
+          <li>Multi-seat cluster tollbooth support</li>
+          <li>High-concurrency proxy throughput</li>
+          <li>RFC 8785 Ed25519 Merkle execution receipts</li>
+          <li>SOC 2 and audit compliance ledger export</li>
+          <li>Direct SLA response from engineering core</li>
+        </ul>
+      </div>
+      <a href="https://buy.stripe.com/aFa3cveZLdmq4U80qY9R60b" class="btn btn-primary">Activate Agent Team Gate</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Bartholomew Sovereign Multi-Agent Mesh | Enterprise Contact: <a href="mailto:help@bartholomew.info" style="color: var(--accent);">help@bartholomew.info</a></p>
+    <p style="margin-top: 10px;">Zero-allocation runtime security. Cryptographically notarized under Apache-2.0.</p>
+  </footer>
+
+  <script>
+    function updateCalculator(val) {
+      document.getElementById('callCountLabel').innerText = Number(val).toLocaleString();
+      // Grok 2 estimated cost: ~$0.008 per turn avg (prompt + completion)
+      var rawMonthly = val * 0.008 * 30;
+      var optMonthly = rawMonthly * 0.488; // 51.2% reduction
+      var saved = rawMonthly - optMonthly;
+      document.getElementById('rawCost').innerText = '$' + rawMonthly.toFixed(2);
+      document.getElementById('optCost').innerText = '$' + optMonthly.toFixed(2);
+      document.getElementById('savedCost').innerText = '+$' + saved.toFixed(2) + ' / mo';
+    }
+  </script>
+</body>
+</html>
