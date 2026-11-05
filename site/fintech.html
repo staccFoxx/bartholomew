@@ -73,14 +73,24 @@
 </head>
 <body>
 
-  <header>
-    <a href="https://bartholomew.info" class="brand">BARTHOLOMEW <span>ENTERPRISE</span></a>
-    <nav>
-      <a href="https://bartholomew.info/grok">Grok Tollbooth</a>
-      <a href="https://bartholomew.info/optimize">Rule Optimizer</a>
-      <a href="https://bartholomew.info/docs.html">Documentation</a>
-      <a href="mailto:help@bartholomew.info">Contact Support</a>
-    </nav>
+  <header style="border-bottom: 1px solid var(--border); background: rgba(7, 10, 15, 0.92); backdrop-filter: blur(14px); position: sticky; top: 0; z-index: 50; width: 100%;">
+    <div style="max-width: 1180px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 72px;">
+      <a href="/" style="display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text);">
+        <img src="/logo.png" alt="Bartholomew Shield Logo" style="width: 36px; height: 36px; border-radius: 8px; filter: drop-shadow(0 0 10px rgba(16, 185, 129, 0.35));">
+        <span style="font-weight: 900; font-size: 1.22rem; letter-spacing: -0.02em; color: #ffffff;">Bartholomew</span>
+        <span style="font-size: 0.72rem; font-weight: 800; padding: 3px 10px; border-radius: 9999px; background: linear-gradient(135deg, rgba(234, 179, 8, 0.15) 0%, rgba(16, 185, 129, 0.18) 100%); color: #a7f3d0; border: 1px solid rgba(16, 185, 129, 0.35); font-family: monospace;">FINTECH v7.0.0</span>
+      </a>
+
+      <nav style="display: flex; align-items: center; gap: 8px;">
+        <a href="/grok" style="color: var(--text-muted); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 7px 12px;">Grok Tollbooth</a>
+        <a href="/optimize" style="color: var(--text-muted); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 7px 12px;">Rule Compactor</a>
+        <a href="/fintech" style="color: #ffffff; text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 7px 12px; background: rgba(255,255,255,0.04); border-radius: 6px; border: 1px solid var(--border);">Fintech &amp; Banking</a>
+        <a href="/enterprise" style="color: var(--text-muted); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 7px 12px;">Enterprise</a>
+        <a href="/docs.html" style="color: var(--text-muted); text-decoration: none; font-size: 0.88rem; font-weight: 600; padding: 7px 12px;">Documentation</a>
+      </nav>
+
+      <a href="mailto:help@bartholomew.info?subject=Fintech%20Banking%20Gateway%20Trial" style="background: linear-gradient(135deg, #eab308 0%, #10b981 60%, #059669 100%); color: #030712; font-weight: 800; font-size: 0.86rem; padding: 9px 18px; border-radius: 8px; text-decoration: none;">Request Institutional Key</a>
+    </div>
   </header>
 
   <section class="hero">
