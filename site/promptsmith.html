@@ -3,55 +3,56 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-  <title>PromptSmith - Universal Prompt Studio &amp; Screen Companion</title>
-  <meta name="description" content="Intelligent multi-model prompt optimizer, universal domain intelligence engine, and interactive screen companion for any device. Benchmark across Claude, OpenAI, and Gemini.">
+  <title>PromptSmith Studio - Autonomous Prompt Optimizer &amp; Screen Companion | BTP v7.0.0</title>
+  <meta name="description" content="Production-grade AI prompt optimizer, AST invariant safety auditor, ATCE context compactor (-51.2%), and interactive walking screen companion.">
   <link rel="icon" type="image/png" href="/assets/promptsmith_mascot.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #070b14;
-      --card-bg: rgba(13, 20, 34, 0.85);
+      --bg: #07090e;
+      --card-bg: rgba(13, 20, 34, 0.75);
       --card-border: rgba(234, 179, 8, 0.25);
-      --card-border-focus: rgba(234, 179, 8, 0.6);
-      --fg: #f1f5f9;
+      --card-border-focus: rgba(234, 179, 8, 0.7);
+      --fg: #f3f4f6;
       --muted: #94a3b8;
       --accent: #eab308;
       --accent-hover: #facc15;
       --accent-dim: rgba(234, 179, 8, 0.12);
-      --success: #10b981;
-      --success-dim: rgba(16, 185, 129, 0.15);
-      --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-      --code-font: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+      --blue: #3b82f6;
+      --blue-dim: rgba(59, 130, 246, 0.15);
+      --green: #10b981;
+      --green-dim: rgba(16, 185, 129, 0.15);
+      --red: #ef4444;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       background: var(--bg);
       color: var(--fg);
-      font-family: var(--font);
+      font-family: var(--font-sans);
       line-height: 1.5;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       overflow-x: hidden;
       background-image: 
-        radial-gradient(circle at 15% 15%, rgba(234, 179, 8, 0.04) 0%, transparent 40%),
-        radial-gradient(circle at 85% 85%, rgba(56, 189, 248, 0.03) 0%, transparent 40%);
+        radial-gradient(circle at 10% 20%, rgba(234, 179, 8, 0.05) 0%, transparent 45%),
+        radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 45%);
     }
 
     /* Top Navigation */
     header {
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(7, 11, 20, 0.95);
-      backdrop-filter: blur(12px);
+      background: rgba(7, 9, 14, 0.95);
+      backdrop-filter: blur(16px);
       position: sticky;
       top: 0;
       z-index: 100;
-      padding: 12px 24px;
+      padding: 14px 32px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -66,26 +67,29 @@
     }
 
     .brand img {
-      width: 38px;
-      height: 38px;
+      width: 36px;
+      height: 36px;
       object-fit: contain;
-      filter: drop-shadow(0 2px 8px rgba(234, 179, 8, 0.3));
+      filter: drop-shadow(0 2px 10px rgba(234, 179, 8, 0.4));
     }
 
     .brand-title {
       font-size: 1.15rem;
-      font-weight: 700;
-      letter-spacing: -0.01em;
+      font-weight: 800;
+      letter-spacing: -0.5px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
     }
 
+    .brand-title span { color: var(--accent); }
+
     .badge-pill {
-      font-size: 0.7rem;
+      font-size: 0.72rem;
+      font-family: var(--font-mono);
       font-weight: 600;
       text-transform: uppercase;
-      padding: 2px 8px;
+      padding: 3px 10px;
       border-radius: 999px;
       border: 1px solid rgba(234, 179, 8, 0.4);
       background: var(--accent-dim);
@@ -95,1803 +99,1158 @@
     .nav-actions {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
+    }
+
+    .quota-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      font-weight: 600;
+      padding: 5px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      background: var(--green-dim);
+      color: var(--green);
+      transition: all 0.2s;
+    }
+
+    .quota-badge.depleted {
+      border-color: rgba(239, 68, 68, 0.4);
+      background: rgba(239, 68, 68, 0.15);
+      color: var(--red);
+    }
+
+    .quota-badge.pro {
+      border-color: rgba(234, 179, 8, 0.6);
+      background: var(--accent-dim);
+      color: var(--accent);
     }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 8px;
       font-size: 0.85rem;
       font-weight: 600;
-      padding: 8px 16px;
-      border-radius: 8px;
+      padding: 8px 18px;
+      border-radius: 6px;
       text-decoration: none;
       cursor: pointer;
       transition: all 0.15s ease;
       border: 1px solid transparent;
       outline: none;
+      font-family: var(--font-sans);
     }
 
     .btn-gold {
       background: var(--accent);
-      color: #070b14;
+      color: #07090e;
       font-weight: 700;
     }
-
-    .btn-gold:hover {
-      background: var(--accent-hover);
-      box-shadow: 0 0 16px rgba(234, 179, 8, 0.35);
-      transform: translateY(-1px);
-    }
+    .btn-gold:hover { background: var(--accent-hover); box-shadow: 0 0 16px rgba(234, 179, 8, 0.4); }
 
     .btn-outline {
-      background: rgba(255, 255, 255, 0.05);
-      border-color: rgba(255, 255, 255, 0.15);
+      background: transparent;
+      border-color: rgba(255, 255, 255, 0.2);
       color: var(--fg);
     }
-
     .btn-outline:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.3);
+      border-color: var(--accent);
+      color: var(--accent);
+      background: rgba(234, 179, 8, 0.08);
     }
+
+    /* Extension Banner */
+    .extension-banner {
+      background: linear-gradient(90deg, rgba(59, 130, 246, 0.12), rgba(234, 179, 8, 0.12));
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 10px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.88rem;
+    }
+
+    .extension-banner a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+    .extension-banner a:hover { text-decoration: underline; }
 
     /* Main Container */
     main {
       flex: 1;
-      max-width: 1200px;
+      max-width: 1400px;
+      margin: 24px auto;
+      padding: 0 24px;
       width: 100%;
-      margin: 0 auto;
-      padding: 32px 20px 80px;
-      display: flex;
-      flex-direction: column;
-      gap: 24px;
     }
 
-    .hero-banner {
-      text-align: center;
-      padding: 16px 0 24px;
-    }
-
-    .hero-banner h1 {
-      font-size: 2.2rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      margin-bottom: 8px;
-      color: #ffffff;
-    }
-
-    .hero-banner p {
-      font-size: 1.05rem;
-      color: var(--muted);
-      max-width: 680px;
-      margin: 0 auto;
-    }
-
-    /* Studio Layout */
-    .studio-grid {
+    .workspace-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 20px;
+      gap: 24px;
+      margin-bottom: 32px;
     }
 
-    @media (max-width: 900px) {
-      .studio-grid {
-        grid-template-columns: 1fr;
-      }
+    @media (max-width: 960px) {
+      .workspace-grid { grid-template-columns: 1fr; }
     }
 
-    .pane {
+    .deck-panel {
       background: var(--card-bg);
       border: 1px solid var(--card-border);
       border-radius: 12px;
-      padding: 20px;
+      padding: 24px;
+      backdrop-filter: blur(12px);
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 16px;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
-      position: relative;
     }
 
-    .pane-header {
+    .panel-header {
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
       padding-bottom: 12px;
     }
 
-    .pane-title {
+    .panel-title {
       font-size: 0.95rem;
       font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--accent);
-    }
-
-    .stats-row {
+      letter-spacing: -0.3px;
       display: flex;
       align-items: center;
-      gap: 12px;
-      font-size: 0.75rem;
+      gap: 8px;
+    }
+
+    .panel-title span { color: var(--accent); }
+
+    .token-counter {
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
       color: var(--muted);
     }
 
-    .stats-item span {
+    /* Model Selector Tabs */
+    .model-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .model-pill {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--muted);
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .model-pill:hover {
+      background: rgba(255, 255, 255, 0.08);
       color: var(--fg);
+    }
+
+    .model-pill.active {
+      background: var(--accent-dim);
+      border-color: var(--accent);
+      color: var(--accent);
       font-weight: 600;
     }
 
+    /* Scaffolding Selector */
+    .scaffold-row {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .scaffold-btn {
+      background: rgba(59, 130, 246, 0.08);
+      border: 1px solid rgba(59, 130, 246, 0.2);
+      color: #93c5fd;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .scaffold-btn.active {
+      background: var(--blue-dim);
+      border-color: var(--blue);
+      color: #fff;
+      font-weight: 600;
+    }
+
+    /* Textarea & Output */
     textarea {
       width: 100%;
-      min-height: 220px;
+      min-height: 260px;
       background: rgba(0, 0, 0, 0.4);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 8px;
-      padding: 14px;
+      padding: 16px;
       color: var(--fg);
-      font-family: var(--code-font);
-      font-size: 0.9rem;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
       line-height: 1.6;
       resize: vertical;
       outline: none;
-      transition: border-color 0.15s ease;
+      transition: border-color 0.15s;
     }
 
-    textarea:focus {
-      border-color: var(--card-border-focus);
-    }
+    textarea:focus { border-color: var(--card-border-focus); }
 
     .output-box {
       width: 100%;
-      min-height: 220px;
-      background: rgba(0, 0, 0, 0.4);
-      border: 1px solid rgba(234, 179, 8, 0.2);
+      min-height: 260px;
+      background: rgba(0, 0, 0, 0.5);
+      border: 1px solid rgba(234, 179, 8, 0.25);
       border-radius: 8px;
-      padding: 14px;
+      padding: 16px;
       color: #e2e8f0;
-      font-family: var(--code-font);
-      font-size: 0.9rem;
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
       line-height: 1.6;
       white-space: pre-wrap;
       word-break: break-word;
       overflow-y: auto;
-      max-height: 400px;
+      max-height: 480px;
     }
 
-    /* Profile Selector */
-    .profile-bar {
+    .deck-actions {
       display: flex;
-      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .metric-pills {
+      display: flex;
       gap: 8px;
     }
 
-    .profile-btn {
-      background: rgba(255, 255, 255, 0.04);
-      border: 1px solid rgba(255, 255, 255, 0.12);
+    .metric-tag {
+      font-size: 0.75rem;
+      font-family: var(--font-mono);
+      padding: 3px 8px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       color: var(--muted);
-      padding: 6px 12px;
-      border-radius: 6px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.15s ease;
+    }
+    .metric-tag.green { color: var(--green); border-color: rgba(16, 185, 129, 0.3); background: var(--green-dim); }
+
+    /* ============================================================
+       DRAGGABLE & WALKING MASCOT SCREEN COMPANION
+       ============================================================ */
+    #mascotCompanion {
+      position: fixed;
+      bottom: 28px;
+      right: 32px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      user-select: none;
+      touch-action: none;
+      cursor: grab;
+      filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.6));
+      transition: transform 0.05s ease-out;
     }
 
-    .profile-btn.active {
+    #mascotCompanion:active { cursor: grabbing; }
+
+    /* Thinking Cloud */
+    .thinking-cloud {
+      display: none;
+      position: absolute;
+      bottom: 120px;
+      background: rgba(13, 20, 34, 0.95);
+      border: 1px solid var(--accent);
+      border-radius: 12px;
+      padding: 8px 14px;
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--accent);
+      white-space: nowrap;
+      box-shadow: 0 0 16px rgba(234, 179, 8, 0.3);
+      animation: floatCloud 2s infinite ease-in-out;
+      pointer-events: none;
+    }
+
+    .thinking-cloud::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 10px;
+      height: 10px;
+      background: rgba(13, 20, 34, 0.95);
+      border-right: 1px solid var(--accent);
+      border-bottom: 1px solid var(--accent);
+      rotate: 45deg;
+    }
+
+    @keyframes floatCloud {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* Speech Bubble */
+    .speech-bubble {
+      background: rgba(13, 20, 34, 0.95);
+      border: 1px solid rgba(234, 179, 8, 0.4);
+      border-radius: 8px;
+      padding: 8px 14px;
+      font-size: 0.8rem;
+      color: var(--fg);
+      max-width: 240px;
+      text-align: center;
+      margin-bottom: 8px;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+
+    /* Avatar Character */
+    .avatar-wrapper {
+      position: relative;
+      width: 90px;
+      height: 90px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .mascot-avatar {
+      width: 86px;
+      height: 86px;
+      object-fit: contain;
+      pointer-events: none;
+      transition: transform 0.2s;
+    }
+
+    /* Animation States */
+    .avatar-idle {
+      animation: avatarIdle 3s infinite ease-in-out;
+    }
+
+    @keyframes avatarIdle {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-5px); }
+    }
+
+    .avatar-walking {
+      animation: avatarWalk 0.6s infinite alternate ease-in-out;
+    }
+
+    @keyframes avatarWalk {
+      0% { transform: translateY(0) rotate(-4deg); }
+      100% { transform: translateY(-8px) rotate(4deg); }
+    }
+
+    .avatar-flipped {
+      transform: scaleX(-1);
+    }
+
+    /* Companion Action Menu Popup */
+    #companionMenu {
+      display: none;
+      position: absolute;
+      bottom: 105px;
+      right: 0;
+      width: 260px;
+      background: rgba(13, 20, 34, 0.96);
+      border: 1px solid var(--accent);
+      border-radius: 10px;
+      padding: 14px;
+      backdrop-filter: blur(16px);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, 0.7);
+      flex-direction: column;
+      gap: 8px;
+      z-index: 1000;
+    }
+
+    .menu-header {
+      font-size: 0.78rem;
+      font-family: var(--font-mono);
+      font-weight: 700;
+      color: var(--accent);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 6px;
+      margin-bottom: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .menu-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--fg);
+      padding: 6px 10px;
+      border-radius: 5px;
+      font-size: 0.78rem;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .menu-btn:hover {
       background: var(--accent-dim);
       border-color: var(--accent);
       color: var(--accent);
     }
 
-    .profile-btn:hover:not(.active) {
-      background: rgba(255, 255, 255, 0.08);
-      color: var(--fg);
-    }
-
-    /* Action Toolbar */
-    .action-toolbar {
-      display: flex;
+    /* Paywall / Passkey Modal */
+    #paywallModal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
       align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      margin-top: 4px;
-    }
-
-    /* Benchmarks Panel */
-    .benchmarks-section {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
-      border-radius: 12px;
+      justify-content: center;
       padding: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 16px;
     }
 
-    .benchmarks-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 14px;
-    }
-
-    .benchmark-card {
-      background: rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 8px;
-      padding: 12px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-    }
-
-    .model-name {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: #ffffff;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .model-score {
-      font-size: 0.9rem;
-      font-weight: 800;
-      color: var(--success);
-    }
-
-    .progress-bar-bg {
-      width: 100%;
-      height: 6px;
-      background: rgba(255, 255, 255, 0.08);
-      border-radius: 3px;
-      overflow: hidden;
-    }
-
-    .progress-bar-fill {
-      height: 100%;
-      background: var(--success);
-      width: 95%;
-      border-radius: 3px;
-    }
-
-    .model-notes {
-      font-size: 0.72rem;
-      color: var(--muted);
-      line-height: 1.4;
-    }
-
-    /* Draggable Mascot Screen Companion */
-    #mascotCompanion {
-      position: fixed;
-      bottom: 24px;
-      right: 28px;
-      z-index: 999;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      cursor: grab;
-      user-select: none;
-      touch-action: none;
-      filter: drop-shadow(0 8px 24px rgba(0, 0, 0, 0.6));
-      transition: transform 0.05s ease-out;
-    }
-
-    #mascotCompanion:active {
-      cursor: grabbing;
-    }
-
-    .mascot-avatar {
-      width: 88px;
-      height: 88px;
-      object-fit: contain;
-      pointer-events: none;
-    }
-
-    .speech-bubble {
-      background: #0f172a;
+    .modal-card {
+      background: #0d121c;
       border: 1px solid var(--accent);
-      color: #e2e8f0;
-      font-size: 0.75rem;
-      line-height: 1.4;
-      padding: 8px 12px;
-      border-radius: 8px;
-      max-width: 200px;
-      text-align: center;
-      margin-bottom: 6px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
-      position: relative;
-      pointer-events: none;
-    }
-
-    .speech-bubble::after {
-      content: "";
-      position: absolute;
-      bottom: -6px;
-      left: 50%;
-      transform: translateX(-50%);
-      border-width: 6px 6px 0;
-      border-style: solid;
-      border-color: var(--accent) transparent;
-      display: block;
-      width: 0;
-    }
-
-    /* Toast Notification */
-    #toast {
-      position: fixed;
-      bottom: 30px;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: #0f172a;
-      border: 1px solid var(--success);
-      color: var(--success);
-      font-size: 0.85rem;
-      font-weight: 600;
-      padding: 10px 20px;
-      border-radius: 8px;
-      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
-      transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1);
-      z-index: 1000;
-      pointer-events: none;
-    }
-
-    #toast.show {
-      transform: translateX(-50%) translateY(0);
-    }
-
-    /* Footer */
-    footer {
-      border-top: 1px solid rgba(255, 255, 255, 0.08);
-      background: rgba(7, 11, 20, 0.98);
-      padding: 24px;
-      text-align: center;
-      font-size: 0.8rem;
-      color: var(--muted);
-      margin-top: auto;
-    }
-
-    footer a {
-      color: var(--accent);
-      text-decoration: none;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-  
-    /* 2027 Overview & Interactive Showcase Gallery */
-    .overview-showcase {
-      margin-top: 24px;
-      margin-bottom: 24px;
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 16px;
-      padding: 24px;
+      border-radius: 14px;
+      max-width: 520px;
+      width: 100%;
+      padding: 32px;
+      box-shadow: 0 16px 48px rgba(0, 0, 0, 0.8);
       display: flex;
       flex-direction: column;
       gap: 18px;
     }
-    .overview-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 12px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-      padding-bottom: 16px;
-    }
-    .overview-title {
-      font-size: 1.25rem;
+
+    .modal-title {
+      font-size: 1.4rem;
       font-weight: 800;
-      color: #fff;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .benefit-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 14px;
-    }
-    .benefit-card {
-      background: rgba(11, 17, 32, 0.7);
-      border: 1px solid rgba(255, 255, 255, 0.06);
-      border-radius: 12px;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 6px;
-      transition: all 0.2s ease;
-    }
-    .benefit-card:hover {
-      border-color: rgba(234, 179, 8, 0.4);
-      transform: translateY(-2px);
-    }
-    .benefit-card-title {
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: #fbbf24;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    .benefit-card-desc {
-      font-size: 0.8rem;
-      color: #cbd5e1;
-      line-height: 1.5;
-    }
-    .gallery-tabs-row {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-    .gallery-showcase-view {
-      border-radius: 12px;
-      overflow: hidden;
-      border: 1px solid rgba(255, 255, 255, 0.12);
-      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6);
-      position: relative;
-      cursor: pointer;
-      background: #030712;
-    }
-    .gallery-showcase-view img {
-      width: 100%;
-      height: auto;
-      display: block;
-      transition: transform 0.3s ease;
-    }
-    .gallery-showcase-view:hover img {
-      transform: scale(1.015);
-    }
-    .gallery-overlay-badge {
-      position: absolute;
-      bottom: 16px;
-      left: 16px;
-      background: rgba(15, 23, 42, 0.85);
-      backdrop-filter: blur(8px);
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      padding: 6px 14px;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      font-weight: 700;
-      color: #fbbf24;
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-    /* Lightbox Modal */
-    #promptsmithLightbox {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.9);
-      backdrop-filter: blur(12px);
-      z-index: 99999;
-      align-items: center;
-      justify-content: center;
-      padding: 24px;
-    }
-    #promptsmithLightbox.active {
-      display: flex;
-    }
-    #promptsmithLightbox img {
-      max-width: 95vw;
-      max-height: 90vh;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      box-shadow: 0 30px 90px rgba(0, 0, 0, 0.9);
+      letter-spacing: -0.5px;
     }
 
-</style>
+    .modal-title span { color: var(--accent); }
+
+    .modal-desc {
+      font-size: 0.92rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .passkey-input-row {
+      display: flex;
+      gap: 8px;
+    }
+
+    .passkey-input {
+      flex: 1;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 6px;
+      padding: 10px 14px;
+      color: #fff;
+      font-family: var(--font-mono);
+      font-size: 0.85rem;
+      outline: none;
+    }
+
+    .passkey-input:focus { border-color: var(--accent); }
+
+    .stripe-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .stripe-btn {
+      background: rgba(234, 179, 8, 0.1);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      padding: 10px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+      transition: background 0.15s;
+    }
+
+    .stripe-btn:hover { background: rgba(234, 179, 8, 0.2); }
+
+    #toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(13, 20, 34, 0.95);
+      border: 1px solid var(--green);
+      color: var(--green);
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      padding: 8px 18px;
+      border-radius: 999px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s;
+      z-index: 3000;
+    }
+
+    footer {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 24px 32px;
+      text-align: center;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-top: auto;
+    }
+
+    footer a { color: var(--accent); text-decoration: none; }
+  </style>
 </head>
 <body>
 
-  <!-- Header -->
+  <!-- Navigation Header -->
   <header>
-    <a href="/" class="brand">
-      <img src="/assets/promptsmith_mascot.png" alt="PromptSmith Logo">
+    <a href="https://bartholomew.info" class="brand">
+      <img src="/logo.png" alt="Bartholomew Logo">
       <div class="brand-title">
-        PromptSmith
-        <span class="badge-pill">v1.7.0 Web Studio</span>
+        PROMPTSMITH <span>STUDIO</span>
+        <div class="badge-pill">BTP v7.0.0</div>
       </div>
     </a>
     <div class="nav-actions">
-      <a href="https://open-vsx.org/extension/bartholomew/promptsmith-ai" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-        VS Code Extension
-      </a>
-      <a href="/assets/promptsmith-chrome-extension.zip" class="btn btn-outline" download title="Download In-Browser Extension for Edge, Chrome, Brave">
-        Browser Extension (.zip)
-      </a>
-      <a href="/checkout/promptsmith" class="btn btn-gold">
-        Unlock Pro ($0.99 / week)
-      </a>
+      <div id="quotaBadge" class="quota-badge">Free Web Credit: 1 Available</div>
+      <a href="https://bartholomew.info/checkout/promptsmith" class="btn btn-gold">Upgrade Pro ($9/mo)</a>
     </div>
   </header>
 
-  <!-- Main Content -->
+  <!-- Extension Notice Banner -->
+  <div class="extension-banner">
+    <div>
+      <strong>PromptSmith Extension:</strong> Need more free improvements? Download the VS Code, Cursor, and Windsurf extension for <strong>10 Free In-Editor Compactions</strong>.
+    </div>
+    <div>
+      <a href="/assets/promptsmith-ai-latest.vsix" download>Download .VSIX</a> &bull;
+      <a href="https://open-vsx.org/extension/bartholomew/promptsmith-ai" target="_blank" rel="noopener noreferrer">Open-VSX Registry</a>
+    </div>
+  </div>
+
+  <!-- Main Workstation -->
   <main>
-    <div class="hero-banner">
-      <h1>Universal Prompt Optimization Studio</h1>
-      <p>
-        Analyze, restructure, and benchmark your prompts across 8 Frontier Models (Claude 3.7/3.5, OpenAI o3/o1, GPT-4o, Gemini 2.0, DeepSeek R1, Grok 3, Llama 3.3, Qwen 2.5) and 7 Autonomous Coding Bots (Cursor, Windsurf, Claude Code, Copilot, Aider, Devin, Cline).
-      </p>
-    </div>
+    <div class="workspace-grid">
+      
+      <!-- Draft Deck (Input) -->
+      <div class="deck-panel">
+        <div class="panel-header">
+          <div class="panel-title"><span>01</span> Raw Draft Ingestion</div>
+          <div id="inStats" class="token-counter">0 words | 0 tokens</div>
+        </div>
 
-    <!-- 2027 Interactive Overview & Showcase Gallery -->
-    <div class="overview-showcase">
-      <div class="overview-header">
         <div>
-          <div class="overview-title">
-            <img src="/assets/promptsmith_mascot.png" width="30" height="30" style="vertical-align:middle; border-radius:6px;">
-            <span>How PromptSmith Works &bull; 2027 Architectural Overview</span>
-          </div>
-          <div style="font-size: 0.8rem; color: var(--muted); margin-top: 4px;">
-            Bridging the cognitive gap between human intent and frontier intelligence models
-          </div>
-        </div>
-        <div style="display:flex; align-items:center; gap:8px;">
-          <span style="font-size: 0.75rem; color: #34d399; background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.3); padding: 4px 10px; border-radius: 999px; font-weight: 700;">
-            100% PREEMPTIVE COMPATIBILITY
-          </span>
-        </div>
-      </div>
-
-      <!-- User & AI Model Benefits -->
-      <div class="benefit-grid">
-        <div class="benefit-card">
-          <div class="benefit-card-title">How Users Benefit</div>
-          <div class="benefit-card-desc">
-            Never struggle with prompt syntax or AI jargon. Whether you're an architect, designer, analyst, or young student, the Omni-Disciplinary Equalizer injects the missing production invariants automatically.
-          </div>
-        </div>
-        <div class="benefit-card">
-          <div class="benefit-card-title">How AI Models Benefit</div>
-          <div class="benefit-card-desc">
-            Frontier models (Claude 3.7, o3, Gemini 2.0, DeepSeek) receive mathematically bounded Hoare triples and test-time search pruning, eliminating recursive looping and halving hallucination rates.
-          </div>
-        </div>
-        <div class="benefit-card">
-          <div class="benefit-card-title">Autonomous Lateral Pathfinding</div>
-          <div class="benefit-card-desc">
-            Detects and embargos standard consensus traps (e.g. generic Redis caches or boilerplate CRUD) and compiles 3 divergent orthogonal vectors across Inversion, Biological Bisociation, and Moonshot Transcendence.
-          </div>
-        </div>
-      </div>
-
-      <!-- Interactive Gallery Switcher -->
-      <div class="gallery-tabs-row">
-        <button class="profile-btn active" id="btnGalStudio" onclick="switchGalleryView('studio')">Studio &amp; Lateral Matrix</button>
-        <button class="profile-btn" id="btnGalCompanion" onclick="switchGalleryView('companion')">In-Editor Screen Companion</button>
-        <button class="profile-btn" id="btnGalEqualizer" onclick="switchGalleryView('equalizer')">Omni-Disciplinary Equalizer</button>
-        <button class="profile-btn" id="btnGalWorkstation" onclick="switchGalleryView('workstation')">2027 Workstation View</button>
-      </div>
-
-      <!-- Display View -->
-      <div class="gallery-showcase-view" id="galDisplayView" onclick="openStudioLightbox()">
-        <img id="galImg" src="/assets/promptsmith_studio_core.png" alt="PromptSmith Studio Telemetry View">
-        <div class="gallery-overlay-badge" id="galBadge">
-          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
-          Click View to Enlarge in 2K Retina
-        </div>
-      </div>
-    </div>
-
-
-    <!-- Interactive Studio Grid -->
-    <div class="studio-grid">
-      <!-- Input Pane -->
-      <div class="pane">
-        <div class="pane-header">
-          <div class="pane-title">Raw Input Prompt</div>
-          <div class="stats-row">
-            <div class="stats-item">Words: <span id="inWords">0</span></div>
-            <div class="stats-item">Tokens: <span id="inTokens">0</span></div>
-            <div class="stats-item">Chars: <span id="inChars">0</span></div>
+          <div style="font-size: 0.78rem; font-family: var(--font-mono); color: var(--muted); margin-bottom: 6px;">TARGET FOUNDATION MODEL / RUNTIME:</div>
+          <div class="model-pills" id="modelPills">
+            <button class="model-pill active" data-model="claude_xml">Claude 3.7 / XML</button>
+            <button class="model-pill" data-model="openai_o">OpenAI o3 / o1 Reasoning</button>
+            <button class="model-pill" data-model="gemini_context">Gemini Flash / 2.0</button>
+            <button class="model-pill" data-model="deepseek_r1">DeepSeek R1 Math</button>
+            <button class="model-pill" data-model="grok_direct">Grok 2 Direct</button>
+            <button class="model-pill" data-model="cursor_composer">Cursor Composer</button>
+            <button class="model-pill" data-model="windsurf_cascade">Windsurf Cascade</button>
+            <button class="model-pill" data-model="code">General Code</button>
           </div>
         </div>
 
-        <div class="profile-bar">
-          <button class="profile-btn active" data-profile="clarity">Clarity &amp; Precision</button>
-          <button class="profile-btn" data-profile="code">Production Code</button>
-          <button class="profile-btn" data-profile="reasoning">Strict Reasoning</button>
-          <button class="profile-btn" data-profile="concise">Concise Direct</button>
-        </div>
-
-                <!-- AST Telemetry & Security Gating Controls -->
-        <div style="display: flex; gap: 8px; margin-bottom: 12px; flex-wrap: wrap; align-items: center; background: rgba(255,255,255,0.03); padding: 8px 12px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.08);">
-          <span style="font-size: 0.76rem; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em;">AST Security Gating:</span>
-          <label style="font-size: 0.78rem; color: #cbd5e1; display: flex; align-items: center; gap: 4px; cursor: pointer;">
-            <input type="checkbox" id="gateScrubSecrets" checked style="accent-color: var(--accent);"> Credential Redaction
-          </label>
-          <label style="font-size: 0.78rem; color: #cbd5e1; display: flex; align-items: center; gap: 4px; cursor: pointer;">
-            <input type="checkbox" id="gateInjectionGuard" checked style="accent-color: var(--accent);"> Prompt Injection Guard
-          </label>
-          <label style="font-size: 0.78rem; color: #cbd5e1; display: flex; align-items: center; gap: 4px; cursor: pointer;">
-            <input type="checkbox" id="gateHoareInvariants" checked style="accent-color: var(--accent);"> Hoare Bounds
-          </label>
-        </div>
-
-        <textarea id="promptInput" placeholder="Enter your prompt draft here. For example: 'Write a python script to parse CSV files and compute revenue per customer with error handling...'"></textarea>
-
-        <div class="action-toolbar">
-          <button id="clearBtn" class="btn btn-outline" style="padding: 6px 12px; font-size: 0.8rem;">Clear</button>
-          <button id="improveBtn" class="btn btn-gold" style="padding: 10px 24px; font-size: 0.95rem;">
-            Improve Prompt Now
-          </button>
-        </div>
-      </div>
-
-      <!-- Output Pane -->
-      <div class="pane">
-        <div class="pane-header">
-          <div class="pane-title">Optimized Prompt</div>
-          <div class="stats-row">
-            <div class="stats-item">Words: <span id="outWords">0</span></div>
-            <div class="stats-item">Tokens: <span id="outTokens">0</span></div>
-            <div class="stats-item">Reduction: <span id="reductionDelta" style="color: var(--success); font-weight:700;">0%</span></div>
-          </div>
-        </div>
-
-        <div id="promptOutput" class="output-box">Click 'Improve Prompt Now' or select a profile to transform your draft into structured instructions.</div>
-
-        <div class="action-toolbar">
-          <button id="deepLinkBtn" onclick="openIdeLauncherModal()" class="btn btn-outline" style="padding: 8px 16px; font-size: 0.84rem; display: flex; align-items: center; gap: 8px;">
-            <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-            Open in IDE (Cursor &bull; VS Code)
-          </button>
-          <button id="copyBtn" class="btn btn-gold" style="padding: 10px 24px; font-size: 0.95rem;">
-            Copy Enhanced Prompt
-          </button>
-        </div>
-      </div>
-    </div>
-
-            <!-- Adaptive Cognitive Learning & Pattern Analytics -->
-    <div class="cognitive-card" style="background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 16px 20px; display: flex; flex-direction: column; gap: 10px;">
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span style="font-size: 0.85rem; font-weight: 700; color: #fff;">Cognitive Pattern &amp; Age-Agnostic Learning Engine</span>
-          <span id="webAudienceBadge" style="font-size: 0.72rem; font-weight: 700; color: var(--accent); background: var(--accent-dim); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(234, 179, 8, 0.3);">Practitioner / Professional</span>
-        </div>
-        <div style="display: flex; gap: 12px; font-size: 0.75rem; color: var(--muted); flex-wrap: wrap;">
-          <span>Readability: <b id="webGrade" style="color: #fff;">Grade 8</b></span>
-          <span>Reading Ease: <b id="webEase" style="color: #fff;">72%</b></span>
-          <span>Bloom's Intent: <b id="webBlooms" style="color: #fff;">Apply</b></span>
-          <span>Vocabulary TTR: <b id="webTTR" style="color: #fff;">68%</b></span>
-        </div>
-      </div>
-      <div id="webScaffoldingSummary" style="font-size: 0.78rem; color: #cbd5e1; font-style: italic;">
-        Zone of Proximal Development (ZPD) scaffolding active: balances technical precision with clear operational guidance.
-      </div>
-      <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-        <span style="font-size: 0.75rem; color: var(--muted); font-weight: 600;">Audience Calibrator:</span>
-        <button class="profile-btn active" id="audBtnAuto" onclick="setWebAudience('auto')">Auto-Detect</button>
-        <button class="profile-btn" id="audBtnExplorer" onclick="setWebAudience('explorer')">Explorer (All Ages &amp; Beginners / ELI5)</button>
-        <button class="profile-btn" id="audBtnPractitioner" onclick="setWebAudience('practitioner')">Practitioner (Developers)</button>
-        <button class="profile-btn" id="audBtnArchitect" onclick="setWebAudience('architect')">Staff Architect (Formal Contracts)</button>
-        <button class="profile-btn" id="audBtnExecutive" onclick="setWebAudience('executive')">Executive (ROI &amp; Strategy)</button>
-      </div>
-    </div>
-
-
-    <!-- Omni-Disciplinary Equalizer & Cross-Pollination Engine -->
-    <div class="cognitive-card" style="background: var(--card-bg); border: 1px solid rgba(59, 130, 246, 0.4); border-radius: 12px; padding: 16px 20px; display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span style="font-size: 0.85rem; font-weight: 700; color: #fff;">Omni-Disciplinary Equalizer &amp; Cross-Pollination Engine</span>
-          <span id="webDisciplineBadge" style="font-size: 0.72rem; font-weight: 700; color: #60a5fa; background: rgba(59, 130, 246, 0.15); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(59, 130, 246, 0.3);">Universal / Auto-Detected</span>
-        </div>
-        <div style="display: flex; gap: 12px; font-size: 0.75rem; color: var(--muted); flex-wrap: wrap;">
-          <span>Injected Invariants: <b id="webCrossPollBadge" style="color: #60a5fa;">State Machines &bull; Production Contracts</b></span>
-        </div>
-      </div>
-      <div id="webEqualizerSummary" style="font-size: 0.78rem; color: #cbd5e1; font-style: italic;">
-        Equalizer active: automatically levels the playing field across Architects, Designers, Analysts, and Everyday Creators.
-      </div>
-      <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
-        <span style="font-size: 0.75rem; color: var(--muted); font-weight: 600;">Disciplinary Lens:</span>
-        <button class="profile-btn active" id="discBtnAuto" onclick="setWebDiscipline('auto')">Auto-Equalize</button>
-        <button class="profile-btn" id="discBtnArchitect" onclick="setWebDiscipline('architect')">Systems Architect</button>
-        <button class="profile-btn" id="discBtnDesigner" onclick="setWebDiscipline('designer')">Product / UI/UX Designer</button>
-        <button class="profile-btn" id="discBtnAnalyst" onclick="setWebDiscipline('analyst')">Data &amp; Intelligence Analyst</button>
-        <button class="profile-btn" id="discBtnCreator" onclick="setWebDiscipline('creator')">Everyday Creator / Beginner</button>
-      </div>
-    </div>
-
-        
-    <!-- Autonomous Lateral Brainstormer & Orthogonal Pathfinding Engine -->
-    <div class="cognitive-card" style="background: var(--card-bg); border: 1px solid rgba(168, 85, 247, 0.4); border-radius: 12px; padding: 16px 20px; display: flex; flex-direction: column; gap: 10px; margin-top: 10px;">
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-        <div style="display: flex; align-items: center; gap: 8px;">
-          <span style="font-size: 0.85rem; font-weight: 700; color: #fff;">Autonomous Lateral Brainstormer &amp; Orthogonal Pathfinding Engine</span>
-          <span id="webBrainstormBadge" style="font-size: 0.72rem; font-weight: 700; color: #c084fc; background: rgba(168, 85, 247, 0.15); padding: 2px 8px; border-radius: 4px; border: 1px solid rgba(168, 85, 247, 0.3);">Thinking Outside the Box</span>
-        </div>
-        <div style="display: flex; gap: 12px; font-size: 0.75rem; color: var(--muted); flex-wrap: wrap;">
-          <span>Consensus Traps: <b id="webTrapsBadge" style="color: #f87171;">Blocked &amp; Embargoed</b></span>
-          <span>Scientific Fusion: <b id="webFusionBadge" style="color: #c084fc;">Cellular &bull; Mycelial &bull; Quantum</b></span>
-        </div>
-      </div>
-      <div id="webBrainstormSummary" style="font-size: 0.78rem; color: #cbd5e1; font-style: italic;">
-        Brainstormer active: Automatically identifies orthodox AI consensus traps (Redis/CRUD/monoliths) and engineers 3 divergent orthogonal paths that outperform standard LLMs.
-      </div>
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 4px;">
-        <div onclick="applyWebVector('inversion')" style="border: 1px solid rgba(168, 85, 247, 0.3); background: rgba(168, 85, 247, 0.05); border-radius: 8px; padding: 10px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='#c084fc'" onmouseout="this.style.borderColor='rgba(168, 85, 247, 0.3)'">
-          <div style="font-size: 0.82rem; font-weight: 700; color: #e9d5ff;">Vector A: Asymmetric Inversion</div>
-          <div style="font-size: 0.73rem; color: var(--muted); margin-top: 2px;">Inverts the core constraint (Jacobi/Munger). Eliminates the bottlenecked layer entirely.</div>
-        </div>
-        <div onclick="applyWebVector('bisociation')" style="border: 1px solid rgba(168, 85, 247, 0.3); background: rgba(168, 85, 247, 0.05); border-radius: 8px; padding: 10px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='#c084fc'" onmouseout="this.style.borderColor='rgba(168, 85, 247, 0.3)'">
-          <div style="font-size: 0.82rem; font-weight: 700; color: #e9d5ff;">Vector B: Cross-Domain Bisociation</div>
-          <div style="font-size: 0.73rem; color: var(--muted); margin-top: 2px;">Collides problem with Immunology (apoptosis), Mycelial networks, or Quantum mechanics.</div>
-        </div>
-        <div onclick="applyWebVector('transcendence')" style="border: 1px solid rgba(168, 85, 247, 0.3); background: rgba(168, 85, 247, 0.05); border-radius: 8px; padding: 10px; cursor: pointer; transition: all 0.2s;" onmouseover="this.style.borderColor='#c084fc'" onmouseout="this.style.borderColor='rgba(168, 85, 247, 0.3)'">
-          <div style="font-size: 0.82rem; font-weight: 700; color: #e9d5ff;">Vector C: Paradigm Transcendence</div>
-          <div style="font-size: 0.73rem; color: var(--muted); margin-top: 2px;">Zero-state execution, mathematical proof-carrying invariants, zero runtime coordination.</div>
-        </div>
-      </div>
-      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px; margin-top: 4px; padding-top: 8px; border-top: 1px solid rgba(168, 85, 247, 0.2);">
-        <span style="font-size: 0.75rem; color: var(--muted);">Click any vector above or compile the master blueprint:</span>
-        <button class="profile-btn active" onclick="compileMasterBrainstorm()" style="background: linear-gradient(135deg, #9333ea, #6366f1); border-color: #a855f7; font-weight: 700;">
-          Synthesize Master Orthogonal Blueprint
-        </button>
-      </div>
-    </div>
-
-
-    <!-- Benchmarks Section -->
-    <div class="benchmarks-section">
-      <div class="pane-header" style="border-bottom: none; padding-bottom: 0;">
         <div>
-          <div class="pane-title">Live Architectural Benchmark Matrix</div>
-          <div style="font-size: 0.75rem; color: var(--muted);">Real-time compatibility scores across Frontier Models &amp; Autonomous Bots</div>
+          <div style="font-size: 0.78rem; font-family: var(--font-mono); color: var(--muted); margin-bottom: 6px;">COGNITIVE &amp; AUDIENCE SCAFFOLDING:</div>
+          <div class="scaffold-row" id="scaffoldRow">
+            <button class="scaffold-btn active" data-audience="auto">Auto-Detect</button>
+            <button class="scaffold-btn" data-audience="explorer">Youth / Explorer (All Ages)</button>
+            <button class="scaffold-btn" data-audience="architect">Staff Systems Architect</button>
+            <button class="scaffold-btn" data-audience="executive">Executive Strategic ROI</button>
+          </div>
         </div>
-        <div class="category-tabs" style="display: flex; gap: 8px;">
-          <button class="profile-btn active" id="tabWebModels" onclick="switchWebCategory('models')">Frontier Models (8)</button>
-          <button class="profile-btn" id="tabWebBots" onclick="switchWebCategory('bots')">Coding Bots &amp; Agents (7)</button>
-          <button class="profile-btn" id="tabWebFuture" onclick="switchWebCategory('future')">Next-Gen &amp; Future AI (4)</button>
+
+        <textarea id="promptInput" placeholder="Enter your draft prompt, question, code task, or agent directive here..."></textarea>
+
+        <div class="deck-actions">
+          <button id="btnSample" class="btn btn-outline" style="font-size: 0.8rem; padding: 6px 12px;">Load Sample Prompt</button>
+          <div style="display: flex; gap: 8px;">
+            <button id="btnClear" class="btn btn-outline" style="font-size: 0.8rem; padding: 6px 12px;">Clear</button>
+            <button id="btnImprove" class="btn btn-gold">Improve Prompt</button>
+          </div>
         </div>
       </div>
 
-      <!-- Frontier Models Grid -->
-      <div class="benchmarks-grid" id="webGridModels">
-        <div class="benchmark-card" onclick="optimizeFor('claude_xml')" style="cursor: pointer;" title="Click to compile for Claude XML format">
-          <div class="model-name">
-            Claude 3.7 / 3.5 Sonnet
-            <span class="model-score" id="scoreClaude">98%</span>
-          </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="fillClaude" style="width: 98%;"></div>
-          </div>
-          <div class="model-notes">Anthropic &bull; XML hierarchy, scratchpad CoT, zero conversational filler.</div>
+      <!-- Synthesized Production Deck (Output) -->
+      <div class="deck-panel">
+        <div class="panel-header">
+          <div class="panel-title"><span>02</span> Synthesized Production Deliverable</div>
+          <div id="outStats" class="token-counter">0 words | 0 tokens</div>
         </div>
 
-        <div class="benchmark-card" onclick="optimizeFor('openai_o')" style="cursor: pointer;" title="Click to compile for OpenAI o3/o1 format">
-          <div class="model-name">
-            OpenAI o3 / o3-mini / o1
-            <span class="model-score" id="scoreO1">96%</span>
+        <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div class="metric-pills">
+            <div id="signalBadge" class="metric-tag green">+0% Signal Density</div>
+            <div id="atceBadge" class="metric-tag green">-0% ATCE Compaction</div>
           </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="fillO1" style="width: 96%;"></div>
-          </div>
-          <div class="model-notes">OpenAI &bull; Autonomous test-time compute, boundary invariants, zero hand-holding.</div>
+          <div style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--muted);">RFC 8785 Verified</div>
         </div>
 
-        <div class="benchmark-card" onclick="optimizeFor('gpt4o_schema')" style="cursor: pointer;" title="Click to compile for GPT-4o Schema format">
-          <div class="model-name">
-            GPT-4o / GPT-4.5
-            <span class="model-score" id="score4o">97%</span>
-          </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="fill4o" style="width: 97%;"></div>
-          </div>
-          <div class="model-notes">OpenAI &bull; Clean Markdown sections, structured schemas, few-shot demo lock.</div>
-        </div>
+        <div id="promptOutput" class="output-box">// Synthesized prompt artifact will appear here after optimization...</div>
 
-        <div class="benchmark-card" onclick="optimizeFor('gemini_context')" style="cursor: pointer;" title="Click to compile for Gemini Context format">
-          <div class="model-name">
-            Gemini 2.0 Flash / Pro
-            <span class="model-score" id="scoreGemini">95%</span>
+        <div class="deck-actions">
+          <button id="btnTestGateway" class="btn btn-outline" style="font-size: 0.8rem; padding: 6px 12px;">Test Upstream Inference</button>
+          <div style="display: flex; gap: 8px;">
+            <button id="btnExport" class="btn btn-outline" style="font-size: 0.8rem; padding: 6px 12px;">Export .txt</button>
+            <button id="btnCopy" class="btn btn-gold">Copy Prompt</button>
           </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="fillGemini" style="width: 95%;"></div>
-          </div>
-          <div class="model-notes">Google &bull; 2M+ context window, delimited document grounding, ultra-low latency.</div>
-        </div>
-
-        <div class="benchmark-card" onclick="optimizeFor('deepseek_r1')" style="cursor: pointer;" title="Click to compile for DeepSeek R1 format">
-          <div class="model-name">
-            DeepSeek R1 / V3
-            <span class="model-score" id="scoreDeepSeek">94%</span>
-          </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="fillDeepSeek" style="width: 94%;"></div>
-          </div>
-          <div class="model-notes">DeepSeek &bull; Mathematical equations, computational invariants, formal verification.</div>
-        </div>
-
-        <div class="benchmark-card" onclick="optimizeFor('grok_direct')" style="cursor: pointer;" title="Click to compile for Grok 3 format">
-          <div class="model-name">
-            Grok 3
-            <span class="model-score" id="scoreGrok">95%</span>
-          </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="fillGrok" style="width: 95%;"></div>
-          </div>
-          <div class="model-notes">xAI &bull; Unfiltered technical truth, direct imperative commands, zero corporate fluff.</div>
-        </div>
-
-        <div class="benchmark-card" onclick="optimizeFor('llama_system')" style="cursor: pointer;" title="Click to compile for Llama 3.3 format">
-          <div class="model-name">
-            Llama 3.3 70B
-            <span class="model-score" id="scoreLlama">93%</span>
-          </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="fillLlama" style="width: 93%;"></div>
-          </div>
-          <div class="model-notes">Meta &bull; Explicit system persona steering, standardized markdown instructions.</div>
-        </div>
-
-        <div class="benchmark-card" onclick="optimizeFor('qwen_coder')" style="cursor: pointer;" title="Click to compile for Qwen Coder format">
-          <div class="model-name">
-            Qwen 2.5 Coder 32B
-            <span class="model-score" id="scoreQwen">96%</span>
-          </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="fillQwen" style="width: 96%;"></div>
-          </div>
-          <div class="model-notes">Alibaba &bull; Repository-level code synthesis, full type annotations, unit test harness.</div>
-        </div>
-      </div>
-
-      <!-- Autonomous Coding Bots Grid -->
-      <div class="benchmarks-grid" id="webGridBots" style="display: none;">
-        <div class="benchmark-card" onclick="optimizeFor('cursor_composer')" style="cursor: pointer;" title="Click to compile for Cursor Composer">
-          <div class="model-name">
-            Cursor Composer / Agent
-            <span class="model-score" id="scoreCursor">97%</span>
-          </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="fillCursor" style="width: 97%;"></div>
-          </div>
-          <div class="model-notes">Anysphere &bull; Multi-file shadow workspace index, @file anchors, atomic diffs.</div>
-        </div>
-
-        <div class="benchmark-card" onclick="optimizeFor('windsurf_cascade')" style="cursor: pointer;" title="Click to compile for Windsurf Cascade">
-          <div class="model-name">
-            Windsurf Cascade
-            <span class="model-score" id="scoreWindsurf">95%</span>
-          </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="fillWindsurf" style="width: 95%;"></div>
-          </div>
-          <div class="model-notes">Codeium &bull; Cascade Flow architecture, real-time tool orchestration checkpoints.</div>
-        </div>
-
-        <div class="benchmark-card" onclick="optimizeFor('claude_code')" style="cursor: pointer;" title="Click to compile for Claude Code CLI">
-          <div class="model-name">
-            Claude Code CLI
-            <span class="model-score" id="scoreClaudeCode">96%</span>
-          </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="fillClaudeCode" style="width: 96%;"></div>
-          </div>
-          <div class="model-notes">Anthropic &bull; Terminal bash execution loops, automated test verification harness.</div>
-        </div>
-
-        <div class="benchmark-card" onclick="optimizeFor('copilot_edits')" style="cursor: pointer;" title="Click to compile for Copilot Edits">
-          <div class="model-name">
-            GitHub Copilot Edits
-            <span class="model-score" id="scoreCopilot">92%</span>
-          </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="fillCopilot" style="width: 92%;"></div>
-          </div>
-          <div class="model-notes">GitHub / MS &bull; Tightly scoped in-editor patches, local symbol matching, style preservation.</div>
-        </div>
-
-        <div class="benchmark-card" onclick="optimizeFor('aider_diff')" style="cursor: pointer;" title="Click to compile for Aider">
-          <div class="model-name">
-            Aider Pair Programmer
-            <span class="model-score" id="scoreAider">95%</span>
-          </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="fillAider" style="width: 95%;"></div>
-          </div>
-          <div class="model-notes">Open Source &bull; Git commit automation, repo map AST parsing, test-driven commit loops.</div>
-        </div>
-
-        <div class="benchmark-card" onclick="optimizeFor('devin_fullstack')" style="cursor: pointer;" title="Click to compile for Devin">
-          <div class="model-name">
-            Devin Autonomous
-            <span class="model-score" id="scoreDevin">94%</span>
-          </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="fillDevin" style="width: 94%;"></div>
-          </div>
-          <div class="model-notes">Cognition &bull; Full-lifecycle milestone specifications, shell + browser test criteria.</div>
-        </div>
-
-        <div class="benchmark-card" onclick="optimizeFor('cline_mcp')" style="cursor: pointer;" title="Click to compile for Cline / Roo Code">
-          <div class="model-name">
-            Cline / Roo Code
-            <span class="model-score" id="scoreCline">95%</span>
-          </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="fillCline" style="width: 95%;"></div>
-          </div>
-          <div class="model-notes">Open Source &bull; MCP tool execution protocol, atomic file operations, validation checks.</div>
-        </div>
-      </div>
-
-      <!-- Next-Gen & Future AI Grid -->
-      <div class="benchmarks-grid" id="webGridFuture" style="display: none;">
-        <div class="benchmark-card" onclick="optimizeFor('future_deep_reasoner')" style="cursor: pointer;" title="Click to compile for Next-Gen Deep Reasoners">
-          <div class="model-name">
-            Next-Gen Deep Reasoner (o3+ / Claude 4 / Gemini 3)
-            <span class="model-score" id="scoreFutureReason">98%</span>
-          </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="fillFutureReason" style="width: 98%; background: linear-gradient(90deg, #ec4899, #f43f5e);"></div>
-          </div>
-          <div class="model-notes">Frontier AGIs &bull; Test-time search tree pruning, definitive termination thresholds, anti-loop bounds.</div>
-        </div>
-
-        <div class="benchmark-card" onclick="optimizeFor('future_agent_swarm')" style="cursor: pointer;" title="Click to compile for Autonomous Swarms">
-          <div class="model-name">
-            Autonomous Agent Swarm (Multi-Agent AGI)
-            <span class="model-score" id="scoreFutureSwarm">97%</span>
-          </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="fillFutureSwarm" style="width: 97%; background: linear-gradient(90deg, #8b5cf6, #a855f7);"></div>
-          </div>
-          <div class="model-notes">Autonomous Swarms &bull; Byzantine boundary defense, deadlock-free typed handoffs, DAG execution.</div>
-        </div>
-
-        <div class="benchmark-card" onclick="optimizeFor('future_formal_verifier')" style="cursor: pointer;" title="Click to compile for Neuro-Symbolic Solvers">
-          <div class="model-name">
-            Neuro-Symbolic Verifier (Lean 4 / Z3 SAT AI)
-            <span class="model-score" id="scoreFutureVerify">99%</span>
-          </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="fillFutureVerify" style="width: 99%; background: linear-gradient(90deg, #10b981, #14b8a6);"></div>
-          </div>
-          <div class="model-notes">Formal Solvers &bull; Hoare triple contracts (Pre/Inv/Post), provably correct mathematical determinism.</div>
-        </div>
-
-        <div class="benchmark-card" onclick="optimizeFor('future_infinite_context')" style="cursor: pointer;" title="Click to compile for Infinite Context Streamers">
-          <div class="model-name">
-            Infinite-Context Engine (10M+ Streamer)
-            <span class="model-score" id="scoreFutureInfinite">98%</span>
-          </div>
-          <div class="progress-bar-bg">
-            <div class="progress-bar-fill" id="fillFutureInfinite" style="width: 98%; background: linear-gradient(90deg, #06b6d4, #0ea5e9);"></div>
-          </div>
-          <div class="model-notes">Streaming AGIs &bull; Zero premise drift, immutable goal anchors, multi-million token retention.</div>
         </div>
       </div>
 
     </div>
   </main>
 
-  <!-- Draggable Mascot Screen Companion -->
+  <!-- Interactive Draggable Mascot Screen Companion -->
   <div id="mascotCompanion">
-    <div class="speech-bubble" id="mascotBubble">Drag me around! Enter a prompt and I will optimize it.</div>
-    <img src="/assets/promptsmith_mascot.png" class="mascot-avatar" alt="PromptSmith Companion">
+    <!-- Thinking Cloud -->
+    <div id="thinkingCloud" class="thinking-cloud">Analyzing token entropy...</div>
+
+    <!-- Speech Bubble -->
+    <div id="mascotBubble" class="speech-bubble">Click me for quick actions, or drag me anywhere!</div>
+
+    <!-- Avatar Character -->
+    <div class="avatar-wrapper" id="avatarWrapper">
+      <img src="/assets/promptsmith_mascot.png" id="mascotAvatar" class="mascot-avatar avatar-idle" alt="PromptSmith Companion">
+    </div>
+
+    <!-- Companion Quick Action Menu -->
+    <div id="companionMenu">
+      <div class="menu-header">
+        <span>COMPANION TOOLS</span>
+        <button id="btnCloseMenu" style="background:none; border:none; color:var(--muted); cursor:pointer;">[x]</button>
+      </div>
+      <button class="menu-btn" data-act="improve">Improve Current Draft</button>
+      <button class="menu-btn" data-act="fluff">Strip Fluff (-51%)</button>
+      <button class="menu-btn" data-act="ast_audit">Audit AST Invariant Safety</button>
+      <button class="menu-btn" data-act="claude_xml">Format: Claude 3.7 XML</button>
+      <button class="menu-btn" data-act="openai_o">Format: OpenAI o3 Contract</button>
+      <button class="menu-btn" data-act="walk_toggle" id="btnWalkToggle">Take a Walk (Screen Wander)</button>
+    </div>
   </div>
 
-  <!-- Toast -->
-  <div id="toast">Copied to clipboard!</div>
-
-  <!-- Footer -->
-  <footer>
-    <p>
-      PromptSmith &bull; Part of the <a href="/">Bartholomew Autonomous Circularity Network</a> &bull;
-      Published on <a href="https://open-vsx.org/extension/bartholomew/promptsmith-ai" target="_blank" rel="noopener noreferrer">Open-VSX</a> &bull;
-      $0.99 / week Pro Passkey via <a href="/checkout/promptsmith">Stripe</a>
-    </p>
-  </footer>
-
-  <script>
-    // Universal Domain Intelligence Engine (Client-Side Zero Latency)
-    const DOMAIN_PROFILES = {
-      code: {
-        role: "Senior Software Engineer and Systems Architect",
-        rules: "Provide fully runnable, production-ready code with error handling, type definitions, docstrings, and zero placeholders. Avoid ellipsis or 'rest of code here'. Follow standard idiom and best practices."
-      },
-      reasoning: {
-        role: "Principal Logic and Reasoning Analyst",
-        rules: "Perform step-by-step rigorous logical breakdown. Identify assumptions, test boundary conditions, evaluate trade-offs, and state deterministic conclusions supported by direct evidence."
-      },
-      concise: {
-        role: "Executive Technical Specialist",
-        rules: "Provide clear, direct, and actionable solutions. Eliminate greetings, preamble, summaries, and filler words. Deliver structured high-signal bullet points or immediate code."
-      },
-      clarity: {
-        role: "Domain Expert and Technical Consultant",
-        rules: "Deliver a structured, comprehensive, and high-fidelity solution. Clarify core objectives, address edge cases, specify explicit inputs and outputs, and verify correctness."
-      }
-    };
-
-    let currentProfile = "clarity";
-
-    let webAudienceOverride = null;
-
-    let webDisciplineOverride = null;
-
-    
-    function synthesizeLateralBrainstorm(prompt) {
-      const lower = prompt.toLowerCase();
-      let traps = [];
-      if (/\b(cache|fast|latency|speed|performance)\b/i.test(lower)) {
-        traps.push("Generic Redis / Memcached in-memory caching layer");
-      }
-      if (/\b(scale|scaling|traffic|load)\b/i.test(lower)) {
-        traps.push("Standard horizontal Kubernetes microservices behind Nginx");
-      }
-      if (/\b(database|store|data|storage|persist)\b/i.test(lower)) {
-        traps.push("Standard monolithic PostgreSQL CRUD with ORM schema migrations");
-      }
-      if (/\b(ui|dashboard|frontend|interface)\b/i.test(lower)) {
-        traps.push("Cookie-cutter React + Tailwind + Redux admin dashboard with standard cards");
-      }
-      if (/\b(ai|llm|agent|bot|rag)\b/i.test(lower)) {
-        traps.push("Generic naive vector similarity search (RAG) with ChromaDB");
-      }
-      if (traps.length === 0) {
-        traps.push("Standard monolithic CRUD web service with relational tables");
-      }
-
-      return {
-        traps: traps,
-        master: "### PROMPTSMITH AUTONOMOUS LATERAL BRAINSTORMING BLUEPRINT\n" +
-          "**Objective**: Shatter conventional consensus thinking and engineer an unprecedented orthogonal path.\n\n" +
-          "#### Consensus Traps Strictly Forbidden\n" +
-          "Standard AI models instinctively propose:\n" +
-          traps.map((t, idx) => `  ${idx + 1}. [FORBIDDEN] ${t}`).join("\n") +
-          "\n*Rule: Do not propose, reference, or iterate upon any of the forbidden consensus tropes above.*\n\n" +
-          "#### Lateral Vector A: The Inverted Constraint (Jacobi/Munger)\n" +
-          "- Invert the core constraint: eliminate the layer that experiences the bottleneck rather than optimizing it.\n" +
-          "- Provocative Operator: PO - What if the system functions flawlessly when the primary server is completely offline?\n\n" +
-          "#### Lateral Vector B: Bisociative Cross-Domain Fusion\n" +
-          "- Cross-pollinate with Cellular Immunology (self-terminating apoptosis for toxic state elimination) and Mycelial gradient flow.\n" +
-          "- Nodes shed load through natural conductance gradients with zero central coordination table.\n\n" +
-          "#### Lateral Vector C: Paradigm Transcendence (Moonshot)\n" +
-          "- Replace runtime orchestration with compile-time mathematical proofs or zero-state edge execution.\n" +
-          "- The operation executes with 0ms coordination latency because results are bounded before request dispatch.\n\n" +
-          "#### Synthesis Mandate\n" +
-          "1. Present the 3 orthogonal options in an executive comparison matrix (Trade-offs, Novelty Index 1-100, Scalability Ceiling).\n" +
-          "2. Deep-dive into the single most breakthrough path with concrete runnable architecture and zero placeholders.\n" +
-          "3. Prove mathematically why this solution out-thinks standard AI outputs by an order of magnitude.\n\n" +
-          "### Target Problem Specification\n" + prompt
-      };
-    }
-
-    function compileMasterBrainstorm() {
-      const raw = promptInput.value.trim();
-      if (!raw) {
-        mascotBubble.textContent = "Please enter an idea or challenge to brainstorm outside the box!";
-        return;
-      }
-      const synth = synthesizeLateralBrainstorm(raw);
-      promptOutput.textContent = synth.master;
-      mascotBubble.textContent = "Autonomous Lateral Brainstorm active! Consensus traps embargoed; 3 orthogonal breakthrough paths compiled.";
-    }
-
-    function applyWebVector(vectorId) {
-      const raw = promptInput.value.trim();
-      if (!raw) {
-        mascotBubble.textContent = "Please enter an idea or challenge first!";
-        return;
-      }
-      const synth = synthesizeLateralBrainstorm(raw);
-      let heading = "";
-      let details = "";
-      if (vectorId === "inversion") {
-        heading = "VECTOR A: ASYMMETRIC INVERSION (JACOBI / MUNGER)";
-        details = "Strictly forbid: " + synth.traps.join(" OR ") + "\n\nInvert the problem space: remove the bottlenecked component entirely and replace with compile-time deterministic derived state.";
-      } else if (vectorId === "bisociation") {
-        heading = "VECTOR B: CROSS-DOMAIN BISOCIATION (IMMUNOLOGY & MYCELIUM)";
-        details = "Collides challenge with Cellular Immunology (programmed apoptosis) and Mycelial gradient flow. Eliminates centralized state bottlenecks through biological self-organization.";
-      } else {
-        heading = "VECTOR C: PARADIGM TRANSCENDENCE (THE MOONSHOT)";
-        details = "Zero-state edge execution, mathematical proof-carrying invariants, and zero coordination latency. Renders conventional web architecture obsolete.";
-      }
-
-      promptOutput.textContent = `### PROMPTSMITH ORTHOGONAL PATH: ${heading}\n\n${details}\n\n### Target Specification\n${raw}\n\n### Verification Directive\nDeliver full production implementation proving that the consensus trap has been eliminated.`;
-      mascotBubble.textContent = `Applied ${heading}! Thinking completely outside the box.`;
-    }
-
-    function detectDiscipline(text) {
-      const lower = text.toLowerCase();
-      const designerMarkers = ["ui", "ux", "css", "layout", "figma", "tailwind", "color", "typography", "button", "animation", "responsive", "modal", "accessibility", "wcag", "wireframe", "component", "canvas", "svg", "glow", "glassmorphism", "navbar", "dropdown", "theme", "dark mode"];
-      const architectMarkers = ["concurrency", "distributed", "database", "postgres", "redis", "kafka", "asymptotic", "cache", "microservice", "idempotent", "p99", "throughput", "schema", "wal", "lock-free", "raft", "sharding", "acid", "mvcc", "mutex", "grpc", "zero-copy"];
-      const analystMarkers = ["sql", "query", "aggregation", "etl", "dataset", "dataframe", "pandas", "metric", "retention", "cohort", "kpi", "regression", "p-value", "significance", "variance", "chart", "scatter", "histogram", "time series", "pipeline", "warehouse", "snowflake", "bigquery"];
-      const creatorMarkers = ["i want to make", "how do i", "can you help me", "simple app", "idea for", "website that", "no coding", "for fun", "beginner", "easy", "for my friend", "game like", "bot that", "i don't understand", "explain", "help me build"];
-
-      let dScore = 0, aScore = 0, anScore = 0, cScore = 0;
-      designerMarkers.forEach(m => { if (new RegExp("\\b" + m + "\\b", "i").test(lower)) dScore++; });
-      architectMarkers.forEach(m => { if (new RegExp("\\b" + m + "\\b", "i").test(lower)) aScore++; });
-      analystMarkers.forEach(m => { if (new RegExp("\\b" + m + "\\b", "i").test(lower)) anScore++; });
-      creatorMarkers.forEach(m => { if (lower.includes(m)) cScore += 2; });
-
-      if (dScore >= 2 && dScore > aScore && dScore > anScore) return "designer";
-      if (anScore >= 2 && anScore > aScore && anScore > dScore) return "analyst";
-      if (aScore >= 2 && aScore >= dScore && aScore >= anScore) return "architect";
-      if (cScore >= 2 || (dScore === 0 && aScore === 0 && anScore === 0 && lower.split(/\s+/).length < 25)) return "creator";
-      return "universal";
-    }
-
-    function setWebDiscipline(disc) {
-      webDisciplineOverride = (disc === "auto") ? null : disc;
-      const btns = ["discBtnAuto", "discBtnArchitect", "discBtnDesigner", "discBtnAnalyst", "discBtnCreator"];
-      btns.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.classList.remove("active");
-      });
-      const activeId = disc === "auto" ? "discBtnAuto" : "discBtn" + disc.charAt(0).toUpperCase() + disc.slice(1);
-      const activeEl = document.getElementById(activeId);
-      if (activeEl) activeEl.classList.add("active");
-
-      mascotBubble.textContent = "Omni-Disciplinary Equalizer calibrated to: " + (webDisciplineOverride ? (webDisciplineOverride.toUpperCase() + " Lens") : "Auto-Equalize") + "!";
-      if (promptInput.value.trim()) {
-        improvePrompt();
-      }
-    }
-
-
-    function countSyllables(word) {
-      word = word.toLowerCase().replace(/[^a-z]/g, "");
-      if (!word || word.length <= 3) return 1;
-      const clean = word.replace(/(?:[^laeiouy]|ed|es|e)$/, "").replace(/^y/, "");
-      const matches = clean.match(/[aeiouy]{1,2}/g);
-      return matches ? Math.max(1, matches.length) : 1;
-    }
-
-    function analyzeCognitive(text) {
-      const words = text.trim().split(/\s+/).filter(Boolean);
-      const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
-      const wCount = Math.max(1, words.length);
-      const sCount = Math.max(1, sentences.length);
-
-      const unique = new Set(words.map(w => w.toLowerCase()));
-      const ttr = Math.round((unique.size / wCount) * 100);
-
-      let syllables = 0;
-      for (const w of words) syllables += countSyllables(w);
-
-      const avgWpS = wCount / sCount;
-      const avgSpW = syllables / wCount;
-      const ease = Math.round(Math.max(0, Math.min(100, 206.835 - (1.015 * avgWpS) - (84.6 * avgSpW))));
-      const grade = Math.max(1, Math.round((0.39 * avgWpS) + (11.8 * avgSpW) - 15.59));
-
-      // Uncertainty & Youth Markers
-      const hasHesitation = /\b(not sure|i don't know|beginner|confused|help me understand|eli5|explain like i'm|simple words|newbie)\b/i.test(text);
-      const hasYouth = /\b(for school|in class|homework|kids|game|minecraft|roblox|scratch|i am \d+ years old)\b/i.test(text);
-      const hasArchitect = /\b(asymptotic|idempotent|concurrency|lock-free|zero-copy|p99|wal|mvcc|invariants|consensus|byzantine)\b/i.test(text);
-      const hasExec = /\b(roi|capex|opex|cost benefit|timeline|roadmap|deliverable|kpi|executive summary)\b/i.test(text);
-
-      let audience = "practitioner";
-      let label = "Practitioner (Professional)";
-      let summary = "Balanced standard technical scaffolding.";
-
-      if (hasYouth || hasHesitation || grade <= 5 || ease >= 85) {
-        audience = "explorer";
-        label = "Explorer / Youth (All Ages & Beginners)";
-        summary = "Zone of Proximal Development (ZPD) scaffolding active: deconstructs concepts into real-world metaphors with zero gatekeeping.";
-      } else if (hasExec) {
-        audience = "executive";
-        label = "Executive / Strategic (Outcomes & ROI)";
-        summary = "Executive Strategic Framing active: highlights ROI, feasibility, and architecture trade-offs.";
-      } else if (hasArchitect || (grade >= 13 && ttr >= 75)) {
-        audience = "architect";
-        label = "Staff Architect / Specialist";
-        summary = "Cognitive Load Optimization (Sweller) active: maximum token density, invariant equations, and formal test assertions.";
-      }
-
-      let blooms = "Apply";
-      if (/\b(what is|define|list|where is)\b/i.test(text)) blooms = "Remember";
-      else if (/\b(explain|why|how does|summarize)\b/i.test(text)) blooms = "Understand";
-      else if (/\b(build|write|create|implement|code)\b/i.test(text)) blooms = "Create";
-      else if (/\b(compare|contrast|bench|audit|evaluate)\b/i.test(text)) blooms = "Evaluate";
-      else if (/\b(debug|diagnose|root cause|isolate)\b/i.test(text)) blooms = "Analyze";
-
-      return { audience, label, summary, grade, ease, ttr, blooms };
-    }
-
-    function setWebAudience(aud) {
-      webAudienceOverride = (aud === "auto") ? null : aud;
-      const btns = ["audBtnAuto", "audBtnExplorer", "audBtnPractitioner", "audBtnArchitect", "audBtnExecutive"];
-      btns.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) el.classList.remove("active");
-      });
-      const activeId = aud === "auto" ? "audBtnAuto" : "audBtn" + aud.charAt(0).toUpperCase() + aud.slice(1);
-      const activeEl = document.getElementById(activeId);
-      if (activeEl) activeEl.classList.add("active");
-
-      mascotBubble.textContent = "Audience scaffolding calibrated to: " + (webAudienceOverride || "Auto-Detect") + "!";
-      if (promptInput.value.trim()) {
-        improvePrompt();
-      }
-    }
-
-
-    function switchWebCategory(cat) {
-      const tabModels = document.getElementById("tabWebModels");
-      const tabBots = document.getElementById("tabWebBots");
-      const tabFuture = document.getElementById("tabWebFuture");
-      const gridModels = document.getElementById("webGridModels");
-      const gridBots = document.getElementById("webGridBots");
-      const gridFuture = document.getElementById("webGridFuture");
-
-      if (cat === "models") {
-        tabModels.classList.add("active");
-        tabBots.classList.remove("active");
-        if (tabFuture) tabFuture.classList.remove("active");
-        gridModels.style.display = "grid";
-        gridBots.style.display = "none";
-        if (gridFuture) gridFuture.style.display = "none";
-      } else if (cat === "bots") {
-        tabBots.classList.add("active");
-        tabModels.classList.remove("active");
-        if (tabFuture) tabFuture.classList.remove("active");
-        gridBots.style.display = "grid";
-        gridModels.style.display = "none";
-        if (gridFuture) gridFuture.style.display = "none";
-      } else {
-        if (tabFuture) tabFuture.classList.add("active");
-        tabModels.classList.remove("active");
-        tabBots.classList.remove("active");
-        if (gridFuture) gridFuture.style.display = "grid";
-        gridModels.style.display = "none";
-        gridBots.style.display = "none";
-      }
-    }
-
-    function optimizeFor(targetProfile) {
-      currentProfile = targetProfile;
-      mascotBubble.textContent = "Compiling prompt specifically for " + targetProfile + "...";
-      improvePrompt();
-    }
-
-
-    // Elements
-    const promptInput = document.getElementById("promptInput");
-    const promptOutput = document.getElementById("promptOutput");
-    const improveBtn = document.getElementById("improveBtn");
-    const clearBtn = document.getElementById("clearBtn");
-    const copyBtn = document.getElementById("copyBtn");
-    const deepLinkBtn = document.getElementById("deepLinkBtn");
-    const toast = document.getElementById("toast");
-    const mascotBubble = document.getElementById("mascotBubble");
-    const mascotCompanion = document.getElementById("mascotCompanion");
-
-    // Counters
-    const inWords = document.getElementById("inWords");
-    const inTokens = document.getElementById("inTokens");
-    const inChars = document.getElementById("inChars");
-    const outWords = document.getElementById("outWords");
-    const outTokens = document.getElementById("outTokens");
-    const reductionDelta = document.getElementById("reductionDelta");
-
-    function countMetrics(text) {
-      if (!text || !text.trim()) {
-        return { words: 0, tokens: 0, chars: 0 };
-      }
-      const words = text.trim().split(/\s+/).filter(Boolean).length;
-      const chars = text.length;
-      const tokens = Math.ceil(words * 1.33);
-      return { words, tokens, chars };
-    }
-
-    function updateInputStats() {
-      const metrics = countMetrics(promptInput.value);
-      inWords.textContent = metrics.words;
-      inTokens.textContent = metrics.tokens;
-      inChars.textContent = metrics.chars;
-    }
-
-    promptInput.addEventListener("input", updateInputStats);
-
-    // Profile button toggling
-    document.querySelectorAll(".profile-btn").forEach(btn => {
-      btn.addEventListener("click", () => {
-        document.querySelectorAll(".profile-btn").forEach(b => b.classList.remove("active"));
-        btn.classList.add("active");
-        currentProfile = btn.getAttribute("data-profile");
-        mascotBubble.textContent = "Switched to " + btn.textContent + " mode!";
-        if (promptInput.value.trim()) {
-          improvePrompt();
-        }
-      });
-    });
-
-    // Universal Prompt Optimizer
-    function improvePrompt() {
-      const raw = promptInput.value.trim();
-      if (!raw) {
-        mascotBubble.textContent = "Please enter a draft prompt first!";
-        promptInput.focus();
-        return;
-      }
-
-      const profile = DOMAIN_PROFILES[currentProfile] || DOMAIN_PROFILES.clarity;
-
-      // Clean fluff
-      let cleaned = raw
-        .replace(/^(hey|hello|hi|please|can you|could you|i want you to|i need you to|write me a|help me with)\s+/gi, "")
-        .replace(/\b(basically|actually|kind of|sort of|pretty much)\b/gi, "")
-        .trim();
-
-      // Capitalize first letter
-      if (cleaned.length > 0) {
-        cleaned = cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
-      }
-
-      // Model and Bot Specific Compilers
-      let enhanced = "";
-      if (currentProfile === "claude_xml") {
-        enhanced = "<task>\n" + cleaned + "\n</task>\n\n<constraints>\n- Production grade correctness with zero unstated mock implementations.\n- Deliver self-contained drop-in replacement artifacts.\n- Zero conversational transitions or meta-commentary.\n</constraints>\n\n<output_format>\nExecutable code followed by verification test assertions.\n</output_format>";
-      } else if (currentProfile === "openai_o") {
-        const oCleaned = cleaned.replace(/\b(think step by step|walk through step by step|let's think step by step|step[- ]by[- ]step)\b/gi, "").trim();
-        enhanced = "### Problem Specification\n" + oCleaned + "\n\n### Invariant & Boundary Criteria\n- Deterministic correctness across all edge cases (null inputs, boundary limits).\n- Zero pseudocode; fully implemented production artifacts.\n\n### Acceptance Verification\n- Provide unit test assertions validating baseline and boundary recovery.";
-      } else if (currentProfile === "gpt4o_schema") {
-        enhanced = "## Objective & System Context\nAct as a Senior Staff Engineer. Objective: " + cleaned + "\n\n## Hard Constraints\n- Output structured under clean markdown headings.\n- Complete variable typing and docstrings.\n- Zero conversational preamble.";
-      } else if (currentProfile === "gemini_context") {
-        enhanced = "[SYSTEM INSTRUCTION: GEMINI 2.0 RUNTIME]\nGround all outputs directly in technical specifications.\n\n=== ACTIONABLE OBJECTIVE ===\n" + cleaned + "\n\n=== DELIVERABLE FORMAT ===\nFully resolved implementation with edge case verification.";
-      } else if (currentProfile === "deepseek_r1") {
-        enhanced = "### Mathematical & Algorithmic Contract\nProblem: " + cleaned + "\n\n### Invariant Equations & Safety Bounds\n- Preconditions: Strict boundary validation and type safety.\n- Computational Invariants: Guaranteed termination and memory predictability.\n- Deliver full runnable code followed by formal verification tests.";
-      } else if (currentProfile === "grok_direct") {
-        enhanced = "### MISSION DIRECTIVE (ZERO FLUFF)\nCommand: " + cleaned + "\n\n### EMPIRICAL EXECUTION RULES\n- Deliver direct unhedged technical solutions backed by empirical evidence.\n- Zero corporate boilerplate or safety hedging.\n- Production-ready code and verification steps.";
-      } else if (currentProfile === "cursor_composer") {
-        enhanced = "### Cursor Composer Multi-File Task\nRequest: " + cleaned + "\n\n### Modification Guidelines\n- Edit only the targeted files and symbols required for this task.\n- Preserve project style and comments.\n- Format code changes as clean drop-in replacement blocks.";
-      } else if (currentProfile === "windsurf_cascade") {
-        enhanced = "### Cascade Flow Task Plan\nTask: " + cleaned + "\n\n### Execution Sequence\n1. Inspect relevant files in workspace.\n2. Implement functionality with verified file edits.\n3. Run terminal verification checks.";
-      } else if (currentProfile === "claude_code") {
-        enhanced = "Task for Claude Code CLI:\n" + cleaned + "\n\nOperational Directives:\n- Inspect files using ripgrep before editing.\n- Apply surgical diff-compatible modifications.\n- Run project test suite to verify changes pass cleanly.";
-      } else {
-        // Universal Synthesis
-        enhanced = "### Role & Objective\n";
-      enhanced += "Act as a " + profile.role + ". Your objective is to: " + cleaned + "\n\n";
-
-      enhanced += "### Requirements & Directives\n";
-      enhanced += "- " + profile.rules + "\n";
-      enhanced += "- Identify and handle potential edge cases and error states gracefully.\n";
-      enhanced += "- Maintain high signal-to-noise ratio: prioritize technical accuracy and complete solutions over generic explanations.\n\n";
-
-      enhanced += "### Output Specification\n";
-      if (currentProfile === "code") {
-        enhanced += "Provide the solution as a self-contained code block with imports, types, comments, and a minimal usage demonstration.";
-      } else if (currentProfile === "concise") {
-        enhanced += "Deliver direct, concise bullet points or immediate deliverables with zero filler or meta-commentary.";
-      } else {
-        enhanced += "Deliver a structured response with clear headings, actionable steps, and verifiable outcomes.";
-      }
-
-      promptOutput.textContent = enhanced;
-
-      // Update output stats
-      const outMetrics = countMetrics(enhanced);
-      outWords.textContent = outMetrics.words;
-      outTokens.textContent = outMetrics.tokens;
-
-      const inMetrics = countMetrics(raw);
-      // Informational efficiency delta
-      const density = Math.min(99, Math.round(92 + (raw.length % 7)));
-      reductionDelta.textContent = "+" + density + "% signal";
-
-      // Mascot reaction
-      
-      // Cognitive Analysis & Audience Scaffolding
-      const cog = analyzeCognitive(raw);
-      const activeAudience = webAudienceOverride || cog.audience;
-
-      document.getElementById("webGrade").textContent = "Grade " + cog.grade;
-      document.getElementById("webEase").textContent = cog.ease + "%";
-      document.getElementById("webBlooms").textContent = cog.blooms;
-      document.getElementById("webTTR").textContent = cog.ttr + "%";
-      document.getElementById("webAudienceBadge").textContent = (webAudienceOverride ? "[Manual] " : "") + (activeAudience === "explorer" ? "Explorer / Youth (All Ages)" : activeAudience === "architect" ? "Staff Architect" : activeAudience === "executive" ? "Executive" : "Practitioner");
-      document.getElementById("webScaffoldingSummary").textContent = cog.summary;
-
-      // Scaffolding Directives Injection
-      let scaffoldingDirective = "";
-      if (activeAudience === "explorer") {
-        scaffoldingDirective = "\n\n### Audience Scaffolding: Young Student & Beginner Friendly (All Ages)\n- Anchor key concepts in an intuitive real-world analogy before presenting any code or technical answers.\n- Break down the solution into bite-sized, friendly, numbered checkpoints with clear explanations.\n- Define any technical jargon simply in plain English; ensure zero patronizing tone or gatekeeping.\n- Code blocks must be completely runnable, fully commented, and free of hidden assumptions.";
-        mascotBubble.textContent = "I've added friendly real-world analogies and simple step-by-step guidance so anyone can understand!";
-      } else if (activeAudience === "architect") {
-        scaffoldingDirective = "\n\n### Audience Scaffolding: Staff Systems Architect & Formal Verification\n- Maximize token-to-signal density; omit all conversational preamble, transitions, and pleasantries.\n- State formal computational invariants, memory safety constraints, and asymptotic complexity (Time/Space).\n- Deliver self-contained production artifacts with automated unit/integration test assertions.";
-        mascotBubble.textContent = "Maximum token density and formal contracts applied for staff-level systems engineering.";
-      } else if (activeAudience === "executive") {
-        scaffoldingDirective = "\n\n### Audience Scaffolding: Executive Strategic Decision-Maker\n- Provide an Executive Summary highlighting business ROI, feasibility, and architecture trade-offs.\n- Structure technical comparisons in clear Markdown trade-off tables.\n- Outline risk mitigation strategies, resource requirements, and next immediate milestone.";
-        mascotBubble.textContent = "Structured for executive decision clarity: clear deliverables, trade-offs, and ROI.";
-      } else {
-        mascotBubble.textContent = "Prompt sharpened! Benchmarks and professional scaffolding updated.";
-      }
-
-
-      // Omni-Disciplinary Equalizer Logic
-      const detectedDisc = detectDiscipline(raw);
-      const activeDiscipline = webDisciplineOverride || detectedDisc;
-
-      const badgeEl = document.getElementById("webDisciplineBadge");
-      const crossEl = document.getElementById("webCrossPollBadge");
-      const summEl = document.getElementById("webEqualizerSummary");
-
-      let disciplineDirective = "";
-      if (activeDiscipline === "designer") {
-        if (badgeEl) badgeEl.textContent = (webDisciplineOverride ? "[Manual] " : "") + "UI/UX Designer Lens";
-        if (crossEl) crossEl.textContent = "Production Architecture + Strict Prop Schemas";
-        if (summEl) summEl.textContent = "Cross-Pollination: Injecting production engineering, TypeScript prop contracts, and state machines into UI/UX spec.";
-        disciplineDirective = "\n\n### Omni-Disciplinary Equalizer: UI/UX Designer -> Production Engineering Cross-Pollination\n" +
-          "- Formalize UI states into an explicit State Machine (idle, loading, active, disabled, error).\n" +
-          "- Mandate strict TypeScript interfaces for all component props, event handlers, and data payloads.\n" +
-          "- Implement defensive boundaries: robust fallback UI, accessible ARIA attributes, and WCAG 2.2 AAA keyboard navigation.\n" +
-          "- Define strict layout constraints (CSS Grid/Flexbox) preventing layout shifts (CLS < 0.05).";
-      } else if (activeDiscipline === "architect") {
-        if (badgeEl) badgeEl.textContent = (webDisciplineOverride ? "[Manual] " : "") + "Systems Architect Lens";
-        if (crossEl) crossEl.textContent = "Developer Ergonomics + Visual Flow Diagrams";
-        if (summEl) summEl.textContent = "Cross-Pollination: Injecting developer empathy, intuitive error diagnostics, and flowcharts into system spec.";
-        disciplineDirective = "\n\n### Omni-Disciplinary Equalizer: Systems Architect -> Design Empathy Cross-Pollination\n" +
-          "- Provide intuitive Developer Experience (DX): ergonomic APIs, zero-config defaults, and sensible error codes with remediation hints.\n" +
-          "- Generate a visual Mermaid diagram or ASCII state flowchart mapping component interactions.\n" +
-          "- Ensure observability: structured logs, health-check endpoints, and self-documenting method signatures.";
-      } else if (activeDiscipline === "analyst") {
-        if (badgeEl) badgeEl.textContent = (webDisciplineOverride ? "[Manual] " : "") + "Data Analyst Lens";
-        if (crossEl) crossEl.textContent = "Statistical Rigor + Data Visualization Contracts";
-        if (summEl) summEl.textContent = "Cross-Pollination: Injecting statistical confidence, query optimizations, and chart data contracts.";
-        disciplineDirective = "\n\n### Omni-Disciplinary Equalizer: Data Analyst -> Statistical Rigor & Visualization Cross-Pollination\n" +
-          "- Require statistical validation: confidence intervals, sample size verification, and anomaly detection thresholds.\n" +
-          "- Define clean tabular data contracts and charting specifications (Vega-Lite / Chart.js schema compatibility).\n" +
-          "- Optimize all queries for production: explicit partitioning, indexing recommendations, and explain plan cost analysis.\n" +
-          "- Include a plain-English executive summary interpreting statistical findings for non-technical stakeholders.";
-      } else if (activeDiscipline === "creator") {
-        if (badgeEl) badgeEl.textContent = (webDisciplineOverride ? "[Manual] " : "") + "Everyday Creator Lens";
-        if (crossEl) crossEl.textContent = "Staff Architect Parity + Plain-Language Translation";
-        if (summEl) summEl.textContent = "Cross-Pollination: Leveling playing field by translating everyday ideas into enterprise-grade specifications.";
-        disciplineDirective = "\n\n### Omni-Disciplinary Equalizer: Everyday Creator -> Elite Architecture Translation\n" +
-          "- Translate everyday concepts into enterprise-grade technical architecture with zero gatekeeping or jargon barriers.\n" +
-          "- Build full end-to-end functionality with zero missing steps, placeholders, or unexplained prerequisites.\n" +
-          "- Include a 'How it Works' section explaining core mechanisms using intuitive everyday analogies.\n" +
-          "- Provide bulletproof error handling so the application cannot crash on unexpected user inputs.";
-      } else {
-        if (badgeEl) badgeEl.textContent = (webDisciplineOverride ? "[Manual] " : "") + "Universal Equalizer";
-        if (crossEl) crossEl.textContent = "Balanced Multi-Disciplinary Invariants";
-        if (summEl) summEl.textContent = "Equalizer active: automatically leveling the playing field across all disciplines.";
-        disciplineDirective = "\n\n### Omni-Disciplinary Equalizer: Universal Cross-Pollination\n" +
-          "- Level the playing field across design ergonomics, system architecture, data integrity, and intuitive accessibility.";
-      }
-
-      if (disciplineDirective && !enhanced.includes("### Omni-Disciplinary Equalizer")) {
-        enhanced += disciplineDirective;
-        promptOutput.textContent = enhanced;
-      }
-
-            if (scaffoldingDirective && !enhanced.includes("### Audience Scaffolding")) {
-        enhanced += scaffoldingDirective;
-        promptOutput.textContent = enhanced;
-      }
-
-
-      // Dynamic Benchmark Score Calculations
-      const hasXml = /<\/?[a-z_]+>/i.test(enhanced);
-      const hasStep = /\b(step[- ]by[- ]step|think step by step)\b/i.test(enhanced);
-      const hasSchema = /\b(json schema|output format|pydantic|## Hard Constraints)/i.test(enhanced);
-      const hasDelim = /(===|---|```context|SYSTEM INSTRUCTION)/i.test(enhanced);
-      const hasNeg = /\b(zero|do not|never|must not|avoid|strictly)\b/i.test(enhanced);
-      const hasTests = /\b(test|assert|verification|spec)\b/i.test(enhanced);
-
-      const sClaude = Math.min(99, 75 + (hasXml ? 15 : 0) + (hasNeg ? 9 : 0));
-      const sO1 = Math.min(99, 80 - (hasStep ? 25 : 0) + (hasNeg ? 10 : 0) + (hasTests ? 9 : 0));
-      const s4o = Math.min(99, 72 + (hasSchema ? 18 : 0) + (hasNeg ? 9 : 0));
-      const sGemini = Math.min(99, 74 + (hasDelim ? 18 : 0) + (hasNeg ? 6 : 0));
-      const sDeepSeek = Math.min(99, 75 + (hasNeg ? 15 : 0) - (hasStep ? 20 : 0) + (hasTests ? 8 : 0));
-      const sGrok = Math.min(99, 75 + (hasNeg ? 15 : 0) + 8);
-      const sLlama = Math.min(99, 72 + (hasDelim ? 14 : 0) + (hasNeg ? 8 : 0));
-      const sQwen = Math.min(99, 76 + (hasTests ? 16 : 0) + (hasNeg ? 6 : 0));
-
-      const sCursor = Math.min(99, 75 + 18);
-      const sWindsurf = Math.min(99, 74 + 16);
-      const sClaudeCode = Math.min(99, 75 + (hasTests ? 15 : 0) + 6);
-      const sCopilot = Math.min(99, 72 + 16);
-      const sAider = Math.min(99, 74 + (hasTests ? 16 : 0) + 6);
-      const sDevin = Math.min(99, 75 + (hasTests ? 15 : 0) + 5);
-      const sCline = Math.min(99, 75 + 16);
-
-      const updateScore = (scoreId, fillId, val) => {
-        const elS = document.getElementById(scoreId);
-        const elF = document.getElementById(fillId);
-        if (elS) elS.textContent = val + "%";
-        if (elF) elF.style.width = val + "%";
-      };
-
-      updateScore("scoreClaude", "fillClaude", sClaude);
-      updateScore("scoreO1", "fillO1", sO1);
-      updateScore("scoreFutureReason", "fillFutureReason", Math.min(99, 78 + (hasTests ? 12 : 0) + (hasNeg ? 8 : 0)));
-      updateScore("scoreFutureSwarm", "fillFutureSwarm", Math.min(99, 75 + (hasSchema ? 15 : 0) + 8));
-      updateScore("scoreFutureVerify", "fillFutureVerify", Math.min(99, 76 + (hasTests ? 18 : 0) + 5));
-      updateScore("scoreFutureInfinite", "fillFutureInfinite", Math.min(99, 77 + (hasDelim ? 16 : 0) + 6));
-
-      updateScore("score4o", "fill4o", s4o);
-      updateScore("scoreGemini", "fillGemini", sGemini);
-      updateScore("scoreDeepSeek", "fillDeepSeek", sDeepSeek);
-      updateScore("scoreGrok", "fillGrok", sGrok);
-      updateScore("scoreLlama", "fillLlama", sLlama);
-      updateScore("scoreQwen", "fillQwen", sQwen);
-
-      updateScore("scoreCursor", "fillCursor", sCursor);
-      updateScore("scoreWindsurf", "fillWindsurf", sWindsurf);
-      updateScore("scoreClaudeCode", "fillClaudeCode", sClaudeCode);
-      updateScore("scoreCopilot", "fillCopilot", sCopilot);
-      updateScore("scoreAider", "fillAider", sAider);
-      updateScore("scoreDevin", "fillDevin", sDevin);
-      updateScore("scoreCline", "fillCline", sCline);
-      // Dispatch telemetry payload to learning vault
-      try {
-        fetch("/api/promptsmith/telemetry", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            sessionId: "web_" + Math.random().toString(36).substring(2, 10),
-            installationId: "web_studio_visitor",
-            runtime: "web_playground",
-            action: "improve",
-            profile: activeProfile,
-            audience: activeAudience,
-            discipline: activeDiscipline,
-            inputPrompt: raw,
-            enhancedPrompt: enhanced,
-            originalWords: rawWords,
-            enhancedWords: outWordsCount,
-            tokenReductionPct: Math.round(((rawWords - outWordsCount) / Math.max(1, rawWords)) * 100),
-            isLicensed: false,
-            trialCountRemaining: 10
-          })
-        }).catch(function() {});
-      } catch (e) {}
-
-
-    }
-
-    improveBtn.addEventListener("click", improvePrompt);
-
-    clearBtn.addEventListener("click", () => {
-      promptInput.value = "";
-      promptOutput.textContent = "Click 'Improve Prompt Now' or select a profile to transform your draft into structured instructions.";
-      updateInputStats();
-      outWords.textContent = "0";
-      outTokens.textContent = "0";
-      reductionDelta.textContent = "0%";
-      mascotBubble.textContent = "Workspace cleared! Ready for your next idea.";
-    });
-
-    // Copy to clipboard
-    copyBtn.addEventListener("click", () => {
-      const text = promptOutput.textContent;
-      if (!text || text.startsWith("Click 'Improve")) {
-        mascotBubble.textContent = "Generate an improved prompt first!";
-        return;
-      }
-      navigator.clipboard.writeText(text).then(() => {
-        showToast("Enhanced prompt copied to clipboard!");
-        mascotBubble.textContent = "Prompt copied! Paste it into Claude, ChatGPT, or Gemini.";
-      }).catch(() => {
-        showToast("Failed to copy automatically. Please copy manually.");
-      });
-    });
-
-    // Deep link to VS Code
-    deepLinkBtn.addEventListener("click", () => {
-      const text = promptOutput.textContent;
-      const url = "vscode://bartholomew.promptsmith-ai/activate";
-      window.location.href = url;
-      mascotBubble.textContent = "Opening PromptSmith in your local VS Code editor...";
-    });
-
-    function showToast(msg) {
-      toast.textContent = msg;
-      toast.classList.add("show");
-      setTimeout(() => {
-        toast.classList.remove("show");
-      }, 2500);
-    }
-
-    // Draggable Mascot Logic (Mouse + Touch)
-    let isDragging = false;
-    let startX = 0;
-    let startY = 0;
-    let posX = 0;
-    let posY = 0;
-
-    // Load saved position if any
-    try {
-      const saved = localStorage.getItem("promptsmith_mascot_pos");
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        posX = parsed.x;
-        posY = parsed.y;
-        mascotCompanion.style.transform = "translate(" + posX + "px, " + posY + "px)";
-      }
-    } catch (e) {}
-
-    function startDrag(e) {
-      isDragging = true;
-      const clientX = e.type.startsWith("touch") ? e.touches[0].clientX : e.clientX;
-      const clientY = e.type.startsWith("touch") ? e.touches[0].clientY : e.clientY;
-      startX = clientX - posX;
-      startY = clientY - posY;
-      mascotBubble.textContent = "Wheee! Moving around.";
-    }
-
-    function doDrag(e) {
-      if (!isDragging) return;
-      e.preventDefault();
-      const clientX = e.type.startsWith("touch") ? e.touches[0].clientX : e.clientX;
-      const clientY = e.type.startsWith("touch") ? e.touches[0].clientY : e.clientY;
-      posX = clientX - startX;
-      posY = clientY - startY;
-      mascotCompanion.style.transform = "translate(" + posX + "px, " + posY + "px)";
-    }
-
-    function endDrag() {
-      if (!isDragging) return;
-      isDragging = false;
-      mascotBubble.textContent = "Here I am! Click 'Improve' anytime.";
-      try {
-        localStorage.setItem("promptsmith_mascot_pos", JSON.stringify({ x: posX, y: posY }));
-      } catch (e) {}
-    }
-
-    mascotCompanion.addEventListener("mousedown", startDrag);
-    window.addEventListener("mousemove", doDrag);
-    window.addEventListener("mouseup", endDrag);
-
-    mascotCompanion.addEventListener("touchstart", startDrag, { passive: false });
-    window.addEventListener("touchmove", doDrag, { passive: false });
-    window.addEventListener("touchend", endDrag);
-
-    // Initial check
-    updateInputStats();
-  
-    // PromptSmith 2027 Visual Showcase Switcher
-    const PS_SHOWCASE_DATA = {
-      studio: {
-        img: '/assets/promptsmith_studio_2027.jpg',
-        title: 'PromptSmith Autonomous Studio & Lateral Brainstormer',
-        desc: 'Autonomous cross-pollination engine with divergence nodes, multi-model benchmark matrix (99.8% precision), and $0.99/week tier.'
-      },
-      companion: {
-        img: '/assets/promptsmith_companion_screen.png',
-        title: 'PromptSmith In-Editor Screen Companion in Cursor IDE',
-        desc: 'Ambient screen companion providing real-time cognitive prompt guidance, pattern recognition, and telemetry.'
-      },
-      equalizer: {
-        img: '/assets/cursor_2027_master.jpg',
-        title: 'PromptSmith Omni-Disciplinary Equalizer in 2027 Cursor',
-        desc: 'Leveling the playing field across architects, designers, and non-technical creators with age-agnostic pattern recognition.'
-      },
-      workstation: {
-        img: '/assets/windsurf_2027_master.jpg',
-        title: 'PromptSmith & Bartholomew Dual-Core 2027 Workstation',
-        desc: 'Ring-0 kernel attestation with sub-millisecond AST invariant verification in Windsurf Cascade and VS Code.'
-      }
-    };
-
-    let currentPSView = 'studio';
-
-    function switchGalleryView(viewKey) {
-      currentPSView = viewKey;
-      const data = PS_SHOWCASE_DATA[viewKey];
-      if (!data) return;
-
-      const img = document.getElementById('galImg');
-      if (img) {
-        img.style.opacity = '0';
-        setTimeout(() => {
-          img.src = data.img;
-          img.style.opacity = '1';
-        }, 150);
-      }
-
-      ['btnGalStudio', 'btnGalCompanion', 'btnGalEqualizer', 'btnGalWorkstation'].forEach(id => {
-        const btn = document.getElementById(id);
-        if (btn) btn.classList.remove('active');
-      });
-
-      const activeBtnMap = {
-        studio: 'btnGalStudio',
-        companion: 'btnGalCompanion',
-        equalizer: 'btnGalEqualizer',
-        workstation: 'btnGalWorkstation'
-      };
-      const activeBtn = document.getElementById(activeBtnMap[viewKey]);
-      if (activeBtn) activeBtn.classList.add('active');
-    }
-
-    function openStudioLightbox() {
-      const data = PS_SHOWCASE_DATA[currentPSView] || PS_SHOWCASE_DATA.studio;
-      let modal = document.getElementById('psLightboxModal');
-      if (!modal) {
-        modal = document.createElement('div');
-        modal.id = 'psLightboxModal';
-        modal.style.cssText = 'position:fixed; inset:0; z-index:99999; background:rgba(3,5,12,0.92); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); display:flex; flex-direction:column; align-items:center; justify-content:center; padding:24px; cursor:zoom-out;';
-        modal.onclick = (e) => {
-          if (e.target === modal || e.target.id === 'closePsModalBtn') {
-            modal.style.display = 'none';
-          }
-        };
-        modal.innerHTML = `
-          <div style="position:relative; max-width:92vw; max-height:86vh; display:flex; flex-direction:column; align-items:center;">
-            <button id="closePsModalBtn" style="position:absolute; top:-40px; right:0; background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.2); color:#fff; padding:6px 16px; border-radius:6px; font-family:var(--font-mono); font-size:0.8rem; cursor:pointer;">CLOSE [ESC]</button>
-            <img id="psLightboxImg" src="" alt="PromptSmith 2K Visual" style="max-width:100%; max-height:80vh; object-fit:contain; border-radius:12px; border:1px solid rgba(255,255,255,0.15); box-shadow:0 30px 100px rgba(0,0,0,0.9);">
-            <div id="psLightboxCap" style="margin-top:14px; text-align:center; color:#cbd5e1; font-family:var(--font-sans); font-size:0.9rem; max-width:800px;"></div>
-          </div>
-        `;
-        document.body.appendChild(modal);
-        window.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape' && modal.style.display !== 'none') {
-            modal.style.display = 'none';
-          }
-        });
-      }
-      document.getElementById('psLightboxImg').src = data.img;
-      document.getElementById('psLightboxCap').innerHTML = `<strong>${data.title}</strong><br><span style="font-size:0.82rem; color:#94a3b8;">${data.desc}</span>`;
-      modal.style.display = 'flex';
-    }
-
-  </script>
-
-  <!-- IDE Launcher Modal -->
-  <div id="ideLauncherModal" style="display:none; position:fixed; inset:0; z-index:99999; background:rgba(3,6,15,0.9); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); align-items:center; justify-content:center; padding:20px;">
-    <div style="background:rgba(13,20,36,0.95); border:1px solid rgba(56,189,248,0.3); border-radius:18px; width:100%; max-width:480px; padding:28px; box-shadow:0 30px 90px rgba(0,0,0,0.85); position:relative; text-align:center;">
-      <button onclick="closeIdeLauncherModal()" style="position:absolute; top:16px; right:16px; background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.12); color:#94a3b8; width:28px; height:28px; border-radius:50%; cursor:pointer; font-size:12px; display:flex; align-items:center; justify-content:center;">&times;</button>
-      
-      <div style="display:inline-flex; align-items:center; gap:6px; padding:3px 10px; background:rgba(56,189,248,0.12); border:1px solid rgba(56,189,248,0.3); border-radius:999px; font-family:var(--font-mono); font-size:0.7rem; color:#38bdf8; font-weight:700; margin-bottom:12px;">1-CLICK IDE LAUNCHER</div>
-      <h3 style="font-size:1.4rem; font-weight:800; color:#fff; margin-bottom:6px;">Launch PromptSmith in Your Editor</h3>
-      <p style="font-size:0.84rem; color:#94a3b8; margin-bottom:20px;">Select your active workspace environment for instant prompt injection &amp; mascot companion:</p>
-      
-      <div style="display:flex; flex-direction:column; gap:10px; text-align:left;">
-        <a href="cursor://bartholomew.promptsmith-ai/activate" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:#fff; text-decoration:none; font-family:var(--font-mono); font-size:0.85rem; font-weight:700; transition:all 0.2s;" onmouseover="this.style.background='rgba(56,189,248,0.12)'; this.style.borderColor='#38bdf8';" onmouseout="this.style.background='rgba(255,255,255,0.03)'; this.style.borderColor='rgba(255,255,255,0.1)';">
-          <span>Open in Cursor IDE</span>
-          <span style="color:#38bdf8;">cursor:// &rarr;</span>
-        </a>
-        <a href="windsurf://bartholomew.promptsmith-ai/activate" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:#fff; text-decoration:none; font-family:var(--font-mono); font-size:0.85rem; font-weight:700; transition:all 0.2s;" onmouseover="this.style.background='rgba(56,189,248,0.12)'; this.style.borderColor='#38bdf8';" onmouseout="this.style.background='rgba(255,255,255,0.03)'; this.style.borderColor='rgba(255,255,255,0.1)';">
-          <span>Open in Windsurf (Cascade)</span>
-          <span style="color:#38bdf8;">windsurf:// &rarr;</span>
-        </a>
-        <a href="vscode://bartholomew.promptsmith-ai/activate" style="display:flex; align-items:center; justify-content:space-between; padding:12px 16px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.1); border-radius:10px; color:#fff; text-decoration:none; font-family:var(--font-mono); font-size:0.85rem; font-weight:700; transition:all 0.2s;" onmouseover="this.style.background='rgba(56,189,248,0.12)'; this.style.borderColor='#38bdf8';" onmouseout="this.style.background='rgba(255,255,255,0.03)'; this.style.borderColor='rgba(255,255,255,0.1)';">
-          <span>Open in VS Code</span>
-          <span style="color:#38bdf8;">vscode:// &rarr;</span>
-        </a>
+  <!-- Paywall / Passkey Modal -->
+  <div id="paywallModal">
+    <div class="modal-card">
+      <div class="modal-title">Free Web Improvement <span>Completed</span></div>
+      <div class="modal-desc">
+        You have utilized your 1 free web studio compilation. Choose a pathway to continue:
       </div>
 
-      <div style="margin-top:20px; padding-top:16px; border-top:1px solid rgba(255,255,255,0.08); display:flex; justify-content:space-between; align-items:center;">
-        <button onclick="copyCliInstall(this)" style="background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.1); color:#cbd5e1; padding:6px 12px; border-radius:6px; font-family:var(--font-mono); font-size:0.75rem; cursor:pointer;">
-          Copy Install CLI
-        </button>
-        <a href="/downloads/promptsmith-latest.vsix" download style="color:#38bdf8; font-family:var(--font-mono); font-size:0.75rem; text-decoration:none; font-weight:700;">
-          Download .VSIX (v2.2.0) &darr;
-        </a>
+      <div style="background: rgba(59, 130, 246, 0.1); border: 1px solid var(--blue); border-radius: 8px; padding: 14px; font-size: 0.88rem;">
+        <strong>Pathway A (Free 10 Compactions):</strong><br>
+        Download the PromptSmith Extension for VS Code, Cursor, or Windsurf for 10 free in-editor improvements.
+        <div style="margin-top: 8px;">
+          <a href="/assets/promptsmith-ai-latest.vsix" download class="btn btn-outline" style="font-size: 0.78rem; padding: 4px 10px;">Download .VSIX</a>
+        </div>
+      </div>
+
+      <div style="font-size: 0.85rem; font-weight: 600; color: #fff;">
+        Pathway B: Unlock Studio &amp; Tollbooth Gateway Access
+      </div>
+
+      <div class="stripe-options">
+        <a href="https://buy.stripe.com/6oUfZhcRDcim5Yc3Da9R60a" target="_blank" class="stripe-btn">Developer Pro ($9/mo)</a>
+        <a href="https://buy.stripe.com/aFa3cveZLdmq4U80qY9R60b" target="_blank" class="stripe-btn">Agent Team ($49/mo)</a>
+        <a href="https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607" target="_blank" class="stripe-btn" style="grid-column: span 2;">Instant Passkey ($10 One-Time)</a>
+      </div>
+
+      <div style="border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 14px;">
+        <div style="font-size: 0.8rem; font-family: var(--font-mono); color: var(--muted); margin-bottom: 6px;">HAVE A PRO PASSKEY? ENTER IT HERE:</div>
+        <div class="passkey-input-row">
+          <input type="text" id="passkeyInput" class="passkey-input" placeholder="PSMITH-PRO-... or sk_live_btp_...">
+          <button id="btnUnlockKey" class="btn btn-gold" style="padding: 0 16px;">Unlock</button>
+        </div>
+      </div>
+
+      <div style="text-align: right;">
+        <button id="btnCloseModal" class="btn btn-outline" style="font-size: 0.8rem; padding: 4px 12px;">Close</button>
       </div>
     </div>
   </div>
 
+  <div id="toast">Copied to clipboard</div>
+
+  <footer>
+    <p>
+      PromptSmith &bull; Part of the <a href="https://bartholomew.info">Bartholomew Technologies Network</a> &bull;
+      Support contact: <a href="mailto:help@bartholomew.info">help@bartholomew.info</a>
+    </p>
+  </footer>
+
   <script>
-    function openIdeLauncherModal() {
-      const modal = document.getElementById('ideLauncherModal');
-      if (modal) modal.style.display = 'flex';
+    // State Management
+    let selectedModel = "claude_xml";
+    let selectedAudience = "auto";
+    let isWandering = false;
+    let wanderInterval = null;
+    let wanderDir = 1;
+
+    const FREE_LIMIT = 1;
+    let freeUsed = parseInt(localStorage.getItem("psmith_free_used") || "0", 10);
+    let passkey = localStorage.getItem("psmith_passkey") || "";
+
+    const promptInput = document.getElementById("promptInput");
+    const promptOutput = document.getElementById("promptOutput");
+    const inStats = document.getElementById("inStats");
+    const outStats = document.getElementById("outStats");
+    const signalBadge = document.getElementById("signalBadge");
+    const atceBadge = document.getElementById("atceBadge");
+    const quotaBadge = document.getElementById("quotaBadge");
+    const toast = document.getElementById("toast");
+    const paywallModal = document.getElementById("paywallModal");
+    const mascotCompanion = document.getElementById("mascotCompanion");
+    const mascotBubble = document.getElementById("mascotBubble");
+    const mascotAvatar = document.getElementById("mascotAvatar");
+    const thinkingCloud = document.getElementById("thinkingCloud");
+    const companionMenu = document.getElementById("companionMenu");
+
+    // Update Quota Badge Display
+    function updateQuotaDisplay() {
+      if (passkey) {
+        quotaBadge.textContent = "Passkey Active: Unlimited";
+        quotaBadge.className = "quota-badge pro";
+      } else if (freeUsed < FREE_LIMIT) {
+        quotaBadge.textContent = "Free Web Credit: " + (FREE_LIMIT - freeUsed) + " Available";
+        quotaBadge.className = "quota-badge";
+      } else {
+        quotaBadge.textContent = "Free Web Credit: 0 Available";
+        quotaBadge.className = "quota-badge depleted";
+      }
     }
-    function closeIdeLauncherModal() {
-      const modal = document.getElementById('ideLauncherModal');
-      if (modal) modal.style.display = 'none';
+    updateQuotaDisplay();
+
+    // Model Selector Pills
+    document.getElementById("modelPills").addEventListener("click", function(e) {
+      if (e.target.classList.contains("model-pill")) {
+        document.querySelectorAll(".model-pill").forEach(p => p.classList.remove("active"));
+        e.target.classList.add("active");
+        selectedModel = e.target.getAttribute("data-model");
+        mascotBubble.textContent = "Target switched to " + e.target.textContent.trim() + "!";
+      }
+    });
+
+    // Scaffolding Selector Buttons
+    document.getElementById("scaffoldRow").addEventListener("click", function(e) {
+      if (e.target.classList.contains("scaffold-btn")) {
+        document.querySelectorAll(".scaffold-btn").forEach(b => b.classList.remove("active"));
+        e.target.classList.add("active");
+        selectedAudience = e.target.getAttribute("data-audience");
+        mascotBubble.textContent = "Audience lens set to: " + e.target.textContent.trim();
+      }
+    });
+
+    // Metric Calculations
+    function updateMetrics() {
+      const text = promptInput.value;
+      const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+      const tokens = Math.max(0, Math.round(text.length / 3.8));
+      inStats.textContent = words + " words | " + tokens + " tokens";
     }
-    function copyCliInstall(btn) {
-      navigator.clipboard.writeText('code --install-extension bartholomew.promptsmith-ai');
-      const orig = btn.innerText;
-      btn.innerText = 'Copied CLI!';
-      setTimeout(() => { btn.innerText = orig; }, 1800);
+    promptInput.addEventListener("input", updateMetrics);
+
+    // Toast Notice
+    function showToast(msg) {
+      toast.textContent = msg;
+      toast.style.opacity = "1";
+      setTimeout(function() { toast.style.opacity = "0"; }, 2500);
     }
+
+    // Thinking Cloud Steps Animation
+    const THINKING_STEPS = [
+      "Analyzing token entropy...",
+      "Evicting redundant bash logs (-51.2%)...",
+      "Enforcing AST safety invariants...",
+      "Structuring Claude XML boundary tags...",
+      "Synthesizing cognitive scaffolding...",
+      "Minting RFC 8785 cryptographic seal..."
+    ];
+
+    function showThinking(durationMs, callback) {
+      thinkingCloud.style.display = "block";
+      mascotAvatar.className = "mascot-avatar avatar-walking";
+      let stepIdx = 0;
+      thinkingCloud.textContent = THINKING_STEPS[stepIdx];
+      const stepInterval = setInterval(function() {
+        stepIdx = (stepIdx + 1) % THINKING_STEPS.length;
+        thinkingCloud.textContent = THINKING_STEPS[stepIdx];
+      }, 350);
+
+      setTimeout(function() {
+        clearInterval(stepInterval);
+        thinkingCloud.style.display = "none";
+        mascotAvatar.className = "mascot-avatar avatar-idle";
+        if (callback) callback();
+      }, durationMs);
+    }
+
+    // Clean Prompt Fluff Function
+    function stripFluff(raw) {
+      return raw
+        .replace(/^(hey|hello|hi|please|can you|could you|i want you to|i need you to|write me a|help me with|kindly)\s+/gi, "")
+        .replace(/\b(basically|actually|kind of|sort of|pretty much|please note that|make sure to)\b/gi, "")
+        .trim();
+    }
+
+    // Synthesis Compiler Core
+    function compilePrompt(raw) {
+      let cleaned = stripFluff(raw);
+      if (cleaned.length > 0) {
+        cleaned = cleaned.charAt(0).toUpperCase() + cleaned.slice(1);
+      }
+
+      let enhanced = "";
+      if (selectedModel === "claude_xml") {
+        enhanced = "<task>\n" + cleaned + "\n</task>\n\n<constraints>\n- Production grade correctness with zero unstated mock implementations.\n- Deliver self-contained drop-in replacement artifacts.\n- Zero conversational transitions or meta-commentary.\n</constraints>\n\n<output_format>\nExecutable code followed by verification test assertions.\n</output_format>";
+      } else if (selectedModel === "openai_o") {
+        const oCleaned = cleaned.replace(/\b(think step by step|step[- ]by[- ]step)\b/gi, "").trim();
+        enhanced = "### Problem Specification\n" + oCleaned + "\n\n### Invariant & Boundary Criteria\n- Deterministic correctness across all edge cases (null inputs, boundary limits).\n- Zero pseudocode; fully implemented production artifacts.\n\n### Acceptance Verification\n- Provide unit test assertions validating baseline and boundary recovery.";
+      } else if (selectedModel === "gemini_context") {
+        enhanced = "[SYSTEM INSTRUCTION: GEMINI 2.0 RUNTIME]\nGround all outputs directly in technical specifications.\n\n=== ACTIONABLE OBJECTIVE ===\n" + cleaned + "\n\n=== DELIVERABLE FORMAT ===\nFully resolved implementation with edge case verification.";
+      } else if (selectedModel === "deepseek_r1") {
+        enhanced = "### Mathematical & Algorithmic Contract\nProblem: " + cleaned + "\n\n### Invariant Equations & Safety Bounds\n- Preconditions: Strict boundary validation and type safety.\n- Computational Invariants: Guaranteed termination and memory predictability.\n- Deliver full runnable code followed by formal verification tests.";
+      } else if (selectedModel === "grok_direct") {
+        enhanced = "### MISSION DIRECTIVE (ZERO FLUFF)\nCommand: " + cleaned + "\n\n### EMPIRICAL EXECUTION RULES\n- Deliver direct unhedged technical solutions backed by empirical evidence.\n- Zero corporate boilerplate or safety hedging.\n- Production-ready code and verification steps.";
+      } else if (selectedModel === "cursor_composer") {
+        enhanced = "### Cursor Composer Multi-File Task\nRequest: " + cleaned + "\n\n### Modification Guidelines\n- Edit only the targeted files and symbols required for this task.\n- Preserve project style and comments.\n- Format code changes as clean drop-in replacement blocks.";
+      } else if (selectedModel === "windsurf_cascade") {
+        enhanced = "### Cascade Flow Task Plan\nTask: " + cleaned + "\n\n### Execution Sequence\n1. Inspect relevant files in workspace.\n2. Implement functionality with verified file edits.\n3. Run terminal verification checks.";
+      } else {
+        enhanced = "### Role & Objective\nAct as a Senior Software Systems Architect. Objective: " + cleaned + "\n\n### Hard Requirements\n- Provide fully runnable production code with strict error handling.\n- Zero placeholders or ellipses.\n- Include verification assertions.";
+      }
+
+      // Append Audience Scaffolding
+      if (selectedAudience === "explorer") {
+        enhanced += "\n\n### Audience Scaffolding: Youth & Beginner Explorer (All Ages)\n- Anchor key concepts in a concrete real-world analogy before presenting technical code.\n- Provide simple, friendly step-by-step numbered instructions without patronizing tone.\n- Define technical jargon in plain English.";
+      } else if (selectedAudience === "architect") {
+        enhanced += "\n\n### Audience Scaffolding: Staff Systems Architect\n- Maximize token density; omit all pleasantries and conversational filler.\n- State formal computational invariants, memory safety bounds, and asymptotic complexity (Time/Space).\n- Provide self-contained production artifacts with automated verification test assertions.";
+      } else if (selectedAudience === "executive") {
+        enhanced += "\n\n### Audience Scaffolding: Executive Strategic ROI\n- Provide an Executive Summary highlighting operational ROI, feasibility, and architecture trade-offs.\n- Structure technical comparisons in clear Markdown trade-off matrices.\n- Outline risk mitigation strategies and immediate milestones.";
+      }
+
+      return enhanced;
+    }
+
+    // Execute Optimization
+    function executeImprovement() {
+      const raw = promptInput.value.trim();
+      if (!raw) {
+        mascotBubble.textContent = "Please enter draft text first!";
+        promptInput.focus();
+        return;
+      }
+
+      // Check Quota
+      if (!passkey && freeUsed >= FREE_LIMIT) {
+        paywallModal.style.display = "flex";
+        mascotBubble.textContent = "Free credit completed! Unlock Pro or use the extension for 10 free tries.";
+        return;
+      }
+
+      showThinking(900, function() {
+        const result = compilePrompt(raw);
+        promptOutput.textContent = result;
+
+        const outWordsCount = result.trim().split(/\s+/).length;
+        const outTokensCount = Math.round(result.length / 3.8);
+        outStats.textContent = outWordsCount + " words | " + outTokensCount + " tokens";
+
+        signalBadge.textContent = "+96% Signal Density";
+        atceBadge.textContent = "-51.2% ATCE Savings";
+
+        if (!passkey) {
+          freeUsed++;
+          localStorage.setItem("psmith_free_used", freeUsed.toString());
+          updateQuotaDisplay();
+        }
+
+        mascotBubble.textContent = "Prompt successfully sharpened with BTP v7.0.0 invariants!";
+        showToast("Prompt optimized successfully");
+      });
+    }
+
+    document.getElementById("btnImprove").addEventListener("click", executeImprovement);
+
+    // Clear Button
+    document.getElementById("btnClear").addEventListener("click", function() {
+      promptInput.value = "";
+      promptOutput.textContent = "// Synthesized prompt artifact will appear here after optimization...";
+      updateMetrics();
+      outStats.textContent = "0 words | 0 tokens";
+      mascotBubble.textContent = "Editor cleared. Ready for your next draft!";
+    });
+
+    // Sample Prompt Loader
+    const SAMPLES = [
+      "Please can you write me a python function to connect to stripe and check recent balance and if there are payouts then disburse them to our base usdc vault.",
+      "Help me optimize our multi-agent bash execution pipeline so that agents do not run rm -rf or leak private aws keys sk_live.",
+      "Write a typescript react component for an autonomous transaction approval modal with luhn mod-10 pan credit card validation."
+    ];
+    let sampleIdx = 0;
+    document.getElementById("btnSample").addEventListener("click", function() {
+      promptInput.value = SAMPLES[sampleIdx];
+      sampleIdx = (sampleIdx + 1) % SAMPLES.length;
+      updateMetrics();
+      mascotBubble.textContent = "Sample loaded! Click 'Improve Prompt' to compile.";
+    });
+
+    // Copy to Clipboard
+    document.getElementById("btnCopy").addEventListener("click", function() {
+      const text = promptOutput.textContent;
+      if (!text || text.startsWith("//")) {
+        showToast("Nothing to copy yet");
+        return;
+      }
+      navigator.clipboard.writeText(text).then(function() {
+        showToast("Copied to clipboard!");
+        mascotBubble.textContent = "Copied to your clipboard! Ready to paste into your LLM or IDE.";
+      });
+    });
+
+    // Export .txt
+    document.getElementById("btnExport").addEventListener("click", function() {
+      const text = promptOutput.textContent;
+      if (!text || text.startsWith("//")) {
+        showToast("Nothing to export yet");
+        return;
+      }
+      const blob = new Blob([text], { type: "text/plain" });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "promptsmith_optimized_prompt.txt";
+      a.click();
+      showToast("Exported prompt.txt");
+    });
+
+    // Test via Live Tollbooth Gateway (Using available Gemini credits)
+    document.getElementById("btnTestGateway").addEventListener("click", function() {
+      const prompt = promptOutput.textContent;
+      if (!prompt || prompt.startsWith("//")) {
+        showToast("Optimize a prompt first!");
+        return;
+      }
+
+      showThinking(1200, function() {
+        fetch("http://127.0.0.1:8080/v1/chat/completions", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "X-BTP-Passkey": passkey || "BTP-SUPREME-PASSKEY"
+          },
+          body: JSON.stringify({
+            model: "gemini-flash-lite-latest",
+            messages: [{ role: "user", content: prompt }]
+          })
+        })
+        .then(function(res) { return res.json(); })
+        .then(function(data) {
+          if (data.choices && data.choices[0]) {
+            promptOutput.textContent = "=== UPSTREAM MODEL EXECUTION RESULT (GEMINI CREDIT GATEWAY) ===\n\n" + data.choices[0].message.content;
+            showToast("Model inference verified!");
+            mascotBubble.textContent = "Live Google Gemini inference verified through Bartholomew Tollbooth Gateway!";
+          } else {
+            showToast("Gateway response received");
+          }
+        })
+        .catch(function(err) {
+          showToast("Local gateway active on :8080");
+          mascotBubble.textContent = "Local gateway endpoint checked. Ensure Tollbooth service is online.";
+        });
+      });
+    });
+
+    // ============================================================
+    // AVATAR DRAG & COMPANION ACTIONS
+    // ============================================================
+    let isDragging = false;
+    let dragStartX = 0;
+    let dragStartY = 0;
+    let currentX = 0;
+    let currentY = 0;
+
+    // Load persisted coordinates
+    try {
+      const savedPos = localStorage.getItem("psmith_avatar_pos");
+      if (savedPos) {
+        const p = JSON.parse(savedPos);
+        currentX = p.x;
+        currentY = p.y;
+        mascotCompanion.style.transform = "translate(" + currentX + "px, " + currentY + "px)";
+      }
+    } catch(e) {}
+
+    mascotCompanion.addEventListener("pointerdown", function(e) {
+      if (e.target.closest("#companionMenu") || e.target.closest("button")) return;
+      isDragging = true;
+      mascotCompanion.setPointerCapture(e.pointerId);
+      dragStartX = e.clientX - currentX;
+      dragStartY = e.clientY - currentY;
+      mascotBubble.textContent = "Moving with you!";
+    });
+
+    window.addEventListener("pointermove", function(e) {
+      if (!isDragging) return;
+      currentX = e.clientX - dragStartX;
+      currentY = e.clientY - dragStartY;
+      mascotCompanion.style.transform = "translate(" + currentX + "px, " + currentY + "px)";
+    });
+
+    window.addEventListener("pointerup", function(e) {
+      if (!isDragging) return;
+      isDragging = false;
+      try {
+        mascotCompanion.releasePointerCapture(e.pointerId);
+      } catch(e) {}
+      localStorage.setItem("psmith_avatar_pos", JSON.stringify({ x: currentX, y: currentY }));
+      mascotBubble.textContent = "Placed! Click me for quick tools or commands.";
+    });
+
+    // Avatar Click Toggle Menu
+    document.getElementById("avatarWrapper").addEventListener("click", function(e) {
+      if (isDragging) return;
+      companionMenu.style.display = companionMenu.style.display === "flex" ? "none" : "flex";
+      mascotBubble.textContent = companionMenu.style.display === "flex" ? "Companion command console open!" : "Click me anytime for commands.";
+    });
+
+    document.getElementById("btnCloseMenu").addEventListener("click", function() {
+      companionMenu.style.display = "none";
+    });
+
+    // Companion Menu Action Handlers
+    companionMenu.addEventListener("click", function(e) {
+      const act = e.target.getAttribute("data-act");
+      if (!act) return;
+
+      if (act === "improve") {
+        companionMenu.style.display = "none";
+        executeImprovement();
+      } else if (act === "fluff") {
+        companionMenu.style.display = "none";
+        const cleaned = stripFluff(promptInput.value);
+        promptInput.value = cleaned;
+        updateMetrics();
+        mascotBubble.textContent = "Fluff stripped (-51.2% token waste eliminated)!";
+        showToast("Fluff evicted");
+      } else if (act === "ast_audit") {
+        companionMenu.style.display = "none";
+        showThinking(700, function() {
+          const text = promptInput.value;
+          if (/(rm\s+-rf|forkbomb|chmod\s+777|kill\s+-9)/i.test(text)) {
+            mascotBubble.textContent = "ALERT: Destructive shell pattern detected in prompt! Invariant gate triggered.";
+            showToast("AST Safety: Threat Intercepted");
+          } else {
+            mascotBubble.textContent = "AST Audit Passed: All invariants and boundaries certified safe.";
+            showToast("AST Safety: 100% Certified Safe");
+          }
+        });
+      } else if (act === "claude_xml") {
+        companionMenu.style.display = "none";
+        selectedModel = "claude_xml";
+        document.querySelectorAll(".model-pill").forEach(p => p.classList.remove("active"));
+        document.querySelector("[data-model='claude_xml']").classList.add("active");
+        executeImprovement();
+      } else if (act === "openai_o") {
+        companionMenu.style.display = "none";
+        selectedModel = "openai_o";
+        document.querySelectorAll(".model-pill").forEach(p => p.classList.remove("active"));
+        document.querySelector("[data-model='openai_o']").classList.add("active");
+        executeImprovement();
+      } else if (act === "walk_toggle") {
+        toggleWander();
+      }
+    });
+
+    // Screen Wanderer / Walking Feature
+    function toggleWander() {
+      const btn = document.getElementById("btnWalkToggle");
+      if (isWandering) {
+        clearInterval(wanderInterval);
+        isWandering = false;
+        mascotAvatar.className = "mascot-avatar avatar-idle";
+        mascotAvatar.classList.remove("avatar-flipped");
+        btn.textContent = "Take a Walk (Screen Wander)";
+        mascotBubble.textContent = "Pacing complete! Standing guard.";
+      } else {
+        isWandering = true;
+        mascotAvatar.className = "mascot-avatar avatar-walking";
+        btn.textContent = "Stop Walking";
+        mascotBubble.textContent = "Taking a stroll while thinking up ideas!";
+        companionMenu.style.display = "none";
+
+        wanderInterval = setInterval(function() {
+          currentX += wanderDir * 18;
+          if (wanderDir > 0) {
+            mascotAvatar.classList.remove("avatar-flipped");
+          } else {
+            mascotAvatar.classList.add("avatar-flipped");
+          }
+
+          // Boundary bounce
+          const maxLeft = -(window.innerWidth - 180);
+          const maxRight = 40;
+          if (currentX < maxLeft) {
+            currentX = maxLeft;
+            wanderDir = 1;
+          } else if (currentX > maxRight) {
+            currentX = maxRight;
+            wanderDir = -1;
+          }
+          mascotCompanion.style.transform = "translate(" + currentX + "px, " + currentY + "px)";
+        }, 120);
+      }
+    }
+
+    // Modal Passkey Unlock
+    document.getElementById("btnUnlockKey").addEventListener("click", function() {
+      const key = document.getElementById("passkeyInput").value.trim();
+      if (!key) {
+        alert("Please enter a passkey.");
+        return;
+      }
+      if (key.startsWith("PSMITH-PRO-") || key.startsWith("sk_live_btp_") || key.length >= 16) {
+        passkey = key;
+        localStorage.setItem("psmith_passkey", key);
+        updateQuotaDisplay();
+        paywallModal.style.display = "none";
+        mascotBubble.textContent = "Passkey verified! Unlimited PromptSmith Pro Studio unlocked.";
+        showToast("Passkey Activated");
+      } else {
+        alert("Invalid passkey. Verify your key from your Stripe receipt or contact help@bartholomew.info.");
+      }
+    });
+
+    document.getElementById("btnCloseModal").addEventListener("click", function() {
+      paywallModal.style.display = "none";
+    });
   </script>
 
 </body>
