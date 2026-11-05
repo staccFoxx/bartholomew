@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="btp-guard",
-    version="7.0.2",
+    version="7.0.4",
     author="Bartholomew Security Contributors",
     author_email="help@bartholomew.info",
     description="Sub-millisecond OWASP LLM Top 10 Security Guard, Prompt Token Tollbooth & Sovereign AST Gateway for AI Agents",

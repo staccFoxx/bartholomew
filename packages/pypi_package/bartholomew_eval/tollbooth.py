@@ -101,7 +101,7 @@ class TollboothHandler(BaseHTTPRequestHandler):
             resp = json.dumps({
                 "status": "ONLINE",
                 "protocol": "Bartholomew Token Tollbooth (Python Engine)",
-                "pricing": "$0.99 / week micro-passkey",
+                "pricing": "Developer Pro: $9 / month | Agent Team Gate: $49 / month",
                 "metrics": PROXY_METRICS,
                 "tracked_clients": len(CLIENT_USAGE),
                 "timestamp": time.strftime("%Y-%m-%d %H:%M:%S UTC", time.gmtime())
@@ -142,7 +142,7 @@ class TollboothHandler(BaseHTTPRequestHandler):
 
         if not has_passkey:
             usage = CLIENT_USAGE.get(client_ip, 0)
-            if usage >= 10:
+            if usage >= 25:
                 self.send_response(402)
                 self.send_header("Content-Type", "application/json")
                 self.send_header("WWW-Authenticate", 'Keystone realm="bartholomew.info"')
@@ -152,9 +152,9 @@ class TollboothHandler(BaseHTTPRequestHandler):
                 self.end_headers()
                 err_resp = json.dumps({
                     "error": {
-                        "message": f"Free tier quota exceeded ({usage}/10 requests). Autonomous M2M settlement required.",
+                        "message": f"Free tier quota exceeded ({usage}/25 requests). Professional passkey required.",
                         "code": 402,
-                        "pricing": "$0.99 / week",
+                        "pricing": "$9 / month (Developer Pro) | $49 / month (Agent Team)",
                         "checkout_url": "https://bartholomew.info/checkout/promptsmith",
                         "auth_scheme": "X-BTP-Passkey: PSMITH-PRO-YOUR-KEY"
                     }
@@ -296,7 +296,7 @@ def run_tollbooth_server(port: int = 8080):
     print(" Python:")
     print(f'   client = OpenAI(base_url="http://127.0.0.1:{port}/v1")')
     print(" Pricing:")
-    print("   Free Tier: 10 requests | Pro Passkey: $0.99/wk at https://bartholomew.info/checkout/promptsmith")
+    print("   Free Tier: 25 requests | Pro Passkey: $9/mo at https://bartholomew.info/checkout/promptsmith")
     print("======================================================================\n")
     try:
         server.serve_forever()

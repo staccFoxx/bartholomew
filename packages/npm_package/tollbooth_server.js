@@ -103,7 +103,7 @@ export function startTollboothProxy(port = 8080) {
       res.end(JSON.stringify({
         status: 'ONLINE',
         protocol: 'Bartholomew Token Tollbooth Reverse Proxy (Node Engine)',
-        pricing: '$0.99 / week micro-passkey',
+        pricing: 'Developer Pro: $9 / month | Agent Team Gate: $49 / month',
         metrics: proxyMetrics,
         trackedClients: Object.keys(clientUsage).length,
         timestamp: new Date().toISOString()
@@ -135,7 +135,7 @@ export function startTollboothProxy(port = 8080) {
 
         if (!hasPasskey) {
           const usage = clientUsage[clientIp] || 0;
-          if (usage >= 10) {
+          if (usage >= 25) {
             res.writeHead(402, {
               'Content-Type': 'application/json',
               'WWW-Authenticate': 'Keystone realm="bartholomew.info"',
@@ -146,7 +146,7 @@ export function startTollboothProxy(port = 8080) {
               error: {
                 message: `Free tier quota exceeded (${usage}/10 requests). Autonomous M2M settlement required.`,
                 code: 402,
-                pricing: '$0.99 / week',
+                pricing: '$9 / month (Developer Pro) | $49 / month (Agent Team)',
                 checkout_url: 'https://bartholomew.info/checkout/promptsmith',
                 passkey_scheme: 'X-BTP-Passkey: PSMITH-PRO-YOUR-KEY'
               }
@@ -297,7 +297,7 @@ export function startTollboothProxy(port = 8080) {
     console.log(' Python:');
     console.log(`   client = OpenAI(base_url="http://127.0.0.1:${port}/v1")`);
     console.log(' Pricing:');
-    console.log('   Free Tier: 10 requests | Pro Passkey: $0.99/wk at https://bartholomew.info/checkout/promptsmith');
+    console.log('   Free Tier: 25 requests | Pro Passkey: $9/mo at https://bartholomew.info/checkout/promptsmith');
     console.log('======================================================================\n');
   });
 
