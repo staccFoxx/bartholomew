@@ -9,6 +9,7 @@
  */
 
 import * as vscode from 'vscode';
+import { ExtensionBridge } from './bridge/extensionBridge';
 
 export interface KeystoneBudgetState {
   totalBudget: number;
@@ -90,6 +91,7 @@ export class KeystoneDashboardPanel {
   ) {
     this._panel = panel;
     this._extensionUri = extensionUri;
+    ExtensionBridge.setPanel(this._panel);
 
     this._panel.webview.html = this._getHtmlForWebview(this._panel.webview);
 

@@ -11,6 +11,7 @@
 import * as vscode from 'vscode';
 import { PromptMetricsEngine } from './analyzer';
 import { PromptEnhancer, EnhancementProfile } from './enhancer';
+import { ExtensionBridge } from './bridge/extensionBridge';
 
 export class PromptSmithDashboardPanel {
   public static currentPanel: PromptSmithDashboardPanel | undefined;
@@ -33,6 +34,7 @@ export class PromptSmithDashboardPanel {
     }
 
     this._computeOptimization();
+    ExtensionBridge.setPanel(this._panel);
     this._panel.webview.html = this._getHtmlForWebview(this._panel.webview);
 
     this._panel.onDidDispose(() => this.dispose(), null, this._disposables);

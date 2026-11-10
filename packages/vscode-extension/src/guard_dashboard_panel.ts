@@ -11,6 +11,7 @@
  */
 
 import * as vscode from 'vscode';
+import { ExtensionBridge } from './bridge/extensionBridge';
 
 export interface GuardViolation {
   id: string;
@@ -35,6 +36,7 @@ export class GuardPanel {
   private constructor(panel: vscode.WebviewPanel, extensionUri: vscode.Uri) {
     this._panel = panel;
     this._extensionUri = extensionUri;
+    ExtensionBridge.setPanel(this._panel);
 
     this._panel.webview.html = this._getHtmlForWebview(this._panel.webview);
 

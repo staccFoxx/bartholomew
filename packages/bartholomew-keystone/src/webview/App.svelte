@@ -2,9 +2,7 @@
   import { onMount } from 'svelte';
   import BurnMeter from './components/BurnMeter.svelte';
   import GrantCard, { type CapabilityRequest } from './components/GrantCard.svelte';
-
-  declare const acquireVsCodeApi: any;
-  const vscode = typeof acquireVsCodeApi === 'function' ? acquireVsCodeApi() : null;
+  import { dispatchAction } from './lib/vscode';
 
   let totalBudget: number = 1000.00;
   let consumedBudget: number = 420.50;
@@ -78,13 +76,12 @@
       }
     });
 
-    vscode?.postMessage({ command: 'dashboardReady' });
+    dispatchAction('dashboardReady');
   });
 
   function handleResolveRequest(event: CustomEvent<{ approved: boolean; requestId: string; target: string; scope: string }>) {
     const { approved, requestId, target, scope } = event.detail;
-    vscode?.postMessage({
-      command: 'resolveCapabilityRequest',
+    dispatchAction('resolveCapabilityRequest', {
       approved,
       requestId,
       target,
@@ -94,11 +91,11 @@
   }
 
   function handleIssueNewPasskey() {
-    vscode?.postMessage({ command: 'issueNewPasskeyPrompt' });
+    dispatchAction('issueNewPasskeyPrompt');
   }
 
   function handleRevokePasskey() {
-    vscode?.postMessage({ command: 'revokePasskeyPrompt' });
+    dispatchAction('revokePasskeyPrompt');
   }
 </script>
 

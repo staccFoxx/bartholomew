@@ -2,9 +2,7 @@
   import { onMount } from 'svelte';
   import ThreatRadar, { type Violation } from './components/ThreatRadar.svelte';
   import CodeDiffModal from './components/CodeDiffModal.svelte';
-
-  declare const acquireVsCodeApi: any;
-  const vscode = typeof acquireVsCodeApi === 'function' ? acquireVsCodeApi() : null;
+  import { dispatchAction } from './lib/vscode';
 
   let violations: Violation[] = [
     {
@@ -60,13 +58,12 @@
     });
 
     // Notify extension host that UI is ready
-    vscode?.postMessage({ command: 'dashboardReady' });
+    dispatchAction('dashboardReady');
   });
 
   function handleQuickFix(event: CustomEvent<{ violation: Violation }>) {
     const v = event.detail.violation;
-    vscode?.postMessage({
-      command: 'applyQuickFix',
+    dispatchAction('applyQuickFix', {
       violationId: v.id,
       code: v.code,
       file: v.file,
@@ -80,8 +77,7 @@
   }
 
   function handleNavigate(event: CustomEvent<{ file: string; line: number }>) {
-    vscode?.postMessage({
-      command: 'navigateToCode',
+    dispatchAction('navigateToCode', {
       file: event.detail.file,
       line: event.detail.line
     });
@@ -90,8 +86,7 @@
   function handleConfirmDiff(event: CustomEvent<{ violation: Violation }>) {
     const v = event.detail.violation;
     isDiffModalOpen = false;
-    vscode?.postMessage({
-      command: 'applyQuickFix',
+    dispatchAction('applyQuickFix', {
       violationId: v.id,
       code: v.code,
       file: v.file,
@@ -100,7 +95,7 @@
   }
 
   function handleImmunize() {
-    vscode?.postMessage({ command: 'immunizeWorkspace' });
+    dispatchAction('immunizeWorkspace');
   }
 </script>
 
