@@ -15,3 +15,5 @@ coverage/**
 CONTRIBUTING.md
 CHANGELOG.md
 *.vsix
+../**
+../../**
