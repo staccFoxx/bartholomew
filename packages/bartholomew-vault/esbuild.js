@@ -12,4 +12,5 @@ const esbuildPath = 'C:\\Users\\User\\AppData\\Local\\npm-cache\\_npx\\69f9afb96
 
 console.log('[*] Bundling Bartholomew Vault with esbuild...');
 execSync(`"${esbuildPath}" "${path.join(root, 'src', 'extension.ts')}" --bundle --platform=node --target=node20 --external:vscode --outfile="${path.join(dist, 'extension.js')}"`, { stdio: 'inherit' });
-console.log('[PASS] Successfully built dist/extension.js');
+execSync(`"${esbuildPath}" "${path.join(root, 'src', 'vault_engine.ts')}" --bundle --platform=node --target=node20 --external:vscode --outfile="${path.join(dist, 'vault_engine.js')}"`, { stdio: 'inherit' });
+console.log('[PASS] Successfully built dist/extension.js and dist/vault_engine.js');

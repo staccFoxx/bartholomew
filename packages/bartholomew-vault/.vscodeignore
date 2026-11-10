@@ -8,3 +8,5 @@ test_vault.js
 node_modules/**
 *.tgz
 *.vsix
+../**
+../../**
