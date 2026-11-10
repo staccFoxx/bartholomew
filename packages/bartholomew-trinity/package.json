@@ -1,11 +1,30 @@
 {
   "name": "bartholomew-trinity",
-  "displayName": "Trinity \u2014 Complete AI Agent Security Suite (Cursor, Claude, Copilot)",
+  "displayName": "Trinity — Complete AI Agent Security Suite (Cursor, Claude, Copilot)",
   "description": "The 1-Click Safety, Runtime Protection & Conversational Voice Coding Suite for AI Agents (Cursor, Claude Code, Copilot, Windsurf).",
-  "version": "7.1.0",
+  "version": "7.1.1",
   "publisher": "Bartholomew",
   "icon": "icon.png",
   "license": "Apache-2.0",
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "scripts": {
+    "vscode:prepublish": "node esbuild.js"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "bartholomew.openSuiteHud",
+        "title": "Bartholomew: Open Unified Spatial HUD Overlay"
+      },
+      {
+        "command": "bartholomew.executeAttestedHedge",
+        "title": "Bartholomew: Execute ZK-Attested Risk Hedge"
+      }
+    ]
+  },
   "categories": [
     "Extension Packs",
     "Linters",
@@ -53,7 +72,7 @@
   },
   "badges": [
     {
-      "url": "https://img.shields.io/badge/Security-Trinity%20v7.0.0-10b981",
+      "url": "https://img.shields.io/badge/Security-Trinity%20v7.1.1-10b981",
       "href": "https://bartholomew.info",
       "description": "Trinity Security Suite"
     },

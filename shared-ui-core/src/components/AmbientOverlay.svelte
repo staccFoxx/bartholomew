@@ -1,13 +1,14 @@
 <script lang="ts">
   import { onMount } from 'svelte';
-  import { dispatchAction } from '../lib/vscode';
+  import { dispatchAction, createMessageListener } from '../lib/bridge';
   import { suiteState } from '../lib/store';
 
-  export let activeModule: string = 'Bartholomew Guard';
+  export let activeModule: string = 'Bartholomew Trinity';
   export let status: string = 'Nominal';
   export let telemetryValue: string = '99.4%';
   export let voiceDuplexActive: boolean = true;
   export let isExpanded: boolean = true;
+  export let lastHedgeCommitment: string = '';
 
   let wavePhase: number = 0;
   let wavePath: string = 'M 0 20 Q 25 5 50 20 T 100 20 T 150 20 T 200 20';
@@ -25,7 +26,23 @@
       animId = requestAnimationFrame(updateWave);
     }
     animId = requestAnimationFrame(updateWave);
-    return () => cancelAnimationFrame(animId);
+
+    const unsubscribe = createMessageListener((command, payload) => {
+      if (command === 'HEDGE_CONFIRMED') {
+        status = 'Hedge Active';
+        telemetryValue = `${payload.exchange || 'ZK-CLOB'} (${payload.filled || 100} shares)`;
+        lastHedgeCommitment = payload.commitment || 'verified';
+        suiteState.update(s => ({ ...s, marketConfidence: 0.94 }));
+      } else if (command === 'UPDATE_TELEMETRY') {
+        if (payload.status) status = payload.status;
+        if (payload.telemetryValue) telemetryValue = payload.telemetryValue;
+      }
+    });
+
+    return () => {
+      cancelAnimationFrame(animId);
+      unsubscribe();
+    };
   });
 
   function toggleVoice() {
@@ -35,6 +52,11 @@
 
   function executeOverride() {
     dispatchAction('executeSpatialOverride', { module: activeModule });
+  }
+
+  function runAttestedHedge() {
+    status = 'Attesting Solvency...';
+    dispatchAction('executeAttestedHedge', { marketId: 'active-branch', size: 100 });
   }
 </script>
 
@@ -101,6 +123,20 @@
           </svg>
           <span class="absolute bottom-1 right-2 text-[8px] text-cyan-500/70 font-mono">100 GHz BUS</span>
         </div>
+
+        <!-- 1-Click ZK Solvency Attested Hedge Trigger -->
+        <button 
+          on:click={runAttestedHedge}
+          class="w-full py-2 px-3 bg-cyan-950/70 hover:bg-cyan-900/80 border border-cyan-500/50 hover:border-cyan-400 rounded-lg text-cyan-300 font-bold text-[11px] flex items-center justify-center space-x-2 transition shadow-lg shadow-cyan-950/40 cursor-pointer"
+        >
+          <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
+          <span>TRIGGER ZK-ATTESTED HEDGE</span>
+        </button>
+        {#if lastHedgeCommitment}
+          <div class="text-[9px] text-zinc-500 text-center font-mono">
+            ZK Commitment: <span class="text-cyan-400 font-semibold">{lastHedgeCommitment}</span>
+          </div>
+        {/if}
       </div>
 
       <!-- Spatial Quick Actions -->
