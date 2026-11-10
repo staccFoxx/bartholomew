@@ -1,0 +1,30 @@
+# Tortuga Sovereign Risk & Prediction Control Plane
+# Track this file in Git to declare project risk tolerance, Bayesian priors, and automated hedging invariants.
+
+version: "1.0"
+project: "bartholomew-suite"
+
+risk_policy:
+  max_slippage_bps: 25
+  solvency_enforcement: "strict" # "strict" enforces ZK-SNARK solvency proofs before fill
+  collateral_reserve_ratio: 1.25
+  max_position_size_usd: 10000
+
+hedging_rules:
+  auto_execute_on_ast_breach: true
+  covered_breach_codes:
+    - "BTP-VETO-001"
+    - "BTP-LEAK-001"
+    - "BTP-ESCAPE-001"
+  default_hedge_ratio: 1.0
+
+bayesian_priors:
+  base_prior_confidence: 0.85
+  decay_factor_per_commit: 0.02
+  min_confidence_threshold: 0.40
+
+liquidity_venues:
+  local_clob_url: "http://localhost:8095"
+  fallback_relays:
+    - "polymarket"
+    - "kalshi"
