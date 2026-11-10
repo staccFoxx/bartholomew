@@ -22,6 +22,7 @@ const path = require('path');
 const http = require('http');
 const { spawn } = require('child_process');
 import { KeystoneEngine, KeystonePasskey } from './keystone_passkey';
+import { GuardPanel, GuardViolation } from './guard_dashboard_panel';
 import {
   BartholomewProofViewProvider,
   loadTelemetry,
@@ -1230,10 +1231,15 @@ context.subscriptions.push(
     terminal.sendText('python scripts/generate_soc2_compliance_evidence.py');
   });
 
-  // 13. Command: Open Visual Policy Editor
+  // 13. Command: Open Live Security Command Center (Pro Tab Webview)
   const openDashboardCmd = vscode.commands.registerCommand('bartholomew.openDashboard', () => {
-    vscode.env.openExternal(vscode.Uri.parse('https://bartholomew.info'));
+    GuardPanel.createOrShow(context.extensionUri);
   });
+  context.subscriptions.push(
+    vscode.commands.registerCommand('bartholomewGuard.openDashboard', () => {
+      GuardPanel.createOrShow(context.extensionUri);
+    })
+  );
 
   // 14. Command: Install MCP Server for Claude Desktop & Cursor
   const installMcpCmd = vscode.commands.registerCommand('bartholomew.installMcp', () => {
@@ -1273,10 +1279,21 @@ context.subscriptions.push(
   const diagnosticCollection = vscode.languages.createDiagnosticCollection('bartholomew-guard');
   context.subscriptions.push(diagnosticCollection);
 
+  const activeDocViolations = new Map<string, GuardViolation[]>();
+
+  function syncViolationsToDashboard() {
+    const allViolations: GuardViolation[] = [];
+    for (const vList of activeDocViolations.values()) {
+      allViolations.push(...vList);
+    }
+    GuardPanel.broadcastViolations(allViolations);
+  }
+
   function lintDocument(doc: any) {
     if (!doc || doc.uri.scheme !== 'file') return;
     const text = doc.getText();
     const diagnostics: any[] = [];
+    const docViolations: GuardViolation[] = [];
     const lines = text.split(/\r?\n/);
 
     const patterns = [
@@ -1324,10 +1341,41 @@ context.subscriptions.push(
           diag.code = p.code;
           diag.source = 'Bartholomew ARP';
           diagnostics.push(diag);
+
+          const relativePath = vscode.workspace.asRelativePath ? vscode.workspace.asRelativePath(doc.uri) : doc.uri.fsPath;
+          let diffReplacement = `// [BTP-REMEDIATED] ${line.trim()}`;
+          if (p.code === 'BTP-LEAK-001') {
+            diffReplacement = line.replace(/sk-[a-zA-Z0-9_-]{20,}/g, "process.env.OPENAI_API_KEY || ''").trim();
+          } else if (p.code === 'BTP-LEAK-002') {
+            diffReplacement = line.replace(/AKIA[0-9A-Z]{16}/g, "process.env.AWS_ACCESS_KEY_ID || ''").trim();
+          } else if (p.code === 'BTP-VETO-001') {
+            diffReplacement = line.replace(/rm\s+-rf\s+[/~]/g, '# [BTP-SAFEGUARD] rm -rf root disabled').trim();
+          } else if (p.code === 'BTP-EXEC-004') {
+            diffReplacement = line.replace(/eval\s*\(/g, 'JSON.parse(').trim();
+          }
+
+          docViolations.push({
+            id: `v-${doc.uri.fsPath}-${lineIndex}-${p.code}`,
+            type: p.code === 'BTP-LEAK-001' ? 'Hardcoded OpenAI Secret Key' :
+                  p.code === 'BTP-LEAK-002' ? 'Hardcoded AWS Access Key' :
+                  p.code === 'BTP-VETO-001' ? 'Destructive Filesystem Veto' :
+                  p.code === 'BTP-SQL-003' ? 'Dynamic SQL Concatenation' :
+                  p.code === 'BTP-EXEC-004' ? 'Arbitrary Code Execution eval()' : 'AST Policy Violation',
+            file: relativePath,
+            severity: p.severity === vscode.DiagnosticSeverity.Error ? 'critical' : 'warning',
+            line: lineIndex + 1,
+            code: p.code,
+            description: p.message,
+            diffOriginal: line.trim(),
+            diffReplacement: diffReplacement,
+            range: new vscode.Range(startPos, endPos)
+          });
         }
       }
     }
     diagnosticCollection.set(doc.uri, diagnostics);
+    activeDocViolations.set(doc.uri.toString(), docViolations);
+    syncViolationsToDashboard();
   }
 
   // Active document change listener
@@ -1337,6 +1385,10 @@ context.subscriptions.push(
     }),
     vscode.workspace.onDidOpenTextDocument((doc: any) => {
       lintDocument(doc);
+    }),
+    vscode.workspace.onDidCloseTextDocument((doc: any) => {
+      activeDocViolations.delete(doc.uri.toString());
+      syncViolationsToDashboard();
     })
   );
 

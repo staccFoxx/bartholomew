@@ -1,8 +1,8 @@
 {
   "name": "bartholomew-guard-vscode",
-  "displayName": "Bartholomew Guard \u2014 AI Agent Firewall, Guardrails & Security for Cursor, Claude & Copilot",
-  "description": "BTP v7.0.0 In-Process AST Guardrails, Real-Time Security Linter & CodeActions, Nonce Sentinel, and Cryptographic Merkle Seal Minting for Cursor, Claude Code, Windsurf, Copilot, and VS Code.",
-  "version": "7.0.1",
+  "displayName": "Bartholomew Guard — AI Agent Firewall, Guardrails & Security for Cursor, Claude & Copilot",
+  "description": "BTP v7.1.0 In-Process AST Guardrails, Real-Time Security Linter & CodeActions, Nonce Sentinel, and Cryptographic Merkle Seal Minting for Cursor, Claude Code, Windsurf, Copilot, and VS Code.",
+  "version": "7.1.0",
   "publisher": "Bartholomew",
   "icon": "icon.png",
   "license": "Apache-2.0",
@@ -151,7 +151,13 @@
       },
       {
         "command": "bartholomew.openDashboard",
-        "title": "Bartholomew: Open Visual Policy Editor"
+        "title": "Bartholomew Guard: Open Live Security Command Center (Pro Tab)",
+        "icon": "$(shield)"
+      },
+      {
+        "command": "bartholomewGuard.openDashboard",
+        "title": "Bartholomew Guard: Open Live Security Command Center (Pro Tab)",
+        "icon": "$(shield)"
       },
       {
         "command": "bartholomew.openTelemetry",
@@ -287,10 +293,9 @@
     }
   },
   "scripts": {
-    "vscode:prepublish": "npm run compile",
-    "compile": "tsc -p ./",
-    "build": "npm run compile",
-    "watch": "tsc -watch -p ./"
+    "vscode:prepublish": "node esbuild.js",
+    "compile": "node esbuild.js",
+    "build": "node esbuild.js"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
