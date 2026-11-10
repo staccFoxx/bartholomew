@@ -1,8 +1,8 @@
 /**
  * Universal Extension UI Synchronization Pipeline
  * =================================================
- * Automatically synchronizes compiled modern UI core assets (Svelte components,
- * compiled CSS/JS bundles, SVG canvases) across the entire Bartholomew toolchain.
+ * Automatically synchronizes compiled modern UI core assets across the
+ * entire Bartholomew toolchain.
  *
  * Targets:
  *   - Bartholomew Guard (packages/vscode-extension)
@@ -17,7 +17,6 @@
 const fs = require('fs');
 const path = require('path');
 
-// Target extension directories relative to repository root
 const targetExtensions = [
   'packages/vscode-extension',
   'packages/bartholomew-keystone',
@@ -28,7 +27,6 @@ const targetExtensions = [
   '../acoustic-cloak/extensions/vscode'
 ];
 
-// Determine source dist directory (root dist or webview dist)
 const repoRoot = path.resolve(__dirname, '..');
 const candidateSourceDists = [
   path.join(repoRoot, 'shared-ui-core', 'dist'),
@@ -45,47 +43,40 @@ function findSourceDist() {
   return null;
 }
 
-function syncAssets() {
+function executeBulletproofSync() {
   const sourceDist = findSourceDist();
 
   if (!sourceDist) {
-    console.error('[ERROR] Source distribution directory not found. Compile webview assets first.');
+    console.error('[ERROR] Build failure: /shared-ui-core/dist missing. Compile your UI core first.');
     process.exit(1);
   }
 
-  console.log('[INFO] Synchronizing modern UI core across extension suite from: ' + sourceDist);
-
-  let syncedCount = 0;
+  console.log('[INFO] Deploying spatial UI core across extension suite from: ' + sourceDist);
+  let successCount = 0;
   let skippedCount = 0;
 
-  targetExtensions.forEach((relPath) => {
-    const resolvedPath = path.resolve(repoRoot, relPath);
+  targetExtensions.forEach((extPath) => {
+    const resolvedExtPath = path.resolve(repoRoot, extPath);
+    const extDistPath = path.join(resolvedExtPath, 'dist');
 
-    if (fs.existsSync(resolvedPath)) {
-      const extDist = path.join(resolvedPath, 'dist');
-      if (!fs.existsSync(extDist)) {
-        fs.mkdirSync(extDist, { recursive: true });
-      }
-
-      // Sync dist assets recursively if assets folder exists
-      const sourceAssets = path.join(sourceDist, 'assets');
-      const targetAssets = path.join(extDist, 'assets');
-      if (fs.existsSync(sourceAssets)) {
-        if (!fs.existsSync(targetAssets)) {
-          fs.mkdirSync(targetAssets, { recursive: true });
+    if (fs.existsSync(resolvedExtPath)) {
+      try {
+        if (!fs.existsSync(extDistPath)) {
+          fs.mkdirSync(extDistPath, { recursive: true });
         }
-        fs.cpSync(sourceAssets, targetAssets, { recursive: true });
+        fs.cpSync(sourceDist, extDistPath, { recursive: true });
+        console.log(`[SYNCED] Upgraded UI core for: ${path.basename(resolvedExtPath)} (${extPath})`);
+        successCount++;
+      } catch (err) {
+        console.error(`[ERROR] Failed to sync ${path.basename(resolvedExtPath)}:`, err.message);
       }
-
-      console.log(`[SYNC] Updated Webview assets for: ${path.basename(resolvedPath)} (${relPath})`);
-      syncedCount++;
     } else {
-      console.warn(`[SKIP] Extension path not found locally: ${relPath}`);
+      console.warn(`[SKIPPED] Target directory not found: ${extPath}`);
       skippedCount++;
     }
   });
 
-  console.log(`[COMPLETE] UI synchronization finished. Synced: ${syncedCount}, Skipped: ${skippedCount}.`);
+  console.log(`[COMPLETE] Synchronization complete. Successfully updated ${successCount} modules (Skipped: ${skippedCount}).`);
 }
 
-syncAssets();
+executeBulletproofSync();

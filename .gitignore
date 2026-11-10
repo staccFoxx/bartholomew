@@ -79,6 +79,9 @@ downloads/
 eggs/
 .eggs/
 lib/
+!src/**/lib/
+!shared-ui-core/src/lib/
+!packages/*/src/**/lib/
 lib64/
 parts/
 sdist/
