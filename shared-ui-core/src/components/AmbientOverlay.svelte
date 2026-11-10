@@ -9,6 +9,9 @@
   export let voiceDuplexActive: boolean = true;
   export let isExpanded: boolean = true;
   export let lastHedgeCommitment: string = '';
+  export let deliveryOdds: number = 85.0;
+  export let riskRating: string = 'Nominal';
+  export let activeBranch: string = 'main';
 
   let wavePhase: number = 0;
   let wavePath: string = 'M 0 20 Q 25 5 50 20 T 100 20 T 150 20 T 200 20';
@@ -32,7 +35,17 @@
         status = 'Hedge Active';
         telemetryValue = `${payload.exchange || 'ZK-CLOB'} (${payload.filled || 100} shares)`;
         lastHedgeCommitment = payload.commitment || 'verified';
+        if (payload.evaluation) {
+          deliveryOdds = Number((payload.evaluation.posteriorDeliveryOdds * 100).toFixed(1));
+          riskRating = payload.evaluation.riskRating || 'HEDGED';
+        }
         suiteState.update(s => ({ ...s, marketConfidence: 0.94 }));
+      } else if (command === 'WORK_RISK_EVALUATION') {
+        deliveryOdds = Number((payload.posteriorDeliveryOdds * 100).toFixed(1));
+        riskRating = payload.riskRating || 'MODERATE';
+        activeBranch = payload.branch || 'main';
+        status = `Risk: ${riskRating}`;
+        telemetryValue = `${deliveryOdds}% Odds`;
       } else if (command === 'UPDATE_TELEMETRY') {
         if (payload.status) status = payload.status;
         if (payload.telemetryValue) telemetryValue = payload.telemetryValue;
@@ -57,6 +70,16 @@
   function runAttestedHedge() {
     status = 'Attesting Solvency...';
     dispatchAction('executeAttestedHedge', { marketId: 'active-branch', size: 100 });
+  }
+
+  function runEvaluateWorkRisk() {
+    status = 'Evaluating Churn...';
+    dispatchAction('evaluateWorkRisk');
+  }
+
+  function runAutoHedgeSprint() {
+    status = 'Hedging Sprint...';
+    dispatchAction('autoHedgeSprint');
   }
 </script>
 
@@ -108,6 +131,28 @@
           <div class="p-1.5 bg-slate-900/90 border border-cyan-900/30 rounded text-center">
             <span class="text-zinc-500 block">CONF</span>
             <span class="text-cyan-400 font-bold">{($suiteState.marketConfidence * 100).toFixed(0)}%</span>
+          </div>
+        </div>
+
+        <!-- Sprint Delivery Odds & Work-Risk Tile -->
+        <div class="p-2.5 bg-slate-900/90 border border-cyan-800/40 rounded-lg space-y-1.5">
+          <div class="flex justify-between items-center text-[11px]">
+            <span class="text-zinc-400">Branch Delivery Odds:</span>
+            <span class="font-bold {deliveryOdds >= 80 ? 'text-emerald-400' : 'text-amber-400'} font-mono">{deliveryOdds}% ({riskRating})</span>
+          </div>
+          <div class="flex space-x-1.5">
+            <button 
+              on:click={runEvaluateWorkRisk}
+              class="flex-1 py-1 px-2 bg-slate-800/80 hover:bg-slate-700/80 border border-cyan-800/40 rounded text-[10px] text-cyan-300 font-bold transition cursor-pointer"
+            >
+              SCAN CHURN
+            </button>
+            <button 
+              on:click={runAutoHedgeSprint}
+              class="flex-1 py-1 px-2 bg-cyan-950/80 hover:bg-cyan-900 border border-cyan-500/50 rounded text-[10px] text-cyan-200 font-bold transition cursor-pointer"
+            >
+              AUTO-HEDGE
+            </button>
           </div>
         </div>
 
