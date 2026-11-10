@@ -7,6 +7,7 @@
   import SignalVisualizer from './components/SignalVisualizer.svelte';
   import AmbientOverlay from './components/AmbientOverlay.svelte';
   import { dispatchAction } from './lib/vscode';
+  import { suiteState, updateConfidence, updateSpend, updateGuardStatus, updateOpticalTelemetry } from './lib/store';
 
   type TabId = 'tortuga' | 'guard' | 'keystone' | 'promptsmith' | 'kyro';
   let activeTab: TabId = 'tortuga';
@@ -62,16 +63,28 @@
 
       switch (msg.command || msg.type) {
         case 'UPDATE_CONFIDENCE':
-          if (msg.payload?.confidence !== undefined) confidence = msg.payload.confidence;
+          if (msg.payload?.confidence !== undefined) {
+            confidence = msg.payload.confidence;
+            updateConfidence(confidence);
+          }
           break;
         case 'SYNC_VIOLATIONS':
-          if (Array.isArray(msg.violations)) violations = msg.violations;
+          if (Array.isArray(msg.violations)) {
+            violations = msg.violations;
+            updateGuardStatus(violations.length > 0 ? 'violation-detected' : 'nominal');
+          }
           break;
         case 'UPDATE_BUDGET':
-          if (msg.payload?.consumedBudget !== undefined) consumedBudget = msg.payload.consumedBudget;
+          if (msg.payload?.consumedBudget !== undefined) {
+            consumedBudget = msg.payload.consumedBudget;
+            updateSpend(consumedBudget, msg.payload.totalBudget);
+          }
           break;
         case 'UPDATE_TELEMETRY':
-          if (msg.payload?.latencyFj !== undefined) latencyFj = msg.payload.latencyFj;
+          if (msg.payload?.latencyFj !== undefined) {
+            latencyFj = msg.payload.latencyFj;
+            updateOpticalTelemetry(latencyFj);
+          }
           break;
       }
     };

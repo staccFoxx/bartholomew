@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { dispatchAction } from '../lib/vscode';
+  import { suiteState } from '../lib/store';
 
   export let activeModule: string = 'Bartholomew Guard';
   export let status: string = 'Nominal';
@@ -70,6 +71,22 @@
         <div class="flex justify-between items-center bg-cyan-950/30 p-2.5 rounded-lg border border-cyan-900/40">
           <span class="text-zinc-400 text-[11px]">Core Telemetry:</span>
           <span class="text-cyan-200 font-bold text-xs">{telemetryValue}</span>
+        </div>
+
+        <!-- Multi-Extension Suite Telemetry Grid -->
+        <div class="grid grid-cols-3 gap-1.5 text-[10px]">
+          <div class="p-1.5 bg-slate-900/90 border border-cyan-900/30 rounded text-center">
+            <span class="text-zinc-500 block">SPEND</span>
+            <span class="text-cyan-400 font-bold">${$suiteState.activeSpend.toFixed(0)}</span>
+          </div>
+          <div class="p-1.5 bg-slate-900/90 border border-cyan-900/30 rounded text-center">
+            <span class="text-zinc-500 block">VAULT</span>
+            <span class="text-emerald-400 font-bold">{$suiteState.vaultTokensMasked}</span>
+          </div>
+          <div class="p-1.5 bg-slate-900/90 border border-cyan-900/30 rounded text-center">
+            <span class="text-zinc-500 block">CONF</span>
+            <span class="text-cyan-400 font-bold">{($suiteState.marketConfidence * 100).toFixed(0)}%</span>
+          </div>
         </div>
 
         <!-- Mini Vector Waveform -->
