@@ -5,6 +5,7 @@
   import BurnMeter from './components/BurnMeter.svelte';
   import TokenDiff from './components/TokenDiff.svelte';
   import SignalVisualizer from './components/SignalVisualizer.svelte';
+  import AmbientOverlay from './components/AmbientOverlay.svelte';
   import { dispatchAction } from './lib/vscode';
 
   type TabId = 'tortuga' | 'guard' | 'keystone' | 'promptsmith' | 'kyro';
@@ -189,4 +190,11 @@
       </div>
     {/if}
   </div>
+
+  <!-- Ambient Spatial HUD Overlay -->
+  <AmbientOverlay 
+    activeModule={activeTab.toUpperCase()} 
+    status="Nominal" 
+    telemetryValue={activeTab === 'kyro' ? `${latencyFj} fJ/MAC` : activeTab === 'tortuga' ? `${(confidence * 100).toFixed(1)}%` : '99.4%'} 
+  />
 </main>
