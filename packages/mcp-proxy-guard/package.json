@@ -30,12 +30,12 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ivegotahunnitonit/bartholomew.git",
+    "url": "https://github.com/staccFoxx/bartholomew.git",
     "directory": "packages/mcp-proxy-guard"
   },
   "homepage": "https://bartholomew.info",
   "bugs": {
-    "url": "https://github.com/ivegotahunnitonit/bartholomew/issues"
+    "url": "https://github.com/staccFoxx/bartholomew/issues"
   },
   "publisher": "bartholomew",
   "sponsor": {
