@@ -1,0 +1,12 @@
+.vscode/**
+.vscode-test/**
+src/**
+esbuild.js
+tsconfig.json
+node_modules/**
+*.vsix
+.git/**
+.gitignore
+media/icon_base64.txt
+media/mascot_clean_b64.txt
+PROMPTSMITH_COMMUNITY_LAUNCH_KIT.md

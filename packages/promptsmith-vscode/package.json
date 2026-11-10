@@ -1,0 +1,169 @@
+{
+  "name": "promptsmith-ai",
+  "displayName": "PromptSmith - Prompt Companion & Optimizer",
+  "description": "Maximizes performance, reasoning accuracy, and token efficiency for frontier AI models.",
+  "version": "2.5.0",
+  "publisher": "bartholomew",
+  "icon": "icon.png",
+  "license": "MIT",
+  "galleryBanner": {
+    "color": "#0d1117",
+    "theme": "dark"
+  },
+  "pricing": "Free",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/staccFoxx/bartholomew.git",
+    "directory": "packages/promptsmith-vscode"
+  },
+  "homepage": "https://bartholomew.info",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Machine Learning",
+    "Programming Languages",
+    "Other"
+  ],
+  "keywords": [
+    "prompt",
+    "prompts",
+    "prompt-engineering",
+    "prompt-optimizer",
+    "cursor",
+    "claude",
+    "claude-code",
+    "windsurf",
+    "copilot",
+    "gpt-4o",
+    "gemini",
+    "deepseek",
+    "grok",
+    "o3-mini",
+    "aider",
+    "devin",
+    "cline",
+    "ai",
+    "llm",
+    "rlhf",
+    "tokens"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [
+    "onStartupFinished"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "promptsmith.improveSelection",
+        "title": "PromptSmith: Improve Selected Prompt (Auto-Hook Active Model)",
+        "icon": "$(sparkle)"
+      },
+      {
+        "command": "promptsmith.cleanVoiceStream",
+        "title": "PromptSmith: Clean Spoken Voice Stream (Voice-to-Spec Refiner)",
+        "icon": "$(mic)"
+      },
+      {
+        "command": "promptsmith.brainstormSelection",
+        "title": "PromptSmith: Autonomous Lateral Brainstorm (Think Outside the Box)",
+        "icon": "$(lightbulb)"
+      },
+      {
+        "command": "promptsmith.groundWorkspace",
+        "title": "PromptSmith: Ground Prompt in Active Workspace Stack",
+        "icon": "$(symbol-namespace)"
+      },
+      {
+        "command": "promptsmith.groundDiagnostics",
+        "title": "PromptSmith: Ground Active IDE Compiler/Linter Errors into Prompt",
+        "icon": "$(warning)"
+      },
+      {
+        "command": "promptsmith.exportWorkspaceRules",
+        "title": "PromptSmith: Generate Workspace Rules (.cursorrules / CLAUDE.md / Copilot / .windsurfrules)",
+        "icon": "$(file-code)"
+      },
+      {
+        "command": "promptsmith.scrubSecrets",
+        "title": "PromptSmith: Scrub Exposed Secrets & API Keys from Prompt",
+        "icon": "$(shield)"
+      },
+      {
+        "command": "promptsmith.openPlayground",
+        "title": "PromptSmith: Open Prompt Engineering Playground (Pro Tab)",
+        "icon": "$(sparkle)"
+      },
+      {
+        "command": "promptsmith.openDashboard",
+        "title": "PromptSmith: Open Prompt Engineering Playground (Pro Tab)",
+        "icon": "$(sparkle)"
+      },
+      {
+        "command": "promptsmith.unlockLicense",
+        "title": "PromptSmith: Activate Developer Pro Passkey ($9/mo or $10 Passkey)",
+        "icon": "$(key)"
+      }
+    ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "promptsmith-container",
+          "title": "PromptSmith",
+          "icon": "$(sparkle)"
+        }
+      ]
+    },
+    "views": {
+      "promptsmith-container": [
+        {
+          "type": "webview",
+          "id": "promptsmith.sidebarView",
+          "name": "Prompt Assistant",
+          "visibility": "visible"
+        }
+      ]
+    },
+    "menus": {
+      "editor/context": [
+        {
+          "command": "promptsmith.improveSelection",
+          "group": "modification@1",
+          "when": "editorHasSelection"
+        }
+      ]
+    },
+    "keybindings": [
+      {
+        "command": "promptsmith.improveSelection",
+        "key": "alt+p",
+        "mac": "cmd+alt+p",
+        "when": "editorTextFocus"
+      },
+      {
+        "command": "promptsmith.openDashboard",
+        "key": "alt+shift+p",
+        "mac": "cmd+shift+p",
+        "when": "editorTextFocus"
+      }
+    ]
+  },
+  "scripts": {
+    "build": "node esbuild.js",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.80.0",
+    "esbuild": "^0.20.0"
+  },
+  "author": {
+    "name": "Bartholomew Autonomous Circularity",
+    "email": "help@bartholomew.info",
+    "url": "https://bartholomew.info"
+  },
+  "bugs": {
+    "url": "https://bartholomew.info/contact.html",
+    "email": "help@bartholomew.info"
+  }
+}
