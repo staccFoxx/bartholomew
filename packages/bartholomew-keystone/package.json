@@ -1,8 +1,8 @@
 {
   "name": "bartholomew-keystone",
   "displayName": "Bartholomew Keystone - Capability Passkeys & Spend Governor",
-  "description": "BTP v7.0.0 Cryptographically signed clearance tokens & real-time spend governor for autonomous agents across files, shell, network, and API budgets in Cursor, Claude Code, Windsurf, and VS Code.",
-  "version": "7.0.1",
+  "description": "BTP v7.1.0 Cryptographically signed clearance tokens & real-time spend governor for autonomous agents across files, shell, network, and API budgets in Cursor, Claude Code, Windsurf, and VS Code.",
+  "version": "7.1.0",
   "publisher": "bartholomew",
   "activationEvents": [
     "onStartupFinished",
@@ -74,14 +74,15 @@
       },
       {
         "command": "keystone.openDashboard",
-        "title": "Keystone: Open Passkey Dashboard & Capability Monitor",
+        "title": "Keystone: Open Spend Governor & Capability HUD (Pro Tab)",
         "icon": "$(shield)"
       }
     ]
   },
   "scripts": {
-    "compile": "node ../vscode-extension/node_modules/typescript/bin/tsc -p ./",
-    "build": "node ../vscode-extension/node_modules/typescript/bin/tsc -p ./"
+    "vscode:prepublish": "node esbuild.js",
+    "compile": "node esbuild.js",
+    "build": "node esbuild.js"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
