@@ -1,10 +1,21 @@
 {
-  "name": "bartholomew-ecosystem",
+  "name": "bartholomew-suite-root",
   "version": "7.1.0",
   "private": true,
   "description": "Bartholomew Institutional Security, Governance & Prediction Market Toolchain",
+  "workspaces": [
+    "shared-ui-core",
+    "packages/vscode-extension",
+    "packages/bartholomew-keystone",
+    "packages/promptsmith-vscode",
+    "packages/bartholomew-trinity",
+    "packages/bartholomew-vault"
+  ],
   "scripts": {
-    "sync-ui": "node scripts/sync-ui.js",
+    "dev:ui": "npm --prefix shared-ui-core run dev",
+    "build:ui": "npm --prefix shared-ui-core run build",
+    "sync:ui": "node scripts/sync-ui.js",
+    "release:ui": "node scripts/sync-ui.js",
     "build-and-sync": "node scripts/sync-ui.js",
     "test:keystone": "cd packages/bartholomew-keystone && node test_keystone.js",
     "package:all": "python scripts/package_all_vsix.py"

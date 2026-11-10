@@ -31,6 +31,7 @@ const targetExtensions = [
 // Determine source dist directory (root dist or webview dist)
 const repoRoot = path.resolve(__dirname, '..');
 const candidateSourceDists = [
+  path.join(repoRoot, 'shared-ui-core', 'dist'),
   path.join(repoRoot, 'dist'),
   path.join(repoRoot, 'packages', 'vscode-extension', 'dist')
 ];
