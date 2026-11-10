@@ -1,0 +1,18 @@
+{
+  "name": "bartholomew-ecosystem",
+  "version": "7.1.0",
+  "private": true,
+  "description": "Bartholomew Institutional Security, Governance & Prediction Market Toolchain",
+  "scripts": {
+    "sync-ui": "node scripts/sync-ui.js",
+    "build-and-sync": "node scripts/sync-ui.js",
+    "test:keystone": "cd packages/bartholomew-keystone && node test_keystone.js",
+    "package:all": "python scripts/package_all_vsix.py"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/staccFoxx/bartholomew.git"
+  },
+  "author": "staccFoxx",
+  "license": "Apache-2.0"
+}
