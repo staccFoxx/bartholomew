@@ -2,11 +2,11 @@
   "name": "bartholomew-vault",
   "displayName": "Bartholomew Vault — In-Process Zero-Leak PII Tokenizer",
   "description": "Sub-millisecond cryptographic credential, PHI, and PII masking with hardware-secured, just-in-time OS detokenization for airtight autonomous agent workflows.",
-  "version": "7.0.0",
+  "version": "7.0.1",
   "bin": {
     "mcp-shield": "./bin/mcp-shield.js"
   },
-  "publisher": "bartholomew",
+  "publisher": "Bartholomew",
   "icon": "icon.png",
   "license": "Apache-2.0",
   "activationEvents": [
@@ -37,6 +37,10 @@
     "sponsor"
   ],
   "main": "./dist/extension.js",
+  "scripts": {
+    "vscode:prepublish": "node esbuild.js",
+    "compile": "node esbuild.js"
+  },
   "contributes": {
     "commands": [
       {
@@ -138,10 +142,6 @@
         }
       }
     }
-  },
-  "scripts": {
-    "compile": "node ../vscode-extension/node_modules/typescript/bin/tsc -p ./",
-    "build": "node ../vscode-extension/node_modules/typescript/bin/tsc -p ./"
   },
   "devDependencies": {
     "@types/node": "^20.0.0",
