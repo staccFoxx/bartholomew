@@ -9,7 +9,7 @@
 
 <!-- BTP Status Badges -->
 [![Downloads](https://img.shields.io/badge/Downloads-49%2C136%2B%20Verified-34d399?style=flat-square)](https://bartholomew.info)
-[![Open-VSX](https://img.shields.io/badge/Open--VSX-v7.0.0%20Suite-00e5a3?style=flat-square)](https://open-vsx.org/extension/Bartholomew/bartholomew-guard-vscode)
+[![Open-VSX](https://img.shields.io/badge/Open--VSX-v7.1.2%20Suite-00e5a3?style=flat-square)](https://open-vsx.org/extension/Bartholomew/bartholomew-guard-vscode)
 [![Hugging Face](https://img.shields.io/badge/Hugging%20Face-Space%20Playground-yellow?style=flat-square)](https://huggingface.co/spaces)
 [![PyPI](https://img.shields.io/pypi/v/btp-guard?logo=pypi&logoColor=white)](https://pypi.org/project/btp-guard/)
 [![npm](https://img.shields.io/badge/npm-btp--guard%20v7.0.0-cb3837?logo=npm&logoColor=white)](https://www.npmjs.com/package/btp-guard)
@@ -94,14 +94,24 @@ To establish rigorous security boundaries, the following are explicitly outside 
 
 ### 1. IDE Extensions (Cursor, Windsurf, Claude Code, VS Code)
 
-Install the complete 3-phase security pipeline in a single command:
+Install the complete 3-phase security pipeline or individual specialized extensions:
 
 ```bash
-# Unified Bartholomew Trinity Extension Pack (Guard + Keystone + Vault)
+# Unified Bartholomew Trinity Extension Pack (Coordinates full 6-extension defense stack)
 cursor --install-extension Bartholomew.bartholomew-trinity
 ```
 
-Available on [Open VSX Registry](https://open-vsx.org/extension/Bartholomew/bartholomew-trinity).
+#### Complete Suite Marketplace Registry
+
+| Extension | Version | Description | Open VSX Registry | Repository |
+| :--- | :--- | :--- | :--- | :--- |
+| **Bartholomew Guard** | `v7.1.2` | In-process AST guardrails, real-time security linter, and cross-extension risk pipe | [Open VSX](https://open-vsx.org/extension/Bartholomew/bartholomew-guard-vscode) | [staccFoxx/bartholomew](https://github.com/staccFoxx/bartholomew) |
+| **Tortuga Markets** | `v1.1.3` | In-IDE quantitative risk terminal, CLOB engine & ZK solvency attestation | [Open VSX](https://open-vsx.org/extension/Bartholomew/tortuga-markets) | [staccFoxx/tortuga](https://github.com/staccFoxx/tortuga) |
+| **Kyro / CypherVoice** | `v1.3.1` | Zero-noise duplex voice intent router & 100 GHz photonic telemetry scope | [Open VSX](https://open-vsx.org/extension/Bartholomew/cyphervoice-vscode) | [staccFoxx/acoustic-cloak](https://github.com/staccFoxx/acoustic-cloak) |
+| **PromptSmith AI** | `v2.5.1` | Side-by-side prompt engineering playground, token-diff efficiency matrix | [Open VSX](https://open-vsx.org/extension/Bartholomew/promptsmith-ai) | [staccFoxx/promptsmith](https://github.com/staccFoxx/promptsmith) |
+| **Bartholomew Keystone** | `v7.1.1` | Spend governor, biometric cryptographic passkey minting & audit export | [Open VSX](https://open-vsx.org/extension/Bartholomew/bartholomew-keystone) | [staccFoxx/bartholomew](https://github.com/staccFoxx/bartholomew) |
+| **Bartholomew Vault** | `v7.0.1` | In-flight secret masking, zero-allocation credential zeroization & HSM enclave | [Open VSX](https://open-vsx.org/extension/Bartholomew/bartholomew-vault) | [staccFoxx/bartholomew](https://github.com/staccFoxx/bartholomew) |
+| **Bartholomew Trinity** | `v7.1.0` | Master orchestrator extension pack coordinating the entire suite runtime | [Open VSX](https://open-vsx.org/extension/Bartholomew/bartholomew-trinity) | [staccFoxx/bartholomew](https://github.com/staccFoxx/bartholomew) |
 
 ### 2. 1-Click MCP Auto-Shield Wizard
 
