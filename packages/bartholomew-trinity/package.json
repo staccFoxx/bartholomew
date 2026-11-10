@@ -2,7 +2,7 @@
   "name": "bartholomew-trinity",
   "displayName": "Trinity — Complete AI Agent Security Suite (Cursor, Claude, Copilot)",
   "description": "The 1-Click Safety, Runtime Protection & Conversational Voice Coding Suite for AI Agents (Cursor, Claude Code, Copilot, Windsurf).",
-  "version": "7.1.1",
+  "version": "7.1.2",
   "publisher": "Bartholomew",
   "icon": "icon.png",
   "license": "Apache-2.0",
@@ -48,7 +48,7 @@
     "voice",
     "voice-coding",
     "acoustic-defense",
-    "sponsor"
+    "autonomous-security"
   ],
   "extensionPack": [
     "Bartholomew.bartholomew-guard-vscode",
@@ -86,8 +86,5 @@
       "href": "https://bartholomew.info",
       "description": "3-Phase Pipeline"
     }
-  ],
-  "sponsor": {
-    "url": "https://buy.stripe.com/3cI6oHbNz3LQ4U84He9R605"
-  }
+  ]
 }

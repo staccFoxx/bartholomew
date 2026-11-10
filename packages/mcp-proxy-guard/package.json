@@ -24,7 +24,7 @@
     "ai-safety",
     "guardrails",
     "secret-scrubber",
-    "sponsor"
+    "zero-trust"
   ],
   "author": "Bartholomew Security <security@bartholomew.info>",
   "license": "Apache-2.0",
@@ -37,8 +37,5 @@
   "bugs": {
     "url": "https://github.com/staccFoxx/bartholomew/issues"
   },
-  "publisher": "bartholomew",
-  "sponsor": {
-    "url": "https://buy.stripe.com/3cI6oHbNz3LQ4U84He9R605"
-  }
+  "publisher": "bartholomew"
 }

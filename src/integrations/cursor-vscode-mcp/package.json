@@ -23,7 +23,7 @@
     "firewall",
     "btp-guard",
     "soc2",
-    "sponsor"
+    "compliance"
   ],
   "engines": {
     "vscode": "^1.80.0"
@@ -85,8 +85,5 @@
         }
       }
     }
-  },
-  "sponsor": {
-    "url": "https://buy.stripe.com/3cI6oHbNz3LQ4U84He9R605"
   }
 }

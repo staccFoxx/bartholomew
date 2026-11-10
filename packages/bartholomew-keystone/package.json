@@ -2,7 +2,7 @@
   "name": "bartholomew-keystone",
   "displayName": "Bartholomew Keystone - Capability Passkeys & Spend Governor",
   "description": "BTP v7.1.0 Cryptographically signed clearance tokens & real-time spend governor for autonomous agents across files, shell, network, and API budgets in Cursor, Claude Code, Windsurf, and VS Code.",
-  "version": "7.1.1",
+  "version": "7.1.2",
   "publisher": "Bartholomew",
   "activationEvents": [
     "onStartupFinished",
@@ -44,7 +44,7 @@
     "clearance-token",
     "zero-trust",
     "open-vsx",
-    "sponsor"
+    "capability-token"
   ],
   "main": "./dist/extension.js",
   "contributes": {
@@ -117,8 +117,5 @@
       "href": "https://bartholomew.info",
       "description": "HMAC-SHA256 Scope Verification"
     }
-  ],
-  "sponsor": {
-    "url": "https://buy.stripe.com/3cI6oHbNz3LQ4U84He9R605"
-  }
+  ]
 }

@@ -2,7 +2,7 @@
   "name": "bartholomew-vault",
   "displayName": "Bartholomew Vault — In-Process Zero-Leak PII Tokenizer",
   "description": "Sub-millisecond cryptographic credential, PHI, and PII masking with hardware-secured, just-in-time OS detokenization for airtight autonomous agent workflows.",
-  "version": "7.0.1",
+  "version": "7.0.2",
   "bin": {
     "mcp-shield": "./bin/mcp-shield.js"
   },
@@ -34,7 +34,7 @@
     "mcp",
     "guardrails",
     "zero-trust",
-    "sponsor"
+    "secret-governor"
   ],
   "main": "./dist/extension.js",
   "scripts": {
@@ -177,8 +177,5 @@
       "href": "https://bartholomew.info",
       "description": "Round-Trip Process Binding"
     }
-  ],
-  "sponsor": {
-    "url": "https://buy.stripe.com/3cI6oHbNz3LQ4U84He9R605"
-  }
+  ]
 }
