@@ -1,5 +1,5 @@
 {
-  "name": "bartholomew-suite-root",
+  "name": "bartholomew-suite-monorepo",
   "version": "7.1.0",
   "private": true,
   "description": "Bartholomew Institutional Security, Governance & Prediction Market Toolchain",
@@ -15,8 +15,8 @@
     "dev:ui": "npm --prefix shared-ui-core run dev",
     "build:ui": "npm --prefix shared-ui-core run build",
     "sync:ui": "node scripts/sync-ui.js",
-    "release:ui": "node scripts/sync-ui.js",
-    "build-and-sync": "node scripts/sync-ui.js",
+    "release:suite": "npm run build:ui && npm run sync:ui",
+    "release:ui": "npm run release:suite",
     "test:keystone": "cd packages/bartholomew-keystone && node test_keystone.js",
     "package:all": "python scripts/package_all_vsix.py"
   },
