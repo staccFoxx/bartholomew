@@ -23,6 +23,7 @@ const http = require('http');
 const { spawn } = require('child_process');
 import { KeystoneEngine, KeystonePasskey } from './keystone_passkey';
 import { GuardPanel, GuardViolation } from './guard_dashboard_panel';
+import { ExtensionTelemetryPipe } from './telemetry/telemetryPipe';
 import {
   BartholomewProofViewProvider,
   loadTelemetry,
@@ -1370,6 +1371,15 @@ context.subscriptions.push(
             diffReplacement: diffReplacement,
             range: new vscode.Range(startPos, endPos)
           });
+
+          if (p.severity === vscode.DiagnosticSeverity.Error) {
+            ExtensionTelemetryPipe.broadcastViolation({
+              severity: 'CRITICAL',
+              fileUri: doc.uri.fsPath,
+              ruleId: p.code,
+              timestamp: Date.now()
+            });
+          }
         }
       }
     }
