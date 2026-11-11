@@ -2,8 +2,8 @@
   <img src="https://acn-26670.web.app/assets/guard_logo.png" width="96" height="96" alt="Bartholomew Guard Logo" />
 </p>
 
-# **Bartholomew Guard (v7.0.0)**
-### **In-Process AI Agent Firewall, Guardrails & Execution Security for Cursor, Claude Code, Windsurf & Copilot**
+# **Bartholomew Guard (v7.2.1)**
+### **AI Runtime Protection (ARP) #1 — In-Process AI Agent Firewall, Guardrails & Execution Security for Cursor, Claude Code, Windsurf & Copilot**
 
 [![Open-VSX Version](https://img.shields.io/open-vsx/v/Bartholomew/bartholomew-guard-vscode?style=for-the-badge&color=emerald)](https://open-vsx.org/extension/Bartholomew/bartholomew-guard-vscode)
 [![Downloads](https://img.shields.io/open-vsx/dt/Bartholomew/bartholomew-guard-vscode?style=for-the-badge&color=blue)](https://open-vsx.org/extension/Bartholomew/bartholomew-guard-vscode)
@@ -80,8 +80,8 @@ Click the **Bartholomew Shield icon** in your activity bar to view your live exe
 
 Pair Bartholomew Guard with **[PromptSmith AI](https://open-vsx.org/extension/Bartholomew/promptsmith-ai)**:
 * **Cut Token Spend by 35%**: Eliminate prompt bloat and structure XML reasoning tags for Claude 3.7, DeepSeek-R1, and o3-mini.
-* **Interactive Web Studio**: [Launch PromptSmith Studio](https://bartholomew.info/promptsmith)
-* **PromptSmith Pro Passkey**: [.99 / week Micro-Passkey](https://bartholomew.info/checkout/promptsmith) with instant 1-click in-editor activation.
+* **Interactive Web Studio**: [Launch PromptSmith Studio](https://bartholomew.info/promptsmith.html)
+* **PromptSmith Pro Passkey**: [$9/mo Pro or $10 Instant Passkey](https://bartholomew.info/checkout/promptsmith) with instant 1-click in-editor activation.
 
 ---
 
@@ -89,14 +89,14 @@ Pair Bartholomew Guard with **[PromptSmith AI](https://open-vsx.org/extension/Ba
 
 * **[Activate $10 Developer Passkey (100k Evals)](https://buy.stripe.com/7sY7sL8BnequcmA8Xu9R607)**: Full in-process AST gate, secret zeroization, and Ed25519 Merkle receipts.
 * **[Activate $15 Swarm Passkey (150k Evals)](https://buy.stripe.com/cNi3cv6tf6Y2cmAgpW9R608)**: Multi-agent consensus & swarm coordination.
-* **Enterprise Pilot & SOC 2 Certification**: Contact [contact@bartholomew.info](mailto:contact@bartholomew.info?subject=Enterprise%20Pilot%20Inquiry) or [help@bartholomew.info](mailto:help@bartholomew.info?subject=Enterprise%20Pilot%20Inquiry) for dedicated enterprise pilot onboarding, 250+ agent identities, and compliance attestation dossiers.
+* **Enterprise Pilot & Pre-Audit Technical Evidence**: Contact [contact@bartholomew.info](mailto:contact@bartholomew.info?subject=Enterprise%20Pilot%20Inquiry) or [help@bartholomew.info](mailto:help@bartholomew.info?subject=Enterprise%20Pilot%20Inquiry) for dedicated enterprise pilot onboarding, team policies, and machine-signed execution logs for your external compliance auditors.
 
 ---
-## **Enterprise Compliance & Auditing**
+## **Enterprise Technical Guardrails & Audit Evidence**
 
-* **EU AI Act Conformity**: Article 14 (Human Oversight) and Article 15 (Cybersecurity & Accuracy) attestations.
-* **SOC 2 Type II Evidence**: RFC 8785 Merkle receipts generated for CC6.1, CC6.6, and CC7.1 controls.
-* **Air-Gapped SCIF Support**: 100% offline mathematical verification with zero external egress.
+* **EU AI Act Technical Controls**: Automated execution logging for human-in-the-loop oversight and runtime boundary enforcement.
+* **SOC 2 Pre-Audit Evidence**: RFC 8785 Merkle receipts generated as technical evidence for CC6.1, CC6.6, and CC7.1 controls.
+* **Offline Local Verification**: 100% local AST and signature verification with zero external egress.
 
 ---
 

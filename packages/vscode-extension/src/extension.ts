@@ -22,8 +22,6 @@ const path = require('path');
 const http = require('http');
 const { spawn } = require('child_process');
 import { KeystoneEngine, KeystonePasskey } from './keystone_passkey';
-import { GuardPanel, GuardViolation } from './guard_dashboard_panel';
-import { ExtensionTelemetryPipe } from './telemetry/telemetryPipe';
 import {
   BartholomewProofViewProvider,
   loadTelemetry,
@@ -208,7 +206,7 @@ export function activate(context: ExtensionContext) {
             if (choice === 'Visit Docs') {
               vscode.env.openExternal(vscode.Uri.parse('https://bartholomew.info/docs'));
             } else if (choice === 'GitHub Issues') {
-              vscode.env.openExternal(vscode.Uri.parse('https://github.com/ivegotahunnitonit/bartholomew/issues'));
+              vscode.env.openExternal(vscode.Uri.parse('https://github.com/staccFoxx/bartholomew/issues'));
             }
           });
         } catch {}
@@ -269,7 +267,7 @@ export function activate(context: ExtensionContext) {
             if (choice === 'Enterprise Contact') {
               vscode.env.openExternal(vscode.Uri.parse('https://bartholomew.info/enterprise'));
             } else if (choice === 'Documentation') {
-              vscode.env.openExternal(vscode.Uri.parse('https://bartholomew.info/pilot'));
+              vscode.env.openExternal(vscode.Uri.parse('https://bartholomew.info/docs.html'));
             }
           });
         } catch {}
@@ -533,7 +531,7 @@ rules:
     // 6. Update status bar & refresh webview
     statusBarItem.text = `$(shield-check)`;
     statusBarItem.color = '#34d399';
-    statusBarItem.tooltip = `Bartholomew Guard (v6.6.6) — Workspace Linked & Armed (Fail-Closed AST Invariants + Keystone Passkey)`;
+    statusBarItem.tooltip = `Bartholomew Guard (v7.0.2) — Workspace Linked & Armed (Fail-Closed AST Invariants + Keystone Passkey)`;
     proofProvider.refresh();
 
     vscode.window.showInformationMessage(
@@ -576,7 +574,7 @@ rules:
 
     statusBarItem.text = `$(shield-slash)`;
     statusBarItem.color = '#f43f5e';
-    statusBarItem.tooltip = `Bartholomew Guard (v6.6.6) — Workspace DISARMED. Deterministic AST invariants are in temporary bypass mode. Click to Re-Arm.`;
+    statusBarItem.tooltip = `Bartholomew Guard (v7.0.2) — Workspace DISARMED. Deterministic AST invariants are in temporary bypass mode. Click to Re-Arm.`;
     proofProvider.refresh();
 
     vscode.window.showWarningMessage(
@@ -735,7 +733,7 @@ rules:
     if (isDisarmed) {
       statusBarItem.text = `$(shield-slash)`;
       statusBarItem.color = '#f43f5e';
-      statusBarItem.tooltip = `Bartholomew Guard (v6.6.6) — Workspace DISARMED. Click for Security Menu to Re-Arm.`;
+      statusBarItem.tooltip = `Bartholomew Guard (v7.0.2) — Workspace DISARMED. Click for Security Menu to Re-Arm.`;
       return;
     }
     const hasPolicy = fs.existsSync(path.join(btpDir, 'policy.yaml')) || fs.existsSync(path.join(rootPath, 'policy.yaml'));
@@ -743,15 +741,15 @@ rules:
     if (hasPolicy && hasPasskey) {
       statusBarItem.text = `$(shield-check)`;
       statusBarItem.color = '#34d399';
-      statusBarItem.tooltip = `Bartholomew Guard (v6.6.6) — ARMED (Fail-Closed AST Invariants + Keystone Passkey)`;
+      statusBarItem.tooltip = `Bartholomew Guard (v7.0.2) — ARMED (Fail-Closed AST Invariants + Keystone Passkey)`;
     } else if (hasPolicy || hasPasskey) {
       statusBarItem.text = `$(shield)`;
       statusBarItem.color = '#fbbf24';
-      statusBarItem.tooltip = `Bartholomew Guard (v6.6.6) — Partially Armed. Click to fully Link & Arm.`;
+      statusBarItem.tooltip = `Bartholomew Guard (v7.0.2) — Partially Armed. Click to fully Link & Arm.`;
     } else {
       statusBarItem.text = `$(shield)`;
       statusBarItem.color = '#94a3b8';
-      statusBarItem.tooltip = `Bartholomew Guard (v6.6.6) — Workspace Not Armed. Click to Link & Arm.`;
+      statusBarItem.tooltip = `Bartholomew Guard (v7.0.2) — Workspace Not Armed. Click to Link & Arm.`;
     }
   }
 
@@ -783,7 +781,7 @@ rules:
       { label: '$(file-submodule) Vault: Export Sovereign Proof Dossier', description: '1-Click verifiable JSON proof of zero PII transmission for Auditors', action: 'vault.exportComplianceReport' },
       { label: '$(clippy) Copy Agent Context Rules', description: 'Copy system prompts for Cursor, Windsurf, Claude Code, Gemini', action: 'bartholomew.copyModelContext' }
     ];
-    const picked = await vscode.window.showQuickPick(items, { title: 'Bartholomew Agent Security Control Plane (v6.6.6)' });
+    const picked = await vscode.window.showQuickPick(items, { title: 'Bartholomew Agent Security Control Plane (v7.0.2)' });
     if (picked && picked.action) {
       vscode.commands.executeCommand(picked.action);
     }
@@ -858,7 +856,7 @@ context.subscriptions.push(
   statusBarItem.show();
 
   const upgradeProCmd = vscode.commands.registerCommand('bartholomew.upgradePro', () => {
-    vscode.env.openExternal(vscode.Uri.parse('https://bartholomew.info/pro'));
+    vscode.env.openExternal(vscode.Uri.parse('https://bartholomew.info/checkout/promptsmith'));
   });
   context.subscriptions.push(upgradeProCmd);
 
@@ -875,7 +873,7 @@ context.subscriptions.push(
     if (!rootPath) {
       statusBarItem.text = `$(shield)`;
       statusBarItem.color = "#94a3b8";
-      statusBarItem.tooltip = "Bartholomew Guard (v6.6.6) -- Open workspace to Link & Arm.";
+      statusBarItem.tooltip = "Bartholomew Guard (v7.0.2) -- Open workspace to Link & Arm.";
       return;
     }
 
@@ -884,7 +882,7 @@ context.subscriptions.push(
     if (isDisarmed) {
       statusBarItem.text = `$(shield-slash)`;
       statusBarItem.color = "#f43f5e";
-      statusBarItem.tooltip = "Bartholomew Guard (v6.6.6) -- Workspace DISARMED. Click for Security Menu to Re-Arm.";
+      statusBarItem.tooltip = "Bartholomew Guard (v7.0.2) -- Workspace DISARMED. Click for Security Menu to Re-Arm.";
       return;
     }
 
@@ -931,15 +929,15 @@ context.subscriptions.push(
         if (hasPolicy && hasPasskey) {
           statusBarItem.text = `$(shield-check)`;
           statusBarItem.color = "#34d399";
-          statusBarItem.tooltip = "Bartholomew Guard (v6.6.6) -- ARMED (Fail-Closed AST Invariants + Keystone Passkey)";
+          statusBarItem.tooltip = "Bartholomew Guard (v7.0.2) -- ARMED (Fail-Closed AST Invariants + Keystone Passkey)";
         } else if (hasPolicy || hasPasskey) {
           statusBarItem.text = `$(shield)`;
           statusBarItem.color = "#fbbf24";
-          statusBarItem.tooltip = "Bartholomew Guard (v6.6.6) -- Partially Armed. Click to Link & Arm.";
+          statusBarItem.tooltip = "Bartholomew Guard (v7.0.2) -- Partially Armed. Click to Link & Arm.";
         } else {
           statusBarItem.text = `$(shield)`;
           statusBarItem.color = "#94a3b8";
-          statusBarItem.tooltip = "Bartholomew Guard (v6.6.6) -- Workspace Not Armed. Click to Link & Arm.";
+          statusBarItem.tooltip = "Bartholomew Guard (v7.0.2) -- Workspace Not Armed. Click to Link & Arm.";
         }
       });
     });
@@ -1232,15 +1230,10 @@ context.subscriptions.push(
     terminal.sendText('python scripts/generate_soc2_compliance_evidence.py');
   });
 
-  // 13. Command: Open Live Security Command Center (Pro Tab Webview)
+  // 13. Command: Open Visual Policy Editor
   const openDashboardCmd = vscode.commands.registerCommand('bartholomew.openDashboard', () => {
-    GuardPanel.createOrShow(context.extensionUri);
+    vscode.env.openExternal(vscode.Uri.parse('https://bartholomew.info'));
   });
-  context.subscriptions.push(
-    vscode.commands.registerCommand('bartholomewGuard.openDashboard', () => {
-      GuardPanel.createOrShow(context.extensionUri);
-    })
-  );
 
   // 14. Command: Install MCP Server for Claude Desktop & Cursor
   const installMcpCmd = vscode.commands.registerCommand('bartholomew.installMcp', () => {
@@ -1280,21 +1273,10 @@ context.subscriptions.push(
   const diagnosticCollection = vscode.languages.createDiagnosticCollection('bartholomew-guard');
   context.subscriptions.push(diagnosticCollection);
 
-  const activeDocViolations = new Map<string, GuardViolation[]>();
-
-  function syncViolationsToDashboard() {
-    const allViolations: GuardViolation[] = [];
-    for (const vList of activeDocViolations.values()) {
-      allViolations.push(...vList);
-    }
-    GuardPanel.broadcastViolations(allViolations);
-  }
-
   function lintDocument(doc: any) {
     if (!doc || doc.uri.scheme !== 'file') return;
     const text = doc.getText();
     const diagnostics: any[] = [];
-    const docViolations: GuardViolation[] = [];
     const lines = text.split(/\r?\n/);
 
     const patterns = [
@@ -1342,50 +1324,10 @@ context.subscriptions.push(
           diag.code = p.code;
           diag.source = 'Bartholomew ARP';
           diagnostics.push(diag);
-
-          const relativePath = vscode.workspace.asRelativePath ? vscode.workspace.asRelativePath(doc.uri) : doc.uri.fsPath;
-          let diffReplacement = `// [BTP-REMEDIATED] ${line.trim()}`;
-          if (p.code === 'BTP-LEAK-001') {
-            diffReplacement = line.replace(/sk-[a-zA-Z0-9_-]{20,}/g, "process.env.OPENAI_API_KEY || ''").trim();
-          } else if (p.code === 'BTP-LEAK-002') {
-            diffReplacement = line.replace(/AKIA[0-9A-Z]{16}/g, "process.env.AWS_ACCESS_KEY_ID || ''").trim();
-          } else if (p.code === 'BTP-VETO-001') {
-            diffReplacement = line.replace(/rm\s+-rf\s+[/~]/g, '# [BTP-SAFEGUARD] rm -rf root disabled').trim();
-          } else if (p.code === 'BTP-EXEC-004') {
-            diffReplacement = line.replace(/eval\s*\(/g, 'JSON.parse(').trim();
-          }
-
-          docViolations.push({
-            id: `v-${doc.uri.fsPath}-${lineIndex}-${p.code}`,
-            type: p.code === 'BTP-LEAK-001' ? 'Hardcoded OpenAI Secret Key' :
-                  p.code === 'BTP-LEAK-002' ? 'Hardcoded AWS Access Key' :
-                  p.code === 'BTP-VETO-001' ? 'Destructive Filesystem Veto' :
-                  p.code === 'BTP-SQL-003' ? 'Dynamic SQL Concatenation' :
-                  p.code === 'BTP-EXEC-004' ? 'Arbitrary Code Execution eval()' : 'AST Policy Violation',
-            file: relativePath,
-            severity: p.severity === vscode.DiagnosticSeverity.Error ? 'critical' : 'warning',
-            line: lineIndex + 1,
-            code: p.code,
-            description: p.message,
-            diffOriginal: line.trim(),
-            diffReplacement: diffReplacement,
-            range: new vscode.Range(startPos, endPos)
-          });
-
-          if (p.severity === vscode.DiagnosticSeverity.Error) {
-            ExtensionTelemetryPipe.broadcastViolation({
-              severity: 'CRITICAL',
-              fileUri: doc.uri.fsPath,
-              ruleId: p.code,
-              timestamp: Date.now()
-            });
-          }
         }
       }
     }
     diagnosticCollection.set(doc.uri, diagnostics);
-    activeDocViolations.set(doc.uri.toString(), docViolations);
-    syncViolationsToDashboard();
   }
 
   // Active document change listener
@@ -1395,10 +1337,6 @@ context.subscriptions.push(
     }),
     vscode.workspace.onDidOpenTextDocument((doc: any) => {
       lintDocument(doc);
-    }),
-    vscode.workspace.onDidCloseTextDocument((doc: any) => {
-      activeDocViolations.delete(doc.uri.toString());
-      syncViolationsToDashboard();
     })
   );
 

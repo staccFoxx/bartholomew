@@ -1,8 +1,8 @@
 {
   "name": "bartholomew-guard-vscode",
-  "displayName": "Bartholomew Guard — AI Agent Firewall, Guardrails & Security for Cursor, Claude & Copilot",
-  "description": "BTP v7.1.0 In-Process AST Guardrails, Real-Time Security Linter & CodeActions, Nonce Sentinel, and Cryptographic Merkle Seal Minting for Cursor, Claude Code, Windsurf, Copilot, and VS Code.",
-  "version": "7.1.4",
+  "displayName": "Bartholomew Guard \u2014 AI Agent Firewall, Guardrails & Security for Cursor, Claude & Copilot",
+  "description": "AI Runtime Protection (ARP) #1: Sub-35\u00b5s deterministic in-process AST guardrails, zero-leak secret masking, and cryptographic Merkle seal minting for Cursor, Claude Code, Windsurf, Copilot, and VS Code.",
+  "version": "7.2.1",
   "publisher": "Bartholomew",
   "icon": "icon.png",
   "license": "Apache-2.0",
@@ -151,13 +151,7 @@
       },
       {
         "command": "bartholomew.openDashboard",
-        "title": "Bartholomew Guard: Open Live Security Command Center (Pro Tab)",
-        "icon": "$(shield)"
-      },
-      {
-        "command": "bartholomewGuard.openDashboard",
-        "title": "Bartholomew Guard: Open Live Security Command Center (Pro Tab)",
-        "icon": "$(shield)"
+        "title": "Bartholomew: Open Visual Policy Editor"
       },
       {
         "command": "bartholomew.openTelemetry",
@@ -248,7 +242,7 @@
         {
           "type": "webview",
           "id": "bartholomew.proofView",
-          "name": "Proof of Protection & Keystone Bridge"
+          "name": "Bartholomew Guard \u2014 AI Runtime Protection (ARP)"
         }
       ]
     },
@@ -319,5 +313,9 @@
       "description": "Sub-Millisecond In-Process Latency"
     }
   ],
-  "homepage": "https://bartholomew.info"
+  "homepage": "https://bartholomew.info",
+  "author": {
+    "name": "staccFoxx",
+    "url": "https://github.com/staccFoxx"
+  }
 }
