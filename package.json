@@ -1,8 +1,8 @@
 {
-  "name": "bartholomew-stark-suite-root",
-  "version": "7.1.0",
+  "name": "bartholomew-security-suite-monorepo",
+  "version": "7.2.1",
   "private": true,
-  "description": "Bartholomew Institutional Security, Governance, Optics & Prediction Market Toolchain",
+  "description": "Bartholomew Institutional Security, Governance, Optics & Prediction Market Monorepo",
   "workspaces": [
     "shared-ui-core",
     "packages/vscode-extension",
@@ -12,12 +12,9 @@
     "packages/bartholomew-vault"
   ],
   "scripts": {
-    "dev:hud": "npm --prefix shared-ui-core run dev",
-    "build:hud": "npm --prefix shared-ui-core run build",
-    "sync:hud": "node scripts/sync-ui.js",
-    "release:stark": "npm run build:hud && npm run sync:hud",
-    "dev:ui": "npm --prefix shared-ui-core run dev",
+    "build": "npm run build:ui && npm run sync:ui",
     "build:ui": "npm --prefix shared-ui-core run build",
+    "dev:ui": "npm --prefix shared-ui-core run dev",
     "sync:ui": "node scripts/sync-ui.js",
     "release:suite": "npm run build:ui && npm run sync:ui",
     "test:keystone": "cd packages/bartholomew-keystone && node test_keystone.js",

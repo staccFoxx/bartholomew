@@ -72,13 +72,9 @@ def pack_package(pkg_dir, package_id, display_name, description):
     version = vinfo.get("version", "0.0.0")
     publisher = vinfo.get("publisher", "bartholomew")
     keywords_list = list(vinfo.get("keywords", ["ai", "security", "guardrails"]))
-    sponsor_info = vinfo.get("sponsor", {})
-    sponsor_url = sponsor_info.get("url") if isinstance(sponsor_info, dict) else None
-    if sponsor_url and "__sponsor_extension" not in keywords_list:
-        keywords_list.append("__sponsor_extension")
     keywords = ",".join(keywords_list)
     categories = ",".join(vinfo.get("categories", ["Other", "Security"]))
-    sponsor_prop = f'\n      <Property Id="Microsoft.VisualStudio.Code.SponsorLink" Value="{xml_escape(sponsor_url)}" />' if sponsor_url else ''
+    sponsor_prop = ""
 
     out_vsix_name = f"{package_id}-{version}.vsix"
     out_vsix = pkg_dir / out_vsix_name
@@ -119,11 +115,11 @@ def pack_package(pkg_dir, package_id, display_name, description):
       <Property Id="Microsoft.VisualStudio.Code.LocalizedLanguages" Value="" />
       <Property Id="Microsoft.VisualStudio.Code.EnabledApiProposals" Value="" />
       <Property Id="Microsoft.VisualStudio.Code.ExecutesCode" Value="{executes_code}" />
-      <Property Id="Microsoft.VisualStudio.Services.Links.Source" Value="https://github.com/ivegotahunnitonit/bartholomew.git" />
-      <Property Id="Microsoft.VisualStudio.Services.Links.Getstarted" Value="https://github.com/ivegotahunnitonit/bartholomew.git" />
-      <Property Id="Microsoft.VisualStudio.Services.Links.GitHub" Value="https://github.com/ivegotahunnitonit/bartholomew.git" />
-      <Property Id="Microsoft.VisualStudio.Services.Links.Support" Value="https://github.com/ivegotahunnitonit/bartholomew/issues" />
-      <Property Id="Microsoft.VisualStudio.Services.Links.Learn" Value="https://github.com/ivegotahunnitonit/bartholomew#readme" />
+      <Property Id="Microsoft.VisualStudio.Services.Links.Source" Value="https://github.com/staccFoxx/bartholomew.git" />
+      <Property Id="Microsoft.VisualStudio.Services.Links.Getstarted" Value="https://github.com/staccFoxx/bartholomew.git" />
+      <Property Id="Microsoft.VisualStudio.Services.Links.GitHub" Value="https://github.com/staccFoxx/bartholomew.git" />
+      <Property Id="Microsoft.VisualStudio.Services.Links.Support" Value="https://github.com/staccFoxx/bartholomew/issues" />
+      <Property Id="Microsoft.VisualStudio.Services.Links.Learn" Value="https://github.com/staccFoxx/bartholomew#readme" />
       <Property Id="Microsoft.VisualStudio.Services.GitHubFlavoredMarkdown" Value="true" />
       <Property Id="Microsoft.VisualStudio.Services.Content.Pricing" Value="Free"/>{sponsor_prop}
     </Properties>
