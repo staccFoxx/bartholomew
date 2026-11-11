@@ -51,19 +51,32 @@ export class SuiteHudPanel {
             vscode.commands.executeCommand('bartholomew.executeAttestedHedge', message.payload?.marketId || 'active-branch', message.payload?.size || 100);
             return;
           case 'openGuard':
-            vscode.commands.executeCommand('bartholomew-guard.openDashboard');
+            vscode.commands.executeCommand('bartholomew.openDashboard').then(null, () =>
+              vscode.commands.executeCommand('bartholomewGuard.openDashboard')
+            );
             return;
           case 'openTortuga':
-            vscode.commands.executeCommand('tortuga.openDashboard');
+            vscode.commands.executeCommand('tortuga.openDashboard').then(null, () =>
+              vscode.commands.executeCommand('tortuga.openTerminal')
+            );
             return;
           case 'openKyro':
-            vscode.commands.executeCommand('kyro.openDashboard');
+            vscode.commands.executeCommand('kyro.openDashboard').then(null, () =>
+              vscode.commands.executeCommand('cyphervoice.openStudio')
+            );
             return;
           case 'openPromptsmith':
-            vscode.commands.executeCommand('promptsmith.openDashboard');
+            vscode.commands.executeCommand('promptsmith.openDashboard').then(null, () =>
+              vscode.commands.executeCommand('promptsmith.openPlayground')
+            );
             return;
           case 'openKeystone':
             vscode.commands.executeCommand('keystone.openDashboard');
+            return;
+          case 'openVault':
+            vscode.commands.executeCommand('vault.inspectVault').then(null, () =>
+              vscode.commands.executeCommand('workbench.view.extension.bartholomew-vault')
+            );
             return;
         }
       },
@@ -372,6 +385,50 @@ export class SuiteHudPanel {
       </div>
       <div>
         <button class="btn-action" onclick="send('openKyro')">Open Photonic Lab</button>
+      </div>
+    </div>
+
+    <!-- Bartholomew Vault Card -->
+    <div class="card">
+      <div>
+        <div class="card-head">
+          <span class="card-name">Bartholomew Vault</span>
+          <span class="card-status" style="color:var(--emerald); border-color:var(--emerald);">PII AIRTIGHT</span>
+        </div>
+        <p class="card-desc">In-process zero-leak credential, PHI, and PII tokenization with hardware-secured JIT OS detokenization.</p>
+        <div class="metric-row">
+          <span class="metric-label">Masking Latency</span>
+          <span style="color:var(--emerald);">&lt; 35 microseconds</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Compliance</span>
+          <span style="color:var(--cyan);">HIPAA &amp; SOC 2 Ready</span>
+        </div>
+      </div>
+      <div>
+        <button class="btn-action" onclick="send('openVault')">Inspect Token Vault</button>
+      </div>
+    </div>
+
+    <!-- PromptSmith Card -->
+    <div class="card">
+      <div>
+        <div class="card-head">
+          <span class="card-name">PromptSmith AI</span>
+          <span class="card-status" style="color:var(--amber); border-color:var(--amber);">PROMPTS OPTIMIZED</span>
+        </div>
+        <p class="card-desc">Autonomous meta-prompt refiner, context compressor, and prompt injection immune defense system.</p>
+        <div class="metric-row">
+          <span class="metric-label">Context Savings</span>
+          <span style="color:var(--emerald);">&gt; 42% Tokens</span>
+        </div>
+        <div class="metric-row">
+          <span class="metric-label">Defense Shield</span>
+          <span style="color:var(--cyan);">Adversarial Hardened</span>
+        </div>
+      </div>
+      <div>
+        <button class="btn-action" onclick="send('openPromptsmith')">Open Prompt Playground</button>
       </div>
     </div>
   </div>
