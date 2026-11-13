@@ -2237,7 +2237,7 @@ export function getWebviewContent(telemetry: ProofTelemetry, rootPath: string, e
       const receipt = document.getElementById('simReceiptText');
 
       resBox.style.display = 'block';
-      const isDangerous = /(rm\s+-rf|format\s+[a-zA-Z]:|del\s+\/[sS]|fork|DROP\s+TABLE|sk-|ghp_|AKIA|:\(\)\{)/i.test(cmd);
+      const isDangerous = /(rm\\s+-rf|format\\s+[a-zA-Z]:|del\\s+\\/[sS]|fork|DROP\\s+TABLE|sk-|ghp_|AKIA|:\\(\\)\\{)/i.test(cmd);
       
       badge.textContent = '';
       const bSpan = document.createElement('span');

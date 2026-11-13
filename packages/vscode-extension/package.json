@@ -2,7 +2,7 @@
   "name": "bartholomew-guard-vscode",
   "displayName": "Bartholomew Guard \u2014 AI Agent Firewall, Guardrails & Security for Cursor, Claude & Copilot",
   "description": "AI Runtime Protection (ARP) #1: Sub-35\u00b5s deterministic in-process AST guardrails, zero-leak secret masking, and cryptographic Merkle seal minting for Cursor, Claude Code, Windsurf, Copilot, and VS Code.",
-  "version": "7.2.1",
+  "version": "7.2.2",
   "publisher": "Bartholomew",
   "icon": "icon.png",
   "license": "Apache-2.0",
@@ -11,7 +11,8 @@
     "theme": "dark"
   },
   "activationEvents": [
-    "onStartupFinished"
+    "onStartupFinished",
+    "*"
   ],
   "repository": {
     "type": "git",

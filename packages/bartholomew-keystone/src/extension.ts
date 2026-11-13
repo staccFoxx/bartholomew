@@ -253,7 +253,7 @@ export function activate(context: ExtensionContext) {
       }
     });
 
-    statusBarItem.text = `$(key)`;
+    updateStatusBar();
   });
 
   // 3. Command: Inspect Active Agent Clearance
@@ -267,7 +267,9 @@ export function activate(context: ExtensionContext) {
     if (fs.existsSync(p)) {
       fs.unlinkSync(p);
       vscode.window.showInformationMessage('Keystone Passkey revoked. Agent privileges stripped.');
-      statusBarItem.text = `$(key)`;
+      updateStatusBar();
+    } else {
+      vscode.window.showInformationMessage('No active Keystone Passkey found to revoke.');
     }
   });
 

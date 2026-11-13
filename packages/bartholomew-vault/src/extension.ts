@@ -8,6 +8,7 @@
 import * as vscode from 'vscode';
 import * as path from 'path';
 import * as fs from 'fs';
+import * as os from 'os';
 import { VaultEngine } from './vault_engine';
 import { VaultViewProvider } from './vault_view_provider';
 
@@ -88,11 +89,17 @@ export function activate(context: vscode.ExtensionContext) {
   context.subscriptions.push(
     vscode.commands.registerCommand('vault.detokenizeSelection', async () => {
       const editor = vscode.window.activeTextEditor;
-      if (!editor) return;
+      if (!editor) {
+        vscode.window.showWarningMessage('Bartholomew Vault: No active editor to detokenize.');
+        return;
+      }
 
       const selection = editor.selection;
       const text = editor.document.getText(selection.isEmpty ? undefined : selection);
-      if (!text) return;
+      if (!text) {
+        vscode.window.showInformationMessage('Bartholomew Vault: Selection is empty.');
+        return;
+      }
 
       const restored = vaultEngine.detokenize(text);
       if (restored === text) {
@@ -202,7 +209,7 @@ export function activate(context: vscode.ExtensionContext) {
         });
         await vscode.window.showTextDocument(doc);
       } else if (choice.action === 'save') {
-        const rootPath = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || '.';
+        const rootPath = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || os.homedir();
         const btpDir = path.join(rootPath, '.btp');
         if (!fs.existsSync(btpDir)) {
           fs.mkdirSync(btpDir, { recursive: true });
@@ -283,7 +290,7 @@ export function activate(context: vscode.ExtensionContext) {
   // 9. Shield Workspace MCP Configuration
   context.subscriptions.push(
     vscode.commands.registerCommand('vault.shieldMcpConfig', async () => {
-      const rootPath = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || '.';
+      const rootPath = vscode.workspace.workspaceFolders?.[0]?.uri.fsPath || os.homedir();
       const cursorDir = path.join(rootPath, '.cursor');
       if (!fs.existsSync(cursorDir)) {
         fs.mkdirSync(cursorDir, { recursive: true });
