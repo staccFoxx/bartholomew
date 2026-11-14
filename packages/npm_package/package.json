@@ -1,16 +1,10 @@
 {
   "name": "btp-guard",
-  "version": "7.0.7",
+  "version": "7.0.8",
   "description": "BTP v7.0.0 Agentic Runtime Protection (ARP) Gateway & MCP Safety Shield - Claude Code, Google GenAI, LlamaIndex, Microsoft AutoGen & Semantic Kernel Middleware, In-Process Tool Invariants, Sub-20\u00b5s RAM Gating, and Cryptographic Merkle Vault",
   "main": "index.js",
   "types": "index.d.ts",
   "sideEffects": false,
-  "bin": {
-    "btp-guard": "cli.js",
-    "btp-mcp-proxy": "cli.js",
-    "mcp-shield": "cli.js",
-    "btp-tollbooth": "cli.js"
-  },
   "exports": {
     ".": {
       "types": "./index.d.ts",
@@ -20,10 +14,6 @@
     "./universal_adapters": {
       "import": "./universal_adapters.js",
       "default": "./universal_adapters.js"
-    },
-    "./process_shim": {
-      "import": "./process_shim.js",
-      "default": "./process_shim.js"
     },
     "./elizaos": {
       "import": "./elizaos_plugin.js",
@@ -76,21 +66,17 @@
   "files": [
     "index.js",
     "index.d.ts",
-    "cli.js",
     "agent_core.js",
     "universal_adapters.js",
     "microsoft_adapters.js",
-    "process_shim.js",
     "elizaos_plugin.js",
     "audit_vault.js",
-    "audit_control_validator.js",
     "schema_engine.js",
     "llamacpp.js",
     "README.md",
     "LICENSE",
     "SECURITY.md",
     "CHANGELOG.md",
-    "smithery.yaml",
-    "rules_optimizer.js"
+    "smithery.yaml"
   ]
 }

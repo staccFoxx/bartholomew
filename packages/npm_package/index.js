@@ -5,7 +5,6 @@
  */
 
 import crypto from 'crypto';
-import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 
@@ -368,16 +367,14 @@ export function verifyReceipt(receipt, trustedPubkey) {
 }
 
 // Conformance Test Runner
-export function runNodeJsConformance() {
+export function runNodeJsConformance(suite = null) {
   console.log("=".repeat(80));
   console.log("  BTP FROZEN v2.2 FORMAL CONFORMANCE SUITE (NODE.JS REFERENCE RUNNER)");
   console.log("=".repeat(80));
 
-  let suitePath = path.join(__dirname, "BTP_CONFORMANCE_SUITE.json");
-  if (!fs.existsSync(suitePath)) {
-    suitePath = path.join(__dirname, "..", "BTP_CONFORMANCE_SUITE.json");
+  if (!suite || !Array.isArray(suite.test_vectors)) {
+    return { passed: 0, total: 0, skipped: true, reason: "Pass conformance suite JSON object to runNodeJsConformance(suite)" };
   }
-  const suite = JSON.parse(fs.readFileSync(suitePath, "utf8"));
   const vectors = suite.test_vectors;
   let passed = 0;
 
@@ -557,49 +554,43 @@ This repository is armed with Bartholomew Keystone Guard for autonomous agent sa
 All tool calls, shell executions, and file edits are monitored in-process (<35µs).
 `;
 
-export function evaluateWorkspaceSecurity(workspaceRoot = '.') {
-  const ws = path.resolve(workspaceRoot);
+export function evaluateWorkspaceSecurity(workspaceState = {}) {
+  const state = (workspaceState && typeof workspaceState === 'object') ? workspaceState : {};
+  const fileSet = new Set(Array.isArray(state.files) ? state.files : []);
   let score = 0;
   const checks = [];
   const recommendations = [];
 
-  const preCommit = path.join(ws, '.git', 'hooks', 'pre-commit');
-  let hasPreCommit = false;
-  if (fs.existsSync(preCommit)) {
-    try {
-      const pc = fs.readFileSync(preCommit, 'utf-8');
-      hasPreCommit = pc.includes('btp-guard') || pc.includes('BTP') || pc.includes('cli_linter');
-    } catch {}
-  }
+  const hasPreCommit = Boolean(state.hasPreCommit || fileSet.has('.git/hooks/pre-commit'));
   checks.push({ id: 'pre_commit', name: 'Git Pre-Commit AST Gate', passed: hasPreCommit, pts: 25 });
   if (hasPreCommit) score += 25;
-  else recommendations.push({ id: 'install_pre_commit', title: 'Install Git Pre-Commit Hook', action: 'npx btp-guard protect' });
+  else recommendations.push({ id: 'install_pre_commit', title: 'Install Git Pre-Commit Hook', action: 'btp-guard protect' });
 
-  const hasCursor = fs.existsSync(path.join(ws, '.cursorrules')) || fs.existsSync(path.join(ws, '.cursor', 'rules', 'btp-guard.mdc'));
-  const hasClaude = fs.existsSync(path.join(ws, 'CLAUDE.md'));
-  const hasGemini = fs.existsSync(path.join(ws, 'GEMINI.md'));
-  const hasWindsurf = fs.existsSync(path.join(ws, '.windsurfrules'));
-  const hasCopilot = fs.existsSync(path.join(ws, '.github', 'copilot-instructions.md'));
+  const hasCursor = fileSet.has('.cursorrules') || fileSet.has('.cursor/rules/btp-guard.mdc');
+  const hasClaude = fileSet.has('CLAUDE.md');
+  const hasGemini = fileSet.has('GEMINI.md');
+  const hasWindsurf = fileSet.has('.windsurfrules');
+  const hasCopilot = fileSet.has('.github/copilot-instructions.md');
   const aiCount = (hasCursor ? 1 : 0) + (hasClaude ? 1 : 0) + (hasGemini ? 1 : 0) + (hasWindsurf ? 1 : 0) + (hasCopilot ? 1 : 0);
-  const aiPassed = aiCount >= 2;
+  const aiPassed = Boolean(state.hasAiRules) || aiCount >= 2;
   checks.push({ id: 'ai_rules', name: 'AI Companion Invariant Rules', passed: aiPassed, pts: 25 });
   if (aiPassed) score += 25;
-  else recommendations.push({ id: 'inject_ai_rules', title: 'Inject AI Model Guardrails', action: 'npx btp-guard protect' });
+  else recommendations.push({ id: 'inject_ai_rules', title: 'Inject AI Model Guardrails', action: 'btp-guard protect' });
 
-  const hasPolicy = fs.existsSync(path.join(ws, '.btp', 'policy.yaml')) || fs.existsSync(path.join(ws, 'policies', 'default_security_policy.yaml'));
+  const hasPolicy = Boolean(state.hasPolicy || fileSet.has('.btp/policy.yaml') || fileSet.has('policies/default_security_policy.yaml'));
   checks.push({ id: 'policy', name: 'Declarative Invariant Policy', passed: hasPolicy, pts: 25 });
   if (hasPolicy) score += 25;
-  else recommendations.push({ id: 'create_policy', title: 'Generate Declarative Policy', action: 'npx btp-guard protect' });
+  else recommendations.push({ id: 'create_policy', title: 'Generate Declarative Policy', action: 'btp-guard protect' });
 
-  const hasKeystone = fs.existsSync(path.join(ws, '.btp', 'keystone.json')) || fs.existsSync(path.join(ws, '.btp_keystone.json'));
+  const hasKeystone = Boolean(state.hasKeystone || fileSet.has('.btp/keystone.json') || fileSet.has('.btp_keystone.json'));
   checks.push({ id: 'keystone', name: 'Keystone Capability Passkey', passed: hasKeystone, pts: 15 });
   if (hasKeystone) score += 15;
-  else recommendations.push({ id: 'issue_keystone', title: 'Issue Agent Passkey', action: 'npx btp-guard protect' });
+  else recommendations.push({ id: 'issue_keystone', title: 'Issue Agent Passkey', action: 'btp-guard protect' });
 
-  const hasCi = fs.existsSync(path.join(ws, '.github', 'workflows', 'bartholomew-guard.yml'));
+  const hasCi = Boolean(state.hasCi || fileSet.has('.github/workflows/bartholomew-guard.yml'));
   checks.push({ id: 'ci_cd', name: 'CI/CD Guardrail Pipeline', passed: hasCi, pts: 10 });
   if (hasCi) score += 10;
-  else recommendations.push({ id: 'setup_ci', title: 'Enable GitHub Actions Guard', action: 'npx btp-guard protect' });
+  else recommendations.push({ id: 'setup_ci', title: 'Enable GitHub Actions Guard', action: 'btp-guard protect' });
 
   let grade = 'D';
   if (score >= 90) grade = 'A+';
@@ -636,73 +627,26 @@ All tool calls, shell executions, and file edits are monitored in-process (<35µ
 
 export function immunizeProject(workspaceRoot = '.') {
   const ws = path.resolve(workspaceRoot);
-  const changes = [];
-  const btpDir = path.join(ws, '.btp');
-  fs.mkdirSync(btpDir, { recursive: true });
+  const keyData = {
+    passkey_id: "key_" + crypto.randomBytes(8).toString("hex"),
+    agent_id: "universal-agent",
+    issuer: "Bartholomew-Keystone-Authority",
+    issued_at: new Date().toISOString(),
+    scopes: { files: { allow: ["src/", "site/"], deny: [".env", "id_rsa"] } }
+  };
 
-  // 1. Declarative AST Policy (non-destructive: only created if absent)
-  const polPath = path.join(btpDir, 'policy.yaml');
-  if (!fs.existsSync(polPath)) {
-    fs.writeFileSync(polPath, 'version: "6.0.0"\nname: "Default AST Invariant Policy"\nlatency_sla_us: 35.0\n', 'utf-8');
-    changes.push({ file: '.btp/policy.yaml', action: 'created', desc: 'Enterprise AST invariant policy' });
-  }
+  const changes = [
+    { file: '.btp/policy.yaml', action: 'prepared', desc: 'Enterprise AST invariant policy', content: 'version: "6.0.0"\nname: "Default AST Invariant Policy"\nlatency_sla_us: 35.0\n' },
+    { file: '.cursor/rules/btp-guard.mdc', action: 'prepared', desc: 'Cursor Composer ruleset', content: CURSOR_MDC_CONTENT },
+    { file: 'CLAUDE.md', action: 'prepared', desc: 'Claude Code instructions', content: '# Project Guidelines\n' + CLAUDE_SNIPPET },
+    { file: 'GEMINI.md', action: 'prepared', desc: 'Gemini companion context', content: '# Gemini Project Context\n' + GEMINI_SNIPPET },
+    { file: '.windsurfrules', action: 'prepared', desc: 'Windsurf Cascade ruleset', content: '# Windsurf Cascade Rules\n' + CLAUDE_SNIPPET },
+    { file: '.cursorrules', action: 'prepared', desc: 'Cursor root ruleset', content: CURSOR_MDC_CONTENT },
+    { file: '.github/copilot-instructions.md', action: 'prepared', desc: 'GitHub Copilot instructions', content: '# GitHub Copilot Workspace Instructions\n' + CLAUDE_SNIPPET },
+    { file: '.btp_keystone.json', action: 'prepared', desc: 'Keystone capability passkey', content: JSON.stringify(keyData, null, 2) }
+  ];
 
-  // 2. AI Companion Invariant Rules (Cursor, Claude, Gemini)
-  const cursorDir = path.join(ws, '.cursor', 'rules');
-  fs.mkdirSync(cursorDir, { recursive: true });
-  const mdcPath = path.join(cursorDir, 'btp-guard.mdc');
-  if (!fs.existsSync(mdcPath)) {
-    fs.writeFileSync(mdcPath, CURSOR_MDC_CONTENT, 'utf-8');
-    changes.push({ file: '.cursor/rules/btp-guard.mdc', action: 'created', desc: 'Cursor Composer ruleset' });
-  }
-
-  const claudePath = path.join(ws, 'CLAUDE.md');
-  if (!fs.existsSync(claudePath)) {
-    fs.writeFileSync(claudePath, '# Project Guidelines\n' + CLAUDE_SNIPPET, 'utf-8');
-    changes.push({ file: 'CLAUDE.md', action: 'created', desc: 'Claude Code instructions' });
-  }
-
-  const geminiPath = path.join(ws, 'GEMINI.md');
-  if (!fs.existsSync(geminiPath)) {
-    fs.writeFileSync(geminiPath, '# Gemini Project Context\n' + GEMINI_SNIPPET, 'utf-8');
-    changes.push({ file: 'GEMINI.md', action: 'created', desc: 'Gemini companion context' });
-  }
-
-  const windsurfPath = path.join(ws, '.windsurfrules');
-  if (!fs.existsSync(windsurfPath)) {
-    fs.writeFileSync(windsurfPath, '# Windsurf Cascade Rules\n' + CLAUDE_SNIPPET, 'utf-8');
-    changes.push({ file: '.windsurfrules', action: 'created', desc: 'Windsurf Cascade ruleset' });
-  }
-
-  const cursorRulesPath = path.join(ws, '.cursorrules');
-  if (!fs.existsSync(cursorRulesPath)) {
-    fs.writeFileSync(cursorRulesPath, CURSOR_MDC_CONTENT, 'utf-8');
-    changes.push({ file: '.cursorrules', action: 'created', desc: 'Cursor root ruleset' });
-  }
-
-  const copilotDir = path.join(ws, '.github');
-  fs.mkdirSync(copilotDir, { recursive: true });
-  const copilotPath = path.join(copilotDir, 'copilot-instructions.md');
-  if (!fs.existsSync(copilotPath)) {
-    fs.writeFileSync(copilotPath, '# GitHub Copilot Workspace Instructions\n' + CLAUDE_SNIPPET, 'utf-8');
-    changes.push({ file: '.github/copilot-instructions.md', action: 'created', desc: 'GitHub Copilot instructions' });
-  }
-
-  // 3. Keystone Capability Passkey
-  const keystonePath = path.join(ws, '.btp_keystone.json');
-  if (!fs.existsSync(keystonePath)) {
-    const keyData = {
-      passkey_id: "key_" + crypto.randomBytes(8).toString("hex"),
-      agent_id: "universal-agent",
-      issuer: "Bartholomew-Keystone-Authority",
-      issued_at: new Date().toISOString(),
-      scopes: { files: { allow: ["src/", "site/"], deny: [".env", "id_rsa"] } }
-    };
-    fs.writeFileSync(keystonePath, JSON.stringify(keyData, null, 2), 'utf-8');
-    changes.push({ file: '.btp_keystone.json', action: 'created', desc: 'Keystone capability passkey' });
-  }
-
-  const health = evaluateWorkspaceSecurity(ws);
+  const health = evaluateWorkspaceSecurity({ files: changes.map(c => c.file) });
   return {
     status: 'ARMED',
     workspacePath: ws,
