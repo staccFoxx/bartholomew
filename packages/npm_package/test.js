@@ -53,19 +53,29 @@ async function runTests() {
   console.log(`[04/07] In-Flight Multi-Key Scrubber:      ${scrubOk ? "PASS" : "FAIL"}`);
 
   // 4. Test Chained Merkle Turn Receipt Verification
+  const chainKp = crypto.generateKeyPairSync('ed25519', {
+    publicKeyEncoding: { type: 'spki', format: 'der' },
+    privateKeyEncoding: { type: 'pkcs8', format: 'der' }
+  });
+  const chainPubHex = chainKp.publicKey.subarray(12).toString('hex');
+  const chainPrivObj = crypto.createPrivateKey({ key: chainKp.privateKey, format: 'der', type: 'pkcs8' });
   const parentHash = "029807446fb2b9ada32c113e93926b39029807446fb2b9ada32c113e93926b39";
-  const mockReceipt = {
-    turn_receipt: {
-      protocol: "BTP/2.4",
-      turn_index: 2,
-      parent_receipt_hash: parentHash,
-      receipt_hash: "952abfb3eee25017f2d751ceb91d2cc9952abfb3eee25017f2d751ceb91d2cc9",
-      transaction_state: "COMMITTED"
-    }
+  const turnBody = {
+    protocol: "BTP/2.4",
+    turn_index: 2,
+    parent_receipt_hash: parentHash,
+    receipt_hash: "952abfb3eee25017f2d751ceb91d2cc9952abfb3eee25017f2d751ceb91d2cc9",
+    transaction_state: "COMMITTED",
+    authority_pubkey: chainPubHex
   };
-  const chainRes = verifyTurnReceiptChaining(parentHash, mockReceipt);
-  const chainTampered = verifyTurnReceiptChaining("wrong_parent_hash", mockReceipt);
-  const chainOk = chainRes.ok && !chainTampered.ok;
+  const mockReceipt = {
+    turn_receipt: turnBody,
+    signature: crypto.sign(null, rfc8785Canonicalize(turnBody), chainPrivObj).toString('hex')
+  };
+  const chainRes = verifyTurnReceiptChaining(parentHash, mockReceipt, [chainPubHex]);
+  const chainTampered = verifyTurnReceiptChaining("wrong_parent_hash", mockReceipt, [chainPubHex]);
+  const chainUntrusted = verifyTurnReceiptChaining(parentHash, mockReceipt);
+  const chainOk = chainRes.ok && !chainTampered.ok && !chainUntrusted.ok;
   console.log(`[05/07] Merkle Turn Receipt Hash Chaining: ${chainOk ? "PASS" : "FAIL"}`);
 
   // 5. Test evaluateIntent allowed query
@@ -83,8 +93,9 @@ async function runTests() {
     actionType: "EXECUTE_BASH",
     payload: { cmd: "rm -rf / --no-preserve-root" }
   });
-  const receiptValid = verifyReceipt(blockedIntent);
-  const blockedIntentOk = blockedIntent.allowed === false && blockedIntent.verdict === "DENY" && receiptValid === true;
+  const receiptValid = verifyReceipt(blockedIntent, blockedIntent.attestation.authority_pubkey);
+  const receiptUntrusted = verifyReceipt(blockedIntent);
+  const blockedIntentOk = blockedIntent.allowed === false && blockedIntent.verdict === "DENY" && receiptValid === true && receiptUntrusted === false;
   console.log(`[07/07] In-Process Intent Gate (Blocked):  ${blockedIntentOk ? "PASS" : "FAIL"} (Signature Valid: ${receiptValid})`);
 
   
