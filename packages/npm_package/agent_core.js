@@ -25,7 +25,7 @@ const DANGEROUS_SHELL_PATTERNS = [
   {
     regex: /(curl|wget)\s+([^\s|]+)\s*\|\s*(bash|sh|zsh)/i,
     rule: "BTP-AST-003",
-    alternative: (cmd) => "curl -fsSL https://trusted.org/script.sh -o ./tmp/script.sh && sha256sum ./tmp/script.sh && bash ./tmp/script.sh",
+    alternative: (cmd) => "echo '[BTP-SHIELD] Direct pipe-to-shell blocked: download, verify sha256sum, and inspect locally first.'",
     hint: "Use two-stage verified download with SHA-256 checksum instead of direct pipe-to-shell."
   },
   {
@@ -285,9 +285,12 @@ const INJECTION_PATTERNS = [
 export async function guardMcpToolExecution(toolName, toolInput, toolExecutorFn) {
   const t0 = process.hrtime.bigint();
 
-  // 1. Pre-execution gate on inputs
-  const inputCheck = evaluateAndRemediate("TOOL_INPUT", JSON.stringify(toolInput));
-  if (!inputCheck.allowed && inputCheck.verdict === "DENIED") {
+  // 1. Pre-execution gate on inputs (check both SHELL and SQL invariants)
+  const serializedInput = typeof toolInput === 'string' ? toolInput : JSON.stringify(toolInput || {});
+  const shellCheck = evaluateAndRemediate("SHELL", serializedInput);
+  const sqlCheck = evaluateAndRemediate("SQL", serializedInput);
+  const inputCheck = !shellCheck.allowed ? shellCheck : sqlCheck;
+  if (!inputCheck.allowed || inputCheck.verdict === "REMEDIATED" || inputCheck.verdict === "DENIED") {
     return {
       success: false,
       blocked: true,

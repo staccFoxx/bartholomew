@@ -87,8 +87,11 @@ export function startTollboothProxy(port = 8080) {
     const parsedUrl = new URL(req.url, `http://127.0.0.1:${port}`);
     const pathname = parsedUrl.pathname;
 
-    // CORS headers
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    // Strict loopback CORS headers
+    const reqOrigin = req.headers['origin'] || '';
+    if (reqOrigin.startsWith('http://127.0.0.1') || reqOrigin.startsWith('http://localhost')) {
+      res.setHeader('Access-Control-Allow-Origin', reqOrigin);
+    }
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-BTP-Passkey');
 
@@ -125,12 +128,12 @@ export function startTollboothProxy(port = 8080) {
         const authHeader = req.headers['authorization'] || '';
         const passkeyHeader = req.headers['x-btp-passkey'] || '';
 
+        const configuredKey = process.env.BTP_TOLLBOOTH_PASSKEY || '';
         const hasPasskey = (
-          authHeader.startsWith('Bearer PSMITH-PRO-') ||
-          passkeyHeader.startsWith('PSMITH-PRO-') ||
-          passkeyHeader.startsWith('sk_live_btp_') ||
-          passkeyHeader === 'BTP-SUPREME-PASSKEY' ||
-          passkeyHeader.length >= 20
+          (configuredKey && (authHeader === `Bearer ${configuredKey}` || passkeyHeader === configuredKey)) ||
+          /^Bearer PSMITH-PRO-[A-Za-z0-9_-]{16,}$/.test(authHeader) ||
+          /^PSMITH-PRO-[A-Za-z0-9_-]{16,}$/.test(passkeyHeader) ||
+          /^sk_live_btp_[A-Za-z0-9_-]{16,}$/.test(passkeyHeader)
         );
 
         if (!hasPasskey) {
@@ -286,7 +289,7 @@ export function startTollboothProxy(port = 8080) {
     res.end(JSON.stringify({ error: 'Not Found', endpoints: ['/v1/chat/completions', '/v1/messages', '/v1/m2m/status'] }));
   });
 
-  server.listen(port, () => {
+  server.listen(port, '127.0.0.1', () => {
     console.log('======================================================================');
     console.log(' BARTHOLOMEW TOKEN TOLLBOOTH REVERSE PROXY v1.0 (NODE ENGINE)');
     console.log(' Drop-In In-Flight AI Prompt Token Compressor');
