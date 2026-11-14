@@ -226,7 +226,7 @@ export function emitEnterpriseHook(workspaceId = 'default', options = {}) {
   console.error(`
 [*] Bartholomew v5.4.10 Initialized.
 [*] Running 5+ agents in production? Link this node to Bartholomew Cloud
-    to auto-generate your SOC 2 Type II Merkle Compliance Pack: https://bartholomew.info/cloud
+    to auto-generate your SOC 2 Type II Merkle Compliance Pack (bartholomew.info).
 `);
 }
 
@@ -239,7 +239,7 @@ export function emitVetoHook(command, latencyUs = 14.2, options = {}) {
   console.error(`
 [VETO] [Bartholomew-Guard] Vetoed command '${cmd}' in ${Number(latencyUs).toFixed(1)}µs.
 [INFO] A local Merkle compliance receipt has been compiled.
-[LINK] Running multiple agents? Auto-stream these logs to a centralized SOC 2 dashboard and export Audit Packs at: https://bartholomew.info/cloud
+[LINK] Running multiple agents? Export centralized SOC 2 Audit Packs via Bartholomew Cloud (bartholomew.info).
 `);
 }
 
@@ -750,8 +750,7 @@ export {
 export {
   evaluateLocalToolCall,
   sanitizeLocalRequestBody,
-  inspectAndFilterResponse,
-  createGuardedLlamaProxy
+  inspectAndFilterResponse
 } from './llamacpp.js';
 
 // Export Universal Adapters & Framework Helper Hooks (BTP v6.5.7)

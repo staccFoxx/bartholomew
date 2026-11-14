@@ -149,7 +149,7 @@ export function generateAuditPack(options = {}) {
   const merkleRoot = computeMerkleRoot(evidenceLedger);
 
   const unsignedDossier = {
-    "@context": "https://schema.org/SecurityAuditReport",
+    "@context": "urn:btp:SecurityAuditReport",
     type: "CryptographicAuditDossier",
     protocol_version: "BTP/6.3.0",
     audit_certificate_id: certId,
