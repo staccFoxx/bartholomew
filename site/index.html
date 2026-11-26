@@ -8007,7 +8007,7 @@
           violations.push({
             step: 1,
             severity: "CRITICAL",
-            owasp_category: "LLM05: Improper Output Handling & SQL DDL Wipe",
+            owasp_category: "LLM05 + LLM06: Improper Output Handling & Excessive Agency (SQL DDL Wipe)",
             issue: "Destructive Schema Mutation Blocked (DROP TABLE)",
             detail: "Destructive SQL DDL statement intercepted by AST Invariant BTP-MCP-INV-002."
           });
