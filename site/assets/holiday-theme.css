@@ -1,0 +1,117 @@
+/* Bartholomew Security — Site-Wide Winter Cyber-Holiday Theme */
+:root {
+  --bg-dark: #040c08 !important;
+  --bg-card: rgba(8, 22, 16, 0.82) !important;
+  --bg-elevated: #0a1b14 !important;
+  --bg-editor: #030906 !important;
+  --border-subtle: rgba(34, 112, 78, 0.55) !important;
+  --border-focus: rgba(245, 158, 11, 0.7) !important;
+  --gold: #f59e0b !important;
+  --gold-light: #fde68a !important;
+  --emerald: #10b981 !important;
+  --emerald-light: #34d399 !important;
+  --rose: #e11d48 !important;
+  --cyan: #bae6fd !important;
+}
+
+body {
+  background-color: #040c08 !important;
+  background-image:
+    radial-gradient(circle at 14% 0%, rgba(225, 29, 72, 0.20) 0%, transparent 40%),
+    radial-gradient(circle at 50% 0%, rgba(245, 158, 11, 0.14) 0%, rgba(16, 185, 129, 0.18) 34%, transparent 66%),
+    radial-gradient(circle at 88% 12%, rgba(225, 29, 72, 0.14) 0%, transparent 38%),
+    radial-gradient(circle at 75% 65%, rgba(16, 185, 129, 0.10) 0%, transparent 50%) !important;
+}
+
+header.navbar,
+header {
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(90deg, #dc2626 0%, #f59e0b 28%, #10b981 55%, #fde68a 78%, #dc2626 100%) 1;
+}
+
+.hero-shield-showcase::before {
+  background: radial-gradient(circle, rgba(225, 29, 72, 0.38) 0%, rgba(245, 158, 11, 0.28) 42%, rgba(16, 185, 129, 0.30) 70%, transparent 80%) !important;
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #fb7185 0%, #fde68a 42%, #34d399 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+
+.btn-primary-hero,
+.btn-sandbox-nav {
+  background: linear-gradient(135deg, #dc2626 0%, #f59e0b 52%, #10b981 100%) !important;
+  color: #040a07 !important;
+  box-shadow: 0 8px 26px rgba(225, 29, 72, 0.32), 0 0 22px rgba(245, 158, 11, 0.22) !important;
+}
+
+.btn-primary-hero:hover,
+.btn-sandbox-nav:hover {
+  box-shadow: 0 12px 32px rgba(245, 158, 11, 0.45), 0 0 26px rgba(225, 29, 72, 0.35) !important;
+}
+
+.btn-action-hero {
+  background: rgba(9, 25, 18, 0.88) !important;
+  border: 1px solid rgba(245, 158, 11, 0.38) !important;
+  color: #fef3c7 !important;
+}
+
+.btn-action-hero:hover {
+  background: rgba(16, 40, 29, 0.95) !important;
+  border-color: rgba(225, 29, 72, 0.65) !important;
+}
+
+.stat-card {
+  background: linear-gradient(180deg, rgba(11, 29, 21, 0.86) 0%, rgba(6, 16, 12, 0.90) 100%) !important;
+  border: 1px solid rgba(52, 211, 153, 0.26) !important;
+  box-shadow: inset 0 1px 0 rgba(254, 243, 199, 0.14) !important;
+}
+
+.stat-card:hover {
+  border-color: rgba(245, 158, 11, 0.62) !important;
+  box-shadow: 0 8px 24px rgba(225, 29, 72, 0.14), inset 0 1px 0 rgba(254, 243, 199, 0.22) !important;
+}
+
+/* Full-Viewport Light Snowfall Canvas */
+.btp-snow-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 2147483640;
+  transition: opacity 0.35s ease;
+}
+
+body.btp-snow-off .btp-snow-canvas {
+  opacity: 0;
+}
+
+.btp-snow-toggle {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 2147483645;
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: rgba(6, 18, 13, 0.92);
+  border: 1px solid rgba(245, 158, 11, 0.5);
+  color: #fde68a;
+  font-family: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.5), 0 0 14px rgba(225, 29, 72, 0.18);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.btp-snow-toggle:hover {
+  transform: translateY(-1px);
+  border-color: rgba(225, 29, 72, 0.75);
+}
