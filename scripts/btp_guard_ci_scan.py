@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 """
-Bartholomew Guard (btp-guard) — Zero-Dependency CI/CD & GitHub Action Scanner.
-Detects high-risk agent & MCP tool anti-patterns across Python/TypeScript/JavaScript:
-- OWASP LLM05/LLM06: Direct eval/exec, shell=True subprocesses, os.system/execSync
-- OWASP LLM06: Destructive filesystem mutations without visible workspace confinement
-- OWASP LLM02: Raw credential reads (os.environ/process.env) without secret redaction
-- Cost Guard: Missing token-budget / max-iteration ceilings across agent loops
+Bartholomew Guard (btp-guard) — Context-Aware, Low-False-Positive CI/CD Scanner.
+Detects high-confidence runtime agent & MCP security anti-patterns across Python/TS/JS:
+- OWASP LLM05/LLM06: Dynamic eval/exec, shell=True with interpolated/variable commands, execSync
+- OWASP LLM06: Destructive filesystem mutations without visible workspace-root confinement
+- OWASP LLM02: Raw credential reads passed/logged (ignores harmless boolean presence checks)
+- Skips dev/build task scripts (duties.py, tasks.py, build.mjs, noxfile.py, etc.)
 """
 import argparse
 import ast
@@ -19,12 +19,35 @@ SKIP_DIRS = {
     ".git", "node_modules", "dist", "build", ".venv", "venv", "tests", "test",
     "__tests__", "__pycache__", "docs", "examples", "example", "benchmarks",
     "benchmark", "bench", "evals", "eval", "e2e", "fixtures", "vendor",
-    "migrations", ".next", ".nuxt", "coverage",
+    "migrations", ".next", ".nuxt", "coverage", "packaging", "devtools",
+}
+
+SKIP_FILES = {
+    "duties.py", "tasks.py", "noxfile.py", "fabfile.py", "setup.py", "conftest.py",
+    "build_exe.py", "build.mjs", "build.ts", "build.js", "build_frontend.py",
 }
 
 SKIP_NAME_TOKENS = (
     "test", "spec", "bench", "eval", "example", "fixture", "mock", "smoke", "e2e",
 )
+
+BOOL_ENV_CHECK_RE = re.compile(
+    r"^\s*(if|elif|return|assert)\b.*(os\.environ\.get|os\.getenv|process\.env\.)"
+    r"|^\s*.*bool\s*\(\s*(os\.environ\.get|os\.getenv)"
+    r"|^\s*.*\b(in|not in)\s+os\.environ\b",
+    re.I,
+)
+
+
+def is_dynamic_expr(node: ast.AST | None) -> bool:
+    """Return True if an AST argument is dynamic (variable, f-string, concat, call) rather than a constant."""
+    if node is None:
+        return False
+    if isinstance(node, ast.Constant):
+        return False
+    if isinstance(node, (ast.List, ast.Tuple)):
+        return any(is_dynamic_expr(el) for el in node.elts)
+    return True
 
 
 def iter_source_files(root_dir: Path):
@@ -32,6 +55,8 @@ def iter_source_files(root_dir: Path):
         dirs[:] = [d for d in dirs if d.lower() not in SKIP_DIRS and not d.startswith(".")]
         for fn in files:
             low = fn.lower()
+            if low in SKIP_FILES:
+                continue
             if (
                 low.endswith((".py", ".ts", ".js", ".mjs", ".cjs"))
                 and not low.endswith((".min.js", ".bundle.js", ".d.ts"))
@@ -62,6 +87,9 @@ def scan_directory(root_dir: Path) -> dict:
         if any(k in low for k in ("max_tokens", "token_budget", "rate_limit", "ratelimit", "max_iterations", "max_steps")):
             has_budget_guard = True
 
+        has_path_confinement = any(
+            k in low for k in ("is_relative_to", "commonpath", "resolve().startswith", "workspace_root", "safe_path")
+        )
         lines = txt.splitlines()
 
         if fp.suffix == ".py":
@@ -93,40 +121,41 @@ def scan_directory(root_dir: Path) -> dict:
                     is_attr = isinstance(node.func, ast.Attribute)
                     fn_name = node.func.id if is_bare else (node.func.attr if is_attr else "")
                     recv = node.func.value.id if (is_attr and isinstance(node.func.value, ast.Name)) else ""
+                    first_arg = node.args[0] if node.args else None
 
-                    if fn_name in ("eval", "exec") and (is_bare or recv == "builtins"):
+                    if fn_name in ("eval", "exec") and (is_bare or recv == "builtins") and is_dynamic_expr(first_arg):
                         findings.append({
                             "severity": "HIGH",
                             "rule": "BTP-AST-001",
                             "owasp": "LLM05 + LLM06",
                             "file": rel,
                             "line": node.lineno,
-                            "message": f"Direct `{fn_name}()` call without an AST/sandbox policy gate.",
+                            "message": f"Dynamic `{fn_name}()` on non-constant input without an AST/sandbox policy gate.",
                         })
-                    elif fn_name in ("system", "popen") and ((is_attr and recv in os_aliases) or (is_bare and fn_name in direct_os)):
+                    elif fn_name in ("system", "popen") and ((is_attr and recv in os_aliases) or (is_bare and fn_name in direct_os)) and is_dynamic_expr(first_arg):
                         findings.append({
                             "severity": "HIGH",
                             "rule": "BTP-SHELL-001",
                             "owasp": "LLM05 + LLM06",
                             "file": rel,
                             "line": node.lineno,
-                            "message": f"Unconstrained shell invocation (`os.{fn_name}`) without command allowlist.",
+                            "message": f"Dynamic shell invocation (`os.{fn_name}`) without command allowlist.",
                         })
                     elif fn_name in ("run", "Popen", "call", "check_output", "create_subprocess_shell"):
                         has_shell_true = any(
                             kw.arg == "shell" and isinstance(kw.value, ast.Constant) and kw.value.value is True
                             for kw in node.keywords
                         )
-                        if has_shell_true or fn_name == "create_subprocess_shell":
+                        if (has_shell_true or fn_name == "create_subprocess_shell") and is_dynamic_expr(first_arg):
                             findings.append({
                                 "severity": "HIGH",
                                 "rule": "BTP-SHELL-002",
                                 "owasp": "LLM05 + LLM06",
                                 "file": rel,
                                 "line": node.lineno,
-                                "message": f"Shell-enabled subprocess (`{fn_name}`) vulnerable to prompt-injected command chaining.",
+                                "message": f"Shell-enabled subprocess (`{fn_name}`) with dynamic command argument — vulnerable to command chaining.",
                             })
-                    elif (
+                    elif not has_path_confinement and (
                         (fn_name == "rmtree" and ((is_attr and recv in shutil_aliases) or (is_bare and fn_name in direct_shutil)))
                         or (fn_name in ("remove", "unlink") and ((is_attr and recv in os_aliases) or (is_bare and fn_name in direct_os)))
                     ):
@@ -136,15 +165,17 @@ def scan_directory(root_dir: Path) -> dict:
                             "owasp": "LLM06",
                             "file": rel,
                             "line": node.lineno,
-                            "message": f"Destructive filesystem call (`{fn_name}`) — ensure workspace-root path confinement.",
+                            "message": f"Destructive filesystem call (`{fn_name}`) without visible workspace-root path confinement.",
                         })
             except SyntaxError:
                 pass
 
             for idx, ln in enumerate(lines, 1):
                 ll = ln.lower()
+                if BOOL_ENV_CHECK_RE.search(ln):
+                    continue
                 if ("os.environ" in ln or "os.getenv" in ln) and any(k in ll for k in ("api_key", "secret_key", "access_token", "auth_token", "password")):
-                    if not any(w in ll for w in ("mask", "redact", "path", "file")):
+                    if not any(w in ll for w in ("mask", "redact", "path", "file", "status", "authenticated")):
                         findings.append({
                             "severity": "MEDIUM",
                             "rule": "BTP-SECRET-001",
@@ -160,17 +191,20 @@ def scan_directory(root_dir: Path) -> dict:
                 stripped = ln.strip()
                 if stripped.startswith(("//", "*", "import ", "export ")):
                     continue
-                if re.search(r"\b(execSync|eval|new Function)\s*\(", ln) or (has_child_proc and re.search(r"(?<![.\w])exec\s*\(", ln)):
+                if (
+                    re.search(r"\b(execSync|eval|new Function)\s*\(", ln)
+                    or (has_child_proc and re.search(r"(?<![.\w])exec\s*\(", ln))
+                ) and not re.search(r"""\b(execSync|exec)\s*\(\s*['"][^$`{}]+['"]\s*[,)]""", ln):
                     findings.append({
                         "severity": "HIGH",
                         "rule": "BTP-SHELL-003",
                         "owasp": "LLM05 + LLM06",
                         "file": rel,
                         "line": idx,
-                        "message": "Direct command/code execution call without deterministic allowlist or AST guard.",
+                        "message": "Dynamic command/code execution call without deterministic allowlist or AST guard.",
                     })
                 ll = ln.lower()
-                if "process.env" in ln and any(k in ll for k in ("api_key", "secret_key", "access_token", "auth_token", "password")):
+                if "process.env" in ln and not BOOL_ENV_CHECK_RE.search(ln) and any(k in ll for k in ("api_key", "secret_key", "access_token", "auth_token", "password")):
                     if not any(w in ll for w in ("mask", "redact", "path", "file")):
                         findings.append({
                             "severity": "MEDIUM",
@@ -180,14 +214,14 @@ def scan_directory(root_dir: Path) -> dict:
                             "line": idx,
                             "message": "Credential access via `process.env` — verify output secret-masking on tool responses.",
                         })
-                if re.search(r"\b(rmSync|unlinkSync|promises\.rm)\b", ln):
+                if not has_path_confinement and re.search(r"\b(rmSync|unlinkSync|promises\.rm)\b", ln):
                     findings.append({
                         "severity": "MEDIUM",
                         "rule": "BTP-FS-002",
                         "owasp": "LLM06",
                         "file": rel,
                         "line": idx,
-                        "message": "Destructive filesystem mutation — enforce workspace-root boundary validation.",
+                        "message": "Destructive filesystem mutation without enforced workspace-root boundary validation.",
                     })
 
     high_count = sum(1 for f in findings if f["severity"] == "HIGH")
@@ -237,7 +271,7 @@ def write_github_summary(report: dict) -> None:
         lines.append("Zero high-risk agent or MCP security anti-patterns detected.")
     lines.append("")
     lines.append("---")
-    lines.append("*Powered by [Bartholomew Guard](https://bartholomew.info) — Free in-process runtime security & 48-hour AI Agent Security Audits.*")
+    lines.append("*Powered by [Bartholomew Guard](https://bartholomew.info) — Zero-dependency runtime security & 48-hour AI Agent Security Audits.*")
     Path(summary_path).write_text("\n".join(lines) + "\n", encoding="utf-8")
 
 
@@ -252,7 +286,7 @@ def write_github_outputs(report: dict) -> None:
 
 
 def main() -> int:
-    ap = argparse.ArgumentParser(description="Bartholomew Guard CI/CD Security Scanner")
+    ap = argparse.ArgumentParser(description="Bartholomew Guard Context-Aware CI/CD Security Scanner")
     ap.add_argument("--path", default=".", help="Directory to scan")
     ap.add_argument("--json-out", default="", help="Optional JSON output file path")
     ap.add_argument("--fail-on-high", action="store_true", help="Exit 1 if any HIGH severity findings are found")

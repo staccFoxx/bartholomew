@@ -254,8 +254,10 @@
   </main>
 
   <script>
-    const SKIP_PARTS = new Set(['node_modules', 'dist', 'build', 'tests', 'test', '__tests__', 'docs', 'examples', 'example', 'benchmarks', 'bench', 'evals', 'eval', 'fixtures', 'vendor', 'migrations', '.github']);
+    const SKIP_PARTS = new Set(['node_modules', 'dist', 'build', 'tests', 'test', '__tests__', 'docs', 'examples', 'example', 'benchmarks', 'bench', 'evals', 'eval', 'fixtures', 'vendor', 'migrations', '.github', 'packaging', 'devtools']);
+    const SKIP_FILES = new Set(['duties.py', 'tasks.py', 'noxfile.py', 'fabfile.py', 'setup.py', 'conftest.py', 'build_exe.py', 'build.mjs', 'build.ts', 'build.js', 'build_frontend.py']);
     const SKIP_NAME = /(test|spec|bench|eval|example|fixture|mock|smoke|e2e|\.min\.js|\.bundle\.js|\.d\.ts)/i;
+    const BOOL_ENV_CHECK = /^\s*(if|elif|return|assert)\b.*(os\.environ\.get|os\.getenv|process\.env\.)|bool\s*\(\s*(os\.environ\.get|os\.getenv)|\bin\s+os\.environ\b/i;
 
     function parseRepo(raw) {
       const s = raw.trim().replace(/^https?:\/\/github\.com\//i, '').replace(/\.git$/i, '').replace(/^\/+|\/+$/g, '');
@@ -278,6 +280,7 @@
       const lines = content.split(/\r?\n/);
       const lowAll = content.toLowerCase();
       const hasBudget = /(max_tokens|token_budget|rate_limit|ratelimit|max_iterations|max_steps)/.test(lowAll);
+      const hasPathConfine = /(is_relative_to|commonpath|workspace_root|safe_path)/.test(lowAll);
 
       for (let i = 0; i < lines.length; i++) {
         const ln = lines[i];
@@ -286,23 +289,23 @@
         const ll = ln.toLowerCase();
 
         if (isPy) {
-          if (/\b(eval|exec)\s*\(/.test(ln)) {
-            out.push({ sev: 'HIGH', rule: 'BTP-AST-001', owasp: 'LLM05 + LLM06', file: path, line: i + 1, msg: 'Direct dynamic eval/exec call without AST sandbox gate.' });
-          } else if (/\bos\.(system|popen)\s*\(/.test(ln)) {
-            out.push({ sev: 'HIGH', rule: 'BTP-SHELL-001', owasp: 'LLM05 + LLM06', file: path, line: i + 1, msg: 'Unconstrained os.system/popen shell invocation.' });
+          if (/\b(eval|exec)\s*\(/.test(ln) && !/\b(eval|exec)\s*\(\s*['"][^'"]+['"]\s*\)/.test(ln)) {
+            out.push({ sev: 'HIGH', rule: 'BTP-AST-001', owasp: 'LLM05 + LLM06', file: path, line: i + 1, msg: 'Dynamic eval/exec call without AST sandbox gate.' });
+          } else if (/\bos\.(system|popen)\s*\(/.test(ln) && !/\bos\.(system|popen)\s*\(\s*['"][^'"]+['"]\s*\)/.test(ln)) {
+            out.push({ sev: 'HIGH', rule: 'BTP-SHELL-001', owasp: 'LLM05 + LLM06', file: path, line: i + 1, msg: 'Dynamic os.system/popen shell invocation.' });
           } else if (/shell\s*=\s*True|create_subprocess_shell/.test(ln)) {
             out.push({ sev: 'HIGH', rule: 'BTP-SHELL-002', owasp: 'LLM05 + LLM06', file: path, line: i + 1, msg: 'Shell-enabled subprocess call vulnerable to command chaining.' });
-          } else if (/\b(shutil\.rmtree|os\.remove|os\.unlink)\s*\(/.test(ln)) {
+          } else if (!hasPathConfine && /\b(shutil\.rmtree|os\.remove|os\.unlink)\s*\(/.test(ln)) {
             out.push({ sev: 'MEDIUM', rule: 'BTP-FS-001', owasp: 'LLM06', file: path, line: i + 1, msg: 'Destructive filesystem call — verify workspace-root confinement.' });
-          } else if (/(os\.environ|os\.getenv)/.test(ln) && /(api_key|secret_key|access_token|auth_token|password)/.test(ll) && !/(mask|redact)/.test(ll)) {
+          } else if (!BOOL_ENV_CHECK.test(ln) && /(os\.environ|os\.getenv)/.test(ln) && /(api_key|secret_key|access_token|auth_token|password)/.test(ll) && !/(mask|redact|status|authenticated)/.test(ll)) {
             out.push({ sev: 'MEDIUM', rule: 'BTP-SECRET-001', owasp: 'LLM02', file: path, line: i + 1, msg: 'Raw credential read — ensure in-flight secret redaction before tool output.' });
           }
         } else {
-          if (/\b(execSync|new Function)\s*\(/.test(ln) || /\beval\s*\(/.test(ln)) {
-            out.push({ sev: 'HIGH', rule: 'BTP-SHELL-003', owasp: 'LLM05 + LLM06', file: path, line: i + 1, msg: 'Direct command/code execution without deterministic allowlist.' });
-          } else if (/\b(rmSync|unlinkSync|promises\.rm)\b/.test(ln)) {
+          if ((/\b(execSync|new Function)\s*\(/.test(ln) || /\beval\s*\(/.test(ln)) && !/\bexecSync\s*\(\s*['"][^$`{}]+['"]\s*[,)]/.test(ln)) {
+            out.push({ sev: 'HIGH', rule: 'BTP-SHELL-003', owasp: 'LLM05 + LLM06', file: path, line: i + 1, msg: 'Dynamic command/code execution without deterministic allowlist.' });
+          } else if (!hasPathConfine && /\b(rmSync|unlinkSync|promises\.rm)\b/.test(ln)) {
             out.push({ sev: 'MEDIUM', rule: 'BTP-FS-002', owasp: 'LLM06', file: path, line: i + 1, msg: 'Destructive filesystem mutation — enforce workspace boundary.' });
-          } else if (/process\.env/.test(ln) && /(api_key|secret_key|access_token|auth_token|password)/.test(ll) && !/(mask|redact)/.test(ll)) {
+          } else if (!BOOL_ENV_CHECK.test(ln) && /process\.env/.test(ln) && /(api_key|secret_key|access_token|auth_token|password)/.test(ll) && !/(mask|redact)/.test(ll)) {
             out.push({ sev: 'MEDIUM', rule: 'BTP-SECRET-002', owasp: 'LLM02', file: path, line: i + 1, msg: 'Credential access via process.env — verify output secret masking.' });
           }
         }
@@ -347,7 +350,9 @@
           .filter(it => {
             const segs = it.path.toLowerCase().split('/');
             if (segs.some(s => SKIP_PARTS.has(s) || s.startsWith('.'))) return false;
-            return !SKIP_NAME.test(segs[segs.length - 1]);
+            const fn = segs[segs.length - 1];
+            if (SKIP_FILES.has(fn)) return false;
+            return !SKIP_NAME.test(fn);
           })
           .slice(0, 18);
 
