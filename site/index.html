@@ -18,7 +18,7 @@
   <meta property="og:description" content="Sub-millisecond trajectory observability and deterministic execution firewalls for autonomous agents.">
   <meta property="og:url" content="https://bartholomew.info">
   <meta property="og:image" content="https://bartholomew.info/logo.png">
-  <meta name="theme-color" content="#070a0f">
+  <meta name="theme-color" content="#050c09">
 
   <!-- Machine Agent & Crawler Discovery Standards -->
   <link rel="alternate" type="text/plain" href="https://bartholomew.info/llms.txt" title="LLM Documentation">
@@ -69,32 +69,33 @@
 
   <style>
     :root {
-      /* Logo-Matched Color System: Gold -> Lime -> Emerald -> Jade */
-      --bg-dark: #070a0f;
-      --bg-card: rgba(13, 18, 31, 0.72);
-      --bg-elevated: #0d1322;
-      --bg-editor: #04070d;
-      --border-subtle: rgba(45, 62, 80, 0.65);
-      --border-focus: rgba(16, 185, 129, 0.6);
+      /* Winter Cyber-Holiday Color System: Evergreen Midnight • Holly Crimson • Pine Emerald • Champagne Gold */
+      --bg-dark: #050c09;
+      --bg-card: rgba(9, 21, 16, 0.78);
+      --bg-elevated: #0b1813;
+      --bg-editor: #040a07;
+      --border-subtle: rgba(34, 84, 61, 0.58);
+      --border-focus: rgba(245, 158, 11, 0.65);
       
-      --gold: #eab308;
-      --gold-light: #fde047;
-      --gold-dim: rgba(234, 179, 8, 0.14);
-      --lime: #84cc16;
+      --gold: #f59e0b;
+      --gold-light: #fde68a;
+      --gold-dim: rgba(245, 158, 11, 0.15);
+      --lime: #4ade80;
       --emerald: #10b981;
       --emerald-light: #34d399;
-      --emerald-dim: rgba(16, 185, 129, 0.14);
+      --emerald-dim: rgba(16, 185, 129, 0.16);
       --jade: #059669;
       --teal: #14b8a6;
-      --cyan: #06b6d4;
-      --rose: #f43f5e;
-      --rose-dim: rgba(244, 63, 94, 0.14);
-      --purple: #a855f7;
-      --amber: #f59e0b;
+      --cyan: #7dd3fc;
+      --rose: #e11d48;
+      --rose-dim: rgba(225, 29, 72, 0.16);
+      --crimson: #dc2626;
+      --purple: #c084fc;
+      --amber: #fbbf24;
       
       --text-main: #f8fafc;
-      --text-muted: #94a3b8;
-      --text-dim: #64748b;
+      --text-muted: #a7b8b0;
+      --text-dim: #6e857b;
       
       --radius-sm: 8px;
       --radius-md: 12px;
@@ -127,13 +128,14 @@
       overflow-x: hidden;
       width: 100%;
       background-image: 
-        radial-gradient(circle at 50% 0%, rgba(234, 179, 8, 0.08) 0%, rgba(16, 185, 129, 0.12) 30%, transparent 65%),
-        radial-gradient(circle at 85% 25%, rgba(6, 182, 212, 0.06), transparent 45%);
+        radial-gradient(circle at 18% 0%, rgba(225, 29, 72, 0.12) 0%, transparent 42%),
+        radial-gradient(circle at 52% 0%, rgba(245, 158, 11, 0.09) 0%, rgba(16, 185, 129, 0.14) 32%, transparent 65%),
+        radial-gradient(circle at 86% 18%, rgba(125, 211, 252, 0.07), transparent 45%);
     }
 
     ::selection {
-      background: rgba(16, 185, 129, 0.35);
-      color: #6ee7b7;
+      background: rgba(225, 29, 72, 0.35);
+      color: #fde68a;
     }
 
     .container {
@@ -145,8 +147,10 @@
 
     /* Top Navigation */
     header.navbar {
+      border-top: 2px solid transparent;
+      border-image: linear-gradient(90deg, #dc2626 0%, #f59e0b 35%, #10b981 70%, #dc2626 100%) 1;
       border-bottom: 1px solid var(--border-subtle);
-      background: rgba(7, 10, 15, 0.92);
+      background: rgba(5, 12, 9, 0.92);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       position: sticky;
@@ -4570,6 +4574,97 @@
       min-height: 170px;
     }
 
+    /* === Winter Cyber-Holiday Theme & Merged PR Spotlight === */
+    .badge-protocol {
+      background: linear-gradient(135deg, rgba(225, 29, 72, 0.22) 0%, rgba(245, 158, 11, 0.18) 50%, rgba(16, 185, 129, 0.22) 100%) !important;
+      color: #fde68a !important;
+      border-color: rgba(245, 158, 11, 0.45) !important;
+    }
+    .btn-sandbox-nav {
+      background: linear-gradient(135deg, #dc2626 0%, #f59e0b 52%, #10b981 100%) !important;
+      color: #040a07 !important;
+      box-shadow: 0 4px 16px rgba(225, 29, 72, 0.28), 0 0 18px rgba(16, 185, 129, 0.22) !important;
+    }
+    .btn-sandbox-nav:hover {
+      box-shadow: 0 6px 24px rgba(245, 158, 11, 0.4), 0 0 22px rgba(225, 29, 72, 0.3) !important;
+    }
+    .merged-pr-spotlight {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      margin-bottom: 24px;
+      padding: 22px 26px;
+      border-radius: 14px;
+      text-decoration: none;
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.13) 0%, rgba(9, 21, 16, 0.92) 52%, rgba(225, 29, 72, 0.11) 100%);
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(253, 230, 138, 0.18);
+      transition: transform 0.22s ease, border-color 0.22s ease, box-shadow 0.22s ease;
+    }
+    .merged-pr-spotlight:hover {
+      transform: translateY(-2px);
+      border-color: rgba(245, 158, 11, 0.7);
+      box-shadow: 0 14px 36px rgba(16, 185, 129, 0.18), 0 0 24px rgba(245, 158, 11, 0.14);
+    }
+    .merged-pr-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.2);
+      color: #6ee7b7;
+      border: 1px solid rgba(52, 211, 153, 0.5);
+      white-space: nowrap;
+    }
+    .holiday-snow-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      z-index: 9990;
+      opacity: 0.55;
+      transition: opacity 0.35s ease;
+    }
+    body.holiday-snow-off .holiday-snow-canvas {
+      opacity: 0;
+    }
+    .holiday-toggle-btn {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 9995;
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      background: rgba(9, 21, 16, 0.9);
+      border: 1px solid rgba(245, 158, 11, 0.42);
+      color: #fde68a;
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.45);
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .holiday-toggle-btn:hover {
+      transform: translateY(-1px);
+      border-color: rgba(225, 29, 72, 0.65);
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .holiday-snow-canvas { display: none; }
+    }
+
   </style>
   </head>
 <body>
@@ -4593,7 +4688,7 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;">
             <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
           </svg>
-          <span>Frontier (6 PRs)</span>
+          <span>Frontier (7 PRs)</span>
         </a>
 
         <!-- Kyro Voice -->
@@ -5092,6 +5187,31 @@
           Bartholomew's in-process deterministic AST invariant gate is active across the leading global AI agent codebases. Verified on GitHub with zero third-party cloud token spend and sub-35µs execution barriers.
         </p>
       </div>
+
+      <!-- Featured Merged Open-Source Security Fix Spotlight -->
+      <a href="https://github.com/akadeepesh/contextzip/pull/29" target="_blank" rel="noopener noreferrer" class="merged-pr-spotlight">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+          <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+            <span class="merged-pr-badge">
+              <span style="display:inline-block; width:7px; height:7px; border-radius:50%; background:#34d399; box-shadow:0 0 8px #34d399;"></span>
+              RECENT MERGED SECURITY FIX • PR #29
+            </span>
+            <span style="font-weight:800; font-size:1.12rem; color:#ffffff; letter-spacing:-0.01em;">
+              ContextZip (<code style="font-family:var(--font-mono); font-size:0.95rem; color:#fde68a;">akadeepesh/contextzip</code>)
+            </span>
+          </div>
+          <span style="font-family:var(--font-mono); font-size:0.76rem; font-weight:700; color:#fde68a; background:rgba(245,158,11,0.14); border:1px solid rgba(245,158,11,0.35); padding:4px 10px; border-radius:6px;">
+            MERGED TO MAIN • NOV 2026
+          </span>
+        </div>
+        <p style="font-size:0.9rem; color:#cbd5e1; line-height:1.6; margin:0;">
+          Discovered via <code style="color:#6ee7b7; font-family:var(--font-mono);">btp-guard</code> static &amp; AST pass and shipped upstream: hardened <code style="color:#fde68a; font-family:var(--font-mono);">contextzip/applier.py</code> against command injection and unconstrained filesystem mutations with deterministic argument-list execution and workspace-root path confinement. Reviewed, approved, and merged directly by maintainer Deepesh Kumar.
+        </p>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; font-family:var(--font-mono); font-size:0.75rem; border-top:1px solid rgba(255,255,255,0.08); padding-top:12px;">
+          <span style="color:#a7b8b0;">Category: <strong style="color:#f8fafc;">Shell Injection + Path Confinement</strong> &nbsp;|&nbsp; Status: <strong style="color:#34d399;">Approved &amp; Merged</strong></span>
+          <span style="color:#fde68a; font-weight:700;">View Merged PR #29 on GitHub &rarr;</span>
+        </div>
+      </a>
 
       <!-- 6 Frontier Framework Cards Grid -->
       <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 18px;">
@@ -9078,6 +9198,74 @@ function toggleSecretRedactionLive() {
 function verifyKeystoneLive() {
   logLiveStream('[KEYSTONE] Ed25519 Passkey [PSMITH-PRO-88fa9c] cryptographic attestation VALID.', '#10b981');
 }
+</script>
+
+<!-- Subtle Winter Holiday Snowfall Overlay + Toggle -->
+<canvas id="holidaySnowCanvas" class="holiday-snow-canvas" aria-hidden="true"></canvas>
+<button type="button" id="holidayToggleBtn" class="holiday-toggle-btn" title="Toggle Winter Holiday Snowfall" aria-pressed="true">
+  <span id="holidayToggleIcon">&#10052;</span>
+  <span id="holidayToggleLabel">Holiday Glow: ON</span>
+</button>
+<script>
+(function() {
+  const canvas = document.getElementById('holidaySnowCanvas');
+  const btn = document.getElementById('holidayToggleBtn');
+  const lbl = document.getElementById('holidayToggleLabel');
+  if (!canvas || !btn) return;
+  const ctx = canvas.getContext('2d');
+  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let enabled = !reduced && localStorage.getItem('btp_holiday_snow') !== 'off';
+  let w = 0, h = 0, flakes = [], rafId = null;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  function initFlakes() {
+    const count = Math.min(55, Math.max(24, Math.floor(window.innerWidth / 28)));
+    flakes = Array.from({ length: count }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: 0.9 + Math.random() * 1.9,
+      vy: 0.35 + Math.random() * 0.75,
+      vx: (Math.random() - 0.5) * 0.35,
+      a: 0.25 + Math.random() * 0.55,
+      tint: Math.random() < 0.14 ? 'rgba(253, 230, 138,' : 'rgba(226, 244, 255,'
+    }));
+  }
+  function draw() {
+    if (!enabled) return;
+    ctx.clearRect(0, 0, w, h);
+    for (const f of flakes) {
+      f.y += f.vy;
+      f.x += f.vx + Math.sin(f.y * 0.012) * 0.2;
+      if (f.y > h + 6) { f.y = -6; f.x = Math.random() * w; }
+      if (f.x > w + 6) f.x = -6;
+      if (f.x < -6) f.x = w + 6;
+      ctx.beginPath();
+      ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
+      ctx.fillStyle = f.tint + f.a + ')';
+      ctx.fill();
+    }
+    rafId = requestAnimationFrame(draw);
+  }
+  function syncUI() {
+    document.body.classList.toggle('holiday-snow-off', !enabled);
+    btn.setAttribute('aria-pressed', String(enabled));
+    lbl.textContent = enabled ? 'Holiday Glow: ON' : 'Holiday Glow: OFF';
+    if (enabled && !rafId) draw();
+    if (!enabled && rafId) { cancelAnimationFrame(rafId); rafId = null; ctx.clearRect(0, 0, w, h); }
+  }
+  btn.addEventListener('click', () => {
+    enabled = !enabled;
+    localStorage.setItem('btp_holiday_snow', enabled ? 'on' : 'off');
+    syncUI();
+  });
+  window.addEventListener('resize', () => { resize(); initFlakes(); });
+  resize();
+  initFlakes();
+  syncUI();
+})();
 </script>
 
 </body>
