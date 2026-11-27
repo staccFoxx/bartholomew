@@ -605,7 +605,7 @@
   <!-- Hero Section -->
   <section class="hero container">
     <div class="pill-badge">
-      <span>●</span> BTP v7.0.0 DETERMINISTIC INVARIANT VERIFICATION
+      <span>●</span> BTP v7.0.8 DETERMINISTIC INVARIANT VERIFICATION
     </div>
     <h1>Independent Security Auditing for <span class="glow">Autonomous AI Agents</span></h1>
     <p>
@@ -634,28 +634,63 @@
     </div>
   </section>
 
+  <!-- Verified Proof + Free 5-Line GitHub Action Strip -->
+  <section class="container" style="margin-bottom: 48px;">
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+      <!-- Card A: Merged Upstream Security Proof -->
+      <a href="https://github.com/akadeepesh/contextzip/pull/29" target="_blank" rel="noopener noreferrer" style="text-decoration: none; background: linear-gradient(135deg, rgba(16, 185, 129, 0.14) 0%, rgba(9, 21, 16, 0.92) 100%); border: 1px solid rgba(52, 211, 153, 0.45); border-radius: 14px; padding: 22px 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 12px;">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap;">
+            <span style="font-family:var(--font-mono); font-size:11px; font-weight:800; color:#6ee7b7; background:rgba(16,185,129,0.2); border:1px solid rgba(52,211,153,0.45); padding:3px 10px; border-radius:999px;">MERGED UPSTREAM • PR #29</span>
+            <span style="font-family:var(--font-mono); font-size:11px; color:#fde68a; font-weight:700;">NOV 2026</span>
+          </div>
+          <div style="font-size:16px; font-weight:800; color:#ffffff; margin-bottom:6px;">Real Proof: <code style="font-family:var(--font-mono); color:#fde68a;">akadeepesh/contextzip</code></div>
+          <p style="font-size:13px; color:#cbd5e1; line-height:1.55; margin:0;">
+            Identified unconstrained shell execution &amp; path escape in <code>contextzip/applier.py</code> via <code>btp-guard</code>, shipped a zero-dependency hardening PR, and got it approved &amp; merged to <code>main</code> in under 24 hours.
+          </p>
+        </div>
+        <div style="font-family:var(--font-mono); font-size:12px; color:#fde68a; font-weight:700;">View Merged PR #29 on GitHub &rarr;</div>
+      </a>
+
+      <!-- Card B: Free 5-Line GitHub Action -->
+      <div style="background: rgba(9, 21, 16, 0.88); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 14px; padding: 22px 24px; display: flex; flex-direction: column; justify-content: space-between; gap: 12px;">
+        <div>
+          <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; margin-bottom:10px; flex-wrap:wrap;">
+            <span style="font-family:var(--font-mono); font-size:11px; font-weight:800; color:#fde68a; background:rgba(245,158,11,0.16); border:1px solid rgba(245,158,11,0.4); padding:3px 10px; border-radius:999px;">FREE CI/CD GATE • ZERO DEPS</span>
+            <button type="button" onclick="navigator.clipboard.writeText('- uses: staccFoxx/bartholomew@main\n  with:\n    fail-on-high: &quot;false&quot;'); this.innerText='Copied YAML!'; setTimeout(()=>this.innerText='Copy YAML', 2000)" style="background:rgba(245,158,11,0.18); border:1px solid rgba(245,158,11,0.45); color:#fde68a; font-family:var(--font-mono); font-size:11px; font-weight:700; padding:4px 10px; border-radius:6px; cursor:pointer;">Copy YAML</button>
+          </div>
+          <div style="font-size:16px; font-weight:800; color:#ffffff; margin-bottom:8px;">Drop-In Free GitHub Action</div>
+          <pre style="margin:0; background:rgba(0,0,0,0.55); border:1px solid rgba(255,255,255,0.08); border-radius:8px; padding:10px 12px; font-family:var(--font-mono); font-size:12px; color:#6ee7b7; overflow-x:auto;">- uses: staccFoxx/bartholomew@main
+  with:
+    fail-on-high: "false"</pre>
+        </div>
+        <div style="font-family:var(--font-mono); font-size:11.5px; color:#94a3b8;">Flags OWASP LLM02/LLM05/LLM06 + grades every PR (A+ to F) in GitHub Step Summary.</div>
+      </div>
+    </div>
+  </section>
+
   <!-- Engagement Tiers -->
   <section class="container">
     <div class="section-header">
       <h2>Select Your AI Agent Security Engagement</h2>
-      <p>Fixed-scope, transparent flat-fee engagements preventing autonomous agents from dropping databases, escaping shells, or leaking credentials.</p>
+      <p>Fixed-scope, transparent flat-fee engagements (zero subscriptions) preventing autonomous agents from dropping databases, escaping shells, or leaking credentials.</p>
     </div>
 
     <div class="tiers-grid">
-      <!-- Tier 1: Security Boundary Assessment -->
+      <!-- Tier 1: 48-Hour AI Agent Security & Cost-Guard Audit -->
       <div class="tier-card">
-        <div class="tier-name">Security Boundary Assessment</div>
-        <div class="tier-desc">Ideal for engineering teams wanting an independent adversarial review of their Cursor, Claude Code, or MCP setup.</div>
-        <div class="tier-price">$1,000 <span>USD flat</span></div>
-        <div class="tier-sla">3-Day Turnaround SLA</div>
+        <div class="tier-name">48-Hour Security &amp; Cost Audit</div>
+        <div class="tier-desc">Fast fixed-scope hardening for MCP servers, coding agents, and autonomous Python/TS workflows.</div>
+        <div class="tier-price">$750 <span>USD one-time</span></div>
+        <div class="tier-sla">48-Hour Turnaround SLA</div>
         <ul class="tier-features">
-          <li>1 Active Coding Agent or MCP Tool Workflow</li>
-          <li>50-Vector Adversarial Fuzzing &amp; Injection Test</li>
-          <li>Identified Unconstrained Execution Proofs</li>
-          <li>Remediation Invariant Specification</li>
-          <li>Signed RFC 8785 Cryptographic Attestation</li>
+          <li>Full AST + MCP Tool Handler Security Pass</li>
+          <li>1–2 Clean Hardening PRs Ready to Merge</li>
+          <li>In-Flight Secret Masking &amp; Runaway Spend Cap</li>
+          <li>Drop-In GitHub Action CI Gate Setup</li>
+          <li>Signed RFC 8785 Cryptographic Audit Report</li>
         </ul>
-        <a href="#intake" class="btn-checkout btn-secondary" onclick="selectTier('Assessment ($1,000)')">Book Assessment ($1,000)</a>
+        <a href="#intake" class="btn-checkout btn-secondary" onclick="selectTier('48-Hour Audit ($750)')">Book 48-Hr Audit ($750)</a>
       </div>
 
       <!-- Tier 2: In-Process Execution Boundary Pilot (Featured) -->

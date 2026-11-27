@@ -1,0 +1,22 @@
+name: Bartholomew Guard Security Scan
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  btp-guard:
+    name: Run Bartholomew Guard AST Gate
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Scan repository with Bartholomew Guard
+        uses: ./
+        with:
+          path: src
+          fail-on-high: "false"

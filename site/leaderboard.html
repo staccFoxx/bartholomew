@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Google AdSense -->
-  <meta name="google-adsense-account" content="ca-pub-8757306565068634">
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8757306565068634"
-     crossorigin="anonymous"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>Agentic Guardrails Leaderboard &amp; GPU Savings Calculator | Bartholomew</title>
@@ -1135,6 +1131,92 @@
           <!-- Populated by JS -->
         </tbody>
       </table>
+    </div>
+
+    <!-- Live Open-Source MCP & Agent Verification Ledger + README Badge Generator -->
+    <div class="section-card" id="oss-mcp-ledger" style="margin-top: 28px; border-color: rgba(245, 158, 11, 0.42); background: linear-gradient(135deg, rgba(9, 21, 16, 0.92) 0%, rgba(5, 12, 9, 0.96) 100%);">
+      <div class="section-header" style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px; margin-bottom:20px;">
+        <div>
+          <span style="display:inline-block; font-family:'JetBrains Mono', monospace; font-size:0.75rem; letter-spacing:0.08em; color:#fde68a; background:rgba(245, 158, 11, 0.14); padding:4px 10px; border-radius:4px; border:1px solid rgba(245, 158, 11, 0.35); margin-bottom:8px;">OPEN-SOURCE SECURITY VERIFICATION LEDGER</span>
+          <h2 style="font-size:1.45rem; font-weight:800; color:#ffffff; margin:4px 0;">Verified MCP &amp; Autonomous Agent Hardening PRs</h2>
+          <p style="color:var(--text-muted); font-size:0.88rem; max-width:760px; margin-top:6px; line-height:1.5;">
+            Real upstream security PRs and deterministic AST gates shipped across active AI agent repositories. Add the free 5-line GitHub Action to claim your verified README badge.
+          </p>
+        </div>
+        <a href="/audit" style="font-family:'JetBrains Mono', monospace; font-size:0.78rem; font-weight:800; color:#040a07; background:linear-gradient(135deg, #dc2626 0%, #f59e0b 52%, #10b981 100%); padding:10px 16px; border-radius:8px; text-decoration:none; white-space:nowrap;">Request 48-Hr Audit ($750) &rarr;</a>
+      </div>
+
+      <div style="overflow-x:auto; margin-bottom:20px;">
+        <table style="width:100%; border-collapse:collapse; font-size:0.84rem; text-align:left;">
+          <thead>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.12); font-family:'JetBrains Mono', monospace; font-size:0.74rem; color:#94a3b8;">
+              <th style="padding:10px 12px;">Repository</th>
+              <th style="padding:10px 12px;">Hardening Scope</th>
+              <th style="padding:10px 12px;">OWASP Mapping</th>
+              <th style="padding:10px 12px;">Status</th>
+              <th style="padding:10px 12px;">Upstream PR</th>
+            </tr>
+          </thead>
+          <tbody style="font-family:'JetBrains Mono', monospace; font-size:0.78rem;">
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06); background:rgba(16,185,129,0.08);">
+              <td style="padding:11px 12px; color:#ffffff; font-weight:700;">akadeepesh/contextzip</td>
+              <td style="padding:11px 12px; color:#cbd5e1;">Shell injection + workspace path confinement</td>
+              <td style="padding:11px 12px; color:#fde68a;">LLM05 + LLM06</td>
+              <td style="padding:11px 12px;"><span style="color:#34d399; font-weight:800;">MERGED</span></td>
+              <td style="padding:11px 12px;"><a href="https://github.com/akadeepesh/contextzip/pull/29" target="_blank" rel="noopener noreferrer" style="color:#fde68a;">PR #29 &rarr;</a></td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+              <td style="padding:11px 12px; color:#ffffff; font-weight:700;">microsoft/autogen</td>
+              <td style="padding:11px 12px; color:#cbd5e1;"><code>autogen_ext.tools.bartholomew</code> AST gate</td>
+              <td style="padding:11px 12px; color:#fde68a;">LLM05 + LLM06</td>
+              <td style="padding:11px 12px;"><span style="color:#34d399; font-weight:700;">CI 100% PASS</span></td>
+              <td style="padding:11px 12px;"><a href="https://github.com/microsoft/autogen/pull/8390" target="_blank" rel="noopener noreferrer" style="color:#7dd3fc;">PR #8390 &rarr;</a></td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+              <td style="padding:11px 12px; color:#ffffff; font-weight:700;">cline/cline</td>
+              <td style="padding:11px 12px; color:#cbd5e1;"><code>@cline/core</code> tool execution invariant gate</td>
+              <td style="padding:11px 12px; color:#fde68a;">LLM02 + LLM06</td>
+              <td style="padding:11px 12px;"><span style="color:#34d399; font-weight:700;">CI 100% PASS</span></td>
+              <td style="padding:11px 12px;"><a href="https://github.com/cline/cline/pull/15349" target="_blank" rel="noopener noreferrer" style="color:#7dd3fc;">PR #15349 &rarr;</a></td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+              <td style="padding:11px 12px; color:#ffffff; font-weight:700;">huggingface/smolagents</td>
+              <td style="padding:11px 12px; color:#cbd5e1;">CodeAgent destructive syscall AST veto</td>
+              <td style="padding:11px 12px; color:#fde68a;">LLM05 + LLM06</td>
+              <td style="padding:11px 12px;"><span style="color:#fbbf24; font-weight:700;">ACTIVE</span></td>
+              <td style="padding:11px 12px;"><a href="https://github.com/huggingface/smolagents/pull/3085" target="_blank" rel="noopener noreferrer" style="color:#7dd3fc;">PR #3085 &rarr;</a></td>
+            </tr>
+            <tr style="border-bottom:1px solid rgba(255,255,255,0.06);">
+              <td style="padding:11px 12px; color:#ffffff; font-weight:700;">QwenLM/Qwen-Agent</td>
+              <td style="padding:11px 12px; color:#cbd5e1;">Code interpreter &amp; tool-call AST firewall</td>
+              <td style="padding:11px 12px; color:#fde68a;">LLM05 + LLM06</td>
+              <td style="padding:11px 12px;"><span style="color:#fbbf24; font-weight:700;">ACTIVE</span></td>
+              <td style="padding:11px 12px;"><a href="https://github.com/QwenLM/Qwen-Agent/pull/1014" target="_blank" rel="noopener noreferrer" style="color:#7dd3fc;">PR #1014 &rarr;</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Claim & Verify README Badge + 5-Line GitHub Action -->
+      <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:16px;">
+        <div style="background:rgba(0,0,0,0.45); border:1px solid rgba(52,211,153,0.3); border-radius:10px; padding:14px 16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span style="font-family:'JetBrains Mono', monospace; font-size:0.74rem; font-weight:800; color:#6ee7b7;">1. ADD FREE GITHUB ACTION (5 LINES)</span>
+            <button type="button" onclick="navigator.clipboard.writeText('- uses: staccFoxx/bartholomew@main\n  with:\n    fail-on-high: &quot;false&quot;'); this.innerText='Copied!'; setTimeout(()=>this.innerText='Copy', 2000)" style="background:rgba(16,185,129,0.2); border:1px solid rgba(52,211,153,0.45); color:#6ee7b7; font-family:'JetBrains Mono', monospace; font-size:0.7rem; font-weight:700; padding:3px 9px; border-radius:5px; cursor:pointer;">Copy</button>
+          </div>
+          <pre style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.74rem; color:#e2e8f0; overflow-x:auto;">- uses: staccFoxx/bartholomew@main
+  with:
+    fail-on-high: "false"</pre>
+        </div>
+
+        <div style="background:rgba(0,0,0,0.45); border:1px solid rgba(245,158,11,0.3); border-radius:10px; padding:14px 16px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span style="font-family:'JetBrains Mono', monospace; font-size:0.74rem; font-weight:800; color:#fde68a;">2. EMBED VERIFIED README SHIELD</span>
+            <button type="button" onclick="navigator.clipboard.writeText('[![Bartholomew Guard Verified](https://bartholomew.info/verified-badge.svg)](https://bartholomew.info/leaderboard)'); this.innerText='Copied!'; setTimeout(()=>this.innerText='Copy', 2000)" style="background:rgba(245,158,11,0.2); border:1px solid rgba(245,158,11,0.45); color:#fde68a; font-family:'JetBrains Mono', monospace; font-size:0.7rem; font-weight:700; padding:3px 9px; border-radius:5px; cursor:pointer;">Copy</button>
+          </div>
+          <pre style="margin:0; font-family:'JetBrains Mono', monospace; font-size:0.74rem; color:#fde68a; overflow-x:auto;">[![Bartholomew Guard Verified](https://bartholomew.info/verified-badge.svg)](https://bartholomew.info/leaderboard)</pre>
+        </div>
+      </div>
     </div>
 
     
