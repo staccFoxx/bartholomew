@@ -4666,7 +4666,8 @@
     }
 
   </style>
-  </head>
+    <link rel="stylesheet" href="/assets/holiday-theme.css?v=2026xmas">
+</head>
 <body>
 
     <!-- Top Navigation with Neat SVG Symbols -->
@@ -9200,73 +9201,6 @@ function verifyKeystoneLive() {
 }
 </script>
 
-<!-- Subtle Winter Holiday Snowfall Overlay + Toggle -->
-<canvas id="holidaySnowCanvas" class="holiday-snow-canvas" aria-hidden="true"></canvas>
-<button type="button" id="holidayToggleBtn" class="holiday-toggle-btn" title="Toggle Winter Holiday Snowfall" aria-pressed="true">
-  <span id="holidayToggleIcon">&#10052;</span>
-  <span id="holidayToggleLabel">Holiday Glow: ON</span>
-</button>
-<script>
-(function() {
-  const canvas = document.getElementById('holidaySnowCanvas');
-  const btn = document.getElementById('holidayToggleBtn');
-  const lbl = document.getElementById('holidayToggleLabel');
-  if (!canvas || !btn) return;
-  const ctx = canvas.getContext('2d');
-  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let enabled = !reduced && localStorage.getItem('btp_holiday_snow') !== 'off';
-  let w = 0, h = 0, flakes = [], rafId = null;
-
-  function resize() {
-    w = canvas.width = window.innerWidth;
-    h = canvas.height = window.innerHeight;
-  }
-  function initFlakes() {
-    const count = Math.min(55, Math.max(24, Math.floor(window.innerWidth / 28)));
-    flakes = Array.from({ length: count }, () => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      r: 0.9 + Math.random() * 1.9,
-      vy: 0.35 + Math.random() * 0.75,
-      vx: (Math.random() - 0.5) * 0.35,
-      a: 0.25 + Math.random() * 0.55,
-      tint: Math.random() < 0.14 ? 'rgba(253, 230, 138,' : 'rgba(226, 244, 255,'
-    }));
-  }
-  function draw() {
-    if (!enabled) return;
-    ctx.clearRect(0, 0, w, h);
-    for (const f of flakes) {
-      f.y += f.vy;
-      f.x += f.vx + Math.sin(f.y * 0.012) * 0.2;
-      if (f.y > h + 6) { f.y = -6; f.x = Math.random() * w; }
-      if (f.x > w + 6) f.x = -6;
-      if (f.x < -6) f.x = w + 6;
-      ctx.beginPath();
-      ctx.arc(f.x, f.y, f.r, 0, Math.PI * 2);
-      ctx.fillStyle = f.tint + f.a + ')';
-      ctx.fill();
-    }
-    rafId = requestAnimationFrame(draw);
-  }
-  function syncUI() {
-    document.body.classList.toggle('holiday-snow-off', !enabled);
-    btn.setAttribute('aria-pressed', String(enabled));
-    lbl.textContent = enabled ? 'Holiday Glow: ON' : 'Holiday Glow: OFF';
-    if (enabled && !rafId) draw();
-    if (!enabled && rafId) { cancelAnimationFrame(rafId); rafId = null; ctx.clearRect(0, 0, w, h); }
-  }
-  btn.addEventListener('click', () => {
-    enabled = !enabled;
-    localStorage.setItem('btp_holiday_snow', enabled ? 'on' : 'off');
-    syncUI();
-  });
-  window.addEventListener('resize', () => { resize(); initFlakes(); });
-  resize();
-  initFlakes();
-  syncUI();
-})();
-</script>
-
+<script defer src="/assets/holiday-snow.js?v=2026xmas"></script>
 </body>
 </html>
